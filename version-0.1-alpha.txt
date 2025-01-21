@@ -1,0 +1,95 @@
+Below is a **concise list** of the **core features** to develop for a **0.1-alpha (MVP)** release. The aim is to deliver **core value**—basic but **functional** period tracking and insight—while establishing the **privacy-first foundation** for future enhancements.
+
+---
+
+## 1. Basic Local Data Storage & Security
+
+1. **Local-Only Database**  
+   - No server backend; all data is stored on-device.  
+   - Sets the foundation for privacy and trust from day one.
+
+2. **Encryption & Access Control**  
+   - Encrypt data at rest using device storage encryption.  
+   - Simple passcode/PIN or biometric lock to protect the app.  
+   - Ensures user data remains private even in the alpha stage.
+
+---
+
+## 2. Core Menstrual Cycle Tracking
+
+1. **Period Logging**  
+   - **Feature**: User can manually input period start/end dates and flow intensity.  
+   - **UI**: Simple calendar view or list input.  
+   - **Benefit**: Immediate, straightforward tracking of cycles—the bedrock of the app.
+
+2. **Basic Cycle Analytics**  
+   - **Feature**: Automatic calculation of cycle length, average period duration, approximate next start date.  
+   - **UI**: Minimal summary on a “Home” or “Calendar” screen.  
+   - **Benefit**: Users quickly see predicted next period.
+
+3. **Optional Symptom Logging**  
+   - **Feature**: Simple toggle-based or text box for daily symptoms/mood.  
+   - **UI**: Minimal interface for adding one or two symptom entries (e.g., cramps, headache).  
+   - **Benefit**: Establishes framework for future correlations without overwhelming the alpha.
+
+---
+
+## 3. Minimal UI & User Flow
+
+1. **Onboarding**  
+   - **Feature**: Brief introduction explaining local storage and privacy.  
+   - **UI**: One or two screens highlighting how to log data and set a passcode.  
+   - **Benefit**: Clarity on privacy philosophy and basic instructions.
+
+2. **Main Tracking Screen**  
+   - **Feature**: Calendar or simple timeline showing current cycle day, logged symptoms, predicted next period date.  
+   - **Benefit**: Central place to view and input data quickly.
+
+3. **Settings & Security**  
+   - **Feature**: User can enable/disable passcode, set a new PIN, or choose biometric authentication.  
+   - **Benefit**: Reinforces trust by giving immediate control over app security.
+
+---
+
+## 4. Basic Insights & Feedback
+
+1. **Cycle Summary Card**  
+   - **Feature**: Displays last period dates, cycle length, upcoming expected period day.  
+   - **UI**: A small widget or banner on the main screen.  
+   - **Benefit**: Gives user at-a-glance info to plan around.
+
+2. **Discrete Notifications (Optional in 0.1)**  
+   - **Feature**: Very light implementation—e.g., “Time to log your day?”  
+   - **UI**: Minimal or turn-off by default for full discretion.  
+   - **Benefit**: Encourages consistent logging, can be refined later.
+
+---
+
+## 5. Technical Foundation & Architecture
+
+1. **Lightweight App Structure**  
+   - **Implementation**: Simple, modular code structure to accommodate future expansions (mood, fertility, etc.).  
+   - **Benefit**: Ensures easy iteration and stability.
+
+2. **Versioning & Open Source Setup**  
+   - **Implementation**: Create a public repository with clear documentation (even if it’s rudimentary).  
+   - **Benefit**: Transparency from the start, fosters community trust.
+
+3. **Manual Backup/Restore (If Feasible)**  
+   - **Feature**: Basic export of app data to an encrypted file or local folder.  
+   - **Benefit**: Provides minimal data portability if the user wants to protect or transfer logs.
+
+---
+
+## 6. MVP Success Criteria
+
+- **Reliable Period Logging**: Users can log at least one full cycle without issues.  
+- **Clear Next Period Estimate**: Basic predictive logic that shows the next expected date.  
+- **Data Privacy & Security**: All personal data stays local, optional passcode or biometric in place.  
+- **Usable UI**: Simple, frictionless daily or periodic logging flow.
+
+---
+
+### Summary
+
+For **version 0.1-alpha**, **keep it lean**: **period tracking** with **local storage** and **basic predictions**, **simple symptom logs**, **minimal yet secure UI**, and **transparent privacy controls**. This establishes trust, demonstrates value, and lays the groundwork for future expansions (fertility tracking, mental health insights, advanced analytics) once user feedback and core stability are validated.

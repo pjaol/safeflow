@@ -1,0 +1,48 @@
+{
+  "source": "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/Sources/Views/Home/LogDayView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Edit Log"
+      },
+      {
+        "comment": "",
+        "key": "New Log"
+      },
+      {
+        "comment": "",
+        "key": "Flow"
+      },
+      {
+        "comment": "",
+        "key": "Symptoms"
+      },
+      {
+        "comment": "",
+        "key": "Mood"
+      },
+      {
+        "comment": "",
+        "key": "Notes"
+      },
+      {
+        "comment": "",
+        "key": "Flow Intensity"
+      },
+      {
+        "comment": "",
+        "key": "None"
+      },
+      {
+        "comment": "",
+        "key": "Cancel"
+      },
+      {
+        "comment": "",
+        "key": "Save"
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,78 @@
+{
+  "" : {
+    "diagnostics" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/safeflow-master.dia",
+    "emit-module-dependencies" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/safeflow-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/safeflow-master-emit-module.dia",
+    "swift-dependencies" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/safeflow-master.swiftdeps"
+  },
+  "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  },
+  "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/Sources/App/SafeFlowApp.swift" : {
+    "const-values" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/SafeFlowApp.swiftconstvalues",
+    "dependencies" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/SafeFlowApp.d",
+    "diagnostics" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/SafeFlowApp.dia",
+    "index-unit-output-path" : "/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/SafeFlowApp.o",
+    "llvm-bc" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/SafeFlowApp.bc",
+    "object" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/SafeFlowApp.o",
+    "swift-dependencies" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/SafeFlowApp.swiftdeps",
+    "swiftmodule" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/SafeFlowApp~partial.swiftmodule"
+  },
+  "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/Sources/Models/CycleDay.swift" : {
+    "const-values" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/CycleDay.swiftconstvalues",
+    "dependencies" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/CycleDay.d",
+    "diagnostics" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/CycleDay.dia",
+    "index-unit-output-path" : "/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/CycleDay.o",
+    "llvm-bc" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/CycleDay.bc",
+    "object" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/CycleDay.o",
+    "swift-dependencies" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/CycleDay.swiftdeps",
+    "swiftmodule" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/CycleDay~partial.swiftmodule"
+  },
+  "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/Sources/Services/Persistence/CycleStore.swift" : {
+    "const-values" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/CycleStore.swiftconstvalues",
+    "dependencies" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/CycleStore.d",
+    "diagnostics" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/CycleStore.dia",
+    "index-unit-output-path" : "/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/CycleStore.o",
+    "llvm-bc" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/CycleStore.bc",
+    "object" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/CycleStore.o",
+    "swift-dependencies" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/CycleStore.swiftdeps",
+    "swiftmodule" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/CycleStore~partial.swiftmodule"
+  },
+  "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/Sources/ViewModels/HomeViewModel.swift" : {
+    "const-values" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/HomeViewModel.swiftconstvalues",
+    "dependencies" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/HomeViewModel.d",
+    "diagnostics" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/HomeViewModel.dia",
+    "index-unit-output-path" : "/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/HomeViewModel.o",
+    "llvm-bc" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/HomeViewModel.bc",
+    "object" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/HomeViewModel.o",
+    "swift-dependencies" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/HomeViewModel.swiftdeps",
+    "swiftmodule" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/HomeViewModel~partial.swiftmodule"
+  },
+  "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/Sources/Views/Home/HomeView.swift" : {
+    "const-values" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/HomeView.swiftconstvalues",
+    "dependencies" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/HomeView.d",
+    "diagnostics" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/HomeView.dia",
+    "index-unit-output-path" : "/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/HomeView.o",
+    "llvm-bc" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/HomeView.bc",
+    "object" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/HomeView.o",
+    "swift-dependencies" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/HomeView.swiftdeps",
+    "swiftmodule" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/HomeView~partial.swiftmodule"
+  },
+  "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/Sources/Views/Home/LogDayView.swift" : {
+    "const-values" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/LogDayView.swiftconstvalues",
+    "dependencies" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/LogDayView.d",
+    "diagnostics" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/LogDayView.dia",
+    "index-unit-output-path" : "/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/LogDayView.o",
+    "llvm-bc" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/LogDayView.bc",
+    "object" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/LogDayView.o",
+    "swift-dependencies" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/LogDayView.swiftdeps",
+    "swiftmodule" : "/Users/patrick/Projects/thevgergroup/safeflow/safeflow/build/Build/Intermediates.noindex/safeflow.build/Debug/safeflow.build/Objects-normal/arm64/LogDayView~partial.swiftmodule"
+  }
+}
