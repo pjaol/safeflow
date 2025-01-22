@@ -17,6 +17,8 @@
 		CD218E712D405C85009B5198 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E6F2D405C85009B5198 /* TestData.swift */; };
 		CD218E742D4169C5009B5198 /* SecurityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E722D4169C5009B5198 /* SecurityService.swift */; };
 		CD218E772D416A3D009B5198 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E752D416A3D009B5198 /* LockView.swift */; };
+		CD218E8D2D419279009B5198 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E892D419279009B5198 /* OnboardingView.swift */; };
+		CD218E8E2D419279009B5198 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E8B2D419279009B5198 /* SettingsView.swift */; };
 		CDBECD5F2D4010D2006A37C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBECD5E2D4010D2006A37C9 /* Assets.xcassets */; };
 		CDBECD632D4010D2006A37C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBECD622D4010D2006A37C9 /* Preview Assets.xcassets */; };
 		CDBECD6D2D4010D2006A37C9 /* safeflowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */; };
@@ -53,6 +55,8 @@
 		CD218E722D4169C5009B5198 /* SecurityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityService.swift; sourceTree = "<group>"; };
 		CD218E752D416A3D009B5198 /* LockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
 		CD218E852D416B8D009B5198 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD218E892D419279009B5198 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		CD218E8B2D419279009B5198 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CDBECD552D4010D1006A37C9 /* safeflow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safeflow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBECD5E2D4010D2006A37C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDBECD602D4010D2006A37C9 /* safeflow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = safeflow.entitlements; sourceTree = "<group>"; };
@@ -168,6 +172,8 @@
 		CD218E632D4021EB009B5198 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CD218E8A2D419279009B5198 /* Onboarding */,
+				CD218E8C2D419279009B5198 /* Settings */,
 				CD218E762D416A3D009B5198 /* Security */,
 				CD218E6D2D405C1D009B5198 /* Debug */,
 				CD218E612D4021EB009B5198 /* Home */,
@@ -217,6 +223,22 @@
 				CD218E752D416A3D009B5198 /* LockView.swift */,
 			);
 			path = Security;
+			sourceTree = "<group>";
+		};
+		CD218E8A2D419279009B5198 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				CD218E892D419279009B5198 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		CD218E8C2D419279009B5198 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				CD218E8B2D419279009B5198 /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		CDBECD4C2D4010D1006A37C9 = {
@@ -422,7 +444,9 @@
 				CD218E692D4021EB009B5198 /* HomeView.swift in Sources */,
 				CD218E742D4169C5009B5198 /* SecurityService.swift in Sources */,
 				CD218E6B2D4021EB009B5198 /* SafeFlowApp.swift in Sources */,
+				CD218E8E2D419279009B5198 /* SettingsView.swift in Sources */,
 				CD218E682D4021EB009B5198 /* HomeViewModel.swift in Sources */,
+				CD218E8D2D419279009B5198 /* OnboardingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

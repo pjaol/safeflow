@@ -3,8 +3,10 @@ import UIKit
 
 struct HomeView: View {
     @ObservedObject var cycleStore: CycleStore
+    @EnvironmentObject private var securityService: SecurityService
     @State private var showingLogSheet = false
     @State private var showingNewEntrySheet = false
+    @State private var showingSettingsSheet = false
     #if DEBUG
     @State private var showingDebugMenu = false
     #endif
@@ -42,6 +44,14 @@ struct HomeView: View {
                 }
                 #endif
                 
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        showingSettingsSheet = true
+                    } label: {
+                        Image(systemName: "gear")
+                    }
+                }
+                
                 ToolbarItem(placement: .primaryAction) {
                     Button {
                         showingNewEntrySheet = true
@@ -56,6 +66,10 @@ struct HomeView: View {
             }
             .sheet(isPresented: $showingNewEntrySheet) {
                 LogDayView(cycleStore: cycleStore, existingDay: nil)
+            }
+            .sheet(isPresented: $showingSettingsSheet) {
+                SettingsView()
+                    .environmentObject(securityService)
             }
             #if DEBUG
             .sheet(isPresented: $showingDebugMenu) {

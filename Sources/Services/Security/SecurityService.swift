@@ -4,7 +4,17 @@ import SwiftUI
 @MainActor
 class SecurityService: ObservableObject {
     @Published private(set) var isUnlocked = false
+    @Published var isAuthenticationRequired: Bool {
+        didSet {
+            UserDefaults.standard.set(isAuthenticationRequired, forKey: "isAuthenticationRequired")
+        }
+    }
+    
     private let context = LAContext()
+    
+    init() {
+        self.isAuthenticationRequired = UserDefaults.standard.bool(forKey: "isAuthenticationRequired")
+    }
     
     var canUseBiometrics: Bool {
         var error: NSError?

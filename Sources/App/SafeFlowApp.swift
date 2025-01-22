@@ -3,16 +3,27 @@ import os
 
 @main
 struct SafeFlowApp: App {
-    @StateObject private var cycleStore = CycleStore()
-    @StateObject private var securityService = SecurityService()
+    @StateObject private var securityService: SecurityService
+    @StateObject private var cycleStore: CycleStore
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
     private let logger = Logger(subsystem: "com.thevgergroup.safeflow", category: "SafeFlowApp")
+    
+    init() {
+        let securityService = SecurityService()
+        _securityService = StateObject(wrappedValue: securityService)
+        _cycleStore = StateObject(wrappedValue: CycleStore())
+    }
     
     var body: some Scene {
         WindowGroup {
             GeometryReader { geometry in
                 Group {
-                    if securityService.isUnlocked {
+                    if !hasCompletedOnboarding {
+                        OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)
+                            .environmentObject(securityService)
+                    } else if securityService.isUnlocked {
                         HomeView(cycleStore: cycleStore)
+                            .environmentObject(securityService)
                             .onDisappear {
                                 securityService.lock()
                             }
