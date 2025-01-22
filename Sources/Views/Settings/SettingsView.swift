@@ -4,6 +4,7 @@ struct SettingsView: View {
     @EnvironmentObject private var securityService: SecurityService
     @Environment(\.dismiss) private var dismiss
     @State private var showingBiometricSetup = false
+    @State private var showingPinSetup = false
     
     var body: some View {
         NavigationView {
@@ -13,7 +14,11 @@ struct SettingsView: View {
                         get: { securityService.isAuthenticationRequired },
                         set: { newValue in
                             if newValue {
-                                showingBiometricSetup = true
+                                if securityService.canUseBiometrics {
+                                    showingBiometricSetup = true
+                                } else {
+                                    showingPinSetup = true
+                                }
                             } else {
                                 securityService.isAuthenticationRequired = false
                             }
@@ -21,10 +26,16 @@ struct SettingsView: View {
                     ))
                     
                     if securityService.isAuthenticationRequired {
-                        Button("Test Authentication") {
-                            Task {
-                                _ = await securityService.authenticateWithBiometrics()
+                        if securityService.canUseBiometrics {
+                            Button("Test Face ID/Touch ID") {
+                                Task {
+                                    _ = await securityService.authenticateWithBiometrics()
+                                }
                             }
+                        }
+                        
+                        Button(securityService.hasFallbackPin ? "Change PIN" : "Set Up PIN") {
+                            showingPinSetup = true
                         }
                     }
                 }
@@ -58,12 +69,13 @@ struct SettingsView: View {
                     }
                 }
             }
-            .alert("Set Up Authentication", isPresented: $showingBiometricSetup) {
+            .alert("Set Up Face ID/Touch ID", isPresented: $showingBiometricSetup) {
                 Button("Set Up") {
                     Task {
                         let success = await securityService.authenticateWithBiometrics()
                         if success {
                             securityService.isAuthenticationRequired = true
+                            showingPinSetup = true // Set up PIN as fallback
                         }
                     }
                 }
@@ -73,6 +85,9 @@ struct SettingsView: View {
                 }
             } message: {
                 Text("Use Face ID or Touch ID to protect your data")
+            }
+            .sheet(isPresented: $showingPinSetup) {
+                PinSetupView()
             }
         }
     }
