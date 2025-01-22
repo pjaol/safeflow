@@ -60,7 +60,7 @@ struct LogDayView: View {
                 
                 Section("Notes") {
                     TextEditor(text: $notes)
-                        .frame(height: 100)
+                        .frame(minHeight: 100)
                 }
             }
             .navigationTitle(existingDay != nil ? "Edit Log" : "New Log")

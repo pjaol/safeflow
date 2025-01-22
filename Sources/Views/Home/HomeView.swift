@@ -29,6 +29,7 @@ struct HomeView: View {
                 }
                 .padding()
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .navigationTitle("SafeFlow")
             .toolbar {
                 #if DEBUG
@@ -62,6 +63,7 @@ struct HomeView: View {
             }
             #endif
         }
+        .navigationViewStyle(.stack)
     }
 }
 
@@ -116,6 +118,7 @@ struct DailyLogCard: View {
                     if !day.symptoms.isEmpty {
                         Text("Symptoms: \(day.symptoms.map { $0.localizedName }.joined(separator: ", "))")
                             .foregroundColor(.primary)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                     
                     if let mood = day.mood {
@@ -126,6 +129,7 @@ struct DailyLogCard: View {
                     if let notes = day.notes, !notes.isEmpty {
                         Text("Notes: \(notes)")
                             .foregroundColor(.primary)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                 }
             } else {
@@ -171,6 +175,7 @@ struct RecentLogsSection: View {
                                 Text("Symptoms: \(day.symptoms.map { $0.localizedName }.joined(separator: ", "))")
                                     .font(.caption)
                                     .foregroundColor(.secondary)
+                                    .fixedSize(horizontal: false, vertical: true)
                             }
                         }
                         
