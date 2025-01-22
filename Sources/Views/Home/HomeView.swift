@@ -5,6 +5,9 @@ struct HomeView: View {
     @ObservedObject var cycleStore: CycleStore
     @State private var showingLogSheet = false
     @State private var showingNewEntrySheet = false
+    #if DEBUG
+    @State private var showingDebugMenu = false
+    #endif
     
     var body: some View {
         NavigationView {
@@ -28,6 +31,16 @@ struct HomeView: View {
             }
             .navigationTitle("SafeFlow")
             .toolbar {
+                #if DEBUG
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        showingDebugMenu = true
+                    } label: {
+                        Image(systemName: "ladybug.fill")
+                    }
+                }
+                #endif
+                
                 ToolbarItem(placement: .primaryAction) {
                     Button {
                         showingNewEntrySheet = true
@@ -43,6 +56,11 @@ struct HomeView: View {
             .sheet(isPresented: $showingNewEntrySheet) {
                 LogDayView(cycleStore: cycleStore, existingDay: nil)
             }
+            #if DEBUG
+            .sheet(isPresented: $showingDebugMenu) {
+                DebugMenu(cycleStore: cycleStore)
+            }
+            #endif
         }
     }
 }
@@ -89,14 +107,26 @@ struct DailyLogCard: View {
                 .font(.headline)
             
             if let day = cycleDay {
-                if let flow = day.flow {
-                    Text("Flow: \(flow.rawValue.capitalized)")
-                }
-                if !day.symptoms.isEmpty {
-                    Text("Symptoms: \(day.symptoms.map { $0.localizedName }.joined(separator: ", "))")
-                }
-                if let mood = day.mood {
-                    Text("Mood: \(mood.localizedName)")
+                VStack(alignment: .leading, spacing: 8) {
+                    if let flow = day.flow {
+                        Text("Flow: \(flow.rawValue.capitalized)")
+                            .foregroundColor(.primary)
+                    }
+                    
+                    if !day.symptoms.isEmpty {
+                        Text("Symptoms: \(day.symptoms.map { $0.localizedName }.joined(separator: ", "))")
+                            .foregroundColor(.primary)
+                    }
+                    
+                    if let mood = day.mood {
+                        Text("Mood: \(mood.localizedName)")
+                            .foregroundColor(.primary)
+                    }
+                    
+                    if let notes = day.notes, !notes.isEmpty {
+                        Text("Notes: \(notes)")
+                            .foregroundColor(.primary)
+                    }
                 }
             } else {
                 Text("Tap to log your day")
@@ -120,35 +150,44 @@ struct RecentLogsSection: View {
             Text("Recent Logs")
                 .font(.headline)
             
-            ForEach(days) { day in
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text(day.date, style: .date)
-                            .font(.subheadline)
-                        if let flow = day.flow {
-                            Text(flow.rawValue.capitalized)
-                                .font(.caption)
-                                .foregroundColor(.secondary)
+            if days.isEmpty {
+                Text("No recent logs")
+                    .foregroundColor(.secondary)
+            } else {
+                ForEach(days) { day in
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(day.date, style: .date)
+                                .font(.subheadline)
+                                .foregroundColor(.primary)
+                            
+                            if let flow = day.flow {
+                                Text("Flow: \(flow.rawValue.capitalized)")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                            if !day.symptoms.isEmpty {
+                                Text("Symptoms: \(day.symptoms.map { $0.localizedName }.joined(separator: ", "))")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                        
+                        Spacer()
+                        
+                        Button {
+                            onDelete(day.id)
+                        } label: {
+                            Image(systemName: "trash")
+                                .foregroundColor(.red)
                         }
                     }
-                    
-                    Spacer()
-                    
-                    Button {
-                        onDelete(day.id)
-                    } label: {
-                        Image(systemName: "trash")
-                            .foregroundColor(.red)
-                    }
+                    .padding()
+                    .background(Color(uiColor: .secondarySystemBackground))
+                    .cornerRadius(8)
                 }
-                .padding(.vertical, 8)
-                Divider()
             }
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
-        .background(Color(uiColor: .secondarySystemBackground))
-        .cornerRadius(12)
-        .shadow(radius: 2)
     }
 } 

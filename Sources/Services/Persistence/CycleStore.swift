@@ -45,6 +45,14 @@ class CycleStore: ObservableObject {
         saveData()
     }
     
+    #if DEBUG
+    func clearAllData() {
+        cycleDays.removeAll()
+        userDefaults.removeObject(forKey: saveKey)
+        objectWillChange.send()
+    }
+    #endif
+    
     func getDaysInRange(start: Date, end: Date) -> [CycleDay] {
         cycleDays.filter { $0.date >= start && $0.date <= end }
     }

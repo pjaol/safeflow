@@ -13,6 +13,8 @@
 		CD218E692D4021EB009B5198 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E5F2D4021EB009B5198 /* HomeView.swift */; };
 		CD218E6A2D4021EB009B5198 /* LogDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E602D4021EB009B5198 /* LogDayView.swift */; };
 		CD218E6B2D4021EB009B5198 /* SafeFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E642D4021EB009B5198 /* SafeFlowApp.swift */; };
+		CD218E6E2D405C1D009B5198 /* DebugMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E6C2D405C1D009B5198 /* DebugMenu.swift */; };
+		CD218E712D405C85009B5198 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E6F2D405C85009B5198 /* TestData.swift */; };
 		CDBECD5F2D4010D2006A37C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBECD5E2D4010D2006A37C9 /* Assets.xcassets */; };
 		CDBECD632D4010D2006A37C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBECD622D4010D2006A37C9 /* Preview Assets.xcassets */; };
 		CDBECD6D2D4010D2006A37C9 /* safeflowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */; };
@@ -44,6 +46,8 @@
 		CD218E5F2D4021EB009B5198 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CD218E602D4021EB009B5198 /* LogDayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogDayView.swift; sourceTree = "<group>"; };
 		CD218E642D4021EB009B5198 /* SafeFlowApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeFlowApp.swift; sourceTree = "<group>"; };
+		CD218E6C2D405C1D009B5198 /* DebugMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugMenu.swift; sourceTree = "<group>"; };
+		CD218E6F2D405C85009B5198 /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		CDBECD552D4010D1006A37C9 /* safeflow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safeflow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBECD5E2D4010D2006A37C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDBECD602D4010D2006A37C9 /* safeflow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = safeflow.entitlements; sourceTree = "<group>"; };
@@ -158,6 +162,7 @@
 		CD218E632D4021EB009B5198 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CD218E6D2D405C1D009B5198 /* Debug */,
 				CD218E612D4021EB009B5198 /* Home */,
 				CD218E622D4021EB009B5198 /* Profile */,
 			);
@@ -174,9 +179,27 @@
 			path = Sources/App;
 			sourceTree = "<group>";
 		};
+		CD218E6D2D405C1D009B5198 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				CD218E6C2D405C1D009B5198 /* DebugMenu.swift */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		CD218E702D405C85009B5198 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CD218E6F2D405C85009B5198 /* TestData.swift */,
+			);
+			name = Utilities;
+			path = Sources/Utilities;
+			sourceTree = "<group>";
+		};
 		CDBECD4C2D4010D1006A37C9 = {
 			isa = PBXGroup;
 			children = (
+				CD218E702D405C85009B5198 /* Utilities */,
 				CD218E652D4021EB009B5198 /* App */,
 				CD218E572D4021EB009B5198 /* Models */,
 				CD218E5C2D4021EB009B5198 /* Services */,
@@ -367,7 +390,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD218E672D4021EB009B5198 /* CycleStore.swift in Sources */,
+				CD218E6E2D405C1D009B5198 /* DebugMenu.swift in Sources */,
 				CD218E6A2D4021EB009B5198 /* LogDayView.swift in Sources */,
+				CD218E712D405C85009B5198 /* TestData.swift in Sources */,
 				CD218E662D4021EB009B5198 /* CycleDay.swift in Sources */,
 				CD218E692D4021EB009B5198 /* HomeView.swift in Sources */,
 				CD218E6B2D4021EB009B5198 /* SafeFlowApp.swift in Sources */,
