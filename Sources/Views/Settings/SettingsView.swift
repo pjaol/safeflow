@@ -5,6 +5,7 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showingBiometricSetup = false
     @State private var showingPinSetup = false
+    @State private var hasPin = false
     
     var body: some View {
         NavigationView {
@@ -14,12 +15,14 @@ struct SettingsView: View {
                         get: { securityService.isAuthenticationRequired },
                         set: { newValue in
                             if newValue {
+                                // If enabling auth, decide if we show biometrics or PIN
                                 if securityService.canUseBiometrics {
                                     showingBiometricSetup = true
                                 } else {
                                     showingPinSetup = true
                                 }
                             } else {
+                                // If disabling auth, just turn it off
                                 securityService.isAuthenticationRequired = false
                             }
                         }
@@ -34,7 +37,7 @@ struct SettingsView: View {
                             }
                         }
                         
-                        Button(securityService.hasFallbackPin ? "Change PIN" : "Set Up PIN") {
+                        Button(hasPin ? "Change PIN" : "Set Up PIN") {
                             showingPinSetup = true
                         }
                     }
@@ -69,27 +72,36 @@ struct SettingsView: View {
                     }
                 }
             }
+            // Show alert to set up biometrics
             .alert("Set Up Face ID/Touch ID", isPresented: $showingBiometricSetup) {
                 Button("Set Up") {
                     Task {
                         let success = await securityService.authenticateWithBiometrics()
                         if success {
                             securityService.isAuthenticationRequired = true
-                            showingPinSetup = true // Set up PIN as fallback
+                            showingPinSetup = true // also set up PIN fallback
                         }
                     }
                 }
-                Button("Cancel", role: .cancel) {
-                    // No need to set isAuthenticationRequired to false here
-                    // since it was never set to true
-                }
+                Button("Cancel", role: .cancel) {}
             } message: {
                 Text("Use Face ID or Touch ID to protect your data")
             }
+            // Show sheet for PIN setup
             .sheet(isPresented: $showingPinSetup) {
                 PinSetupView()
             }
+            // Use a small async method (below) to fetch the hasPin value
+            .task {
+                await loadPinStatus()
+            }
         }
+    }
+    
+    /// Move the async logic out of the `.task` closure and into a dedicated async func.
+    @MainActor
+    private func loadPinStatus() async {
+        hasPin = await securityService.hasFallbackPin
     }
 }
 
@@ -121,7 +133,12 @@ struct PrivacyView: View {
     }
 }
 
-#Preview {
-    SettingsView()
-        .environmentObject(SecurityService())
-} 
+#if DEBUG
+struct SettingsView_Previews: PreviewProvider {
+    static var previews: some View {
+        // Example: Using your `SecurityServicePreview.shared` or a normal SecurityService
+        SettingsView()
+            .environmentObject(SecurityServicePreview.shared)
+    }
+}
+#endif

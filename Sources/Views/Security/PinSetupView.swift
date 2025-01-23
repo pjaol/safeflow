@@ -7,6 +7,7 @@ struct PinSetupView: View {
     @State private var confirmPin = ""
     @State private var showingConfirmation = false
     @State private var errorMessage: String?
+    @State private var isSaving = false
     
     var body: some View {
         NavigationView {
@@ -33,7 +34,7 @@ struct PinSetupView: View {
                     }
                 }
             }
-            .navigationTitle("Set Up PIN")
+            .navigationTitle(showingConfirmation ? "Confirm PIN" : "Set Up PIN")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -47,10 +48,12 @@ struct PinSetupView: View {
                         if !showingConfirmation {
                             validateFirstPin()
                         } else {
-                            savePin()
+                            Task {
+                                await savePin()
+                            }
                         }
                     }
-                    .disabled(!isPinValid)
+                    .disabled(!isPinValid || isSaving)
                 }
             }
         }
@@ -73,15 +76,31 @@ struct PinSetupView: View {
         errorMessage = nil
     }
     
-    private func savePin() {
+    private func savePin() async {
         guard pin == confirmPin else {
             errorMessage = "PINs don't match"
+            showingConfirmation = false
+            confirmPin = ""
             return
         }
         
-        if securityService.setPin(pin) {
-            dismiss()
+        isSaving = true
+        do {
+            if try await securityService.setPin(pin) {
+                dismiss()
+            } else {
+                errorMessage = "Failed to save PIN"
+                showingConfirmation = false
+                pin = ""
+                confirmPin = ""
+            }
+        } catch {
+            errorMessage = "Error saving PIN: \(error.localizedDescription)"
+            showingConfirmation = false
+            pin = ""
+            confirmPin = ""
         }
+        isSaving = false
     }
 }
 
@@ -89,6 +108,7 @@ struct PinEntryView: View {
     @EnvironmentObject private var securityService: SecurityService
     @Binding var isPresented: Bool
     @State private var pin = ""
+    @State private var isAuthenticating = false
     
     var body: some View {
         NavigationView {
@@ -117,11 +137,20 @@ struct PinEntryView: View {
                 
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Unlock") {
-                        if securityService.authenticateWithPin(pin) {
-                            isPresented = false
+                        Task {
+                            isAuthenticating = true
+                            do {
+                                if try await securityService.authenticateWithPin(pin) {
+                                    // Successful authentication
+                                    isPresented = false
+                                }
+                            } catch {
+                                // Error will be shown through securityService.authenticationError
+                            }
+                            isAuthenticating = false
                         }
                     }
-                    .disabled(pin.count < 4)
+                    .disabled(pin.count < 4 || isAuthenticating)
                 }
             }
         }
@@ -130,5 +159,5 @@ struct PinEntryView: View {
 
 #Preview {
     PinSetupView()
-        .environmentObject(SecurityService())
+        .environmentObject(SecurityServicePreview.createPreview())
 } 

@@ -5,6 +5,7 @@ struct LockView: View {
     @EnvironmentObject private var securityService: SecurityService
     @State private var isAuthenticating = false
     @State private var showingPinEntry = false
+    @State private var hasPin = false
     private let logger = Logger(subsystem: "com.thevgergroup.safeflow", category: "LockView")
     
     var body: some View {
@@ -24,7 +25,18 @@ struct LockView: View {
                         .font(.title2)
                         .bold()
                     
-                    if securityService.canUseBiometrics {
+                    if !securityService.isAuthenticationRequired {
+                        // Show setup buttons if authentication is not required
+                        Button(action: { securityService.isAuthenticationRequired = true }) {
+                            Label("Set Up Security", systemImage: "lock.shield")
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.accentColor)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        .padding(.horizontal, 40)
+                    } else if securityService.canUseBiometrics {
                         Text("Use Face ID or Touch ID to unlock")
                             .foregroundColor(.secondary)
                         
@@ -39,18 +51,29 @@ struct LockView: View {
                         .padding(.horizontal, 40)
                         .disabled(isAuthenticating)
                         
-                        if securityService.hasFallbackPin {
+                        if hasPin {
                             Button("Use PIN Instead") {
                                 showingPinEntry = true
                             }
                             .padding(.top)
                         }
-                    } else if securityService.hasFallbackPin {
+                    } else if hasPin {
                         Text("Enter your PIN to unlock")
                             .foregroundColor(.secondary)
                         
                         Button(action: { showingPinEntry = true }) {
                             Label("Enter PIN", systemImage: "key.fill")
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.accentColor)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        .padding(.horizontal, 40)
+                    } else {
+                        // Show PIN setup if no authentication method is available
+                        Button(action: { showingPinEntry = true }) {
+                            Label("Set Up PIN", systemImage: "key.fill")
                                 .padding()
                                 .frame(maxWidth: .infinity)
                                 .background(Color.accentColor)
@@ -74,10 +97,13 @@ struct LockView: View {
                 logger.debug("Screen size: \(geometry.size.width) x \(geometry.size.height)")
                 logger.debug("Safe area insets: top: \(geometry.safeAreaInsets.top), bottom: \(geometry.safeAreaInsets.bottom), left: \(geometry.safeAreaInsets.leading), right: \(geometry.safeAreaInsets.trailing)")
                 
-                if securityService.canUseBiometrics {
-                    authenticate()
-                } else if securityService.hasFallbackPin {
-                    showingPinEntry = true
+                Task {
+                    hasPin = await securityService.hasFallbackPin
+                    if securityService.canUseBiometrics && securityService.isAuthenticationRequired {
+                        authenticate()
+                    } else if hasPin && securityService.isAuthenticationRequired {
+                        showingPinEntry = true
+                    }
                 }
             }
             .onChange(of: geometry.size) { oldSize, newSize in
@@ -105,4 +131,13 @@ struct LockView: View {
             }
         }
     }
-} 
+}
+
+#if DEBUG
+struct LockView_Previews: PreviewProvider {
+    static var previews: some View {
+        LockView()
+            .environmentObject(SecurityServicePreview.shared)
+    }
+}
+#endif 
