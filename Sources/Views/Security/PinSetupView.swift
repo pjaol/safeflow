@@ -38,14 +38,14 @@ struct PinSetupView: View {
             .navigationTitle("Set Up PIN")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
+                ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button("Cancel") {
                         dismiss()
                     }
                     .foregroundColor(AppTheme.Colors.mediumGrayText)
                 }
                 
-                ToolbarItem(placement: .confirmationAction) {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button(showingConfirmation ? "Save" : "Next") {
                         if showingConfirmation {
                             if pin == confirmPin {
@@ -103,14 +103,14 @@ struct PinEntryView: View {
             .navigationTitle("Enter PIN")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
+                ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button("Cancel") {
                         isPresented = false
                     }
                     .foregroundColor(AppTheme.Colors.mediumGrayText)
                 }
                 
-                ToolbarItem(placement: .confirmationAction) {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button("Unlock") {
                         Task {
                             isAuthenticating = true
