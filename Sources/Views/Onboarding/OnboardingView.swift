@@ -15,52 +15,75 @@ struct OnboardingView: View {
     @State private var showingPinSetup = false
     
     var body: some View {
-        TabView {
-            // Privacy Page
-            VStack(spacing: AppTheme.Metrics.standardSpacing) {
-                Image(systemName: "lock.shield")
-                    .font(.system(size: 60))
-                    .foregroundColor(AppTheme.Colors.primaryBlue)
-                
-                Text("Your Privacy First")
-                    .font(AppTheme.Typography.headlineFont)
-                    .foregroundColor(AppTheme.Colors.deepGrayText)
-                
-                Text("SafeFlow stores all your data locally on your device. No cloud storage, no data sharing.")
-                    .font(AppTheme.Typography.bodyFont)
-                    .foregroundColor(AppTheme.Colors.mediumGrayText)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal)
-            }
-            .padding()
-            .cardStyle()
-            .tag(0)
+        ZStack {
+            // Global background
+            AppTheme.Colors.background
+                .ignoresSafeArea()
             
-            // Tracking Page
-            VStack(spacing: AppTheme.Metrics.standardSpacing) {
-                Image(systemName: "calendar.badge.plus")
-                    .font(.system(size: 60))
-                    .foregroundColor(AppTheme.Colors.secondaryPink)
+            TabView {
+                // Privacy Page
+                VStack(spacing: AppTheme.Metrics.standardSpacing) {
+                    Image(systemName: "lock.shield")
+                        .font(.system(size: 60))
+                        .foregroundColor(AppTheme.Colors.accentBlue)
+                        .padding()
+                        .background(
+                            Circle()
+                                .fill(Color.white)
+                                .shadow(radius: 2)
+                        )
+                    
+                    Text("Your Privacy First")
+                        .font(AppTheme.Typography.headlineFont)
+                        .foregroundColor(AppTheme.Colors.deepGrayText)
+                    
+                    Text("SafeFlow stores all your data locally on your device. No cloud storage, no data sharing.")
+                        .font(AppTheme.Typography.bodyFont)
+                        .foregroundColor(AppTheme.Colors.mediumGrayText)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                }
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: AppTheme.Metrics.cornerRadius)
+                        .fill(Color.white)
+                        .shadow(radius: 2)
+                )
+                .padding()
+                .tag(0)
                 
-                Text("Easy Tracking")
-                    .font(AppTheme.Typography.headlineFont)
-                    .foregroundColor(AppTheme.Colors.deepGrayText)
+                // Tracking Page
+                VStack(spacing: AppTheme.Metrics.standardSpacing) {
+                    Image(systemName: "calendar.badge.plus")
+                        .font(.system(size: 60))
+                        .foregroundColor(AppTheme.Colors.secondaryPink)
+                        .padding()
+                        .background(
+                            Circle()
+                                .fill(Color.white)
+                                .shadow(radius: 2)
+                        )
+                    
+                    Text("Easy Tracking")
+                        .font(AppTheme.Typography.headlineFont)
+                        .foregroundColor(AppTheme.Colors.deepGrayText)
+                    
+                    Text("Log your period, symptoms, and mood with just a few taps. Get predictions for your next cycle.")
+                        .font(AppTheme.Typography.bodyFont)
+                        .foregroundColor(AppTheme.Colors.mediumGrayText)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                }
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: AppTheme.Metrics.cornerRadius)
+                        .fill(Color.white)
+                        .shadow(radius: 2)
+                )
+                .padding()
+                .tag(1)
                 
-                Text("Log your period, symptoms, and mood with just a few taps. Get predictions for your next cycle.")
-                    .font(AppTheme.Typography.bodyFont)
-                    .foregroundColor(AppTheme.Colors.mediumGrayText)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal)
-            }
-            .padding()
-            .cardStyle()
-            .tag(1)
-            
-            // Security Page
-            ZStack {
-                AppTheme.Colors.primaryBlue.opacity(0.1)
-                    .ignoresSafeArea()
-                
+                // Security Page
                 VStack(spacing: AppTheme.Metrics.standardSpacing) {
                     Image(systemName: securityService.canUseBiometrics ? "faceid" : "key.fill")
                         .font(.system(size: 60))
@@ -123,11 +146,17 @@ struct OnboardingView: View {
                     .padding(.top, AppTheme.Metrics.standardSpacing)
                 }
                 .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: AppTheme.Metrics.cornerRadius)
+                        .fill(Color.white)
+                        .shadow(radius: 2)
+                )
+                .padding()
+                .tag(2)
             }
-            .tag(2)
+            .tabViewStyle(.page)
+            .indexViewStyle(.page(backgroundDisplayMode: .always))
         }
-        .tabViewStyle(.page)
-        .indexViewStyle(.page(backgroundDisplayMode: .always))
         .sheet(isPresented: $showingPinSetup) {
             PinSetupView()
                 .interactiveDismissDisabled()

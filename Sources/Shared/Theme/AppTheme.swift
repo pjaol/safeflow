@@ -4,15 +4,20 @@ import SwiftUI
 enum AppTheme {
     /// Color palette for the app
     enum Colors {
-        static let primaryBlue = Color(hex: "A8DFF7")
-        static let secondaryPink = Color(hex: "FEC8D8")
-        static let paleYellow = Color(hex: "FFF5C3")
+        static let primaryBlue = Color(hex: "A8DFF7")  // Soft sky blue
+        static let secondaryPink = Color(hex: "FEC8D8") // Soft pink
+        static let paleYellow = Color(hex: "FFF5C3")   // Pale yellow
         static let neutralGray = Color(hex: "F5F5F5")
         static let deepGrayText = Color(hex: "333333")
         static let mediumGrayText = Color(hex: "666666")
         
-        static let background = Color(uiColor: .systemBackground)
-        static let secondaryBackground = Color(uiColor: .secondarySystemBackground)
+        // New colors matching the concept
+        static let backgroundBlue = Color(hex: "E4F6FD") // Lighter blue for backgrounds
+        static let accentBlue = Color(hex: "7FCEF5")    // Brighter blue for accents
+        
+        // System colors with our theme
+        static let background = backgroundBlue
+        static let secondaryBackground = Color.white
     }
     
     /// Typography definitions
@@ -24,7 +29,7 @@ enum AppTheme {
     
     /// Common dimensions and metrics
     enum Metrics {
-        static let cornerRadius: CGFloat = 12
+        static let cornerRadius: CGFloat = 16
         static let buttonCornerRadius: CGFloat = 25
         static let cardPadding: CGFloat = 16
         static let standardSpacing: CGFloat = 20
