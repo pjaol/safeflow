@@ -57,51 +57,73 @@ struct OnboardingView: View {
             .tag(1)
             
             // Security Page
-            VStack(spacing: AppTheme.Metrics.standardSpacing) {
-                Image(systemName: securityService.canUseBiometrics ? "faceid" : "key.fill")
-                    .font(.system(size: 60))
-                    .foregroundColor(AppTheme.Colors.paleYellow)
-                
-                Text("Secure Your Data")
-                    .font(AppTheme.Typography.headlineFont)
-                    .foregroundColor(AppTheme.Colors.deepGrayText)
-                
-                Text("Set up security to protect your personal information.")
-                    .font(AppTheme.Typography.bodyFont)
-                    .foregroundColor(AppTheme.Colors.mediumGrayText)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal)
+            ZStack {
+                AppTheme.Colors.primaryBlue.opacity(0.1)
+                    .ignoresSafeArea()
                 
                 VStack(spacing: AppTheme.Metrics.standardSpacing) {
-                    if securityService.canUseBiometrics {
-                        Button("Set Up Face ID/Touch ID") {
-                            Task {
-                                let success = await securityService.authenticateWithBiometrics()
-                                if success {
-                                    securityService.isAuthenticationRequired = true
-                                    showingPinSetup = true // Set up PIN as fallback
+                    Image(systemName: securityService.canUseBiometrics ? "faceid" : "key.fill")
+                        .font(.system(size: 60))
+                        .foregroundColor(AppTheme.Colors.secondaryPink)
+                        .padding()
+                        .background(
+                            Circle()
+                                .fill(Color.white)
+                                .shadow(radius: 2)
+                        )
+                    
+                    Text("Secure Your Data")
+                        .font(AppTheme.Typography.headlineFont)
+                        .foregroundColor(AppTheme.Colors.deepGrayText)
+                    
+                    Text("Set up security to protect your personal information.")
+                        .font(AppTheme.Typography.bodyFont)
+                        .foregroundColor(AppTheme.Colors.mediumGrayText)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                    
+                    VStack(spacing: AppTheme.Metrics.standardSpacing) {
+                        if securityService.canUseBiometrics {
+                            Button {
+                                Task {
+                                    let success = await securityService.authenticateWithBiometrics()
+                                    if success {
+                                        securityService.isAuthenticationRequired = true
+                                        showingPinSetup = true // Set up PIN as fallback
+                                    }
                                 }
+                            } label: {
+                                HStack {
+                                    Image(systemName: "faceid")
+                                    Text("Set Up Face ID/Touch ID")
+                                }
+                                .frame(maxWidth: .infinity)
                             }
+                            .buttonStyle(PrimaryButtonStyle())
                         }
-                        .buttonStyle(PrimaryButtonStyle())
+                        
+                        Button {
+                            showingPinSetup = true
+                        } label: {
+                            HStack {
+                                Image(systemName: "key.fill")
+                                Text("Set Up PIN")
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(SecondaryButtonStyle())
+                        
+                        Button("Skip for Now") {
+                            hasCompletedOnboarding = true
+                        }
+                        .font(AppTheme.Typography.bodyFont)
+                        .foregroundColor(AppTheme.Colors.deepGrayText)
                     }
-                    
-                    Button("Set Up PIN") {
-                        showingPinSetup = true
-                    }
-                    .buttonStyle(SecondaryButtonStyle())
-                    
-                    Button("Skip for Now") {
-                        hasCompletedOnboarding = true
-                    }
-                    .font(AppTheme.Typography.bodyFont)
-                    .foregroundColor(AppTheme.Colors.mediumGrayText)
+                    .padding(.horizontal, 40)
+                    .padding(.top, AppTheme.Metrics.standardSpacing)
                 }
-                .padding(.horizontal, 40)
-                .padding(.top, AppTheme.Metrics.standardSpacing)
+                .padding()
             }
-            .padding()
-            .cardStyle()
             .tag(2)
         }
         .tabViewStyle(.page)
