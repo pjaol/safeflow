@@ -60,15 +60,6 @@ struct LockView: View {
                     Spacer()
                 }
                 .padding()
-                
-                Task {
-                    hasPin = await securityService.hasFallbackPin
-                    if securityService.canUseBiometrics && securityService.isAuthenticationRequired {
-                        authenticate()
-                    } else if hasPin && securityService.isAuthenticationRequired {
-                        showingPinEntry = true
-                    }
-                }
             }
             .onChange(of: geometry.size) { oldSize, newSize in
                 logger.debug("Screen size changed to: \(newSize.width) x \(newSize.height)")
@@ -76,6 +67,14 @@ struct LockView: View {
             .sheet(isPresented: $showingPinEntry) {
                 PinEntryView(isPresented: $showingPinEntry)
                     .interactiveDismissDisabled()
+            }
+            .task {
+                hasPin = await securityService.hasFallbackPin
+                if securityService.canUseBiometrics && securityService.isAuthenticationRequired {
+                    authenticate()
+                } else if hasPin && securityService.isAuthenticationRequired {
+                    showingPinEntry = true
+                }
             }
         }
         .ignoresSafeArea()
