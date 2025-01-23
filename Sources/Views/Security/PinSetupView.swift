@@ -38,40 +38,39 @@ struct PinSetupView: View {
             .navigationTitle("Set Up PIN")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .principal) {
-                    HStack {
-                        Button("Cancel") {
-                            dismiss()
-                        }
-                        .foregroundColor(AppTheme.Colors.mediumGrayText)
-                        
-                        Spacer()
-                        
-                        Button(showingConfirmation ? "Save" : "Next") {
-                            if showingConfirmation {
-                                if pin == confirmPin {
-                                    Task {
-                                        isSettingPin = true
-                                        do {
-                                            try await securityService.setFallbackPin(pin)
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                    .foregroundColor(AppTheme.Colors.mediumGrayText)
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(showingConfirmation ? "Save" : "Next") {
+                        if showingConfirmation {
+                            if pin == confirmPin {
+                                Task {
+                                    isSettingPin = true
+                                    do {
+                                        if try await securityService.setPin(pin) {
                                             dismiss()
-                                        } catch {
-                                            // Error will be shown through securityService.authenticationError
                                         }
-                                        isSettingPin = false
+                                    } catch {
+                                        // Error will be shown through securityService.authenticationError
                                     }
-                                } else {
-                                    securityService.authenticationError = "PINs do not match"
+                                    isSettingPin = false
                                 }
                             } else {
-                                showingConfirmation = true
+                                securityService.authenticationError = "PINs do not match"
                             }
+                        } else {
+                            showingConfirmation = true
                         }
-                        .disabled((!showingConfirmation && pin.count < 4) || 
-                                 (showingConfirmation && confirmPin.count < 4) ||
-                                 isSettingPin)
-                        .foregroundColor(AppTheme.Colors.primaryBlue)
                     }
+                    .disabled((!showingConfirmation && pin.count < 4) || 
+                             (showingConfirmation && confirmPin.count < 4) ||
+                             isSettingPin)
+                    .foregroundColor(AppTheme.Colors.primaryBlue)
                 }
             }
         }
@@ -105,32 +104,30 @@ struct PinEntryView: View {
             .navigationTitle("Enter PIN")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .principal) {
-                    HStack {
-                        Button("Cancel") {
-                            isPresented = false
-                        }
-                        .foregroundColor(AppTheme.Colors.mediumGrayText)
-                        
-                        Spacer()
-                        
-                        Button("Unlock") {
-                            Task {
-                                isAuthenticating = true
-                                do {
-                                    if try await securityService.authenticateWithPin(pin) {
-                                        // Successful authentication
-                                        isPresented = false
-                                    }
-                                } catch {
-                                    // Error will be shown through securityService.authenticationError
-                                }
-                                isAuthenticating = false
-                            }
-                        }
-                        .disabled(pin.count < 4 || isAuthenticating)
-                        .foregroundColor(AppTheme.Colors.primaryBlue)
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") {
+                        isPresented = false
                     }
+                    .foregroundColor(AppTheme.Colors.mediumGrayText)
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Unlock") {
+                        Task {
+                            isAuthenticating = true
+                            do {
+                                if try await securityService.authenticateWithPin(pin) {
+                                    // Successful authentication
+                                    isPresented = false
+                                }
+                            } catch {
+                                // Error will be shown through securityService.authenticationError
+                            }
+                            isAuthenticating = false
+                        }
+                    }
+                    .disabled(pin.count < 4 || isAuthenticating)
+                    .foregroundColor(AppTheme.Colors.primaryBlue)
                 }
             }
         }
