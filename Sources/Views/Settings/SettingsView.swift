@@ -27,6 +27,7 @@ struct SettingsView: View {
                             }
                         }
                     ))
+                    .tint(AppTheme.Colors.primaryBlue)
                     
                     if securityService.isAuthenticationRequired {
                         if securityService.canUseBiometrics {
@@ -35,24 +36,30 @@ struct SettingsView: View {
                                     _ = await securityService.authenticateWithBiometrics()
                                 }
                             }
+                            .foregroundColor(AppTheme.Colors.primaryBlue)
                         }
                         
                         Button(hasPin ? "Change PIN" : "Set Up PIN") {
                             showingPinSetup = true
                         }
+                        .foregroundColor(AppTheme.Colors.secondaryPink)
                     }
                 }
                 
                 Section("About") {
                     HStack {
                         Text("Version")
+                            .foregroundColor(AppTheme.Colors.deepGrayText)
                         Spacer()
                         Text(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0")
-                            .foregroundColor(.secondary)
+                            .foregroundColor(AppTheme.Colors.mediumGrayText)
                     }
                     
-                    NavigationLink("Privacy Policy") {
+                    NavigationLink {
                         PrivacyView()
+                    } label: {
+                        Text("Privacy Policy")
+                            .foregroundColor(AppTheme.Colors.deepGrayText)
                     }
                 }
                 
@@ -70,6 +77,7 @@ struct SettingsView: View {
                     Button("Done") {
                         dismiss()
                     }
+                    .foregroundColor(AppTheme.Colors.mediumGrayText)
                 }
             }
             // Show alert to set up biometrics
@@ -83,6 +91,8 @@ struct SettingsView: View {
                         }
                     }
                 }
+                .foregroundColor(AppTheme.Colors.primaryBlue)
+                
                 Button("Cancel", role: .cancel) {}
             } message: {
                 Text("Use Face ID or Touch ID to protect your data")
@@ -108,28 +118,38 @@ struct SettingsView: View {
 struct PrivacyView: View {
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: AppTheme.Metrics.standardSpacing) {
                 Text("Privacy Policy")
-                    .font(.title)
-                    .bold()
+                    .font(AppTheme.Typography.headlineFont)
+                    .foregroundColor(AppTheme.Colors.deepGrayText)
                     .padding(.bottom)
                 
                 Text("SafeFlow is committed to protecting your privacy. All your data is stored locally on your device and is never shared with any third parties.")
+                    .font(AppTheme.Typography.bodyFont)
+                    .foregroundColor(AppTheme.Colors.deepGrayText)
                 
                 Text("Data Storage")
-                    .font(.headline)
+                    .font(AppTheme.Typography.headlineFont)
+                    .foregroundColor(AppTheme.Colors.deepGrayText)
                     .padding(.top)
                 
                 Text("• All data is stored locally on your device\n• No cloud storage or syncing\n• Protected by device encryption")
+                    .font(AppTheme.Typography.bodyFont)
+                    .foregroundColor(AppTheme.Colors.deepGrayText)
                 
                 Text("Security")
-                    .font(.headline)
+                    .font(AppTheme.Typography.headlineFont)
+                    .foregroundColor(AppTheme.Colors.deepGrayText)
                     .padding(.top)
                 
                 Text("• Optional biometric authentication\n• Data is encrypted at rest\n• No analytics or tracking")
+                    .font(AppTheme.Typography.bodyFont)
+                    .foregroundColor(AppTheme.Colors.deepGrayText)
             }
             .padding()
+            .cardStyle()
         }
+        .background(AppTheme.Colors.background)
     }
 }
 
