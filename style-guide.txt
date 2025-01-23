@@ -1,0 +1,125 @@
+Here is the design mockup inspired by the soft, pastel theme you provided. Now, here are Swift code snippets to implement this theme in your iOS app:
+
+
+### **Theme & Palette**
+1. **Color Palette**:
+   - **Primary**: Pastel Blue (#A8DFF7) – used for backgrounds and major UI elements.
+   - **Secondary**: Soft Pink (#FEC8D8) – for highlights, buttons, and accent elements.
+   - **Tertiary**: Pale Yellow (#FFF5C3) – subtle accents for secondary buttons or highlights.
+   - **Neutral**: White (#FFFFFF) and Light Gray (#F5F5F5) – for backgrounds or less prominent UI elements.
+   - **Text**:
+     - Primary Text: Deep Gray (#333333) – clear and legible.
+     - Secondary Text: Medium Gray (#666666) – for subdued details or labels.
+
+2. **Typography**:
+   - Use a rounded font such as **SF Pro Rounded** for consistency with the soft, approachable aesthetic.
+   - **Headings**: Bold, 18-24pt.
+   - **Body Text**: Regular, 14-16pt.
+   - **Captions**: Light, 12pt.
+
+3. **Components**:
+   - Rounded corners for buttons and cards, matching the smooth design of the image.
+   - Icons with soft edges and subtle gradients.
+   - Transparent overlays with blur effects for modals or popups.
+
+4. **Buttons & Sliders**:
+   - Use gradients (e.g., from Soft Pink to Pastel Blue) for buttons.
+   - Circular sliders and other controls should use a smooth gradient border and clear icons in the center.
+
+5. **Backgrounds**:
+   - Use gradients for background transitions, such as from Light Blue (#E4F6FD) to White.
+
+
+
+
+
+### **Swift Code Snippets**
+
+#### **Color Palette**
+```swift
+import UIKit
+
+struct AppColors {
+    static let primaryBlue = UIColor(red: 168/255, green: 223/255, blue: 247/255, alpha: 1.0)
+    static let secondaryPink = UIColor(red: 254/255, green: 200/255, blue: 216/255, alpha: 1.0)
+    static let paleYellow = UIColor(red: 255/255, green: 245/255, blue: 195/255, alpha: 1.0)
+    static let neutralGray = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
+    static let deepGrayText = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1.0)
+}
+```
+
+#### **Typography**
+```swift
+struct AppTypography {
+    static let headlineFont = UIFont.systemFont(ofSize: 24, weight: .bold)
+    static let bodyFont = UIFont.systemFont(ofSize: 16, weight: .regular)
+    static let captionFont = UIFont.systemFont(ofSize: 12, weight: .light)
+}
+```
+
+#### **Gradient Background**
+```swift
+extension UIView {
+    func applyGradientBackground() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [
+            AppColors.primaryBlue.cgColor,
+            UIColor.white.cgColor
+        ]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        gradientLayer.frame = self.bounds
+        self.layer.insertSublayer(gradientLayer, at: 0)
+    }
+}
+```
+
+#### **Rounded Button**
+```swift
+class RoundedButton: UIButton {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setupButton()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.setupButton()
+    }
+
+    private func setupButton() {
+        self.backgroundColor = AppColors.secondaryPink
+        self.setTitleColor(.white, for: .normal)
+        self.titleLabel?.font = AppTypography.bodyFont
+        self.layer.cornerRadius = self.bounds.height / 2
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.2
+        self.layer.shadowOffset = CGSize(width: 2, height: 2)
+        self.layer.shadowRadius = 4
+    }
+}
+```
+
+#### **Circular Slider**
+For implementing a circular slider, you can integrate **HGCircularSlider** or use the following code to customize its appearance:
+```swift
+import HGCircularSlider
+
+let circularSlider = CircularSlider(frame: CGRect(x: 50, y: 50, width: 200, height: 200))
+circularSlider.trackColor = AppColors.neutralGray
+circularSlider.diskFillColor = AppColors.primaryBlue
+circularSlider.diskColor = UIColor.white
+circularSlider.thumbRadius = 10
+circularSlider.thumbTintColor = AppColors.secondaryPink
+view.addSubview(circularSlider)
+```
+
+
+Suggested components:
+- RoundedButton
+- CircularSlider
+- GradientBackground
+- TransparentOverlay
+- https://github.com/ThasianX/ElegantCalendar
+- https://github.com/HamzaGhazouani/HGCircularSlider
+
