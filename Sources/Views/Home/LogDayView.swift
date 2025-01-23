@@ -40,11 +40,13 @@ struct LogDayView: View {
                         }
                     }
                     .pickerStyle(.segmented)
+                    .tint(AppTheme.Colors.primaryBlue)
                 }
                 
                 Section("Symptoms") {
                     ForEach(Symptom.allCases, id: \.self) { symptom in
                         Toggle(symptom.localizedName, isOn: binding(for: symptom))
+                            .tint(AppTheme.Colors.secondaryPink)
                     }
                 }
                 
@@ -56,11 +58,13 @@ struct LogDayView: View {
                         }
                     }
                     .pickerStyle(.segmented)
+                    .tint(AppTheme.Colors.paleYellow)
                 }
                 
                 Section("Notes") {
                     TextEditor(text: $notes)
                         .frame(minHeight: 100)
+                        .font(AppTheme.Typography.bodyFont)
                 }
             }
             .navigationTitle(existingDay != nil ? "Edit Log" : "New Log")
@@ -73,6 +77,7 @@ struct LogDayView: View {
                         logger.debug("Cancelling log entry")
                         dismiss()
                     }
+                    .foregroundColor(AppTheme.Colors.mediumGrayText)
                 }
                 
                 ToolbarItem(placement: .confirmationAction) {
@@ -92,6 +97,7 @@ struct LogDayView: View {
                         cycleStore.addOrUpdateDay(day)
                         dismiss()
                     }
+                    .foregroundColor(AppTheme.Colors.primaryBlue)
                 }
             }
         }
