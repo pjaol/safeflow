@@ -17,101 +17,91 @@ struct OnboardingView: View {
     var body: some View {
         TabView {
             // Privacy Page
-            VStack(spacing: 20) {
+            VStack(spacing: AppTheme.Metrics.standardSpacing) {
                 Image(systemName: "lock.shield")
                     .font(.system(size: 60))
-                    .foregroundColor(.accentColor)
+                    .foregroundColor(AppTheme.Colors.primaryBlue)
                 
                 Text("Your Privacy First")
-                    .font(.title)
-                    .bold()
+                    .font(AppTheme.Typography.headlineFont)
+                    .foregroundColor(AppTheme.Colors.deepGrayText)
                 
                 Text("SafeFlow stores all your data locally on your device. No cloud storage, no data sharing.")
+                    .font(AppTheme.Typography.bodyFont)
+                    .foregroundColor(AppTheme.Colors.mediumGrayText)
                     .multilineTextAlignment(.center)
-                    .foregroundColor(.secondary)
                     .padding(.horizontal)
             }
+            .padding()
+            .cardStyle()
             .tag(0)
             
             // Tracking Page
-            VStack(spacing: 20) {
+            VStack(spacing: AppTheme.Metrics.standardSpacing) {
                 Image(systemName: "calendar.badge.plus")
                     .font(.system(size: 60))
-                    .foregroundColor(.accentColor)
+                    .foregroundColor(AppTheme.Colors.secondaryPink)
                 
                 Text("Easy Tracking")
-                    .font(.title)
-                    .bold()
+                    .font(AppTheme.Typography.headlineFont)
+                    .foregroundColor(AppTheme.Colors.deepGrayText)
                 
                 Text("Log your period, symptoms, and mood with just a few taps. Get predictions for your next cycle.")
+                    .font(AppTheme.Typography.bodyFont)
+                    .foregroundColor(AppTheme.Colors.mediumGrayText)
                     .multilineTextAlignment(.center)
-                    .foregroundColor(.secondary)
                     .padding(.horizontal)
             }
+            .padding()
+            .cardStyle()
             .tag(1)
             
             // Security Page
-            VStack(spacing: 20) {
+            VStack(spacing: AppTheme.Metrics.standardSpacing) {
                 Image(systemName: securityService.canUseBiometrics ? "faceid" : "key.fill")
                     .font(.system(size: 60))
-                    .foregroundColor(.accentColor)
+                    .foregroundColor(AppTheme.Colors.paleYellow)
                 
-                Text("Secure Access")
-                    .font(.title)
-                    .bold()
+                Text("Secure Your Data")
+                    .font(AppTheme.Typography.headlineFont)
+                    .foregroundColor(AppTheme.Colors.deepGrayText)
                 
-                if securityService.canUseBiometrics {
-                    Text("Protect your data with Face ID/Touch ID or a PIN code.")
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.secondary)
-                        .padding(.horizontal)
-                    
-                    Button(action: {
-                        securityService.isAuthenticationRequired = true
-                        Task {
-                            if await securityService.authenticateWithBiometrics() {
-                                hasCompletedOnboarding = true
+                Text("Set up security to protect your personal information.")
+                    .font(AppTheme.Typography.bodyFont)
+                    .foregroundColor(AppTheme.Colors.mediumGrayText)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
+                
+                VStack(spacing: AppTheme.Metrics.standardSpacing) {
+                    if securityService.canUseBiometrics {
+                        Button("Set Up Face ID/Touch ID") {
+                            Task {
+                                let success = await securityService.authenticateWithBiometrics()
+                                if success {
+                                    securityService.isAuthenticationRequired = true
+                                    showingPinSetup = true // Set up PIN as fallback
+                                }
                             }
                         }
-                    }) {
-                        Label("Set Up Face ID/Touch ID", systemImage: "faceid")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.accentColor)
-                            .cornerRadius(10)
+                        .buttonStyle(PrimaryButtonStyle())
                     }
-                    .padding(.horizontal, 40)
-                    .padding(.top, 20)
                     
-                    Button("Set Up PIN Instead") {
-                        securityService.isAuthenticationRequired = true
+                    Button("Set Up PIN") {
                         showingPinSetup = true
                     }
-                    .padding(.top, 10)
-                } else {
-                    Text("Protect your data with a secure PIN code.")
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.secondary)
-                        .padding(.horizontal)
+                    .buttonStyle(SecondaryButtonStyle())
                     
-                    Button(action: {
-                        securityService.isAuthenticationRequired = true
-                        showingPinSetup = true
-                    }) {
-                        Label("Set Up PIN", systemImage: "key.fill")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.accentColor)
-                            .cornerRadius(10)
+                    Button("Skip for Now") {
+                        hasCompletedOnboarding = true
                     }
-                    .padding(.horizontal, 40)
-                    .padding(.top, 20)
+                    .font(AppTheme.Typography.bodyFont)
+                    .foregroundColor(AppTheme.Colors.mediumGrayText)
                 }
+                .padding(.horizontal, 40)
+                .padding(.top, AppTheme.Metrics.standardSpacing)
             }
+            .padding()
+            .cardStyle()
             .tag(2)
         }
         .tabViewStyle(.page)
