@@ -7,6 +7,7 @@ struct PinSetupView: View {
     @State private var confirmPin = ""
     @State private var isSettingPin = false
     @State private var showingConfirmation = false
+    @State private var localError: String?
     
     var body: some View {
         NavigationView {
@@ -27,7 +28,7 @@ struct PinSetupView: View {
                     }
                 }
                 
-                if let error = securityService.authenticationError {
+                if let error = securityService.authenticationError ?? localError {
                     Section {
                         Text(error)
                             .foregroundColor(.red)
@@ -51,20 +52,26 @@ struct PinSetupView: View {
                             if pin == confirmPin {
                                 Task {
                                     isSettingPin = true
+                                    localError = nil
                                     do {
                                         if try await securityService.setPin(pin) {
                                             dismiss()
                                         }
                                     } catch {
-                                        // Error will be shown through securityService.authenticationError
+                                        localError = error.localizedDescription
                                     }
                                     isSettingPin = false
                                 }
                             } else {
-                                securityService.authenticationError = "PINs do not match"
+                                localError = "PINs do not match"
                             }
                         } else {
-                            showingConfirmation = true
+                            if pin.count >= 4 {
+                                showingConfirmation = true
+                                localError = nil
+                            } else {
+                                localError = "PIN must be at least 4 digits"
+                            }
                         }
                     }
                     .disabled((!showingConfirmation && pin.count < 4) || 
