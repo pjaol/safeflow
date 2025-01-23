@@ -113,4 +113,20 @@ final class SafeFlowUITests: XCTestCase {
         // In real implementation, we'd need to inject mock dates
         XCTAssertTrue(app.staticTexts["Next Period Prediction"].exists)
     }
+    
+    func testAuthenticationFlow() throws {
+        // Test that the app starts with the lock screen
+        XCTAssertTrue(app.staticTexts["Unlock to Access"].exists)
+        
+        // Test biometric authentication button exists
+        XCTAssertTrue(app.buttons["Authenticate"].exists)
+    }
+    
+    func testSettingsNavigation() throws {
+        // Navigate to settings (assuming app is unlocked)
+        app.tabBars.buttons["Settings"].tap()
+        
+        // Verify authentication toggle exists
+        XCTAssertTrue(app.switches["Require Authentication"].exists)
+    }
 }
