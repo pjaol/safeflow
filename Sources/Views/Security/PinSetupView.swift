@@ -5,9 +5,8 @@ struct PinSetupView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var pin = ""
     @State private var confirmPin = ""
+    @State private var isSettingPin = false
     @State private var showingConfirmation = false
-    @State private var errorMessage: String?
-    @State private var isSaving = false
     
     var body: some View {
         NavigationView {
@@ -15,92 +14,65 @@ struct PinSetupView: View {
                 Section {
                     SecureField("Enter PIN", text: $pin)
                         .keyboardType(.numberPad)
-                        .textContentType(.oneTimeCode) // Prevents keychain suggestions
-                    
-                    if showingConfirmation {
+                        .textContentType(.oneTimeCode)
+                        .font(AppTheme.Typography.bodyFont)
+                }
+                
+                if showingConfirmation {
+                    Section {
                         SecureField("Confirm PIN", text: $confirmPin)
                             .keyboardType(.numberPad)
                             .textContentType(.oneTimeCode)
+                            .font(AppTheme.Typography.bodyFont)
                     }
-                } footer: {
-                    Text("PIN must be at least 4 digits")
-                        .foregroundColor(.secondary)
                 }
                 
-                if let error = errorMessage {
+                if let error = securityService.authenticationError {
                     Section {
                         Text(error)
                             .foregroundColor(.red)
+                            .font(AppTheme.Typography.captionFont)
                     }
                 }
             }
-            .navigationTitle(showingConfirmation ? "Confirm PIN" : "Set Up PIN")
+            .navigationTitle("Set Up PIN")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {
                         dismiss()
                     }
+                    .foregroundColor(AppTheme.Colors.mediumGrayText)
                 }
                 
                 ToolbarItem(placement: .confirmationAction) {
                     Button(showingConfirmation ? "Save" : "Next") {
-                        if !showingConfirmation {
-                            validateFirstPin()
-                        } else {
-                            Task {
-                                await savePin()
+                        if showingConfirmation {
+                            if pin == confirmPin {
+                                Task {
+                                    isSettingPin = true
+                                    do {
+                                        try await securityService.setFallbackPin(pin)
+                                        dismiss()
+                                    } catch {
+                                        // Error will be shown through securityService.authenticationError
+                                    }
+                                    isSettingPin = false
+                                }
+                            } else {
+                                securityService.authenticationError = "PINs do not match"
                             }
+                        } else {
+                            showingConfirmation = true
                         }
                     }
-                    .disabled(!isPinValid || isSaving)
+                    .disabled((!showingConfirmation && pin.count < 4) || 
+                             (showingConfirmation && confirmPin.count < 4) ||
+                             isSettingPin)
+                    .foregroundColor(AppTheme.Colors.primaryBlue)
                 }
             }
         }
-    }
-    
-    private var isPinValid: Bool {
-        if showingConfirmation {
-            return pin.count >= 4 && confirmPin.count >= 4
-        }
-        return pin.count >= 4
-    }
-    
-    private func validateFirstPin() {
-        guard pin.count >= 4 else {
-            errorMessage = "PIN must be at least 4 digits"
-            return
-        }
-        
-        showingConfirmation = true
-        errorMessage = nil
-    }
-    
-    private func savePin() async {
-        guard pin == confirmPin else {
-            errorMessage = "PINs don't match"
-            showingConfirmation = false
-            confirmPin = ""
-            return
-        }
-        
-        isSaving = true
-        do {
-            if try await securityService.setPin(pin) {
-                dismiss()
-            } else {
-                errorMessage = "Failed to save PIN"
-                showingConfirmation = false
-                pin = ""
-                confirmPin = ""
-            }
-        } catch {
-            errorMessage = "Error saving PIN: \(error.localizedDescription)"
-            showingConfirmation = false
-            pin = ""
-            confirmPin = ""
-        }
-        isSaving = false
     }
 }
 
@@ -117,12 +89,14 @@ struct PinEntryView: View {
                     SecureField("Enter PIN", text: $pin)
                         .keyboardType(.numberPad)
                         .textContentType(.oneTimeCode)
+                        .font(AppTheme.Typography.bodyFont)
                 }
                 
                 if let error = securityService.authenticationError {
                     Section {
                         Text(error)
                             .foregroundColor(.red)
+                            .font(AppTheme.Typography.captionFont)
                     }
                 }
             }
@@ -133,6 +107,7 @@ struct PinEntryView: View {
                     Button("Cancel") {
                         isPresented = false
                     }
+                    .foregroundColor(AppTheme.Colors.mediumGrayText)
                 }
                 
                 ToolbarItem(placement: .confirmationAction) {
@@ -151,6 +126,7 @@ struct PinEntryView: View {
                         }
                     }
                     .disabled(pin.count < 4 || isAuthenticating)
+                    .foregroundColor(AppTheme.Colors.primaryBlue)
                 }
             }
         }
