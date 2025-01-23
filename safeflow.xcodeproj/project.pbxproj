@@ -21,11 +21,12 @@
 		CD218E8E2D419279009B5198 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E8B2D419279009B5198 /* SettingsView.swift */; };
 		CD218E902D4198F5009B5198 /* PinSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E8F2D4198F5009B5198 /* PinSetupView.swift */; };
 		CD218E942D41994E009B5198 /* SecurityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E912D41994E009B5198 /* SecurityManager.swift */; };
+		CD218E972D41A086009B5198 /* SecurityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E962D41A086009B5198 /* SecurityTests.swift */; };
+		CD218E9A2D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E982D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift */; };
+		CD218E9B2D41A0AF009B5198 /* safeflowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E992D41A0AF009B5198 /* safeflowUITests.swift */; };
 		CDBECD5F2D4010D2006A37C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBECD5E2D4010D2006A37C9 /* Assets.xcassets */; };
 		CDBECD632D4010D2006A37C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBECD622D4010D2006A37C9 /* Preview Assets.xcassets */; };
 		CDBECD6D2D4010D2006A37C9 /* safeflowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */; };
-		CDBECD772D4010D2006A37C9 /* safeflowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBECD762D4010D2006A37C9 /* safeflowUITests.swift */; };
-		CDBECD792D4010D2006A37C9 /* safeflowUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBECD782D4010D2006A37C9 /* safeflowUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,9 @@
 		CD218E8B2D419279009B5198 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CD218E8F2D4198F5009B5198 /* PinSetupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinSetupView.swift; sourceTree = "<group>"; };
 		CD218E912D41994E009B5198 /* SecurityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityManager.swift; sourceTree = "<group>"; };
+		CD218E962D41A086009B5198 /* SecurityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecurityTests.swift; path = Tests/UnitTests/SecurityTests.swift; sourceTree = SOURCE_ROOT; };
+		CD218E982D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = safeflowUITestsLaunchTests.swift; path = Tests/UITests/safeflowUITestsLaunchTests.swift; sourceTree = SOURCE_ROOT; };
+		CD218E992D41A0AF009B5198 /* safeflowUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = safeflowUITests.swift; path = Tests/UITests/safeflowUITests.swift; sourceTree = SOURCE_ROOT; };
 		CDBECD552D4010D1006A37C9 /* safeflow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safeflow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBECD5E2D4010D2006A37C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDBECD602D4010D2006A37C9 /* safeflow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = safeflow.entitlements; sourceTree = "<group>"; };
@@ -68,8 +72,6 @@
 		CDBECD682D4010D2006A37C9 /* safeflowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeflowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = safeflowTests.swift; sourceTree = "<group>"; };
 		CDBECD722D4010D2006A37C9 /* safeflowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeflowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CDBECD762D4010D2006A37C9 /* safeflowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = safeflowUITests.swift; sourceTree = "<group>"; };
-		CDBECD782D4010D2006A37C9 /* safeflowUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = safeflowUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +299,7 @@
 		CDBECD6B2D4010D2006A37C9 /* safeflowTests */ = {
 			isa = PBXGroup;
 			children = (
+				CD218E962D41A086009B5198 /* SecurityTests.swift */,
 				CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */,
 			);
 			path = safeflowTests;
@@ -305,8 +308,8 @@
 		CDBECD752D4010D2006A37C9 /* safeflowUITests */ = {
 			isa = PBXGroup;
 			children = (
-				CDBECD762D4010D2006A37C9 /* safeflowUITests.swift */,
-				CDBECD782D4010D2006A37C9 /* safeflowUITestsLaunchTests.swift */,
+				CD218E992D41A0AF009B5198 /* safeflowUITests.swift */,
+				CD218E982D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift */,
 			);
 			path = safeflowUITests;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDBECD6D2D4010D2006A37C9 /* safeflowTests.swift in Sources */,
+				CD218E972D41A086009B5198 /* SecurityTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,8 +474,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDBECD792D4010D2006A37C9 /* safeflowUITestsLaunchTests.swift in Sources */,
-				CDBECD772D4010D2006A37C9 /* safeflowUITests.swift in Sources */,
+				CD218E9B2D41A0AF009B5198 /* safeflowUITests.swift in Sources */,
+				CD218E9A2D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,7 +702,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevgergroup.safeflowTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -720,7 +725,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevgergroup.safeflowTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -741,7 +747,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevgergroup.safeflowUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -762,7 +769,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevgergroup.safeflowUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
