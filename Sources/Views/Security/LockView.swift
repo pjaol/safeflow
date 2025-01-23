@@ -11,91 +11,55 @@ struct LockView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                Color(uiColor: .systemBackground)
+                AppTheme.Colors.background
                     .ignoresSafeArea()
                 
-                VStack(spacing: 20) {
+                VStack(spacing: AppTheme.Metrics.standardSpacing) {
                     Spacer()
                     
                     Image(systemName: "lock.shield")
                         .font(.system(size: 60))
-                        .foregroundColor(.accentColor)
+                        .foregroundColor(AppTheme.Colors.primaryBlue)
                     
                     Text("SafeFlow is Locked")
-                        .font(.title2)
-                        .bold()
+                        .font(AppTheme.Typography.headlineFont)
+                        .foregroundColor(AppTheme.Colors.deepGrayText)
                     
                     if !securityService.isAuthenticationRequired {
                         // Show setup buttons if authentication is not required
-                        Button(action: { securityService.isAuthenticationRequired = true }) {
-                            Label("Set Up Security", systemImage: "lock.shield")
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color.accentColor)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
+                        Button("Set Up Security") {
+                            securityService.isAuthenticationRequired = true
                         }
-                        .padding(.horizontal, 40)
+                        .buttonStyle(PrimaryButtonStyle())
                     } else if securityService.canUseBiometrics {
-                        Text("Use Face ID or Touch ID to unlock")
-                            .foregroundColor(.secondary)
-                        
-                        Button(action: { authenticate() }) {
-                            Label("Unlock with Face ID/Touch ID", systemImage: "faceid")
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color.accentColor)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
+                        // Show Face ID/Touch ID button
+                        Button {
+                            authenticate()
+                        } label: {
+                            Label(
+                                "Unlock with Face ID/Touch ID",
+                                systemImage: "faceid"
+                            )
                         }
-                        .padding(.horizontal, 40)
-                        .disabled(isAuthenticating)
+                        .buttonStyle(PrimaryButtonStyle())
                         
                         if hasPin {
                             Button("Use PIN Instead") {
                                 showingPinEntry = true
                             }
-                            .padding(.top)
+                            .buttonStyle(SecondaryButtonStyle())
                         }
                     } else if hasPin {
-                        Text("Enter your PIN to unlock")
-                            .foregroundColor(.secondary)
-                        
-                        Button(action: { showingPinEntry = true }) {
-                            Label("Enter PIN", systemImage: "key.fill")
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color.accentColor)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
+                        // Show PIN entry button
+                        Button("Enter PIN") {
+                            showingPinEntry = true
                         }
-                        .padding(.horizontal, 40)
-                    } else {
-                        // Show PIN setup if no authentication method is available
-                        Button(action: { showingPinEntry = true }) {
-                            Label("Set Up PIN", systemImage: "key.fill")
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color.accentColor)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                        }
-                        .padding(.horizontal, 40)
-                    }
-                    
-                    if let error = securityService.authenticationError {
-                        Text(error)
-                            .foregroundColor(.red)
-                            .padding(.top)
+                        .buttonStyle(PrimaryButtonStyle())
                     }
                     
                     Spacer()
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
-            .onAppear {
-                logger.debug("Screen size: \(geometry.size.width) x \(geometry.size.height)")
-                logger.debug("Safe area insets: top: \(geometry.safeAreaInsets.top), bottom: \(geometry.safeAreaInsets.bottom), left: \(geometry.safeAreaInsets.leading), right: \(geometry.safeAreaInsets.trailing)")
+                .padding()
                 
                 Task {
                     hasPin = await securityService.hasFallbackPin
