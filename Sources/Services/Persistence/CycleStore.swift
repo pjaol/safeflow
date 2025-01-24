@@ -6,43 +6,54 @@ class CycleStore: ObservableObject {
     @Published private(set) var cycleDays: [CycleDay] = []
     private let saveKey = "cycleDays"
     private let userDefaults: UserDefaults
+    private let store: PersistenceService
     
-    init(userDefaults: UserDefaults = .standard) {
+    init(userDefaults: UserDefaults = .standard, store: PersistenceService = .shared) {
         self.userDefaults = userDefaults
-        loadData()
+        self.store = store
+        Task {
+            await loadData()
+        }
     }
     
-    private func loadData() {
-        guard let data = userDefaults.data(forKey: saveKey),
-              let decodedDays = try? JSONDecoder().decode([CycleDay].self, from: data) else {
-            return
+    private func loadData() async {
+        do {
+            cycleDays = try await store.loadCycleDays()
+        } catch {
+            print("Error loading cycle data: \(error)")
+            cycleDays = []
         }
-        cycleDays = decodedDays
     }
     
-    private func saveData() {
-        guard let encoded = try? JSONEncoder().encode(cycleDays) else {
-            return
+    private func saveData() async {
+        do {
+            try await store.saveCycleDays(cycleDays)
+            objectWillChange.send()
+        } catch {
+            print("Error saving cycle data: \(error)")
         }
-        userDefaults.set(encoded, forKey: saveKey)
-        objectWillChange.send()
     }
     
     func addOrUpdateDay(_ cycleDay: CycleDay) {
         if let index = cycleDays.firstIndex(where: { $0.id == cycleDay.id }) {
             cycleDays[index] = cycleDay
         } else if let existingIndex = cycleDays.firstIndex(where: { Calendar.current.isDate($0.date, inSameDayAs: cycleDay.date) }) {
-            // If there's already an entry for this date, update it
             cycleDays[existingIndex] = cycleDay
         } else {
             cycleDays.append(cycleDay)
         }
-        saveData()
+        
+        Task {
+            await saveData()
+        }
     }
     
     func deleteDay(id: UUID) {
         cycleDays.removeAll { $0.id == id }
-        saveData()
+        
+        Task {
+            await saveData()
+        }
     }
     
     #if DEBUG
@@ -50,6 +61,10 @@ class CycleStore: ObservableObject {
         cycleDays.removeAll()
         userDefaults.removeObject(forKey: saveKey)
         objectWillChange.send()
+        
+        Task {
+            await saveData()
+        }
     }
     #endif
     
@@ -96,6 +111,11 @@ class CycleStore: ObservableObject {
     func getCurrentDay() -> CycleDay? {
         let today = Calendar.current.startOfDay(for: Date())
         return cycleDays.first { Calendar.current.isDate($0.date, inSameDayAs: today) }
+    }
+    
+    func getDay(for date: Date) -> CycleDay? {
+        let targetDate = Calendar.current.startOfDay(for: date)
+        return cycleDays.first { Calendar.current.isDate($0.date, inSameDayAs: targetDate) }
     }
     
     var recentDays: [CycleDay] {
