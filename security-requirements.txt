@@ -1,0 +1,91 @@
+iBelow is an approach focused on fully local authentication and security data storage, without relying on server-side messaging or external text/email verification.
+
+---
+
+## 1. **Local-Only User Data & Authentication**
+
+1. **Biometric (Face ID/Fingerprint) as Primary**  
+   - The system (iOS or Android) already handles biometric data securely.  
+   - Your app only receives a “success” or “failure” result; you never store raw biometric information.  
+
+2. **Local PIN/Password as Fallback**  
+   - If biometrics fail or the user doesn’t want biometrics, they use a PIN or password stored locally in the device’s secure storage (e.g., iOS Keychain, Android Keystore).  
+   - Provide an option for users to define their own PIN/Password during setup.  
+
+3. **No External Recovery Mechanisms**  
+   - **Implication:** If the user forgets their PIN/password and fails biometrics, there is no backup reset via server or text.  
+   - You may want to warn users that they should remember or securely note their PIN/password somewhere safe—because if it’s lost, the local data is effectively unrecoverable.
+
+---
+
+## 2. **Local Data Encryption & Secure Storage**
+
+- **Device Keychain/Keystore:**  
+  - Store hashed credentials or encryption keys in the device’s hardware-backed keystore (iOS Keychain, Android Keystore).  
+  - The user’s PIN/password never leaves the device and is never stored in plaintext.  
+- **App Data Encryption:**  
+  - Any sensitive data (user-specific content) is also encrypted locally, with the encryption key protected by the user’s biometric/PIN.  
+
+---
+
+## 3. **Session Management & Timeouts**
+
+1. **Inactivity Timeout**  
+   - Determine a reasonable window (5–10 minutes) of inactivity before the app locks and requires re-authentication.  
+   - **Local Token:** The app can store a short-lived session token in memory. Once the timeout is reached, the local token is invalidated.  
+
+2. **Background / App Switch**  
+   - If the user switches away from the app for more than a short grace period (e.g., 2 minutes), require re-authentication (Face ID or PIN).  
+   - The grace period is optional to maintain smooth user experience.
+
+3. **Lock on Minimize**  
+   - Decide if you want an immediate lock when the app is minimized (high security) or only after a set threshold.  
+   - The session token is still stored locally—no server interaction needed.  
+
+---
+
+## 4. **User Flow Examples**
+
+### **First-Time Setup (Onboarding)**
+1. **Prompt for Biometric:** “Do you want to enable Face ID/Fingerprint?”  
+2. **If User Agrees:** The OS handles the biometric registration. The app only stores the preference (boolean) in secure storage.  
+3. **Prompt for PIN/Password:** “Create a PIN or password for fallback.”  
+4. **Set Up Complete:** All data is stored locally; no external requests.
+
+### **Subsequent App Launches**
+1. **Check if Session Still Valid:** If within inactivity/timeout window, user remains logged in.  
+2. **If Session is Expired:** App prompts for Face ID or fallback PIN.  
+3. **Authentication Pass/Fail:**  
+   - If pass: user gains access.  
+   - If fail (multiple attempts): no server-based reset is possible. User would be locked out unless they remember their fallback method or reinstall and reset everything.
+
+---
+
+## 5. **Tradeoffs & Considerations**
+
+1. **No Recovery via Server/Text**  
+   - **Pros:** Ensures privacy, minimal data exposure, zero dependency on external systems.  
+   - **Cons:** Potential for permanent lockout. You might want to display strong warnings and encourage the user to securely remember their PIN/password.
+
+2. **Backup & Device Migration**  
+   - If a user gets a new device, local data can be lost unless you provide an encrypted backup/restore mechanism (e.g., iOS encrypted backup to iCloud or Android backups). Even then, it’s at the device/OS level, not your app’s server.  
+   - If you want to remain 100% local with no cloud usage, the user must manually transfer data (or accept starting fresh).
+
+3. **User Experience**  
+   - Biometrics reduce friction for daily logins, but local PIN fallback is essential.  
+   - Make sure to handle edge cases: e.g., biometric hardware not available, user disabling biometrics, or hardware malfunctions.
+
+4. **Security vs. Convenience**  
+   - Since everything is local, your biggest vulnerabilities will be physical access to the device.  
+   - Strong session timeouts and immediate locks on minimize could provide better protection if the user frequently leaves their phone unlocked or shares it with others.
+
+---
+
+## 6. **Summary**
+
+- **Biometric + Local PIN/Password**: Your best bet for offline, device-only authentication.  
+- **All Data on Device**: Rely on the OS’s secure storage (Keychain/Keystore) and local encryption.  
+- **Careful Session Management**: Short inactivity windows, background lock.  
+- **No External Resets**: Educate users on the permanent lockout risk.  
+
+By keeping all user data solely on the device, you ensure privacy and autonomy, but you must plan for the tradeoffs (especially around account recovery). This approach provides strong local security (since biometrics/PIN are validated by the OS and stored in hardware enclaves) without any dependency on external messages or servers.

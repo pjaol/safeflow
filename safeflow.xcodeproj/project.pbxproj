@@ -24,6 +24,11 @@
 		CD218E972D41A086009B5198 /* SecurityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E962D41A086009B5198 /* SecurityTests.swift */; };
 		CD218E9A2D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E982D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift */; };
 		CD218E9B2D41A0AF009B5198 /* safeflowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E992D41A0AF009B5198 /* safeflowUITests.swift */; };
+		CD218E9F2D4303F1009B5198 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E9C2D4303F1009B5198 /* AppTheme.swift */; };
+		CD218EA02D4303F1009B5198 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E9D2D4303F1009B5198 /* ViewModifiers.swift */; };
+		CD218EA52D43CC89009B5198 /* CycleCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218EA42D43CC89009B5198 /* CycleCalendarView.swift */; };
+		CD218EA82D43CCD0009B5198 /* ElegantCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = CD218EA72D43CCD0009B5198 /* ElegantCalendar */; };
+		CD218EAB2D43CD99009B5198 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218EAA2D43CD99009B5198 /* PersistenceService.swift */; };
 		CDBECD5F2D4010D2006A37C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBECD5E2D4010D2006A37C9 /* Assets.xcassets */; };
 		CDBECD632D4010D2006A37C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBECD622D4010D2006A37C9 /* Preview Assets.xcassets */; };
 		CDBECD6D2D4010D2006A37C9 /* safeflowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */; };
@@ -65,6 +70,10 @@
 		CD218E962D41A086009B5198 /* SecurityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecurityTests.swift; path = Tests/UnitTests/SecurityTests.swift; sourceTree = SOURCE_ROOT; };
 		CD218E982D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = safeflowUITestsLaunchTests.swift; path = Tests/UITests/safeflowUITestsLaunchTests.swift; sourceTree = SOURCE_ROOT; };
 		CD218E992D41A0AF009B5198 /* safeflowUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = safeflowUITests.swift; path = Tests/UITests/safeflowUITests.swift; sourceTree = SOURCE_ROOT; };
+		CD218E9C2D4303F1009B5198 /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		CD218E9D2D4303F1009B5198 /* ViewModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
+		CD218EA42D43CC89009B5198 /* CycleCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleCalendarView.swift; sourceTree = "<group>"; };
+		CD218EAA2D43CD99009B5198 /* PersistenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		CDBECD552D4010D1006A37C9 /* safeflow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safeflow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBECD5E2D4010D2006A37C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDBECD602D4010D2006A37C9 /* safeflow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = safeflow.entitlements; sourceTree = "<group>"; };
@@ -79,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD218EA82D43CCD0009B5198 /* ElegantCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +129,7 @@
 		CD218E582D4021EB009B5198 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				CD218E9E2D4303F1009B5198 /* Theme */,
 			);
 			name = Shared;
 			path = Sources/Shared;
@@ -134,6 +145,7 @@
 		CD218E5B2D4021EB009B5198 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				CD218EAA2D43CD99009B5198 /* PersistenceService.swift */,
 				CD218E5A2D4021EB009B5198 /* CycleStore.swift */,
 			);
 			path = Persistence;
@@ -162,6 +174,7 @@
 		CD218E612D4021EB009B5198 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CD218EA42D43CC89009B5198 /* CycleCalendarView.swift */,
 				CD218E5F2D4021EB009B5198 /* HomeView.swift */,
 				CD218E602D4021EB009B5198 /* LogDayView.swift */,
 			);
@@ -249,6 +262,22 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		CD218E9E2D4303F1009B5198 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				CD218E9C2D4303F1009B5198 /* AppTheme.swift */,
+				CD218E9D2D4303F1009B5198 /* ViewModifiers.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		CD218EA92D43CD2B009B5198 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CDBECD4C2D4010D1006A37C9 = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +293,7 @@
 				CDBECD6B2D4010D2006A37C9 /* safeflowTests */,
 				CDBECD752D4010D2006A37C9 /* safeflowUITests */,
 				CDBECD562D4010D1006A37C9 /* Products */,
+				CD218EA92D43CD2B009B5198 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -330,6 +360,9 @@
 			dependencies = (
 			);
 			name = safeflow;
+			packageProductDependencies = (
+				CD218EA72D43CCD0009B5198 /* ElegantCalendar */,
+			);
 			productName = safeflow;
 			productReference = CDBECD552D4010D1006A37C9 /* safeflow.app */;
 			productType = "com.apple.product-type.application";
@@ -402,6 +435,9 @@
 				Base,
 			);
 			mainGroup = CDBECD4C2D4010D1006A37C9;
+			packageReferences = (
+				CD218EA62D43CCD0009B5198 /* XCRemoteSwiftPackageReference "ElegantCalendar" */,
+			);
 			productRefGroup = CDBECD562D4010D1006A37C9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -448,12 +484,16 @@
 				CD218E6E2D405C1D009B5198 /* DebugMenu.swift in Sources */,
 				CD218E6A2D4021EB009B5198 /* LogDayView.swift in Sources */,
 				CD218E902D4198F5009B5198 /* PinSetupView.swift in Sources */,
+				CD218EA52D43CC89009B5198 /* CycleCalendarView.swift in Sources */,
 				CD218E772D416A3D009B5198 /* LockView.swift in Sources */,
 				CD218E712D405C85009B5198 /* TestData.swift in Sources */,
+				CD218EAB2D43CD99009B5198 /* PersistenceService.swift in Sources */,
 				CD218E662D4021EB009B5198 /* CycleDay.swift in Sources */,
 				CD218E692D4021EB009B5198 /* HomeView.swift in Sources */,
 				CD218E742D4169C5009B5198 /* SecurityService.swift in Sources */,
+				CD218E9F2D4303F1009B5198 /* AppTheme.swift in Sources */,
 				CD218E6B2D4021EB009B5198 /* SafeFlowApp.swift in Sources */,
+				CD218EA02D4303F1009B5198 /* ViewModifiers.swift in Sources */,
 				CD218E8E2D419279009B5198 /* SettingsView.swift in Sources */,
 				CD218E682D4021EB009B5198 /* HomeViewModel.swift in Sources */,
 				CD218E8D2D419279009B5198 /* OnboardingView.swift in Sources */,
@@ -818,6 +858,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CD218EA62D43CCD0009B5198 /* XCRemoteSwiftPackageReference "ElegantCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ThasianX/ElegantCalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CD218EA72D43CCD0009B5198 /* ElegantCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD218EA62D43CCD0009B5198 /* XCRemoteSwiftPackageReference "ElegantCalendar" */;
+			productName = ElegantCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CDBECD4D2D4010D1006A37C9 /* Project object */;
 }
