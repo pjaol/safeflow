@@ -58,8 +58,8 @@ struct SafeFlowApp: App {
             logger.debug("Window size: \(geometry.size.width) x \(geometry.size.height)")
             logger.debug("Safe area insets: top: \(geometry.safeAreaInsets.top), bottom: \(geometry.safeAreaInsets.bottom), left: \(geometry.safeAreaInsets.leading), right: \(geometry.safeAreaInsets.trailing)")
         }
-        .onChange(of: geometry.size) { oldSize, newSize in
-            logger.debug("Window size changed to: \(newSize.width) x \(newSize.height)")
+        .onChange(of: geometry.size) { oldValue, newValue in
+            logger.debug("Window size changed to: \(newValue.width) x \(newValue.height)")
         }
     }
 } 

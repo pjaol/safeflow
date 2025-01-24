@@ -20,6 +20,9 @@ struct HomeView: View {
                         averageCycleLength: cycleStore.calculateAverageCycleLength()
                     )
                     
+                    CycleCalendarView(cycleStore: cycleStore)
+                        .frame(height: 400)
+                    
                     DailyLogCard(cycleDay: cycleStore.getCurrentDay())
                         .onTapGesture {
                             showingLogSheet = true
