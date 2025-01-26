@@ -1,0 +1,11 @@
+date,flow,symptoms,mood,notes
+2024-01-01,light,"cramps,headache",neutral,"First day of period"
+2024-01-02,medium,"cramps",happy,
+2024-01-03,medium,,neutral,
+2024-01-04,light,,happy,
+2024-01-05,spotting,,neutral,"Last day"
+2024-01-29,light,"cramps",neutral,"Next cycle starts"
+2024-01-30,medium,"cramps,headache",happy,
+2024-01-31,medium,,neutral,
+2024-02-01,light,,happy,
+2024-02-02,spotting,,neutral,"Last day" 

@@ -43,6 +43,8 @@ class CycleStore: ObservableObject {
             cycleDays.append(cycleDay)
         }
         
+        objectWillChange.send()
+        
         Task {
             await saveData()
         }
@@ -72,13 +74,36 @@ class CycleStore: ObservableObject {
         cycleDays.filter { $0.date >= start && $0.date <= end }
     }
     
+    func getAllDays() -> [CycleDay] {
+        cycleDays
+    }
+    
     func predictNextPeriod() -> Date? {
         guard cycleDays.count >= 2 else { return nil }
         
-        let periodStarts = cycleDays
+        // Get days with flow, sorted by date
+        let daysWithFlow = cycleDays
             .filter { $0.flow != nil }
-            .map { $0.date }
-            .sorted()
+            .sorted { $0.date < $1.date }
+        
+        // Find period start dates by identifying the first day of each period
+        var periodStarts: [Date] = []
+        var lastPeriodEnd: Date? = nil
+        
+        for day in daysWithFlow {
+            if let lastEnd = lastPeriodEnd {
+                // If this day is more than 3 days after the last period ended,
+                // consider it the start of a new period
+                if Calendar.current.dateComponents([.day], from: lastEnd, to: day.date).day ?? 0 > 3 {
+                    periodStarts.append(day.date)
+                }
+            } else {
+                // First period start
+                periodStarts.append(day.date)
+            }
+            
+            lastPeriodEnd = day.date
+        }
         
         guard periodStarts.count >= 2 else { return nil }
         
@@ -87,17 +112,49 @@ class CycleStore: ObservableObject {
         
         let averageCycleLength = Double(cycles.reduce(0, +)) / Double(cycles.count)
         
-        guard let lastPeriodStart = periodStarts.last else { return nil }
-        return Calendar.current.date(byAdding: .day, value: Int(round(averageCycleLength)), to: lastPeriodStart)
+        // Get the last period start that's not in the future
+        let today = Calendar.current.startOfDay(for: Date())
+        let lastPeriodStart = periodStarts
+            .filter { $0 <= today }
+            .last
+        
+        guard let lastStart = lastPeriodStart else { return nil }
+        
+        // Calculate the next prediction after today
+        let daysFromLastStart = Calendar.current.dateComponents([.day], from: lastStart, to: today).day ?? 0
+        let cyclesElapsed = Double(daysFromLastStart) / averageCycleLength
+        let wholeCyclesElapsed = floor(cyclesElapsed)
+        let nextCycleOffset = Int(round((wholeCyclesElapsed + 1.0) * averageCycleLength))
+        
+        return Calendar.current.date(byAdding: .day, value: nextCycleOffset, to: lastStart)
     }
     
     func calculateAverageCycleLength() -> Int? {
         guard cycleDays.count >= 2 else { return nil }
         
-        let periodStarts = cycleDays
+        // Get days with flow, sorted by date
+        let daysWithFlow = cycleDays
             .filter { $0.flow != nil }
-            .map { $0.date }
-            .sorted()
+            .sorted { $0.date < $1.date }
+        
+        // Find period start dates by identifying the first day of each period
+        var periodStarts: [Date] = []
+        var lastPeriodEnd: Date? = nil
+        
+        for day in daysWithFlow {
+            if let lastEnd = lastPeriodEnd {
+                // If this day is more than 3 days after the last period ended,
+                // consider it the start of a new period
+                if Calendar.current.dateComponents([.day], from: lastEnd, to: day.date).day ?? 0 > 3 {
+                    periodStarts.append(day.date)
+                }
+            } else {
+                // First period start
+                periodStarts.append(day.date)
+            }
+            
+            lastPeriodEnd = day.date
+        }
         
         guard periodStarts.count >= 2 else { return nil }
         

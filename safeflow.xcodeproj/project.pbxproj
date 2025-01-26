@@ -27,8 +27,37 @@
 		CD218E9F2D4303F1009B5198 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E9C2D4303F1009B5198 /* AppTheme.swift */; };
 		CD218EA02D4303F1009B5198 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E9D2D4303F1009B5198 /* ViewModifiers.swift */; };
 		CD218EA52D43CC89009B5198 /* CycleCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218EA42D43CC89009B5198 /* CycleCalendarView.swift */; };
-		CD218EA82D43CCD0009B5198 /* ElegantCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = CD218EA72D43CCD0009B5198 /* ElegantCalendar */; };
 		CD218EAB2D43CD99009B5198 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218EAA2D43CD99009B5198 /* PersistenceService.swift */; };
+		CD2709292D4449C2003994F9 /* TestCaseRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2709282D4449C2003994F9 /* TestCaseRunner.swift */; };
+		CD27092C2D4449EF003994F9 /* CycleTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD27092A2D4449EF003994F9 /* CycleTestCase.swift */; };
+		CD27092F2D444A27003994F9 /* TestDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD27092D2D444A27003994F9 /* TestDataLoader.swift */; };
+		CD2709652D46AFCC003994F9 /* irregular_cycle_metadata.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD27095A2D46AFCC003994F9 /* irregular_cycle_metadata.csv */; };
+		CD2709662D46AFCC003994F9 /* irregular_cycle_metadata.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD27095A2D46AFCC003994F9 /* irregular_cycle_metadata.csv */; };
+		CD2709672D46AFCC003994F9 /* irregular_cycle_metadata.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD27095A2D46AFCC003994F9 /* irregular_cycle_metadata.csv */; };
+		CD2709682D46AFCC003994F9 /* irregular_cycle_predictions.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD27095B2D46AFCC003994F9 /* irregular_cycle_predictions.csv */; };
+		CD2709692D46AFCC003994F9 /* irregular_cycle_predictions.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD27095B2D46AFCC003994F9 /* irregular_cycle_predictions.csv */; };
+		CD27096A2D46AFCC003994F9 /* irregular_cycle_predictions.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD27095B2D46AFCC003994F9 /* irregular_cycle_predictions.csv */; };
+		CD27096B2D46AFCC003994F9 /* irregular_cycle.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD27095C2D46AFCC003994F9 /* irregular_cycle.csv */; };
+		CD27096C2D46AFCC003994F9 /* irregular_cycle.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD27095C2D46AFCC003994F9 /* irregular_cycle.csv */; };
+		CD27096D2D46AFCC003994F9 /* irregular_cycle.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD27095C2D46AFCC003994F9 /* irregular_cycle.csv */; };
+		CD27096E2D46AFCC003994F9 /* regular_28_day_cycle_metadata.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD27095D2D46AFCC003994F9 /* regular_28_day_cycle_metadata.csv */; };
+		CD27096F2D46AFCC003994F9 /* regular_28_day_cycle_metadata.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD27095D2D46AFCC003994F9 /* regular_28_day_cycle_metadata.csv */; };
+		CD2709702D46AFCC003994F9 /* regular_28_day_cycle_metadata.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD27095D2D46AFCC003994F9 /* regular_28_day_cycle_metadata.csv */; };
+		CD2709712D46AFCC003994F9 /* regular_28_day_cycle_predictions.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD27095E2D46AFCC003994F9 /* regular_28_day_cycle_predictions.csv */; };
+		CD2709722D46AFCC003994F9 /* regular_28_day_cycle_predictions.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD27095E2D46AFCC003994F9 /* regular_28_day_cycle_predictions.csv */; };
+		CD2709732D46AFCC003994F9 /* regular_28_day_cycle_predictions.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD27095E2D46AFCC003994F9 /* regular_28_day_cycle_predictions.csv */; };
+		CD2709742D46AFCC003994F9 /* regular_28_day_cycle.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD27095F2D46AFCC003994F9 /* regular_28_day_cycle.csv */; };
+		CD2709752D46AFCC003994F9 /* regular_28_day_cycle.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD27095F2D46AFCC003994F9 /* regular_28_day_cycle.csv */; };
+		CD2709762D46AFCC003994F9 /* regular_28_day_cycle.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD27095F2D46AFCC003994F9 /* regular_28_day_cycle.csv */; };
+		CD2709772D46AFCC003994F9 /* sparse_data_metadata.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2709602D46AFCC003994F9 /* sparse_data_metadata.csv */; };
+		CD2709782D46AFCC003994F9 /* sparse_data_metadata.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2709602D46AFCC003994F9 /* sparse_data_metadata.csv */; };
+		CD2709792D46AFCC003994F9 /* sparse_data_metadata.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2709602D46AFCC003994F9 /* sparse_data_metadata.csv */; };
+		CD27097A2D46AFCC003994F9 /* sparse_data_predictions.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2709612D46AFCC003994F9 /* sparse_data_predictions.csv */; };
+		CD27097B2D46AFCC003994F9 /* sparse_data_predictions.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2709612D46AFCC003994F9 /* sparse_data_predictions.csv */; };
+		CD27097C2D46AFCC003994F9 /* sparse_data_predictions.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2709612D46AFCC003994F9 /* sparse_data_predictions.csv */; };
+		CD27097D2D46AFCC003994F9 /* sparse_data.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2709622D46AFCC003994F9 /* sparse_data.csv */; };
+		CD27097E2D46AFCC003994F9 /* sparse_data.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2709622D46AFCC003994F9 /* sparse_data.csv */; };
+		CD27097F2D46AFCC003994F9 /* sparse_data.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2709622D46AFCC003994F9 /* sparse_data.csv */; };
 		CDBECD5F2D4010D2006A37C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBECD5E2D4010D2006A37C9 /* Assets.xcassets */; };
 		CDBECD632D4010D2006A37C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBECD622D4010D2006A37C9 /* Preview Assets.xcassets */; };
 		CDBECD6D2D4010D2006A37C9 /* safeflowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */; };
@@ -74,6 +103,18 @@
 		CD218E9D2D4303F1009B5198 /* ViewModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		CD218EA42D43CC89009B5198 /* CycleCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleCalendarView.swift; sourceTree = "<group>"; };
 		CD218EAA2D43CD99009B5198 /* PersistenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		CD2709282D4449C2003994F9 /* TestCaseRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCaseRunner.swift; sourceTree = "<group>"; };
+		CD27092A2D4449EF003994F9 /* CycleTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleTestCase.swift; sourceTree = "<group>"; };
+		CD27092D2D444A27003994F9 /* TestDataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestDataLoader.swift; sourceTree = "<group>"; };
+		CD27095A2D46AFCC003994F9 /* irregular_cycle_metadata.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = irregular_cycle_metadata.csv; sourceTree = "<group>"; };
+		CD27095B2D46AFCC003994F9 /* irregular_cycle_predictions.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = irregular_cycle_predictions.csv; sourceTree = "<group>"; };
+		CD27095C2D46AFCC003994F9 /* irregular_cycle.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = irregular_cycle.csv; sourceTree = "<group>"; };
+		CD27095D2D46AFCC003994F9 /* regular_28_day_cycle_metadata.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = regular_28_day_cycle_metadata.csv; sourceTree = "<group>"; };
+		CD27095E2D46AFCC003994F9 /* regular_28_day_cycle_predictions.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = regular_28_day_cycle_predictions.csv; sourceTree = "<group>"; };
+		CD27095F2D46AFCC003994F9 /* regular_28_day_cycle.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = regular_28_day_cycle.csv; sourceTree = "<group>"; };
+		CD2709602D46AFCC003994F9 /* sparse_data_metadata.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparse_data_metadata.csv; sourceTree = "<group>"; };
+		CD2709612D46AFCC003994F9 /* sparse_data_predictions.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparse_data_predictions.csv; sourceTree = "<group>"; };
+		CD2709622D46AFCC003994F9 /* sparse_data.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparse_data.csv; sourceTree = "<group>"; };
 		CDBECD552D4010D1006A37C9 /* safeflow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safeflow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBECD5E2D4010D2006A37C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDBECD602D4010D2006A37C9 /* safeflow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = safeflow.entitlements; sourceTree = "<group>"; };
@@ -88,7 +129,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD218EA82D43CCD0009B5198 /* ElegantCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +160,7 @@
 		CD218E572D4021EB009B5198 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CD27092B2D4449EF003994F9 /* TestData */,
 				CD218E562D4021EB009B5198 /* CycleDay.swift */,
 			);
 			name = Models;
@@ -154,6 +195,7 @@
 		CD218E5C2D4021EB009B5198 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				CD27092E2D444A27003994F9 /* TestData */,
 				CD218E732D4169C5009B5198 /* Security */,
 				CD218E592D4021EB009B5198 /* Network */,
 				CD218E5B2D4021EB009B5198 /* Persistence */,
@@ -214,6 +256,7 @@
 		CD218E6D2D405C1D009B5198 /* Debug */ = {
 			isa = PBXGroup;
 			children = (
+				CD2709282D4449C2003994F9 /* TestCaseRunner.swift */,
 				CD218E6C2D405C1D009B5198 /* DebugMenu.swift */,
 			);
 			path = Debug;
@@ -278,9 +321,50 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CD27092B2D4449EF003994F9 /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				CD27092A2D4449EF003994F9 /* CycleTestCase.swift */,
+			);
+			path = TestData;
+			sourceTree = "<group>";
+		};
+		CD27092E2D444A27003994F9 /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				CD27092D2D444A27003994F9 /* TestDataLoader.swift */,
+			);
+			path = TestData;
+			sourceTree = "<group>";
+		};
+		CD2709632D46AFCC003994F9 /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				CD27095A2D46AFCC003994F9 /* irregular_cycle_metadata.csv */,
+				CD27095B2D46AFCC003994F9 /* irregular_cycle_predictions.csv */,
+				CD27095C2D46AFCC003994F9 /* irregular_cycle.csv */,
+				CD27095D2D46AFCC003994F9 /* regular_28_day_cycle_metadata.csv */,
+				CD27095E2D46AFCC003994F9 /* regular_28_day_cycle_predictions.csv */,
+				CD27095F2D46AFCC003994F9 /* regular_28_day_cycle.csv */,
+				CD2709602D46AFCC003994F9 /* sparse_data_metadata.csv */,
+				CD2709612D46AFCC003994F9 /* sparse_data_predictions.csv */,
+				CD2709622D46AFCC003994F9 /* sparse_data.csv */,
+			);
+			path = TestData;
+			sourceTree = "<group>";
+		};
+		CD2709642D46AFCC003994F9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CD2709632D46AFCC003994F9 /* TestData */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		CDBECD4C2D4010D1006A37C9 = {
 			isa = PBXGroup;
 			children = (
+				CD2709642D46AFCC003994F9 /* Resources */,
 				CD218E702D405C85009B5198 /* Utilities */,
 				CD218E652D4021EB009B5198 /* App */,
 				CD218E572D4021EB009B5198 /* Models */,
@@ -361,7 +445,6 @@
 			);
 			name = safeflow;
 			packageProductDependencies = (
-				CD218EA72D43CCD0009B5198 /* ElegantCalendar */,
 			);
 			productName = safeflow;
 			productReference = CDBECD552D4010D1006A37C9 /* safeflow.app */;
@@ -454,8 +537,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD27096B2D46AFCC003994F9 /* irregular_cycle.csv in Resources */,
+				CD27097A2D46AFCC003994F9 /* sparse_data_predictions.csv in Resources */,
+				CD2709742D46AFCC003994F9 /* regular_28_day_cycle.csv in Resources */,
+				CD2709682D46AFCC003994F9 /* irregular_cycle_predictions.csv in Resources */,
+				CD27096E2D46AFCC003994F9 /* regular_28_day_cycle_metadata.csv in Resources */,
 				CDBECD632D4010D2006A37C9 /* Preview Assets.xcassets in Resources */,
+				CD27097D2D46AFCC003994F9 /* sparse_data.csv in Resources */,
 				CDBECD5F2D4010D2006A37C9 /* Assets.xcassets in Resources */,
+				CD2709652D46AFCC003994F9 /* irregular_cycle_metadata.csv in Resources */,
+				CD2709772D46AFCC003994F9 /* sparse_data_metadata.csv in Resources */,
+				CD2709712D46AFCC003994F9 /* regular_28_day_cycle_predictions.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +555,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD27096C2D46AFCC003994F9 /* irregular_cycle.csv in Resources */,
+				CD27097E2D46AFCC003994F9 /* sparse_data.csv in Resources */,
+				CD2709752D46AFCC003994F9 /* regular_28_day_cycle.csv in Resources */,
+				CD2709782D46AFCC003994F9 /* sparse_data_metadata.csv in Resources */,
+				CD2709722D46AFCC003994F9 /* regular_28_day_cycle_predictions.csv in Resources */,
+				CD2709692D46AFCC003994F9 /* irregular_cycle_predictions.csv in Resources */,
+				CD27096F2D46AFCC003994F9 /* regular_28_day_cycle_metadata.csv in Resources */,
+				CD2709662D46AFCC003994F9 /* irregular_cycle_metadata.csv in Resources */,
+				CD27097B2D46AFCC003994F9 /* sparse_data_predictions.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +571,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD27096D2D46AFCC003994F9 /* irregular_cycle.csv in Resources */,
+				CD27097F2D46AFCC003994F9 /* sparse_data.csv in Resources */,
+				CD2709762D46AFCC003994F9 /* regular_28_day_cycle.csv in Resources */,
+				CD2709792D46AFCC003994F9 /* sparse_data_metadata.csv in Resources */,
+				CD2709732D46AFCC003994F9 /* regular_28_day_cycle_predictions.csv in Resources */,
+				CD27096A2D46AFCC003994F9 /* irregular_cycle_predictions.csv in Resources */,
+				CD2709702D46AFCC003994F9 /* regular_28_day_cycle_metadata.csv in Resources */,
+				CD2709672D46AFCC003994F9 /* irregular_cycle_metadata.csv in Resources */,
+				CD27097C2D46AFCC003994F9 /* sparse_data_predictions.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,11 +592,14 @@
 			files = (
 				CD218E672D4021EB009B5198 /* CycleStore.swift in Sources */,
 				CD218E6E2D405C1D009B5198 /* DebugMenu.swift in Sources */,
+				CD27092C2D4449EF003994F9 /* CycleTestCase.swift in Sources */,
 				CD218E6A2D4021EB009B5198 /* LogDayView.swift in Sources */,
+				CD27092F2D444A27003994F9 /* TestDataLoader.swift in Sources */,
 				CD218E902D4198F5009B5198 /* PinSetupView.swift in Sources */,
 				CD218EA52D43CC89009B5198 /* CycleCalendarView.swift in Sources */,
 				CD218E772D416A3D009B5198 /* LockView.swift in Sources */,
 				CD218E712D405C85009B5198 /* TestData.swift in Sources */,
+				CD2709292D4449C2003994F9 /* TestCaseRunner.swift in Sources */,
 				CD218EAB2D43CD99009B5198 /* PersistenceService.swift in Sources */,
 				CD218E662D4021EB009B5198 /* CycleDay.swift in Sources */,
 				CD218E692D4021EB009B5198 /* HomeView.swift in Sources */,
@@ -657,7 +770,7 @@
 				CODE_SIGN_ENTITLEMENTS = safeflow/safeflow.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"safeflow/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "Resources/TestData/regular_28_day_cycle_metadata.csv Resources/TestData/regular_28_day_cycle.csv Resources/TestData/irregular_cycle.csv Resources/TestData/regular_28_day_cycle_predictions.csv Resources/TestData/sparse_data_metadata.csv safeflow/Preview\\ Content Resources/TestData/irregular_cycle_predictions.csv Resources/TestData Resources/TestData/irregular_cycle_metadata.csv Resources/TestData/sparse_data_predictions.csv Resources/TestData/sparse_data.csv";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = safeflow/Info.plist;
@@ -697,7 +810,7 @@
 				CODE_SIGN_ENTITLEMENTS = safeflow/safeflow.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"safeflow/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "Resources/TestData/regular_28_day_cycle_metadata.csv Resources/TestData/regular_28_day_cycle.csv Resources/TestData/irregular_cycle.csv Resources/TestData/regular_28_day_cycle_predictions.csv Resources/TestData/sparse_data_metadata.csv safeflow/Preview\\ Content Resources/TestData/irregular_cycle_predictions.csv Resources/TestData Resources/TestData/irregular_cycle_metadata.csv Resources/TestData/sparse_data_predictions.csv Resources/TestData/sparse_data.csv";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Safe Flow";
@@ -869,14 +982,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		CD218EA72D43CCD0009B5198 /* ElegantCalendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CD218EA62D43CCD0009B5198 /* XCRemoteSwiftPackageReference "ElegantCalendar" */;
-			productName = ElegantCalendar;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CDBECD4D2D4010D1006A37C9 /* Project object */;
 }

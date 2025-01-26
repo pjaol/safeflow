@@ -1,0 +1,6 @@
+key,value
+description,Regular 28-day cycle test case with consistent period length
+average_cycle_length,28
+notes,This test case represents an ideal scenario with regular periods
+author,SafeFlow Team
+created_date,2024-03-20 

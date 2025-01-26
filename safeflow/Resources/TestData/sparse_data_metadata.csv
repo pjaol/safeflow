@@ -1,0 +1,7 @@
+key,value
+description,Sparse data test case with missing cycle data
+average_cycle_length,28
+notes,This test case verifies prediction behavior with incomplete data
+missing_cycles,1
+author,SafeFlow Team
+created_date,2024-03-20 

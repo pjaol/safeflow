@@ -1,0 +1,7 @@
+key,value
+description,Irregular cycle test case with varying lengths (22-34 days)
+average_cycle_length,28
+cycle_variation,12
+notes,This test case tests prediction accuracy with irregular cycles
+author,SafeFlow Team
+created_date,2024-03-20 

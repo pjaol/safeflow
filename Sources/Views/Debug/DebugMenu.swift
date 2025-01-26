@@ -4,26 +4,26 @@ import SwiftUI
 struct DebugMenu: View {
     @ObservedObject var cycleStore: CycleStore
     @Environment(\.dismiss) private var dismiss
+    @State private var showingTestRunner = false
     
     var body: some View {
         NavigationView {
             List {
-                Section("Test Data") {
-                    Button("Load Sample Data (3 cycles)") {
-                        TestData.loadSampleData(into: cycleStore)
-                        dismiss()
-                    }
-                    
-                    Button("Clear All Data") {
+                Section("Data Management") {
+                    Button("Clear All Data", role: .destructive) {
                         cycleStore.clearAllData()
-                        dismiss()
                     }
                 }
-                .foregroundColor(.primary)
+                
+                Section("Testing") {
+                    NavigationLink("Test Cases") {
+                        TestCaseRunnerView()
+                    }
+                }
             }
             .navigationTitle("Debug Menu")
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
                         dismiss()
                     }
