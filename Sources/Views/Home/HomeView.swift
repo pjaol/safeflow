@@ -67,9 +67,7 @@ struct HomeView: View {
                         .onTapGesture { showingLogSheet = true }
                         .accessibilityIdentifier("home.dailyLogCard")
 
-                    RecentLogsSection(days: cycleStore.recentDays) { id in
-                        cycleStore.deleteDay(id: id)
-                    }
+                    CycleCalendarView(cycleStore: cycleStore)
                 }
                 .padding()
             }
