@@ -76,6 +76,11 @@ class TestDataLoader {
         )
     }
     
+    /// Public wrapper so debug tooling can parse a CSV directly without going through a full TestCase.
+    func parseEntriesPublic(from csv: String) throws -> [CycleDayTestEntry] {
+        try parseEntries(from: csv)
+    }
+
     private func parseEntries(from csv: String) throws -> [CycleDayTestEntry] {
         var lines = csv.components(separatedBy: .newlines)
         
@@ -128,7 +133,7 @@ class TestDataLoader {
             let symptomStrings = components[2].split(separator: ",").map(String.init)
             for symptomString in symptomStrings {
                 let trimmed = symptomString.trimmingCharacters(in: .whitespaces)
-                if let symptom = Symptom(rawValue: trimmed.lowercased()) {
+                if let symptom = Symptom(rawValue: trimmed) {
                     symptoms.insert(symptom)
                 } else {
                     throw TestDataError.invalidSymptom("Invalid symptom: \(trimmed)")

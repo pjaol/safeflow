@@ -1,15 +1,15 @@
 date,flow,symptoms,mood,notes
-2024-01-01,light,"cramps,headache",stressed,"Start of irregular cycle"
-2024-01-02,heavy,"cramps,backache",sad,
+2024-01-01,light,"cramps,headache",anxious,"Start of irregular cycle"
+2024-01-02,heavy,"cramps,backPain",sad,
 2024-01-03,medium,,neutral,
 2024-01-04,light,,happy,
 2024-01-05,spotting,,neutral,"Last day"
-2024-01-35,medium,"cramps",neutral,"34-day cycle"
-2024-01-36,heavy,"headache",sad,
-2024-01-37,medium,,neutral,
-2024-01-38,spotting,,happy,
-2024-02-15,light,"cramps",stressed,"Short 22-day cycle"
-2024-02-16,medium,"backache",sad,
-2024-02-17,heavy,,neutral,
-2024-02-18,light,,happy,
-2024-02-19,spotting,,neutral,"Last day" 
+2024-02-04,medium,"cramps",neutral,"34-day cycle"
+2024-02-05,heavy,"headache",sad,
+2024-02-06,medium,,neutral,
+2024-02-07,spotting,,happy,
+2024-02-26,light,"cramps",anxious,"22-day cycle"
+2024-02-27,medium,"backPain",sad,
+2024-02-28,heavy,,neutral,
+2024-02-29,light,,happy,
+2024-03-01,spotting,,neutral,"Last day"

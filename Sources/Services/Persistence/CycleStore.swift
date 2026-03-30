@@ -4,36 +4,58 @@ import Combine
 @MainActor
 class CycleStore: ObservableObject {
     @Published private(set) var cycleDays: [CycleDay] = []
-    private let saveKey = "cycleDays"
-    private let userDefaults: UserDefaults
+    @Published private(set) var seedData: CycleSeedData?
+
     private let store: PersistenceService
-    
-    init(userDefaults: UserDefaults = .standard, store: PersistenceService = .shared) {
-        self.userDefaults = userDefaults
+    private let dateProvider: () -> Date
+    private let engine = CyclePredictionEngine()
+    private let symptomEngine = SymptomPatternEngine()
+
+    private static let seedDataKey = "cycleSeedData"
+
+    // MARK: - Init
+
+    /// Production initialiser — uses the real clock and shared persistence.
+    init(store: PersistenceService = .shared) {
         self.store = store
-        Task {
-            await loadData()
-        }
+        self.dateProvider = { Date() }
+        Task { await loadData() }
     }
-    
+
+    /// Test initialiser — accepts an injected persistence service and a fixed
+    /// date so every algorithm method is fully deterministic in unit tests.
+    init(store: PersistenceService, dateProvider: @escaping () -> Date) {
+        self.store = store
+        self.dateProvider = dateProvider
+        Task { await loadData() }
+    }
+
+    // MARK: - Persistence
+
     private func loadData() async {
         do {
             cycleDays = try await store.loadCycleDays()
+            seedData = try await store.loadSeedData()
         } catch {
             print("Error loading cycle data: \(error)")
             cycleDays = []
         }
     }
-    
+
     private func saveData() async {
         do {
             try await store.saveCycleDays(cycleDays)
+            if let seed = seedData {
+                try await store.saveSeedData(seed)
+            }
             objectWillChange.send()
         } catch {
             print("Error saving cycle data: \(error)")
         }
     }
-    
+
+    // MARK: - CRUD
+
     func addOrUpdateDay(_ cycleDay: CycleDay) {
         if let index = cycleDays.firstIndex(where: { $0.id == cycleDay.id }) {
             cycleDays[index] = cycleDay
@@ -42,140 +64,143 @@ class CycleStore: ObservableObject {
         } else {
             cycleDays.append(cycleDay)
         }
-        
         objectWillChange.send()
-        
-        Task {
-            await saveData()
+        Task { await saveData() }
+        // Cancel reminder if a period was just logged (user beat the prediction)
+        if cycleDay.flow != nil {
+            Task { await NotificationService.shared.cancelSupplyReminder() }
         }
+        rescheduleSupplyReminder()
     }
-    
+
     func deleteDay(id: UUID) {
         cycleDays.removeAll { $0.id == id }
-        
-        Task {
-            await saveData()
-        }
+        Task { await saveData() }
     }
-    
+
+    func saveSeedData(_ seed: CycleSeedData) {
+        seedData = seed
+        Task { await saveData() }
+    }
+
     #if DEBUG
     func clearAllData() {
         cycleDays.removeAll()
-        userDefaults.removeObject(forKey: saveKey)
+        seedData = nil
         objectWillChange.send()
-        
-        Task {
-            await saveData()
-        }
+        Task { await saveData() }
     }
     #endif
-    
+
+    // MARK: - Queries
+
     func getDaysInRange(start: Date, end: Date) -> [CycleDay] {
         cycleDays.filter { $0.date >= start && $0.date <= end }
     }
-    
-    func getAllDays() -> [CycleDay] {
-        cycleDays
-    }
-    
-    func predictNextPeriod() -> Date? {
-        guard cycleDays.count >= 2 else { return nil }
-        
-        // Get days with flow, sorted by date
-        let daysWithFlow = cycleDays
-            .filter { $0.flow != nil }
-            .sorted { $0.date < $1.date }
-        
-        // Find period start dates by identifying the first day of each period
-        var periodStarts: [Date] = []
-        var lastPeriodEnd: Date? = nil
-        
-        for day in daysWithFlow {
-            if let lastEnd = lastPeriodEnd {
-                // If this day is more than 3 days after the last period ended,
-                // consider it the start of a new period
-                if Calendar.current.dateComponents([.day], from: lastEnd, to: day.date).day ?? 0 > 3 {
-                    periodStarts.append(day.date)
-                }
-            } else {
-                // First period start
-                periodStarts.append(day.date)
-            }
-            
-            lastPeriodEnd = day.date
-        }
-        
-        guard periodStarts.count >= 2 else { return nil }
-        
-        let cycles = zip(periodStarts, periodStarts.dropFirst())
-            .map { Calendar.current.dateComponents([.day], from: $0, to: $1).day ?? 0 }
-        
-        let averageCycleLength = Double(cycles.reduce(0, +)) / Double(cycles.count)
-        
-        // Get the last period start that's not in the future
-        let today = Calendar.current.startOfDay(for: Date())
-        let lastPeriodStart = periodStarts
-            .filter { $0 <= today }
-            .last
-        
-        guard let lastStart = lastPeriodStart else { return nil }
-        
-        // Calculate the next prediction after today
-        let daysFromLastStart = Calendar.current.dateComponents([.day], from: lastStart, to: today).day ?? 0
-        let cyclesElapsed = Double(daysFromLastStart) / averageCycleLength
-        let wholeCyclesElapsed = floor(cyclesElapsed)
-        let nextCycleOffset = Int(round((wholeCyclesElapsed + 1.0) * averageCycleLength))
-        
-        return Calendar.current.date(byAdding: .day, value: nextCycleOffset, to: lastStart)
-    }
-    
-    func calculateAverageCycleLength() -> Int? {
-        guard cycleDays.count >= 2 else { return nil }
-        
-        // Get days with flow, sorted by date
-        let daysWithFlow = cycleDays
-            .filter { $0.flow != nil }
-            .sorted { $0.date < $1.date }
-        
-        // Find period start dates by identifying the first day of each period
-        var periodStarts: [Date] = []
-        var lastPeriodEnd: Date? = nil
-        
-        for day in daysWithFlow {
-            if let lastEnd = lastPeriodEnd {
-                // If this day is more than 3 days after the last period ended,
-                // consider it the start of a new period
-                if Calendar.current.dateComponents([.day], from: lastEnd, to: day.date).day ?? 0 > 3 {
-                    periodStarts.append(day.date)
-                }
-            } else {
-                // First period start
-                periodStarts.append(day.date)
-            }
-            
-            lastPeriodEnd = day.date
-        }
-        
-        guard periodStarts.count >= 2 else { return nil }
-        
-        let cycles = zip(periodStarts, periodStarts.dropFirst())
-            .map { Calendar.current.dateComponents([.day], from: $0, to: $1).day ?? 0 }
-        
-        let averageCycleLength = Double(cycles.reduce(0, +)) / Double(cycles.count)
-        return Int(round(averageCycleLength))
-    }
-    
+
+    func getAllDays() -> [CycleDay] { cycleDays }
+
     func getCurrentDay() -> CycleDay? {
-        let today = Calendar.current.startOfDay(for: Date())
+        let today = Calendar.current.startOfDay(for: dateProvider())
         return cycleDays.first { Calendar.current.isDate($0.date, inSameDayAs: today) }
     }
-    
+
     func getDay(for date: Date) -> CycleDay? {
-        let targetDate = Calendar.current.startOfDay(for: date)
-        return cycleDays.first { Calendar.current.isDate($0.date, inSameDayAs: targetDate) }
+        let target = Calendar.current.startOfDay(for: date)
+        return cycleDays.first { Calendar.current.isDate($0.date, inSameDayAs: target) }
     }
-    
+
     var recentDays: [CycleDay] {
         cycleDays.sorted { $0.date > $1.date }
     }
-} 
+
+    // MARK: - Prediction & Phase (delegates to CyclePredictionEngine)
+
+    func predictNextPeriod() -> Date? {
+        engine.predictNextPeriod(days: cycleDays, seedData: seedData, today: dateProvider())
+    }
+
+    func predictNextPeriodRange() -> (earliest: Date, latest: Date)? {
+        engine.predictNextPeriodRange(days: cycleDays, seedData: seedData, today: dateProvider())
+    }
+
+    func calculateAverageCycleLength() -> Int? {
+        engine.averageCycleLength(from: cycleDays)
+    }
+
+    func cycleVariability() -> Double? {
+        let starts = engine.extractPeriodStarts(from: cycleDays)
+        let lengths = engine.cycleLengths(from: starts)
+        return engine.cycleVariability(from: lengths)
+    }
+
+    func currentPhase() -> CyclePhase? {
+        engine.currentPhase(days: cycleDays, seedData: seedData, today: dateProvider())
+    }
+
+    func currentCycleDayNumber() -> Int? {
+        engine.currentCycleDayNumber(days: cycleDays, seedData: seedData, today: dateProvider())
+    }
+
+    func estimatedOvulationDate() -> Date? {
+        engine.estimatedOvulationDate(days: cycleDays, seedData: seedData, today: dateProvider())
+    }
+
+    func fertileWindow() -> DateInterval? {
+        engine.fertileWindow(days: cycleDays, seedData: seedData, today: dateProvider())
+    }
+
+    func forecastCycles(count: Int) -> [CycleForecast] {
+        engine.forecastCycles(count: count, days: cycleDays, seedData: seedData, today: dateProvider())
+    }
+
+    // MARK: - Notification Scheduling
+
+    /// Re-schedules the supply reminder based on the current next-period prediction.
+    /// Safe to call frequently — the notification service replaces any existing reminder.
+    func rescheduleSupplyReminder() {
+        guard let range = predictNextPeriodRange() else { return }
+        Task { await NotificationService.shared.scheduleSupplyReminder(periodEarliest: range.earliest) }
+    }
+
+    // MARK: - Pattern Nudge
+
+    /// Returns the highest-priority undismissed nudge for the current data, or nil.
+    func currentNudge() -> CycleNudge? {
+        CycleNudge.evaluate(
+            cycleDays: cycleDays,
+            seedData: seedData,
+            engine: engine,
+            dismissed: DismissedNudges.load()
+        )
+    }
+
+    // MARK: - Symptom Pattern Insights
+
+    /// Returns today's rotating insight based on personal symptom/mood patterns
+    /// and population context. Returns nil when there isn't enough data yet.
+    func todayInsight() -> SymptomInsight? {
+        let dayIndex = Calendar.current.ordinality(of: .day, in: .year, for: dateProvider()) ?? 1
+        let phase = currentPhase()
+        let all = symptomEngine.insights(
+            cycleDays: cycleDays,
+            seedData: seedData,
+            predictionEngine: engine,
+            today: dateProvider(),
+            currentPhase: phase,
+            dayIndex: dayIndex
+        )
+        guard !all.isEmpty else { return nil }
+        return all[dayIndex % all.count]
+    }
+
+    /// Returns any active severity signals (escalating symptoms, phase-inconsistent patterns).
+    func severitySignals() -> [SeveritySignal] {
+        symptomEngine.severitySignals(
+            cycleDays: cycleDays,
+            seedData: seedData,
+            predictionEngine: engine,
+            today: dateProvider()
+        )
+    }
+}

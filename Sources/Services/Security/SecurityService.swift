@@ -53,9 +53,13 @@ class SecurityService: ObservableObject {
                 // Don't auto-authenticate with PIN, let user enter it
                 authenticationError = nil
             } else {
-                // No authentication method set up yet
+                // No authentication method set up yet — treat as no security
                 isAuthenticationRequired = false
+                isUnlocked = true
             }
+        } else {
+            // No security configured, app is accessible
+            isUnlocked = true
         }
         setupBackgroundCheck()
     }
@@ -145,6 +149,11 @@ class SecurityService: ObservableObject {
     
     func lock() {
         isUnlocked = false
+    }
+
+    func skipSecurity() {
+        isAuthenticationRequired = false
+        isUnlocked = true
     }
 }
 

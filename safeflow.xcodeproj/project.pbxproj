@@ -58,9 +58,23 @@
 		CD27097D2D46AFCC003994F9 /* sparse_data.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2709622D46AFCC003994F9 /* sparse_data.csv */; };
 		CD27097E2D46AFCC003994F9 /* sparse_data.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2709622D46AFCC003994F9 /* sparse_data.csv */; };
 		CD27097F2D46AFCC003994F9 /* sparse_data.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2709622D46AFCC003994F9 /* sparse_data.csv */; };
+		C2CA3BB5227E61250FAE54DD /* symptom_rich_cycles.csv in Resources */ = {isa = PBXBuildFile; fileRef = EE453D4CD80C0EF166203A9C /* symptom_rich_cycles.csv */; };
+		C6CAF31492E0B1DCCA518BA7 /* symptom_rich_cycles.csv in Resources */ = {isa = PBXBuildFile; fileRef = EE453D4CD80C0EF166203A9C /* symptom_rich_cycles.csv */; };
+		8FDC1DF9FB94376469C80938 /* symptom_rich_cycles.csv in Resources */ = {isa = PBXBuildFile; fileRef = EE453D4CD80C0EF166203A9C /* symptom_rich_cycles.csv */; };
 		CDBECD5F2D4010D2006A37C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBECD5E2D4010D2006A37C9 /* Assets.xcassets */; };
 		CDBECD632D4010D2006A37C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBECD622D4010D2006A37C9 /* Preview Assets.xcassets */; };
 		CDBECD6D2D4010D2006A37C9 /* safeflowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */; };
+		AA11223344556677889900BB /* CyclePhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900AA /* CyclePhase.swift */; };
+		AA11223344556677889900DD /* CycleSeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900CC /* CycleSeedData.swift */; };
+		AA11223344556677889900FF /* CyclePredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900EE /* CyclePredictionEngine.swift */; };
+		BB11223344556677889900BB /* CyclePhaseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11223344556677889900AA /* CyclePhaseCard.swift */; };
+		BB11223344556677889900DD /* QuickLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11223344556677889900CC /* QuickLogView.swift */; };
+		CC44556677889900AABBCCEE /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC44556677889900AABBCCDD /* ForecastView.swift */; };
+		EE1A2B3C4D5E6F7A8B9C0D1F /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1A2B3C4D5E6F7A8B9C0D1E /* NotificationService.swift */; };
+		EE2A3B4C5D6E7F8A9B0C1D2F /* PhaseTipCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2A3B4C5D6E7F8A9B0C1D2E /* PhaseTipCard.swift */; };
+		EE3A4B5C6D7E8F9A0B1C2D3F /* PatternNudgeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A4B5C6D7E8F9A0B1C2D3E /* PatternNudgeCard.swift */; };
+		078E2C4C2D6A4522B31123C8 /* SymptomPatternEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E954215BF114795B8EDFF2F /* SymptomPatternEngine.swift */; };
+		B78D7DC838B549AAB7F3D5D9 /* InsightCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2E1432FC934814B484C260 /* InsightCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +129,7 @@
 		CD2709602D46AFCC003994F9 /* sparse_data_metadata.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparse_data_metadata.csv; sourceTree = "<group>"; };
 		CD2709612D46AFCC003994F9 /* sparse_data_predictions.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparse_data_predictions.csv; sourceTree = "<group>"; };
 		CD2709622D46AFCC003994F9 /* sparse_data.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparse_data.csv; sourceTree = "<group>"; };
+		EE453D4CD80C0EF166203A9C /* symptom_rich_cycles.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = symptom_rich_cycles.csv; sourceTree = "<group>"; };
 		CDBECD552D4010D1006A37C9 /* safeflow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safeflow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBECD5E2D4010D2006A37C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDBECD602D4010D2006A37C9 /* safeflow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = safeflow.entitlements; sourceTree = "<group>"; };
@@ -122,6 +137,17 @@
 		CDBECD682D4010D2006A37C9 /* safeflowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeflowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = safeflowTests.swift; sourceTree = "<group>"; };
 		CDBECD722D4010D2006A37C9 /* safeflowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeflowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA11223344556677889900AA /* CyclePhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePhase.swift; sourceTree = "<group>"; };
+		AA11223344556677889900CC /* CycleSeedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleSeedData.swift; sourceTree = "<group>"; };
+		AA11223344556677889900EE /* CyclePredictionEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePredictionEngine.swift; sourceTree = "<group>"; };
+		BB11223344556677889900AA /* CyclePhaseCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePhaseCard.swift; sourceTree = "<group>"; };
+		BB11223344556677889900CC /* QuickLogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickLogView.swift; sourceTree = "<group>"; };
+		CC44556677889900AABBCCDD /* ForecastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastView.swift; sourceTree = "<group>"; };
+		EE1A2B3C4D5E6F7A8B9C0D1E /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		EE2A3B4C5D6E7F8A9B0C1D2E /* PhaseTipCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhaseTipCard.swift; sourceTree = "<group>"; };
+		EE3A4B5C6D7E8F9A0B1C2D3E /* PatternNudgeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatternNudgeCard.swift; sourceTree = "<group>"; };
+		3E954215BF114795B8EDFF2F /* SymptomPatternEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomPatternEngine.swift; sourceTree = "<group>"; };
+		FE2E1432FC934814B484C260 /* InsightCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +188,8 @@
 			children = (
 				CD27092B2D4449EF003994F9 /* TestData */,
 				CD218E562D4021EB009B5198 /* CycleDay.swift */,
+				AA11223344556677889900AA /* CyclePhase.swift */,
+				AA11223344556677889900CC /* CycleSeedData.swift */,
 			);
 			name = Models;
 			path = Sources/Models;
@@ -188,8 +216,18 @@
 			children = (
 				CD218EAA2D43CD99009B5198 /* PersistenceService.swift */,
 				CD218E5A2D4021EB009B5198 /* CycleStore.swift */,
+				AA11223344556677889900EE /* CyclePredictionEngine.swift */,
+				3E954215BF114795B8EDFF2F /* SymptomPatternEngine.swift */,
 			);
 			path = Persistence;
+			sourceTree = "<group>";
+		};
+		EE4A5B6C7D8E9F0A1B2C3D4E /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				EE1A2B3C4D5E6F7A8B9C0D1E /* NotificationService.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		CD218E5C2D4021EB009B5198 /* Services */ = {
@@ -199,6 +237,7 @@
 				CD218E732D4169C5009B5198 /* Security */,
 				CD218E592D4021EB009B5198 /* Network */,
 				CD218E5B2D4021EB009B5198 /* Persistence */,
+				EE4A5B6C7D8E9F0A1B2C3D4E /* Notifications */,
 			);
 			name = Services;
 			path = Sources/Services;
@@ -219,6 +258,12 @@
 				CD218EA42D43CC89009B5198 /* CycleCalendarView.swift */,
 				CD218E5F2D4021EB009B5198 /* HomeView.swift */,
 				CD218E602D4021EB009B5198 /* LogDayView.swift */,
+				BB11223344556677889900AA /* CyclePhaseCard.swift */,
+				BB11223344556677889900CC /* QuickLogView.swift */,
+				CC44556677889900AABBCCDD /* ForecastView.swift */,
+				EE2A3B4C5D6E7F8A9B0C1D2E /* PhaseTipCard.swift */,
+				EE3A4B5C6D7E8F9A0B1C2D3E /* PatternNudgeCard.swift */,
+				FE2E1432FC934814B484C260 /* InsightCard.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -349,6 +394,7 @@
 				CD2709602D46AFCC003994F9 /* sparse_data_metadata.csv */,
 				CD2709612D46AFCC003994F9 /* sparse_data_predictions.csv */,
 				CD2709622D46AFCC003994F9 /* sparse_data.csv */,
+				EE453D4CD80C0EF166203A9C /* symptom_rich_cycles.csv */,
 			);
 			path = TestData;
 			sourceTree = "<group>";
@@ -548,6 +594,7 @@
 				CD2709652D46AFCC003994F9 /* irregular_cycle_metadata.csv in Resources */,
 				CD2709772D46AFCC003994F9 /* sparse_data_metadata.csv in Resources */,
 				CD2709712D46AFCC003994F9 /* regular_28_day_cycle_predictions.csv in Resources */,
+				C2CA3BB5227E61250FAE54DD /* symptom_rich_cycles.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,6 +611,7 @@
 				CD27096F2D46AFCC003994F9 /* regular_28_day_cycle_metadata.csv in Resources */,
 				CD2709662D46AFCC003994F9 /* irregular_cycle_metadata.csv in Resources */,
 				CD27097B2D46AFCC003994F9 /* sparse_data_predictions.csv in Resources */,
+				C6CAF31492E0B1DCCA518BA7 /* symptom_rich_cycles.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +628,7 @@
 				CD2709702D46AFCC003994F9 /* regular_28_day_cycle_metadata.csv in Resources */,
 				CD2709672D46AFCC003994F9 /* irregular_cycle_metadata.csv in Resources */,
 				CD27097C2D46AFCC003994F9 /* sparse_data_predictions.csv in Resources */,
+				8FDC1DF9FB94376469C80938 /* symptom_rich_cycles.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,6 +660,17 @@
 				CD218E682D4021EB009B5198 /* HomeViewModel.swift in Sources */,
 				CD218E8D2D419279009B5198 /* OnboardingView.swift in Sources */,
 				CD218E942D41994E009B5198 /* SecurityManager.swift in Sources */,
+				AA11223344556677889900BB /* CyclePhase.swift in Sources */,
+				AA11223344556677889900DD /* CycleSeedData.swift in Sources */,
+				AA11223344556677889900FF /* CyclePredictionEngine.swift in Sources */,
+				BB11223344556677889900BB /* CyclePhaseCard.swift in Sources */,
+				BB11223344556677889900DD /* QuickLogView.swift in Sources */,
+				CC44556677889900AABBCCEE /* ForecastView.swift in Sources */,
+				EE1A2B3C4D5E6F7A8B9C0D1F /* NotificationService.swift in Sources */,
+				EE2A3B4C5D6E7F8A9B0C1D2F /* PhaseTipCard.swift in Sources */,
+				EE3A4B5C6D7E8F9A0B1C2D3F /* PatternNudgeCard.swift in Sources */,
+				078E2C4C2D6A4522B31123C8 /* SymptomPatternEngine.swift in Sources */,
+				B78D7DC838B549AAB7F3D5D9 /* InsightCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -770,7 +830,7 @@
 				CODE_SIGN_ENTITLEMENTS = safeflow/safeflow.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "Resources/TestData/regular_28_day_cycle_metadata.csv Resources/TestData/regular_28_day_cycle.csv Resources/TestData/irregular_cycle.csv Resources/TestData/regular_28_day_cycle_predictions.csv Resources/TestData/sparse_data_metadata.csv safeflow/Preview\\ Content Resources/TestData/irregular_cycle_predictions.csv Resources/TestData Resources/TestData/irregular_cycle_metadata.csv Resources/TestData/sparse_data_predictions.csv Resources/TestData/sparse_data.csv";
+				DEVELOPMENT_ASSET_PATHS = "Resources/TestData/regular_28_day_cycle_metadata.csv Resources/TestData/regular_28_day_cycle.csv Resources/TestData/irregular_cycle.csv Resources/TestData/regular_28_day_cycle_predictions.csv Resources/TestData/sparse_data_metadata.csv safeflow/Preview\\ Content Resources/TestData/irregular_cycle_predictions.csv Resources/TestData Resources/TestData/irregular_cycle_metadata.csv Resources/TestData/sparse_data_predictions.csv Resources/TestData/sparse_data.csv Resources/TestData/symptom_rich_cycles.csv";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = safeflow/Info.plist;
@@ -810,7 +870,7 @@
 				CODE_SIGN_ENTITLEMENTS = safeflow/safeflow.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "Resources/TestData/regular_28_day_cycle_metadata.csv Resources/TestData/regular_28_day_cycle.csv Resources/TestData/irregular_cycle.csv Resources/TestData/regular_28_day_cycle_predictions.csv Resources/TestData/sparse_data_metadata.csv safeflow/Preview\\ Content Resources/TestData/irregular_cycle_predictions.csv Resources/TestData Resources/TestData/irregular_cycle_metadata.csv Resources/TestData/sparse_data_predictions.csv Resources/TestData/sparse_data.csv";
+				DEVELOPMENT_ASSET_PATHS = "Resources/TestData/regular_28_day_cycle_metadata.csv Resources/TestData/regular_28_day_cycle.csv Resources/TestData/irregular_cycle.csv Resources/TestData/regular_28_day_cycle_predictions.csv Resources/TestData/sparse_data_metadata.csv safeflow/Preview\\ Content Resources/TestData/irregular_cycle_predictions.csv Resources/TestData Resources/TestData/irregular_cycle_metadata.csv Resources/TestData/sparse_data_predictions.csv Resources/TestData/sparse_data.csv Resources/TestData/symptom_rich_cycles.csv";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Safe Flow";

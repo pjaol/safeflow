@@ -1,0 +1,161 @@
+date,flow,symptoms,mood,notes
+2025-06-01,light,"cramps,headache",sad,"Cycle 1 day 1"
+2025-06-02,medium,"cramps,backPain",irritable,
+2025-06-03,heavy,"cramps,bloating",sad,
+2025-06-04,heavy,"cramps,bloating,fatigue",irritable,
+2025-06-05,medium,"cramps,fatigue",neutral,
+2025-06-06,light,"bloating",neutral,
+2025-06-07,spotting,,neutral,"Last day cycle 1"
+2025-06-09,,,"energized","Follicular - energy building"
+2025-06-10,,,"happy",
+2025-06-11,,,"happy",
+2025-06-12,,,"confident",
+2025-06-13,,,"energized",
+2025-06-14,,,"focused",
+2025-06-15,,mittelschmerz,"happy","Ovulation window"
+2025-06-16,,dischargeChanges,"energized",
+2025-06-17,,,"happy",
+2025-06-18,,breastTenderness,"neutral","Luteal starts"
+2025-06-19,,breastTenderness,"neutral",
+2025-06-20,,,"foggy",
+2025-06-21,,"breastTenderness,bloating","tired",
+2025-06-22,,"bloating,foodCravings","irritable",
+2025-06-23,,"foodCravings,headache","irritable",
+2025-06-24,,"headache,insomnia","anxious",
+2025-06-25,,"insomnia,brainFog","anxious",
+2025-06-26,,"brainFog,backPain","sad","PMS symptoms"
+2025-06-27,,"cramps,backPain","sad","Pre-period cramps"
+2025-06-28,,"cramps","irritable",
+2025-06-29,light,"cramps,headache",sad,"Cycle 2 day 1"
+2025-06-30,medium,"cramps,backPain",irritable,
+2025-07-01,heavy,"cramps,bloating",sad,
+2025-07-02,heavy,"cramps,bloating,fatigue",irritable,
+2025-07-03,medium,"cramps,nausea",neutral,
+2025-07-04,light,"fatigue",neutral,
+2025-07-05,spotting,,neutral,"Last day cycle 2"
+2025-07-07,,,"energized","Follicular"
+2025-07-08,,,"happy",
+2025-07-09,,,"confident",
+2025-07-10,,,"happy",
+2025-07-11,,,"focused",
+2025-07-12,,,"energized",
+2025-07-13,,mittelschmerz,"happy","Ovulation"
+2025-07-14,,dischargeChanges,"energized",
+2025-07-15,,breastTenderness,"neutral",
+2025-07-16,,breastTenderness,"neutral","Luteal"
+2025-07-17,,,"foggy",
+2025-07-18,,"breastTenderness,bloating","tired",
+2025-07-19,,"bloating,foodCravings","irritable",
+2025-07-20,,"foodCravings,headache","irritable",
+2025-07-21,,"headache,insomnia","anxious",
+2025-07-22,,"insomnia,brainFog","anxious",
+2025-07-23,,"brainFog,acne","sad",
+2025-07-24,,"acne,backPain","sad",
+2025-07-25,,"cramps,backPain","irritable","Pre-period cramps"
+2025-07-26,,"cramps","sad",
+2025-07-27,light,"cramps,headache",sad,"Cycle 3 day 1"
+2025-07-28,medium,"cramps,backPain",irritable,
+2025-07-29,heavy,"cramps,bloating",sad,
+2025-07-30,heavy,"cramps,bloating,fatigue",sad,
+2025-07-31,medium,"cramps,fatigue",neutral,
+2025-08-01,light,"bloating",neutral,
+2025-08-02,spotting,,neutral,"Last day cycle 3"
+2025-08-04,,,"energized","Follicular"
+2025-08-05,,,"happy",
+2025-08-06,,,"happy",
+2025-08-07,,,"confident",
+2025-08-08,,,"energized",
+2025-08-09,,,"focused",
+2025-08-10,,mittelschmerz,"happy","Ovulation"
+2025-08-11,,dischargeChanges,"energized",
+2025-08-12,,breastTenderness,"neutral",
+2025-08-13,,breastTenderness,"neutral","Luteal"
+2025-08-14,,,"foggy",
+2025-08-15,,"breastTenderness,bloating","tired",
+2025-08-16,,"bloating,foodCravings","irritable",
+2025-08-17,,"foodCravings,headache","irritable",
+2025-08-18,,"headache,insomnia","anxious",
+2025-08-19,,"insomnia,brainFog","anxious",
+2025-08-20,,"brainFog,acne","sad",
+2025-08-21,,"acne,backPain","sad",
+2025-08-22,,"cramps,backPain","irritable","Pre-period cramps"
+2025-08-23,,"cramps","sad",
+2025-08-24,light,"cramps,headache",sad,"Cycle 4 day 1"
+2025-08-25,medium,"cramps,backPain",irritable,
+2025-08-26,heavy,"cramps,bloating",sad,
+2025-08-27,heavy,"cramps,bloating,fatigue",sad,
+2025-08-28,medium,"cramps,nausea",neutral,
+2025-08-29,light,"fatigue",neutral,
+2025-08-30,spotting,,neutral,"Last day cycle 4"
+2025-09-01,,,"energized","Follicular"
+2025-09-02,,,"happy",
+2025-09-03,,,"confident",
+2025-09-04,,,"happy",
+2025-09-05,,,"focused",
+2025-09-06,,,"energized",
+2025-09-07,,mittelschmerz,"happy","Ovulation"
+2025-09-08,,dischargeChanges,"energized",
+2025-09-09,,breastTenderness,"neutral",
+2025-09-10,,breastTenderness,"neutral","Luteal"
+2025-09-11,,,"foggy",
+2025-09-12,,"breastTenderness,bloating","tired",
+2025-09-13,,"bloating,foodCravings","irritable",
+2025-09-14,,"foodCravings,headache","irritable",
+2025-09-15,,"headache,insomnia","anxious",
+2025-09-16,,"insomnia,brainFog","anxious",
+2025-09-17,,"brainFog,acne","sad",
+2025-09-18,,"acne,backPain","sad",
+2025-09-19,,"cramps,backPain","irritable","Pre-period cramps"
+2025-09-20,,"cramps","sad",
+2025-09-21,light,"cramps,headache",sad,"Cycle 5 day 1"
+2025-09-22,medium,"cramps,backPain",irritable,
+2025-09-23,heavy,"cramps,bloating",sad,
+2025-09-24,heavy,"cramps,bloating,fatigue",sad,
+2025-09-25,medium,"cramps,fatigue",neutral,
+2025-09-26,light,"bloating",neutral,
+2025-09-27,spotting,,neutral,"Last day cycle 5"
+2025-09-29,,,"energized","Follicular"
+2025-09-30,,,"happy",
+2025-10-01,,,"happy",
+2025-10-02,,,"confident",
+2025-10-03,,,"energized",
+2025-10-04,,,"focused",
+2025-10-05,,mittelschmerz,"happy","Ovulation"
+2025-10-06,,dischargeChanges,"energized",
+2025-10-07,,breastTenderness,"neutral",
+2025-10-08,,breastTenderness,"neutral","Luteal"
+2025-10-09,,,"foggy",
+2025-10-10,,"breastTenderness,bloating","tired",
+2025-10-11,,"bloating,foodCravings","irritable",
+2025-10-12,,"foodCravings,headache","irritable",
+2025-10-13,,"headache,insomnia","anxious",
+2025-10-14,,"insomnia,brainFog","anxious",
+2025-10-15,,"brainFog,acne","sad",
+2025-10-16,,"acne,backPain","sad",
+2025-10-17,,"cramps,backPain","irritable","Pre-period cramps"
+2025-10-18,,"cramps","sad",
+2025-10-19,light,"cramps,headache",sad,"Cycle 6 day 1"
+2025-10-20,medium,"cramps,backPain",irritable,
+2025-10-21,heavy,"cramps,bloating",sad,
+2025-10-22,heavy,"cramps,bloating,fatigue",sad,
+2025-10-23,medium,"cramps,nausea",neutral,
+2025-10-24,light,"fatigue",neutral,
+2025-10-25,spotting,,neutral,"Last day cycle 6"
+2025-10-27,,,"energized","Follicular"
+2025-10-28,,,"happy",
+2025-10-29,,,"confident",
+2025-10-30,,,"happy",
+2025-10-31,,,"focused",
+2025-11-01,,,"energized",
+2025-11-02,,mittelschmerz,"happy","Ovulation"
+2025-11-03,,dischargeChanges,"energized",
+2025-11-04,,breastTenderness,"neutral",
+2025-11-05,,breastTenderness,"neutral","Luteal"
+2025-11-06,,,"foggy",
+2025-11-07,,"breastTenderness,bloating","tired",
+2025-11-08,,"bloating,foodCravings","irritable",
+2025-11-09,,"foodCravings,headache","irritable",
+2025-11-10,,"headache,insomnia","anxious",
+2025-11-11,,"insomnia,brainFog","anxious",
+2025-11-12,,"brainFog,acne","sad",
+2025-11-13,,"acne,backPain","sad"

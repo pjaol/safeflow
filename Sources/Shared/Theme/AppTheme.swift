@@ -18,6 +18,23 @@ enum AppTheme {
         // System colors with our theme
         static let background = backgroundBlue
         static let secondaryBackground = Color.white
+
+        // Forecast grid — semantically named, independent of phase colors
+        static let forecastPeriod  = Color(hex: "E8707A")  // warm coral
+        static let forecastFertile = Color(hex: "3DB8C5")  // saturated teal
+        static let forecastMood    = Color(hex: "F5A623")  // amber
+        static let forecastSymptom = Color(hex: "9B6FD4")  // muted purple
+
+        /// Resolves a `CyclePhase.themeColorName` string to the matching Color.
+        static func forPhase(_ colorName: String) -> Color {
+            switch colorName {
+            case "secondaryPink": return secondaryPink
+            case "primaryBlue":  return primaryBlue
+            case "accentBlue":   return accentBlue
+            case "paleYellow":   return paleYellow
+            default:             return primaryBlue
+            }
+        }
     }
     
     /// Typography definitions
