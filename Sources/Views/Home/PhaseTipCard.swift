@@ -33,6 +33,7 @@ struct PhaseTipCard: View {
         .padding(AppTheme.Metrics.cardPadding)
         .background(AppTheme.Colors.forPhase(phase.themeColorName).opacity(0.1))
         .cornerRadius(AppTheme.Metrics.cornerRadius)
+        .shadow(color: Color.black.opacity(0.06), radius: 8, x: 0, y: 2)
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("home.phaseTipCard")
         .accessibilityLabel("\(tip.title). \(tip.body)")

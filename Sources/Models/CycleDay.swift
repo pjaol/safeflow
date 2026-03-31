@@ -54,7 +54,7 @@ enum SymptomCategory: String, CaseIterable {
         switch self {
         case .pain: return NSLocalizedString("Pain", comment: "")
         case .energy: return NSLocalizedString("Energy", comment: "")
-        case .digestive: return NSLocalizedString("Digestive", comment: "")
+        case .digestive: return NSLocalizedString("Body", comment: "")
         }
     }
 }

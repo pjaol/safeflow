@@ -23,7 +23,7 @@ enum DartboardCategory: Int, CaseIterable {
         case .pain:   return "exclamationmark.triangle.fill"
         case .energy: return "bolt.fill"
         case .mood:   return "face.smiling"
-        case .gut:    return "fork.knife"
+        case .gut:    return "figure.arms.open"
         }
     }
 

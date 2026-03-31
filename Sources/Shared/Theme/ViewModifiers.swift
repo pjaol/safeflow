@@ -6,7 +6,7 @@ struct CardModifier: ViewModifier {
             .padding(AppTheme.Metrics.cardPadding)
             .background(AppTheme.Colors.secondaryBackground)
             .cornerRadius(AppTheme.Metrics.cornerRadius)
-            .shadow(radius: 2)
+            .shadow(color: Color.black.opacity(0.07), radius: 8, x: 0, y: 2)
     }
 }
 

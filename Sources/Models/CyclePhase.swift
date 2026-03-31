@@ -38,4 +38,13 @@ enum CyclePhase: String, CaseIterable {
         case .luteal: return "paleYellow"
         }
     }
+
+    var sfSymbol: String {
+        switch self {
+        case .menstrual:  return "drop.fill"
+        case .follicular: return "leaf.fill"
+        case .ovulatory:  return "sun.max.fill"
+        case .luteal:     return "moon.fill"
+        }
+    }
 }

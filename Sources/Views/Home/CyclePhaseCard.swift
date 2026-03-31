@@ -23,6 +23,7 @@ struct CyclePhaseCard: View {
         .padding(AppTheme.Metrics.cardPadding)
         .background(cardBackground)
         .cornerRadius(AppTheme.Metrics.cornerRadius)
+        .shadow(color: Color.black.opacity(0.07), radius: 8, x: 0, y: 2)
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("home.cyclePhaseCard")
     }
@@ -59,13 +60,28 @@ struct CyclePhaseCard: View {
     }
 
     private func phaseIndicator(phase: CyclePhase) -> some View {
-        ZStack {
+        let color = phaseIndicatorColor(phase)
+        return ZStack {
             Circle()
-                .fill(AppTheme.Colors.forPhase(phase.themeColorName).opacity(0.3))
-                .frame(width: 48, height: 48)
+                .fill(color.opacity(0.2))
+                .frame(width: 52, height: 52)
             Circle()
-                .fill(AppTheme.Colors.forPhase(phase.themeColorName))
-                .frame(width: 28, height: 28)
+                .fill(color)
+                .frame(width: 36, height: 36)
+                .shadow(color: color.opacity(0.4), radius: 6, x: 0, y: 3)
+            Image(systemName: phase.sfSymbol)
+                .font(.system(size: 16, weight: .semibold))
+                .foregroundColor(.white)
+        }
+    }
+
+    /// Returns a color with enough saturation/contrast to be visible on the card background.
+    private func phaseIndicatorColor(_ phase: CyclePhase) -> Color {
+        switch phase {
+        case .luteal:    return Color(hex: "E6A817") // warm amber — paleYellow is too light
+        case .menstrual: return AppTheme.Colors.secondaryPink
+        case .follicular: return AppTheme.Colors.primaryBlue
+        case .ovulatory: return AppTheme.Colors.accentBlue
         }
     }
 

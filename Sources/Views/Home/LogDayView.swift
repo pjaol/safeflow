@@ -223,7 +223,7 @@ struct LogDayView: View {
 
 // MARK: - Flow Chip
 
-private struct FlowChip: View {
+struct FlowChip: View {
     let label: String
     let sfSymbol: String
     let isSelected: Bool
@@ -250,7 +250,7 @@ private struct FlowChip: View {
 
 // MARK: - Category Tab
 
-private struct CategoryTab: View {
+struct CategoryTab: View {
     let label: String
     let isSelected: Bool
     let action: () -> Void
@@ -270,7 +270,7 @@ private struct CategoryTab: View {
 
 // MARK: - Symptom Chip
 
-private struct SymptomChip: View {
+struct SymptomChip: View {
     let symptom: Symptom
     let isSelected: Bool
     let action: () -> Void
@@ -298,7 +298,7 @@ private struct SymptomChip: View {
 
 // MARK: - Mood Cell
 
-private struct MoodCell: View {
+struct MoodCell: View {
     let mood: Mood
     let isSelected: Bool
     let action: () -> Void

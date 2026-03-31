@@ -43,6 +43,7 @@ struct PatternNudgeCard: View {
         .padding(AppTheme.Metrics.cardPadding)
         .background(nudge.backgroundColor)
         .cornerRadius(AppTheme.Metrics.cornerRadius)
+        .shadow(color: Color.black.opacity(0.07), radius: 8, x: 0, y: 2)
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("home.patternNudgeCard.\(nudge.id)")
     }
@@ -115,7 +116,7 @@ struct CycleNudge: Identifiable, Equatable {
             sfSymbol: "calendar",
             title: "Your cycles are running short",
             body: "Your average cycle is around \(avg) days. Cycles shorter than 21 days are worth mentioning to a doctor — it's a common and treatable pattern.",
-            backgroundColor: AppTheme.Colors.paleYellow.opacity(0.6)
+            backgroundColor: Color(hex: "FEF3C7")
         )
     }
 
@@ -126,7 +127,7 @@ struct CycleNudge: Identifiable, Equatable {
             sfSymbol: "calendar",
             title: "Your cycles are running long",
             body: "Your average cycle is around \(avg) days. Cycles over 35 days can have a few different causes — a doctor can help figure out what's going on.",
-            backgroundColor: AppTheme.Colors.paleYellow.opacity(0.6)
+            backgroundColor: Color(hex: "FEF3C7")
         )
     }
 
@@ -137,7 +138,7 @@ struct CycleNudge: Identifiable, Equatable {
             sfSymbol: "chart.line.uptrend.xyaxis",
             title: "Your cycle length varies a lot",
             body: "Your cycles vary by more than a week from month to month. This is fairly common but worth a chat with a doctor if it's been going on a while.",
-            backgroundColor: AppTheme.Colors.paleYellow.opacity(0.6)
+            backgroundColor: Color(hex: "FEF3C7")
         )
     }
 
@@ -165,7 +166,7 @@ struct CycleNudge: Identifiable, Equatable {
             sfSymbol: "stethoscope",
             title: "Your periods are running long",
             body: "Periods consistently over 7 days are worth mentioning to a doctor. There are several common, treatable causes.",
-            backgroundColor: AppTheme.Colors.paleYellow.opacity(0.6)
+            backgroundColor: Color(hex: "FEF3C7")
         )
     }
 
@@ -186,7 +187,7 @@ struct CycleNudge: Identifiable, Equatable {
             sfSymbol: "thermometer.medium",
             title: "You've been logging cramps",
             body: "A few things that can help: heat on your lower abdomen, ibuprofen taken with food at the first sign (not after), and magnesium-rich foods like dark chocolate and nuts.",
-            backgroundColor: AppTheme.Colors.secondaryPink.opacity(0.15)
+            backgroundColor: Color(hex: "FDE8EF")
         )
     }
 }
@@ -217,7 +218,7 @@ struct DismissedNudges {
                 sfSymbol: "calendar",
                 title: "Your cycles are running short",
                 body: "Your average cycle is around 19 days. Cycles shorter than 21 days are worth mentioning to a doctor.",
-                backgroundColor: AppTheme.Colors.paleYellow.opacity(0.6)
+                backgroundColor: Color(hex: "FEF3C7")
             ),
             onDismiss: {}
         )
@@ -227,7 +228,7 @@ struct DismissedNudges {
                 sfSymbol: "thermometer.medium",
                 title: "You've been logging cramps",
                 body: "A few things that can help: heat on your lower abdomen, ibuprofen taken with food at the first sign, and magnesium-rich foods.",
-                backgroundColor: AppTheme.Colors.secondaryPink.opacity(0.15)
+                backgroundColor: Color(hex: "FDE8EF")
             ),
             onDismiss: {}
         )

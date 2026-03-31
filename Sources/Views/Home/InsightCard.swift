@@ -59,6 +59,7 @@ struct InsightCard: View {
         .padding(AppTheme.Metrics.cardPadding)
         .background(AppTheme.Colors.secondaryBackground)
         .cornerRadius(AppTheme.Metrics.cornerRadius)
+        .shadow(color: Color.black.opacity(0.07), radius: 8, x: 0, y: 2)
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("home.insightCard")
         .accessibilityLabel(insight.accessibilityDescription)
@@ -141,8 +142,9 @@ struct SeveritySignalCard: View {
             .accessibilityLabel("Dismiss")
         }
         .padding(AppTheme.Metrics.cardPadding)
-        .background(AppTheme.Colors.forecastMood.opacity(0.1))
+        .background(AppTheme.Colors.forecastMood.opacity(0.12))
         .cornerRadius(AppTheme.Metrics.cornerRadius)
+        .shadow(color: Color.black.opacity(0.07), radius: 8, x: 0, y: 2)
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("home.severitySignalCard.\(signal.id)")
     }

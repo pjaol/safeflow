@@ -136,6 +136,7 @@ private struct EditLogsButton: View {
             .padding(.vertical, 12)
             .background(AppTheme.Colors.secondaryBackground)
             .cornerRadius(AppTheme.Metrics.cornerRadius)
+            .shadow(color: Color.black.opacity(0.07), radius: 8, x: 0, y: 2)
         }
         .accessibilityIdentifier("home.editLogsButton")
     }
@@ -153,28 +154,40 @@ private struct EditLogsSheet: View {
         _selectedDate = State(initialValue: initialDate)
     }
 
+    private var loggedDates: Set<String> {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return Set(cycleStore.getAllDays().map { formatter.string(from: $0.date) })
+    }
+
     var body: some View {
         NavigationView {
-            VStack(spacing: 0) {
-                DatePicker(
-                    "Select date",
-                    selection: $selectedDate,
-                    in: ...Date(),
-                    displayedComponents: .date
-                )
-                .datePickerStyle(.graphical)
-                .padding()
-                .tint(AppTheme.Colors.accentBlue)
+            ScrollView {
+                VStack(spacing: 0) {
+                    // Custom calendar with logged-day dots
+                    LogCalendarView(
+                        selectedDate: $selectedDate,
+                        loggedDates: loggedDates
+                    )
+                    .padding(.horizontal)
+                    .padding(.vertical, 12)
 
-                Divider()
+                    Divider()
+                        .padding(.bottom, 8)
 
-                LogDayView(
-                    cycleStore: cycleStore,
-                    existingDay: cycleStore.getDay(for: selectedDate),
-                    targetDate: selectedDate
-                )
+                    // Inline log form — re-initialises when date changes
+                    LogDayFormView(
+                        cycleStore: cycleStore,
+                        targetDate: selectedDate,
+                        existingDay: cycleStore.getDay(for: selectedDate)
+                    )
+                    .id(selectedDate)
+                    .padding(.horizontal)
+                    .padding(.bottom, 32)
+                }
             }
-            .navigationTitle(selectedDate.formatted(.dateTime.month(.wide).day().year()))
+            .background(AppTheme.Colors.background)
+            .navigationTitle(selectedDate.formatted(.dateTime.month(.abbreviated).day().year()))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -184,5 +197,351 @@ private struct EditLogsSheet: View {
                 }
             }
         }
+    }
+}
+
+// MARK: - Log Calendar View
+
+/// A compact month calendar that shows dot indicators on days with logged data.
+private struct LogCalendarView: View {
+    @Binding var selectedDate: Date
+    let loggedDates: Set<String>
+
+    @State private var displayedMonth: Date
+
+    private let cal = Calendar.current
+    private let dayFormatter: DateFormatter = {
+        let f = DateFormatter(); f.dateFormat = "yyyy-MM-dd"; return f
+    }()
+    private let cols = Array(repeating: GridItem(.flexible(), spacing: 0), count: 7)
+    private let weekdaySymbols: [String] = {
+        var syms = Calendar.current.veryShortWeekdaySymbols
+        // Rotate so week starts on Monday (index 1 = Mon … 0 = Sun moves to end)
+        let sun = syms.removeFirst(); syms.append(sun)
+        return syms
+    }()
+
+    init(selectedDate: Binding<Date>, loggedDates: Set<String>) {
+        _selectedDate = selectedDate
+        self.loggedDates = loggedDates
+        _displayedMonth = State(initialValue: selectedDate.wrappedValue)
+    }
+
+    // All day cells for the displayed month grid (including leading/trailing blanks as nil)
+    private var gridDays: [Date?] {
+        guard
+            let monthStart = cal.date(from: cal.dateComponents([.year, .month], from: displayedMonth)),
+            let range = cal.range(of: .day, in: .month, for: displayedMonth)
+        else { return [] }
+
+        // Weekday of month start, shifted so Monday = 0
+        var startWeekday = cal.component(.weekday, from: monthStart) - 2 // 0=Mon
+        if startWeekday < 0 { startWeekday += 7 }
+
+        var days: [Date?] = Array(repeating: nil, count: startWeekday)
+        for d in 0..<range.count {
+            days.append(cal.date(byAdding: .day, value: d, to: monthStart))
+        }
+        // Pad to full rows
+        while days.count % 7 != 0 { days.append(nil) }
+        return days
+    }
+
+    var body: some View {
+        VStack(spacing: 8) {
+            // Month nav header
+            HStack {
+                Button {
+                    displayedMonth = cal.date(byAdding: .month, value: -1, to: displayedMonth) ?? displayedMonth
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundColor(AppTheme.Colors.accentBlue)
+                        .frame(width: 36, height: 36)
+                }
+
+                Spacer()
+
+                Text(displayedMonth.formatted(.dateTime.month(.wide).year()))
+                    .font(.system(.subheadline, design: .rounded, weight: .semibold))
+                    .foregroundColor(AppTheme.Colors.deepGrayText)
+
+                Spacer()
+
+                let isCurrentMonth = cal.isDate(displayedMonth, equalTo: Date(), toGranularity: .month)
+                Button {
+                    displayedMonth = cal.date(byAdding: .month, value: 1, to: displayedMonth) ?? displayedMonth
+                } label: {
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundColor(isCurrentMonth ? AppTheme.Colors.mediumGrayText.opacity(0.3) : AppTheme.Colors.accentBlue)
+                        .frame(width: 36, height: 36)
+                }
+                .disabled(isCurrentMonth)
+            }
+
+            // Weekday labels
+            LazyVGrid(columns: cols, spacing: 0) {
+                ForEach(weekdaySymbols, id: \.self) { sym in
+                    Text(sym)
+                        .font(.system(.caption2, design: .rounded, weight: .semibold))
+                        .foregroundColor(AppTheme.Colors.mediumGrayText)
+                        .frame(maxWidth: .infinity)
+                        .padding(.bottom, 4)
+                }
+            }
+
+            // Day cells
+            LazyVGrid(columns: cols, spacing: 4) {
+                ForEach(Array(gridDays.enumerated()), id: \.offset) { _, date in
+                    if let date {
+                        DayCell(
+                            date: date,
+                            isSelected: cal.isDate(date, inSameDayAs: selectedDate),
+                            isToday: cal.isDateInToday(date),
+                            isFuture: date > Date(),
+                            hasLog: loggedDates.contains(dayFormatter.string(from: date))
+                        ) {
+                            selectedDate = date
+                            displayedMonth = date
+                        }
+                    } else {
+                        Color.clear.frame(height: 40)
+                    }
+                }
+            }
+        }
+        .padding(12)
+        .background(AppTheme.Colors.secondaryBackground)
+        .cornerRadius(AppTheme.Metrics.cornerRadius)
+        .shadow(color: Color.black.opacity(0.07), radius: 8, x: 0, y: 2)
+        .onChange(of: selectedDate) { _, newDate in
+            // If the user picks a date via external means, sync the displayed month
+            if !cal.isDate(newDate, equalTo: displayedMonth, toGranularity: .month) {
+                displayedMonth = newDate
+            }
+        }
+    }
+}
+
+private struct DayCell: View {
+    let date: Date
+    let isSelected: Bool
+    let isToday: Bool
+    let isFuture: Bool
+    let hasLog: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: 2) {
+                Text(date.formatted(.dateTime.day()))
+                    .font(.system(.callout, design: .rounded, weight: isSelected || isToday ? .bold : .regular))
+                    .foregroundColor(cellTextColor)
+                    .frame(width: 34, height: 34)
+                    .background(cellBackground)
+                    .clipShape(Circle())
+
+                // Log dot
+                Circle()
+                    .fill(hasLog ? logDotColor : Color.clear)
+                    .frame(width: 4, height: 4)
+            }
+        }
+        .disabled(isFuture)
+        .frame(maxWidth: .infinity)
+    }
+
+    private var cellTextColor: Color {
+        if isSelected { return .white }
+        if isFuture { return AppTheme.Colors.mediumGrayText.opacity(0.35) }
+        if isToday { return AppTheme.Colors.accentBlue }
+        return AppTheme.Colors.deepGrayText
+    }
+
+    private var cellBackground: Color {
+        if isSelected { return AppTheme.Colors.accentBlue }
+        if isToday { return AppTheme.Colors.accentBlue.opacity(0.12) }
+        return .clear
+    }
+
+    private var logDotColor: Color {
+        isSelected ? .white.opacity(0.8) : AppTheme.Colors.accentBlue
+    }
+}
+
+// MARK: - Log Day Form View (inline, no NavigationView)
+
+/// The log form without its own NavigationView — embedded inside EditLogsSheet's scroll view.
+private struct LogDayFormView: View {
+    @ObservedObject var cycleStore: CycleStore
+    let targetDate: Date
+    let existingDay: CycleDay?
+
+    @State private var selectedFlow: FlowIntensity?
+    @State private var selectedSymptoms: Set<Symptom> = []
+    @State private var selectedMood: Mood?
+    @State private var notes: String = ""
+    @State private var selectedSymptomCategory: SymptomCategory = .pain
+    @State private var saved = false
+
+    private let logger = Logger(subsystem: "com.thevgergroup.safeflow", category: "LogDayFormView")
+
+    init(cycleStore: CycleStore, targetDate: Date, existingDay: CycleDay?) {
+        self.cycleStore = cycleStore
+        self.targetDate = targetDate
+        self.existingDay = existingDay
+        _selectedFlow = State(initialValue: existingDay?.flow)
+        _selectedSymptoms = State(initialValue: existingDay?.symptoms ?? [])
+        _selectedMood = State(initialValue: existingDay?.mood)
+        _notes = State(initialValue: existingDay?.notes ?? "")
+    }
+
+    var body: some View {
+        VStack(spacing: AppTheme.Metrics.standardSpacing) {
+            if existingDay != nil {
+                HStack(spacing: 6) {
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.system(size: 12))
+                        .foregroundColor(AppTheme.Colors.accentBlue)
+                    Text("Existing log — editing")
+                        .font(.system(.caption2, design: .rounded))
+                        .foregroundColor(AppTheme.Colors.mediumGrayText)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+
+            flowSection
+            symptomsSection
+            moodSection
+            notesSection
+
+            Button(action: saveDay) {
+                HStack(spacing: 8) {
+                    Image(systemName: saved ? "checkmark.circle.fill" : "square.and.arrow.down")
+                    Text(saved ? "Saved" : (existingDay != nil ? "Update Log" : "Save Log"))
+                }
+                .font(.system(.body, design: .rounded, weight: .semibold))
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 14)
+                .background(saved ? Color.green.opacity(0.8) : AppTheme.Colors.accentBlue)
+                .cornerRadius(AppTheme.Metrics.buttonCornerRadius)
+            }
+            .animation(.easeInOut(duration: 0.2), value: saved)
+        }
+    }
+
+    // MARK: - Sections (copied from LogDayView)
+
+    private var flowSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            sectionHeader("Flow", systemImage: "drop.fill", color: AppTheme.Colors.secondaryPink)
+            HStack(spacing: 10) {
+                FlowChip(label: "None", sfSymbol: "xmark", isSelected: selectedFlow == nil,
+                         color: AppTheme.Colors.neutralGray) { selectedFlow = nil }
+                ForEach(FlowIntensity.allCases, id: \.self) { flow in
+                    FlowChip(label: flow.localizedName, sfSymbol: flow.sfSymbol,
+                             isSelected: selectedFlow == flow, color: AppTheme.Colors.secondaryPink) {
+                        selectedFlow = flow
+                    }
+                }
+            }
+        }
+        .padding(AppTheme.Metrics.cardPadding)
+        .background(AppTheme.Colors.secondaryBackground)
+        .cornerRadius(AppTheme.Metrics.cornerRadius)
+        .shadow(color: Color.black.opacity(0.06), radius: 6, x: 0, y: 2)
+    }
+
+    private var symptomsSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            sectionHeader("Symptoms", systemImage: "heart.text.square", color: AppTheme.Colors.accentBlue)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    ForEach(SymptomCategory.allCases, id: \.self) { category in
+                        CategoryTab(label: category.localizedName,
+                                    isSelected: selectedSymptomCategory == category) {
+                            selectedSymptomCategory = category
+                        }
+                    }
+                }
+                .padding(.horizontal, 2)
+            }
+            let symptomsInCategory = Symptom.allCases.filter { $0.category == selectedSymptomCategory }
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 2), spacing: 8) {
+                ForEach(symptomsInCategory, id: \.self) { symptom in
+                    SymptomChip(symptom: symptom, isSelected: selectedSymptoms.contains(symptom)) {
+                        if selectedSymptoms.contains(symptom) { selectedSymptoms.remove(symptom) }
+                        else { selectedSymptoms.insert(symptom) }
+                    }
+                }
+            }
+            if !selectedSymptoms.isEmpty {
+                Text("\(selectedSymptoms.count) selected")
+                    .font(.system(.caption2, design: .rounded))
+                    .foregroundColor(AppTheme.Colors.mediumGrayText)
+            }
+        }
+        .padding(AppTheme.Metrics.cardPadding)
+        .background(AppTheme.Colors.secondaryBackground)
+        .cornerRadius(AppTheme.Metrics.cornerRadius)
+        .shadow(color: Color.black.opacity(0.06), radius: 6, x: 0, y: 2)
+    }
+
+    private var moodSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            sectionHeader("Mood", systemImage: "face.smiling", color: AppTheme.Colors.forecastMood)
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 4), spacing: 8) {
+                ForEach(Mood.allCases, id: \.self) { mood in
+                    MoodCell(mood: mood, isSelected: selectedMood == mood) {
+                        selectedMood = (selectedMood == mood) ? nil : mood
+                    }
+                }
+            }
+        }
+        .padding(AppTheme.Metrics.cardPadding)
+        .background(AppTheme.Colors.secondaryBackground)
+        .cornerRadius(AppTheme.Metrics.cornerRadius)
+        .shadow(color: Color.black.opacity(0.06), radius: 6, x: 0, y: 2)
+    }
+
+    private var notesSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            sectionHeader("Notes", systemImage: "note.text", color: AppTheme.Colors.primaryBlue)
+            TextEditor(text: $notes)
+                .frame(minHeight: 88)
+                .font(AppTheme.Typography.bodyFont)
+                .scrollContentBackground(.hidden)
+                .background(Color.clear)
+        }
+        .padding(AppTheme.Metrics.cardPadding)
+        .background(AppTheme.Colors.secondaryBackground)
+        .cornerRadius(AppTheme.Metrics.cornerRadius)
+        .shadow(color: Color.black.opacity(0.06), radius: 6, x: 0, y: 2)
+    }
+
+    private func sectionHeader(_ title: String, systemImage: String, color: Color) -> some View {
+        HStack(spacing: 6) {
+            Image(systemName: systemImage).foregroundColor(color)
+                .font(.system(.callout, weight: .semibold))
+            Text(title).font(.system(.callout, design: .rounded, weight: .semibold))
+                .foregroundColor(AppTheme.Colors.deepGrayText)
+        }
+    }
+
+    private func saveDay() {
+        let day = CycleDay(
+            id: existingDay?.id ?? UUID(),
+            date: targetDate,
+            flow: selectedFlow,
+            symptoms: selectedSymptoms,
+            mood: selectedMood,
+            notes: notes.isEmpty ? nil : notes
+        )
+        logger.debug("Saving day id:\(day.id.uuidString) date:\(day.date.description)")
+        cycleStore.addOrUpdateDay(day)
+        saved = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { saved = false }
     }
 }
