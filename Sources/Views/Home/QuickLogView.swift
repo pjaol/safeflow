@@ -61,8 +61,9 @@ private struct FlowButton: View {
     var body: some View {
         Button(action: action) {
             VStack(spacing: 6) {
-                Text(flow.emoji)
-                    .font(.system(size: 28))
+                Image(systemName: flow.sfSymbol)
+                    .font(.system(size: 26, weight: .medium))
+                    .foregroundColor(AppTheme.Colors.secondaryPink)
                 Text(flow.localizedName)
                     .font(.system(.caption, design: .rounded, weight: .medium))
                     .foregroundColor(AppTheme.Colors.deepGrayText)

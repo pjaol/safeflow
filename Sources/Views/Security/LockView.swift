@@ -21,7 +21,7 @@ struct LockView: View {
                         .font(.system(size: 60))
                         .foregroundColor(AppTheme.Colors.primaryBlue)
                     
-                    Text("SafeFlow is Locked")
+                    Text("Clio Daye is Locked")
                         .font(AppTheme.Typography.headlineFont)
                         .foregroundColor(AppTheme.Colors.deepGrayText)
                     

@@ -6,9 +6,7 @@ struct HomeView: View {
     @EnvironmentObject private var securityService: SecurityService
 
     @State private var showingLogSheet = false
-    @State private var showingNewEntrySheet = false
     @State private var showingSettingsSheet = false
-    @State private var showingFlowSheet = false
     @State private var dismissedNudgeIDs: Set<String> = DismissedNudges.load()
     @State private var dismissedSignalIDs: Set<String> = DismissedNudges.load()
     #if DEBUG
@@ -54,12 +52,8 @@ struct HomeView: View {
                         }
                     }
 
-                    QuickLogButtons(
-                        currentDay: cycleStore.getCurrentDay(),
-                        onPeriodStarted: { showingFlowSheet = true },
-                        onStillFlowing: { logStillFlowing() },
-                        onNoPeriod: { logNoPeriod() }
-                    )
+                    PulseView(cycleStore: cycleStore)
+                        .frame(minHeight: 360)
 
                     ForecastView(cycleStore: cycleStore)
 
@@ -73,7 +67,7 @@ struct HomeView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(AppTheme.Colors.background)
-            .navigationTitle("SafeFlow")
+            .navigationTitle("Clio Daye")
             .toolbar {
                 #if DEBUG
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -97,25 +91,9 @@ struct HomeView: View {
                     .accessibilityIdentifier("home.settingsButton")
                 }
 
-                ToolbarItem(placement: .primaryAction) {
-                    Button {
-                        showingNewEntrySheet = true
-                    } label: {
-                        Image(systemName: "plus.circle.fill")
-                            .imageScale(.large)
-                            .foregroundColor(AppTheme.Colors.primaryBlue)
-                    }
-                    .accessibilityIdentifier("home.newLogButton")
-                }
             }
             .sheet(isPresented: $showingLogSheet) {
                 LogDayView(cycleStore: cycleStore, existingDay: cycleStore.getCurrentDay())
-            }
-            .sheet(isPresented: $showingNewEntrySheet) {
-                LogDayView(cycleStore: cycleStore, existingDay: nil)
-            }
-            .sheet(isPresented: $showingFlowSheet) {
-                QuickLogView(cycleStore: cycleStore)
             }
             .sheet(isPresented: $showingSettingsSheet) {
                 SettingsView()
@@ -130,90 +108,6 @@ struct HomeView: View {
         .navigationViewStyle(.stack)
     }
 
-    // MARK: - Quick Log Actions
-
-    private func logStillFlowing() {
-        let today = Calendar.current.startOfDay(for: Date())
-        let lastFlow = cycleStore.recentDays.first(where: { $0.flow != nil })?.flow ?? .medium
-        let existing = cycleStore.getCurrentDay()
-        let day = CycleDay(
-            id: existing?.id ?? UUID(),
-            date: existing?.date ?? today,
-            flow: lastFlow,
-            symptoms: existing?.symptoms ?? [],
-            mood: existing?.mood,
-            notes: existing?.notes
-        )
-        cycleStore.addOrUpdateDay(day)
-    }
-
-    private func logNoPeriod() {
-        let today = Calendar.current.startOfDay(for: Date())
-        guard cycleStore.getCurrentDay() == nil else { return }
-        let day = CycleDay(date: today, flow: nil)
-        cycleStore.addOrUpdateDay(day)
-    }
-}
-
-// MARK: - Quick Log Buttons
-
-private struct QuickLogButtons: View {
-    let currentDay: CycleDay?
-    let onPeriodStarted: () -> Void
-    let onStillFlowing: () -> Void
-    let onNoPeriod: () -> Void
-
-    var body: some View {
-        HStack(spacing: 10) {
-            QuickLogButton(
-                label: "Period\nstarted",
-                emoji: "🩸",
-                color: AppTheme.Colors.secondaryPink,
-                action: onPeriodStarted
-            )
-            .accessibilityIdentifier("home.quickLog.periodStarted")
-
-            QuickLogButton(
-                label: "Still\nflowing",
-                emoji: "💧",
-                color: AppTheme.Colors.primaryBlue,
-                action: onStillFlowing
-            )
-            .accessibilityIdentifier("home.quickLog.stillFlowing")
-
-            QuickLogButton(
-                label: "No\nperiod",
-                emoji: "✓",
-                color: AppTheme.Colors.paleYellow,
-                action: onNoPeriod
-            )
-            .accessibilityIdentifier("home.quickLog.noPeriod")
-        }
-    }
-}
-
-private struct QuickLogButton: View {
-    let label: String
-    let emoji: String
-    let color: Color
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            VStack(spacing: 6) {
-                Text(emoji)
-                    .font(.system(size: 26))
-                Text(label)
-                    .font(.system(.caption, design: .rounded, weight: .semibold))
-                    .foregroundColor(AppTheme.Colors.deepGrayText)
-                    .multilineTextAlignment(.center)
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 14)
-            .background(color.opacity(0.25))
-            .cornerRadius(AppTheme.Metrics.cornerRadius)
-        }
-    }
 }
 
 // MARK: - Daily Log Card
@@ -231,7 +125,8 @@ struct DailyLogCard: View {
                 VStack(alignment: .leading, spacing: 8) {
                     if let flow = day.flow {
                         HStack(spacing: 6) {
-                            Text(flow.emoji)
+                            Image(systemName: flow.sfSymbol)
+                                .foregroundColor(AppTheme.Colors.secondaryPink)
                             Text("Flow: \(flow.localizedName)")
                                 .foregroundColor(AppTheme.Colors.deepGrayText)
                         }
@@ -245,7 +140,8 @@ struct DailyLogCard: View {
 
                     if let mood = day.mood {
                         HStack(spacing: 6) {
-                            Text(mood.emoji)
+                            Image(systemName: mood.sfSymbol)
+                                .foregroundColor(AppTheme.Colors.accentBlue)
                             Text("Mood: \(mood.localizedName)")
                                 .foregroundColor(AppTheme.Colors.deepGrayText)
                         }
@@ -294,7 +190,7 @@ struct RecentLogsSection: View {
                                 .foregroundColor(AppTheme.Colors.deepGrayText)
 
                             if let flow = day.flow {
-                                Text("\(flow.emoji) \(flow.localizedName)")
+                                Label(flow.localizedName, systemImage: flow.sfSymbol)
                                     .font(AppTheme.Typography.captionFont)
                                     .foregroundColor(AppTheme.Colors.mediumGrayText)
                             }

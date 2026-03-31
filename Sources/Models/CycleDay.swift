@@ -33,12 +33,12 @@ enum FlowIntensity: String, Codable, CaseIterable {
         }
     }
 
-    var emoji: String {
+    var sfSymbol: String {
         switch self {
-        case .spotting: return "🩸"
-        case .light: return "💧"
-        case .medium: return "🌊"
-        case .heavy: return "🫧"
+        case .spotting: return "drop"
+        case .light: return "drop.halffull"
+        case .medium: return "drop.fill"
+        case .heavy: return "drop.triangle.fill"
         }
     }
 }
@@ -49,14 +49,12 @@ enum SymptomCategory: String, CaseIterable {
     case pain
     case energy
     case digestive
-    case hormonal
 
     var localizedName: String {
         switch self {
         case .pain: return NSLocalizedString("Pain", comment: "")
         case .energy: return NSLocalizedString("Energy", comment: "")
         case .digestive: return NSLocalizedString("Digestive", comment: "")
-        case .hormonal: return NSLocalizedString("Hormonal", comment: "")
         }
     }
 }
@@ -94,51 +92,49 @@ enum Symptom: String, Codable, CaseIterable {
         case .cramps: return NSLocalizedString("Cramps", comment: "")
         case .headache: return NSLocalizedString("Headache", comment: "")
         case .bloating: return NSLocalizedString("Bloating", comment: "")
-        case .breastTenderness: return NSLocalizedString("Breast Tenderness", comment: "")
+        case .breastTenderness: return NSLocalizedString("Tenderness", comment: "")
         case .backPain: return NSLocalizedString("Back Pain", comment: "")
         case .acne: return NSLocalizedString("Acne", comment: "")
         case .fatigue: return NSLocalizedString("Fatigue", comment: "")
         case .insomnia: return NSLocalizedString("Insomnia", comment: "")
         case .highEnergy: return NSLocalizedString("High Energy", comment: "")
         case .brainFog: return NSLocalizedString("Brain Fog", comment: "")
-        case .foodCravings: return NSLocalizedString("Food Cravings", comment: "")
+        case .foodCravings: return NSLocalizedString("Cravings", comment: "")
         case .nausea: return NSLocalizedString("Nausea", comment: "")
-        case .appetiteChanges: return NSLocalizedString("Appetite Changes", comment: "")
-        case .dischargeChanges: return NSLocalizedString("Discharge Changes", comment: "")
-        case .mittelschmerz: return NSLocalizedString("Mid-Cycle Cramp", comment: "")
+        case .appetiteChanges: return NSLocalizedString("Appetite", comment: "")
+        case .dischargeChanges: return NSLocalizedString("Discharge", comment: "")
+        case .mittelschmerz: return NSLocalizedString("Ovulation", comment: "")
         }
     }
 
-    var emoji: String {
+    var sfSymbol: String {
         switch self {
-        case .cramps: return "😣"
-        case .headache: return "🤕"
-        case .bloating: return "🫄"
-        case .breastTenderness: return "💛"
-        case .backPain: return "🔙"
-        case .acne: return "😶"
-        case .fatigue: return "😴"
-        case .insomnia: return "🌙"
-        case .highEnergy: return "⚡️"
-        case .brainFog: return "🌫️"
-        case .foodCravings: return "🍫"
-        case .nausea: return "🤢"
-        case .appetiteChanges: return "🍽️"
-        case .dischargeChanges: return "💧"
-        case .mittelschmerz: return "📍"
+        case .cramps: return "bolt.fill"
+        case .headache: return "waveform.path.ecg"
+        case .bloating: return "circle.dashed"
+        case .breastTenderness: return "heart.fill"
+        case .backPain: return "figure.walk"
+        case .acne: return "allergens"
+        case .fatigue: return "battery.25percent"
+        case .insomnia: return "moon.stars.fill"
+        case .highEnergy: return "bolt.circle.fill"
+        case .brainFog: return "cloud.fill"
+        case .foodCravings: return "fork.knife"
+        case .nausea: return "drop.triangle.fill"
+        case .appetiteChanges: return "minus.circle.fill"
+        case .dischargeChanges: return "drop.fill"
+        case .mittelschmerz: return "mappin.circle.fill"
         }
     }
 
     var category: SymptomCategory {
         switch self {
-        case .cramps, .headache, .bloating, .breastTenderness, .backPain, .acne:
+        case .cramps, .headache, .bloating, .breastTenderness, .backPain, .mittelschmerz:
             return .pain
         case .fatigue, .insomnia, .highEnergy, .brainFog:
             return .energy
-        case .foodCravings, .nausea, .appetiteChanges:
+        case .foodCravings, .nausea, .appetiteChanges, .acne, .dischargeChanges:
             return .digestive
-        case .dischargeChanges, .mittelschmerz:
-            return .hormonal
         }
     }
 }
@@ -179,20 +175,20 @@ enum Mood: String, Codable, CaseIterable {
         }
     }
 
-    var emoji: String {
+    var sfSymbol: String {
         switch self {
-        case .energized: return "⚡️"
-        case .happy: return "😊"
-        case .confident: return "💪"
-        case .calm: return "😌"
-        case .focused: return "🎯"
-        case .neutral: return "😐"
-        case .foggy: return "🌫️"
-        case .tired: return "😴"
-        case .sensitive: return "🥺"
-        case .anxious: return "😰"
-        case .irritable: return "😤"
-        case .sad: return "😢"
+        case .energized: return "bolt.fill"
+        case .happy: return "sun.max.fill"
+        case .confident: return "star.fill"
+        case .calm: return "leaf.fill"
+        case .focused: return "scope"
+        case .neutral: return "minus.circle.fill"
+        case .foggy: return "cloud.fill"
+        case .tired: return "moon.fill"
+        case .sensitive: return "heart.fill"
+        case .anxious: return "waveform.path.ecg"
+        case .irritable: return "flame.fill"
+        case .sad: return "cloud.rain.fill"
         }
     }
 }

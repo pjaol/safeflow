@@ -124,7 +124,7 @@ struct PrivacyView: View {
                     .foregroundColor(AppTheme.Colors.deepGrayText)
                     .padding(.bottom)
                 
-                Text("SafeFlow is committed to protecting your privacy. All your data is stored locally on your device and is never shared with any third parties.")
+                Text("Clio Daye is committed to protecting your privacy. All your data is stored locally on your device and is never shared with any third parties.")
                     .font(AppTheme.Typography.bodyFont)
                     .foregroundColor(AppTheme.Colors.deepGrayText)
                 

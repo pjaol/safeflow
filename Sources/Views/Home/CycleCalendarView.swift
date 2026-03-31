@@ -1,5 +1,9 @@
 import SwiftUI
 
+extension Date: @retroactive Identifiable {
+    public var id: TimeInterval { timeIntervalSinceReferenceDate }
+}
+
 // MARK: - CycleCalendarView
 
 /// Multi-month history heat map using stacked sub-rows per variable.
@@ -18,8 +22,7 @@ import SwiftUI
 struct CycleCalendarView: View {
     @ObservedObject var cycleStore: CycleStore
     @State private var monthCount = 3
-    @State private var selectedMonth: Date?
-    @State private var showingMonthDetail = false
+    @State private var ribbonWeek: Date? = nil
 
     private let cal             = Calendar.current
     private let dayColumnCount  = 31
@@ -65,10 +68,8 @@ struct CycleCalendarView: View {
         .frame(maxWidth: .infinity)
         .background(AppTheme.Colors.secondaryBackground)
         .cornerRadius(AppTheme.Metrics.cornerRadius)
-        .sheet(isPresented: $showingMonthDetail) {
-            if let month = selectedMonth {
-                MonthSummaryView(cycleStore: cycleStore, month: month)
-            }
+        .sheet(item: $ribbonWeek) { week in
+            WeekRibbonView(cycleStore: cycleStore, initialWeek: week)
         }
     }
 
@@ -120,14 +121,15 @@ struct CycleCalendarView: View {
 
     /// Mood legend: three small squares showing the three buckets side-by-side
     private func moodLegendChip() -> some View {
-        HStack(spacing: 2) {
-            RoundedRectangle(cornerRadius: 2).fill(moodColor(.positive)).frame(width: 6, height: 10)
-            RoundedRectangle(cornerRadius: 2).fill(moodColor(.neutral)).frame(width: 6, height: 10)
-            RoundedRectangle(cornerRadius: 2).fill(moodColor(.negative)).frame(width: 6, height: 10)
+        HStack(spacing: 4) {
+            HStack(spacing: 2) {
+                RoundedRectangle(cornerRadius: 2).fill(moodColor(.positive)).frame(width: 6, height: 10)
+                RoundedRectangle(cornerRadius: 2).fill(moodColor(.neutral)).frame(width: 6, height: 10)
+                RoundedRectangle(cornerRadius: 2).fill(moodColor(.negative)).frame(width: 6, height: 10)
+            }
             Text("Mood")
                 .font(.system(.caption2, design: .rounded))
                 .foregroundColor(AppTheme.Colors.mediumGrayText)
-                .padding(.leading, 2)
         }
     }
 
@@ -182,9 +184,17 @@ struct CycleCalendarView: View {
         }
         .frame(height: rowHeight)
         .contentShape(Rectangle())
-        .onTapGesture {
-            selectedMonth = month
-            showingMonthDetail = true
+        .onTapGesture { location in
+            // Convert tap X to the actual date that was tapped.
+            // The month label occupies monthLabelWidth pts on the left;
+            // the remaining width is divided into dayColumnCount columns.
+            let stripX = location.x - monthLabelWidth
+            guard stripX >= 0, colWidth > 0 else {
+                ribbonWeek = monthStart
+                return
+            }
+            let col = max(0, min(daysInMonth - 1, Int(stripX / colWidth)))
+            ribbonWeek = cal.date(byAdding: .day, value: col, to: monthStart) ?? monthStart
         }
     }
 
@@ -545,23 +555,17 @@ private struct WeekDayRow: View {
 
             VStack(alignment: .leading, spacing: 6) {
                 if let flow = day.flow {
-                    HStack(spacing: 4) {
-                        Text(flow.emoji).font(.caption)
-                        Text(flow.localizedName)
-                            .font(AppTheme.Typography.captionFont)
-                            .foregroundColor(AppTheme.Colors.deepGrayText)
-                    }
+                    Label(flow.localizedName, systemImage: flow.sfSymbol)
+                        .font(AppTheme.Typography.captionFont)
+                        .foregroundColor(AppTheme.Colors.deepGrayText)
                 }
                 if !day.symptoms.isEmpty {
                     SymptomChips(symptoms: Array(day.symptoms))
                 }
                 if let mood = day.mood {
-                    HStack(spacing: 4) {
-                        Text(mood.emoji).font(.caption)
-                        Text(mood.localizedName)
-                            .font(AppTheme.Typography.captionFont)
-                            .foregroundColor(AppTheme.Colors.mediumGrayText)
-                    }
+                    Label(mood.localizedName, systemImage: mood.sfSymbol)
+                        .font(AppTheme.Typography.captionFont)
+                        .foregroundColor(AppTheme.Colors.mediumGrayText)
                 }
                 if let notes = day.notes, !notes.isEmpty {
                     Text(notes)
@@ -634,20 +638,21 @@ struct DayDetailView: View {
                     List {
                         if let flow = day.flow {
                             Section {
-                                Label("\(flow.emoji) \(flow.localizedName)", systemImage: "")
+                                Label(flow.localizedName, systemImage: flow.sfSymbol)
                                     .font(AppTheme.Typography.bodyFont)
                             } header: { Text("Flow") }
                         }
                         if !day.symptoms.isEmpty {
                             Section {
-                                ForEach(Array(day.symptoms).sorted { $0.localizedName < $1.localizedName }, id: \.self) {
-                                    Text($0.localizedName).font(AppTheme.Typography.bodyFont)
+                                ForEach(Array(day.symptoms).sorted { $0.localizedName < $1.localizedName }, id: \.self) { symptom in
+                                    Label(symptom.localizedName, systemImage: symptom.sfSymbol)
+                                        .font(AppTheme.Typography.bodyFont)
                                 }
                             } header: { Text("Symptoms") }
                         }
                         if let mood = day.mood {
                             Section {
-                                Label("\(mood.emoji) \(mood.localizedName)", systemImage: "")
+                                Label(mood.localizedName, systemImage: mood.sfSymbol)
                                     .font(AppTheme.Typography.bodyFont)
                             } header: { Text("Mood") }
                         }

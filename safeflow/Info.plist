@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleDisplayName</key>
+	<string>Clio Daye</string>
 	<key>CFBundleExecutable</key>
 	<string>safeflow</string>
 	<key>CFBundleIdentifier</key>
@@ -11,7 +13,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>SafeFlow uses Face ID or Touch ID to securely protect your personal health data.</string>
+	<string>Clio Daye uses Face ID or Touch ID to securely protect your personal health data.</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>UILaunchScreen</key>

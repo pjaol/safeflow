@@ -111,7 +111,7 @@ class SecurityService: ObservableObject {
         do {
             let result = try await context.evaluatePolicy(
                 .deviceOwnerAuthenticationWithBiometrics,
-                localizedReason: "Unlock SafeFlow"
+                localizedReason: "Unlock Clio Daye"
             )
             isUnlocked = result
             authenticationError = nil

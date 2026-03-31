@@ -16,8 +16,9 @@ struct PatternNudgeCard: View {
 
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
-            Text(nudge.emoji)
-                .font(.system(size: 22))
+            Image(systemName: nudge.sfSymbol)
+                .font(.system(size: 20, weight: .semibold))
+                .foregroundColor(AppTheme.Colors.deepGrayText)
 
             VStack(alignment: .leading, spacing: 6) {
                 Text(nudge.title)
@@ -51,7 +52,7 @@ struct PatternNudgeCard: View {
 
 struct CycleNudge: Identifiable, Equatable {
     let id: String
-    let emoji: String
+    let sfSymbol: String
     let title: String
     let body: String
     let backgroundColor: Color
@@ -111,7 +112,7 @@ struct CycleNudge: Identifiable, Equatable {
         guard avg < 21 else { return nil }
         return CycleNudge(
             id: "pattern.shortCycle",
-            emoji: "📅",
+            sfSymbol: "calendar",
             title: "Your cycles are running short",
             body: "Your average cycle is around \(avg) days. Cycles shorter than 21 days are worth mentioning to a doctor — it's a common and treatable pattern.",
             backgroundColor: AppTheme.Colors.paleYellow.opacity(0.6)
@@ -122,7 +123,7 @@ struct CycleNudge: Identifiable, Equatable {
         guard avg > 35 else { return nil }
         return CycleNudge(
             id: "pattern.longCycle",
-            emoji: "📅",
+            sfSymbol: "calendar",
             title: "Your cycles are running long",
             body: "Your average cycle is around \(avg) days. Cycles over 35 days can have a few different causes — a doctor can help figure out what's going on.",
             backgroundColor: AppTheme.Colors.paleYellow.opacity(0.6)
@@ -133,7 +134,7 @@ struct CycleNudge: Identifiable, Equatable {
         guard variability > 7 else { return nil }
         return CycleNudge(
             id: "pattern.highVariability",
-            emoji: "📊",
+            sfSymbol: "chart.line.uptrend.xyaxis",
             title: "Your cycle length varies a lot",
             body: "Your cycles vary by more than a week from month to month. This is fairly common but worth a chat with a doctor if it's been going on a while.",
             backgroundColor: AppTheme.Colors.paleYellow.opacity(0.6)
@@ -161,7 +162,7 @@ struct CycleNudge: Identifiable, Equatable {
         guard longPeriodCount >= 2 else { return nil }
         return CycleNudge(
             id: "pattern.longPeriod",
-            emoji: "🩺",
+            sfSymbol: "stethoscope",
             title: "Your periods are running long",
             body: "Periods consistently over 7 days are worth mentioning to a doctor. There are several common, treatable causes.",
             backgroundColor: AppTheme.Colors.paleYellow.opacity(0.6)
@@ -182,7 +183,7 @@ struct CycleNudge: Identifiable, Equatable {
 
         return CycleNudge(
             id: id,
-            emoji: "🌡️",
+            sfSymbol: "thermometer.medium",
             title: "You've been logging cramps",
             body: "A few things that can help: heat on your lower abdomen, ibuprofen taken with food at the first sign (not after), and magnesium-rich foods like dark chocolate and nuts.",
             backgroundColor: AppTheme.Colors.secondaryPink.opacity(0.15)
@@ -213,7 +214,7 @@ struct DismissedNudges {
         PatternNudgeCard(
             nudge: CycleNudge(
                 id: "pattern.shortCycle",
-                emoji: "📅",
+                sfSymbol: "calendar",
                 title: "Your cycles are running short",
                 body: "Your average cycle is around 19 days. Cycles shorter than 21 days are worth mentioning to a doctor.",
                 backgroundColor: AppTheme.Colors.paleYellow.opacity(0.6)
@@ -223,7 +224,7 @@ struct DismissedNudges {
         PatternNudgeCard(
             nudge: CycleNudge(
                 id: "comfort.crampsHeavy",
-                emoji: "🌡️",
+                sfSymbol: "thermometer.medium",
                 title: "You've been logging cramps",
                 body: "A few things that can help: heat on your lower abdomen, ibuprofen taken with food at the first sign, and magnesium-rich foods.",
                 backgroundColor: AppTheme.Colors.secondaryPink.opacity(0.15)

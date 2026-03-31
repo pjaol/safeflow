@@ -53,7 +53,7 @@ struct OnboardingView: View {
                 .font(AppTheme.Typography.headlineFont)
                 .foregroundColor(AppTheme.Colors.deepGrayText)
 
-            Text("SafeFlow stores all your data on this device only. No cloud, no account, no servers. It is physically impossible for us to access your data.")
+            Text("Clio Daye stores all your data on this device only. No cloud, no account, no servers. It is physically impossible for us to access your data.")
                 .font(AppTheme.Typography.bodyFont)
                 .foregroundColor(AppTheme.Colors.mediumGrayText)
                 .multilineTextAlignment(.center)
@@ -75,7 +75,7 @@ struct OnboardingView: View {
                 .font(AppTheme.Typography.headlineFont)
                 .foregroundColor(AppTheme.Colors.deepGrayText)
 
-            Text("Log your period, symptoms, and mood. SafeFlow learns your pattern and shows you where you are in your cycle every day.")
+            Text("Log your period, symptoms, and mood. Clio Daye learns your pattern and shows you where you are in your cycle every day.")
                 .font(AppTheme.Typography.bodyFont)
                 .foregroundColor(AppTheme.Colors.mediumGrayText)
                 .multilineTextAlignment(.center)
@@ -97,7 +97,7 @@ struct OnboardingView: View {
                 .font(AppTheme.Typography.headlineFont)
                 .foregroundColor(AppTheme.Colors.deepGrayText)
 
-            Text("Add a PIN or Face ID so only you can access SafeFlow.")
+            Text("Add a PIN or Face ID so only you can access Clio Daye.")
                 .font(AppTheme.Typography.bodyFont)
                 .foregroundColor(AppTheme.Colors.mediumGrayText)
                 .multilineTextAlignment(.center)

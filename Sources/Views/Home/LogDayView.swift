@@ -70,7 +70,7 @@ struct LogDayView: View {
                 // None option
                 FlowChip(
                     label: "None",
-                    emoji: "–",
+                    sfSymbol: "xmark",
                     isSelected: selectedFlow == nil,
                     color: AppTheme.Colors.neutralGray
                 ) {
@@ -81,7 +81,7 @@ struct LogDayView: View {
                 ForEach(FlowIntensity.allCases, id: \.self) { flow in
                     FlowChip(
                         label: flow.localizedName,
-                        emoji: flow.emoji,
+                        sfSymbol: flow.sfSymbol,
                         isSelected: selectedFlow == flow,
                         color: AppTheme.Colors.secondaryPink
                     ) {
@@ -222,7 +222,7 @@ struct LogDayView: View {
 
 private struct FlowChip: View {
     let label: String
-    let emoji: String
+    let sfSymbol: String
     let isSelected: Bool
     let color: Color
     let action: () -> Void
@@ -230,8 +230,9 @@ private struct FlowChip: View {
     var body: some View {
         Button(action: action) {
             VStack(spacing: 4) {
-                Text(emoji)
-                    .font(.system(size: 20))
+                Image(systemName: sfSymbol)
+                    .font(.system(size: 18, weight: .medium))
+                    .foregroundColor(isSelected ? .white : color)
                 Text(label)
                     .font(.system(.caption2, design: .rounded, weight: .medium))
                     .foregroundColor(isSelected ? .white : AppTheme.Colors.deepGrayText)
@@ -274,8 +275,9 @@ private struct SymptomChip: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: 6) {
-                Text(symptom.emoji)
-                    .font(.system(size: 14))
+                Image(systemName: symptom.sfSymbol)
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundColor(isSelected ? .white : AppTheme.Colors.accentBlue)
                 Text(symptom.localizedName)
                     .font(.system(.caption, design: .rounded, weight: .medium))
                     .foregroundColor(isSelected ? .white : AppTheme.Colors.deepGrayText)
@@ -301,8 +303,9 @@ private struct MoodCell: View {
     var body: some View {
         Button(action: action) {
             VStack(spacing: 4) {
-                Text(mood.emoji)
-                    .font(.system(size: 24))
+                Image(systemName: mood.sfSymbol)
+                    .font(.system(size: 22, weight: .medium))
+                    .foregroundColor(isSelected ? AppTheme.Colors.deepGrayText : AppTheme.Colors.mediumGrayText)
                 Text(mood.localizedName)
                     .font(.system(.caption2, design: .rounded, weight: .medium))
                     .foregroundColor(isSelected ? AppTheme.Colors.deepGrayText : AppTheme.Colors.mediumGrayText)

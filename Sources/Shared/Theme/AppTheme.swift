@@ -19,6 +19,13 @@ enum AppTheme {
         static let background = backgroundBlue
         static let secondaryBackground = Color.white
 
+        // Dartboard — four clearly distinct saturated colors, legible on light bg
+        // Chosen for maximum hue separation: red / blue / violet / green
+        static let dartPain   = Color(hex: "D94F5C")  // strong rose-red
+        static let dartEnergy = Color(hex: "2E86C1")  // deep sky blue
+        static let dartMood   = Color(hex: "7B5EA7")  // rich violet
+        static let dartGut    = Color(hex: "2E9E6B")  // forest green
+
         // Forecast grid — semantically named, independent of phase colors
         static let forecastPeriod  = Color(hex: "E8707A")  // warm coral
         static let forecastFertile = Color(hex: "3DB8C5")  // saturated teal

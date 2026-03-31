@@ -69,12 +69,18 @@
 		AA11223344556677889900FF /* CyclePredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900EE /* CyclePredictionEngine.swift */; };
 		BB11223344556677889900BB /* CyclePhaseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11223344556677889900AA /* CyclePhaseCard.swift */; };
 		BB11223344556677889900DD /* QuickLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11223344556677889900CC /* QuickLogView.swift */; };
+		CC55667788990011AABBCCFF /* PulseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC55667788990011AABBCCEE /* PulseView.swift */; };
+		DD11223344556677889900AA /* DartboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11223344556677889900BB /* DartboardViewModel.swift */; };
+		DD11223344556677889900CC /* DartboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11223344556677889900DD /* DartboardView.swift */; };
+		DD11223344556677889900EE /* CategoryStripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11223344556677889900FF /* CategoryStripView.swift */; };
+		DD22334455667788990011AA /* FlowCenterIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD22334455667788990011BB /* FlowCenterIndicator.swift */; };
 		CC44556677889900AABBCCEE /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC44556677889900AABBCCDD /* ForecastView.swift */; };
 		EE1A2B3C4D5E6F7A8B9C0D1F /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1A2B3C4D5E6F7A8B9C0D1E /* NotificationService.swift */; };
 		EE2A3B4C5D6E7F8A9B0C1D2F /* PhaseTipCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2A3B4C5D6E7F8A9B0C1D2E /* PhaseTipCard.swift */; };
 		EE3A4B5C6D7E8F9A0B1C2D3F /* PatternNudgeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A4B5C6D7E8F9A0B1C2D3E /* PatternNudgeCard.swift */; };
 		078E2C4C2D6A4522B31123C8 /* SymptomPatternEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E954215BF114795B8EDFF2F /* SymptomPatternEngine.swift */; };
 		B78D7DC838B549AAB7F3D5D9 /* InsightCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2E1432FC934814B484C260 /* InsightCard.swift */; };
+		FF33445566778899AABBCCAA /* WeekRibbonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33445566778899AABBCCBB /* WeekRibbonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,12 +148,18 @@
 		AA11223344556677889900EE /* CyclePredictionEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePredictionEngine.swift; sourceTree = "<group>"; };
 		BB11223344556677889900AA /* CyclePhaseCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePhaseCard.swift; sourceTree = "<group>"; };
 		BB11223344556677889900CC /* QuickLogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickLogView.swift; sourceTree = "<group>"; };
+		CC55667788990011AABBCCEE /* PulseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PulseView.swift; sourceTree = "<group>"; };
+		DD11223344556677889900BB /* DartboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DartboardViewModel.swift; sourceTree = "<group>"; };
+		DD11223344556677889900DD /* DartboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DartboardView.swift; sourceTree = "<group>"; };
+		DD11223344556677889900FF /* CategoryStripView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryStripView.swift; sourceTree = "<group>"; };
+		DD22334455667788990011BB /* FlowCenterIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowCenterIndicator.swift; sourceTree = "<group>"; };
 		CC44556677889900AABBCCDD /* ForecastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastView.swift; sourceTree = "<group>"; };
 		EE1A2B3C4D5E6F7A8B9C0D1E /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		EE2A3B4C5D6E7F8A9B0C1D2E /* PhaseTipCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhaseTipCard.swift; sourceTree = "<group>"; };
 		EE3A4B5C6D7E8F9A0B1C2D3E /* PatternNudgeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatternNudgeCard.swift; sourceTree = "<group>"; };
 		3E954215BF114795B8EDFF2F /* SymptomPatternEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomPatternEngine.swift; sourceTree = "<group>"; };
 		FE2E1432FC934814B484C260 /* InsightCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightCard.swift; sourceTree = "<group>"; };
+		FF33445566778899AABBCCBB /* WeekRibbonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekRibbonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,10 +272,16 @@
 				CD218E602D4021EB009B5198 /* LogDayView.swift */,
 				BB11223344556677889900AA /* CyclePhaseCard.swift */,
 				BB11223344556677889900CC /* QuickLogView.swift */,
+				CC55667788990011AABBCCEE /* PulseView.swift */,
+				DD11223344556677889900BB /* DartboardViewModel.swift */,
+				DD11223344556677889900DD /* DartboardView.swift */,
+				DD11223344556677889900FF /* CategoryStripView.swift */,
+				DD22334455667788990011BB /* FlowCenterIndicator.swift */,
 				CC44556677889900AABBCCDD /* ForecastView.swift */,
 				EE2A3B4C5D6E7F8A9B0C1D2E /* PhaseTipCard.swift */,
 				EE3A4B5C6D7E8F9A0B1C2D3E /* PatternNudgeCard.swift */,
 				FE2E1432FC934814B484C260 /* InsightCard.swift */,
+				FF33445566778899AABBCCBB /* WeekRibbonView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -665,12 +683,18 @@
 				AA11223344556677889900FF /* CyclePredictionEngine.swift in Sources */,
 				BB11223344556677889900BB /* CyclePhaseCard.swift in Sources */,
 				BB11223344556677889900DD /* QuickLogView.swift in Sources */,
+				CC55667788990011AABBCCFF /* PulseView.swift in Sources */,
+				DD11223344556677889900AA /* DartboardViewModel.swift in Sources */,
+				DD11223344556677889900CC /* DartboardView.swift in Sources */,
+				DD11223344556677889900EE /* CategoryStripView.swift in Sources */,
+				DD22334455667788990011AA /* FlowCenterIndicator.swift in Sources */,
 				CC44556677889900AABBCCEE /* ForecastView.swift in Sources */,
 				EE1A2B3C4D5E6F7A8B9C0D1F /* NotificationService.swift in Sources */,
 				EE2A3B4C5D6E7F8A9B0C1D2F /* PhaseTipCard.swift in Sources */,
 				EE3A4B5C6D7E8F9A0B1C2D3F /* PatternNudgeCard.swift in Sources */,
 				078E2C4C2D6A4522B31123C8 /* SymptomPatternEngine.swift in Sources */,
 				B78D7DC838B549AAB7F3D5D9 /* InsightCard.swift in Sources */,
+				FF33445566778899AABBCCAA /* WeekRibbonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

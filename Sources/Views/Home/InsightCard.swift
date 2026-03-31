@@ -215,27 +215,6 @@ private extension PopulationNorm {
     }
 }
 
-private extension Symptom {
-    var sfSymbol: String {
-        switch self {
-        case .cramps:           return "bolt.fill"
-        case .headache:         return "brain.head.profile"
-        case .bloating:         return "circle.fill"
-        case .breastTenderness: return "heart.fill"
-        case .backPain:         return "figure.walk"
-        case .acne:             return "face.dashed"
-        case .fatigue:          return "moon.zzz.fill"
-        case .insomnia:         return "moon.stars.fill"
-        case .highEnergy:       return "bolt.circle.fill"
-        case .brainFog:         return "cloud.fill"
-        case .foodCravings:     return "fork.knife"
-        case .nausea:           return "waveform.path.ecg"
-        case .appetiteChanges:  return "chart.bar.fill"
-        case .dischargeChanges: return "drop.fill"
-        case .mittelschmerz:    return "mappin.circle.fill"
-        }
-    }
-}
 
 // MARK: - Previews
 

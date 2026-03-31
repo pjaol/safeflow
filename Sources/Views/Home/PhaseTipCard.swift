@@ -12,8 +12,9 @@ struct PhaseTipCard: View {
 
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
-            Text(tip.emoji)
-                .font(.system(size: 24))
+            Image(systemName: tip.sfSymbol)
+                .font(.system(size: 18, weight: .semibold))
+                .foregroundColor(AppTheme.Colors.forPhase(phase.themeColorName))
                 .frame(width: 36, height: 36)
                 .background(AppTheme.Colors.forPhase(phase.themeColorName).opacity(0.2))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
@@ -41,7 +42,7 @@ struct PhaseTipCard: View {
 // MARK: - PhaseTip
 
 private struct PhaseTip {
-    let emoji: String
+    let sfSymbol: String
     let title: String
     let body: String
 
@@ -49,7 +50,7 @@ private struct PhaseTip {
     static func daily(for phase: CyclePhase) -> PhaseTip {
         let dayOfYear = Calendar.current.ordinality(of: .day, in: .year, for: Date()) ?? 1
         let tips = all[phase] ?? []
-        guard !tips.isEmpty else { return PhaseTip(emoji: "💡", title: "Tip", body: "") }
+        guard !tips.isEmpty else { return PhaseTip(sfSymbol: "lightbulb.fill", title: "Tip", body: "") }
         return tips[dayOfYear % tips.count]
     }
 
@@ -58,88 +59,88 @@ private struct PhaseTip {
     static let all: [CyclePhase: [PhaseTip]] = [
         .menstrual: [
             PhaseTip(
-                emoji: "🌡️",
+                sfSymbol: "thermometer.medium",
                 title: "Heat can help",
                 body: "A warm compress or hot water bottle on your lower abdomen may ease cramp discomfort."
             ),
             PhaseTip(
-                emoji: "💤",
+                sfSymbol: "moon.fill",
                 title: "Rest is productive",
                 body: "Your body is doing real work this week. Lighter activity and extra sleep are a good call."
             ),
             PhaseTip(
-                emoji: "🥗",
+                sfSymbol: "leaf.fill",
                 title: "Iron-rich foods",
                 body: "Leafy greens, lentils, and beans can help replenish iron lost during your period."
             ),
             PhaseTip(
-                emoji: "💊",
+                sfSymbol: "pill.fill",
                 title: "Ibuprofen timing",
                 body: "Anti-inflammatory pain relief (like ibuprofen) works best taken with food at the first sign of cramps, rather than waiting."
             ),
         ],
         .follicular: [
             PhaseTip(
-                emoji: "🚀",
+                sfSymbol: "arrow.up.circle.fill",
                 title: "Energy is building",
                 body: "Estrogen rises during this phase — many people find focus and motivation easier right now."
             ),
             PhaseTip(
-                emoji: "🧠",
+                sfSymbol: "brain.head.profile",
                 title: "Good time for new things",
                 body: "Starting a new project or learning something new tends to feel easier in the follicular phase."
             ),
             PhaseTip(
-                emoji: "🏃",
+                sfSymbol: "figure.run",
                 title: "Movement feels easier",
                 body: "Higher estrogen supports muscle recovery, making this a good window for more intense workouts if that's your thing."
             ),
             PhaseTip(
-                emoji: "🥦",
+                sfSymbol: "fork.knife",
                 title: "Support your gut",
                 body: "Fermented foods like yogurt and kimchi support the gut microbiome, which influences hormone processing."
             ),
         ],
         .ovulatory: [
             PhaseTip(
-                emoji: "☀️",
+                sfSymbol: "sun.max.fill",
                 title: "Peak energy window",
                 body: "Many people feel most social and energised around ovulation. A good time for presentations or important conversations."
             ),
             PhaseTip(
-                emoji: "🌡️",
+                sfSymbol: "thermometer.medium",
                 title: "Basal temperature rises",
                 body: "A slight rise in basal body temperature after ovulation is normal — it confirms ovulation has occurred."
             ),
             PhaseTip(
-                emoji: "💧",
+                sfSymbol: "drop.fill",
                 title: "Stay hydrated",
                 body: "Hormonal shifts around ovulation can increase body temperature slightly. Extra water helps."
             ),
             PhaseTip(
-                emoji: "🧘",
+                sfSymbol: "figure.yoga",
                 title: "Notice your body",
                 body: "Some people feel mild one-sided pelvic discomfort around ovulation (mittelschmerz). It's common and usually brief."
             ),
         ],
         .luteal: [
             PhaseTip(
-                emoji: "🎵",
+                sfSymbol: "waveform.path.ecg",
                 title: "Mood may shift",
                 body: "Progesterone rises then drops in the luteal phase. If your mood dips in the second half, that's a recognised pattern."
             ),
             PhaseTip(
-                emoji: "🍫",
+                sfSymbol: "heart.fill",
                 title: "Magnesium may help",
                 body: "Some research links magnesium intake to reduced PMS symptoms. Dark chocolate and nuts are decent sources."
             ),
             PhaseTip(
-                emoji: "😴",
+                sfSymbol: "bed.double.fill",
                 title: "Sleep changes are normal",
                 body: "Progesterone can affect sleep quality in the luteal phase. Cooler room temperature and consistent sleep times help."
             ),
             PhaseTip(
-                emoji: "🧂",
+                sfSymbol: "drop.halffull",
                 title: "Reduce salt if bloated",
                 body: "Bloating is common in the late luteal phase. Reducing salty foods and increasing water can ease it."
             ),
