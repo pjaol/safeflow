@@ -1,0 +1,46 @@
+[
+  {
+    "id": "signal.crampsEscalating",
+    "title": "Your cramp days are increasing",
+    "body": "Period pain that gets worse cycle over cycle is worth mentioning to a doctor. It can have treatable causes including endometriosis.",
+    "sf_symbol": "chart.line.uptrend.xyaxis",
+    "priority": "high",
+    "cycle_count_min": 3,
+    "check_type": "cramps_escalating",
+    "threshold_value": null,
+    "source": null
+  },
+  {
+    "id": "signal.heavyFlow",
+    "title": "You have been logging heavy flow",
+    "body": "Consistently heavy periods are common but worth discussing with a doctor — especially if you are soaking through protection quickly or feeling unusually fatigued.",
+    "sf_symbol": "drop.triangle.fill",
+    "priority": "high",
+    "cycle_count_min": 3,
+    "check_type": "heavy_flow_majority",
+    "threshold_value": null,
+    "source": null
+  },
+  {
+    "id": "signal.crampsFollicular",
+    "title": "Cramps outside your period",
+    "body": "You often log cramps during your follicular phase not just your period. This is less typical and worth mentioning to a doctor — there are several possible causes.",
+    "sf_symbol": "waveform.path.ecg",
+    "priority": "medium",
+    "cycle_count_min": 3,
+    "check_type": "cramps_follicular",
+    "threshold_value": null,
+    "source": null
+  },
+  {
+    "id": "signal.severeSymptomCluster",
+    "title": "Severe symptoms most cycles",
+    "body": "You are consistently logging multiple high-intensity symptoms. This pattern is worth discussing with a doctor — there are well-understood and treatable causes.",
+    "sf_symbol": "stethoscope",
+    "priority": "high",
+    "cycle_count_min": 3,
+    "check_type": "severe_cluster",
+    "threshold_value": null,
+    "source": null
+  }
+]

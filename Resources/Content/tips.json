@@ -1,0 +1,394 @@
+[
+  {
+    "id": "tip.menstrual.heat",
+    "phase": "menstrual",
+    "title": "Heat can help",
+    "body": "A warm compress or hot water bottle on your lower abdomen may ease cramp discomfort.",
+    "sf_symbol": "thermometer.medium",
+    "priority": "medium",
+    "cycle_count_min": 0,
+    "symptoms_any": [],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.menstrual.rest",
+    "phase": "menstrual",
+    "title": "Rest is productive",
+    "body": "Your body is doing real work this week. Lighter activity and extra sleep are a good call.",
+    "sf_symbol": "moon.fill",
+    "priority": "medium",
+    "cycle_count_min": 0,
+    "symptoms_any": [],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.menstrual.iron",
+    "phase": "menstrual",
+    "title": "Iron-rich foods",
+    "body": "Leafy greens, lentils, and beans can help replenish iron lost during your period.",
+    "sf_symbol": "leaf.fill",
+    "priority": "low",
+    "cycle_count_min": 0,
+    "symptoms_any": [],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.menstrual.ibuprofen",
+    "phase": "menstrual",
+    "title": "Ibuprofen timing",
+    "body": "Anti-inflammatory pain relief works best taken with food at the first sign of cramps — not after pain peaks.",
+    "sf_symbol": "pill.fill",
+    "priority": "medium",
+    "cycle_count_min": 0,
+    "symptoms_any": [
+      "cramps"
+    ],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.menstrual.hydration",
+    "phase": "menstrual",
+    "title": "Stay hydrated",
+    "body": "Blood loss increases your need for fluids. Warm drinks can also ease cramping.",
+    "sf_symbol": "drop.fill",
+    "priority": "low",
+    "cycle_count_min": 0,
+    "symptoms_any": [],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.menstrual.movement",
+    "phase": "menstrual",
+    "title": "Gentle movement can help",
+    "body": "Light walking or gentle yoga may reduce cramp intensity for some people — listen to your body.",
+    "sf_symbol": "figure.walk",
+    "priority": "low",
+    "cycle_count_min": 0,
+    "symptoms_any": [
+      "cramps"
+    ],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.menstrual.bloating",
+    "phase": "menstrual",
+    "title": "Bloating is common",
+    "body": "Hormonal shifts cause water retention at the start of your period. It usually eases within a few days.",
+    "sf_symbol": "circle.dashed",
+    "priority": "low",
+    "cycle_count_min": 0,
+    "symptoms_any": [
+      "bloating"
+    ],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.menstrual.fatigue",
+    "phase": "menstrual",
+    "title": "Fatigue is real",
+    "body": "The drop in oestrogen and progesterone at menstruation is physically demanding. Fatigue now is not laziness.",
+    "sf_symbol": "battery.25percent",
+    "priority": "medium",
+    "cycle_count_min": 0,
+    "symptoms_any": [
+      "fatigue"
+    ],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.follicular.energy",
+    "phase": "follicular",
+    "title": "Energy is building",
+    "body": "Oestrogen rises during this phase — many people find focus and motivation easier right now.",
+    "sf_symbol": "arrow.up.circle.fill",
+    "priority": "medium",
+    "cycle_count_min": 0,
+    "symptoms_any": [],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.follicular.new_things",
+    "phase": "follicular",
+    "title": "Good time for new things",
+    "body": "Starting a new project or learning something new tends to feel easier in the follicular phase.",
+    "sf_symbol": "brain.head.profile",
+    "priority": "low",
+    "cycle_count_min": 0,
+    "symptoms_any": [],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.follicular.movement",
+    "phase": "follicular",
+    "title": "Movement feels easier",
+    "body": "Higher oestrogen supports muscle recovery — a good window for more intense activity if that works for you.",
+    "sf_symbol": "figure.run",
+    "priority": "low",
+    "cycle_count_min": 0,
+    "symptoms_any": [],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.follicular.gut",
+    "phase": "follicular",
+    "title": "Support your gut",
+    "body": "Fermented foods like yogurt and kimchi support the gut microbiome which influences hormone processing.",
+    "sf_symbol": "fork.knife",
+    "priority": "low",
+    "cycle_count_min": 0,
+    "symptoms_any": [],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.follicular.skin",
+    "phase": "follicular",
+    "title": "Skin often clears",
+    "body": "Oestrogen tends to reduce sebum production in the follicular phase — many people notice clearer skin.",
+    "sf_symbol": "allergens",
+    "priority": "low",
+    "cycle_count_min": 0,
+    "symptoms_any": [
+      "acne"
+    ],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.follicular.social",
+    "phase": "follicular",
+    "title": "Social energy rises",
+    "body": "Many people feel more confident and outgoing as oestrogen climbs. A good time to schedule things you have been putting off.",
+    "sf_symbol": "sun.max.fill",
+    "priority": "low",
+    "cycle_count_min": 0,
+    "symptoms_any": [],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.ovulatory.peak_energy",
+    "phase": "ovulatory",
+    "title": "Peak energy window",
+    "body": "Many people feel most social and energised around ovulation — a good time for presentations or important conversations.",
+    "sf_symbol": "sun.max.fill",
+    "priority": "medium",
+    "cycle_count_min": 0,
+    "symptoms_any": [],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.ovulatory.temperature",
+    "phase": "ovulatory",
+    "title": "Basal temperature rises",
+    "body": "A slight rise in basal body temperature after ovulation is normal and confirms ovulation has occurred.",
+    "sf_symbol": "thermometer.medium",
+    "priority": "low",
+    "cycle_count_min": 0,
+    "symptoms_any": [],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.ovulatory.hydration",
+    "phase": "ovulatory",
+    "title": "Stay hydrated",
+    "body": "Hormonal shifts around ovulation can increase body temperature slightly. Extra water helps.",
+    "sf_symbol": "drop.fill",
+    "priority": "low",
+    "cycle_count_min": 0,
+    "symptoms_any": [],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.ovulatory.body",
+    "phase": "ovulatory",
+    "title": "Notice your body",
+    "body": "Some people feel mild one-sided pelvic discomfort around ovulation (mittelschmerz). It is common and usually brief.",
+    "sf_symbol": "figure.yoga",
+    "priority": "low",
+    "cycle_count_min": 0,
+    "symptoms_any": [
+      "mittelschmerz"
+    ],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.ovulatory.discharge",
+    "phase": "ovulatory",
+    "title": "Discharge changes are normal",
+    "body": "Cervical mucus becomes clearer and more elastic around ovulation. This is a normal hormonal sign.",
+    "sf_symbol": "drop.fill",
+    "priority": "low",
+    "cycle_count_min": 0,
+    "symptoms_any": [
+      "dischargeChanges"
+    ],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.ovulatory.communication",
+    "phase": "ovulatory",
+    "title": "Communication feels easier",
+    "body": "Verbal fluency and confidence often peak around ovulation. Difficult conversations may feel more manageable now.",
+    "sf_symbol": "bubble.left.and.bubble.right.fill",
+    "priority": "low",
+    "cycle_count_min": 0,
+    "symptoms_any": [],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.luteal.mood",
+    "phase": "luteal",
+    "title": "Mood may shift",
+    "body": "Progesterone rises then drops in the luteal phase. If your mood dips in the second half that is a recognised pattern.",
+    "sf_symbol": "waveform.path.ecg",
+    "priority": "medium",
+    "cycle_count_min": 0,
+    "symptoms_any": [],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.luteal.magnesium",
+    "phase": "luteal",
+    "title": "Magnesium may help",
+    "body": "Some research links magnesium intake to reduced PMS symptoms. Dark chocolate and nuts are decent sources.",
+    "sf_symbol": "heart.fill",
+    "priority": "low",
+    "cycle_count_min": 0,
+    "symptoms_any": [],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.luteal.sleep",
+    "phase": "luteal",
+    "title": "Sleep changes are normal",
+    "body": "Progesterone can affect sleep quality in the luteal phase. A cooler room and consistent sleep times help.",
+    "sf_symbol": "bed.double.fill",
+    "priority": "medium",
+    "cycle_count_min": 0,
+    "symptoms_any": [
+      "insomnia"
+    ],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.luteal.bloating",
+    "phase": "luteal",
+    "title": "Reduce salt if bloated",
+    "body": "Bloating is common in the late luteal phase. Reducing salty foods and increasing water can ease it.",
+    "sf_symbol": "drop.halffull",
+    "priority": "low",
+    "cycle_count_min": 0,
+    "symptoms_any": [
+      "bloating"
+    ],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.luteal.brain_fog",
+    "phase": "luteal",
+    "title": "Brain fog is hormonal",
+    "body": "Difficulty concentrating in the luteal phase is linked to progesterone. It is not a reflection of your ability.",
+    "sf_symbol": "cloud.fill",
+    "priority": "medium",
+    "cycle_count_min": 0,
+    "symptoms_any": [
+      "brainFog"
+    ],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.luteal.cravings",
+    "phase": "luteal",
+    "title": "Cravings have a cause",
+    "body": "Food cravings in the luteal phase are linked to serotonin fluctuations. Eating regularly helps stabilise them.",
+    "sf_symbol": "fork.knife",
+    "priority": "low",
+    "cycle_count_min": 0,
+    "symptoms_any": [
+      "foodCravings"
+    ],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.luteal.pmdd",
+    "phase": "luteal",
+    "title": "Severe symptoms deserve attention",
+    "body": "If mood symptoms in the second half of your cycle significantly disrupt your life that pattern is called PMDD and is treatable.",
+    "sf_symbol": "waveform.path.ecg",
+    "priority": "high",
+    "cycle_count_min": 3,
+    "symptoms_any": [
+      "anxious",
+      "irritable",
+      "sad"
+    ],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  },
+  {
+    "id": "tip.luteal.breast",
+    "phase": "luteal",
+    "title": "Breast tenderness is common",
+    "body": "Progesterone causes breast tissue to swell in the luteal phase. A supportive bra and reducing caffeine can help.",
+    "sf_symbol": "heart.fill",
+    "priority": "low",
+    "cycle_count_min": 0,
+    "symptoms_any": [
+      "breastTenderness"
+    ],
+    "symptoms_all": [],
+    "mood": null,
+    "source": null
+  }
+]

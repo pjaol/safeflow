@@ -1,0 +1,369 @@
+[
+  {
+    "id": "resource.acog.menstrual",
+    "category": "ob_gyn",
+    "name": "ACOG — Menstrual Disorders",
+    "short_description": "Patient FAQs on abnormal uterine bleeding, painful periods, and cycle irregularities from the American College of OB/GYNs.",
+    "url": "https://www.acog.org/womens-health/faqs/abnormal-uterine-bleeding",
+    "phone": null,
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "heavy_flow",
+      "cramps",
+      "irregular"
+    ]
+  },
+  {
+    "id": "resource.acog.endo",
+    "category": "ob_gyn",
+    "name": "ACOG — Endometriosis",
+    "short_description": "Plain-language patient guide to endometriosis diagnosis and treatment from the American College of OB/GYNs.",
+    "url": "https://www.acog.org/womens-health/faqs/endometriosis",
+    "phone": null,
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "cramps",
+      "pelvic_pain",
+      "endometriosis"
+    ]
+  },
+  {
+    "id": "resource.acog.pcos",
+    "category": "ob_gyn",
+    "name": "ACOG — PCOS",
+    "short_description": "Patient FAQ on polycystic ovary syndrome — symptoms, diagnosis, and management.",
+    "url": "https://www.acog.org/womens-health/faqs/polycystic-ovary-syndrome",
+    "phone": null,
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "irregular",
+      "pcos"
+    ]
+  },
+  {
+    "id": "resource.iapmd",
+    "category": "pmdd",
+    "name": "IAPMD — Premenstrual Disorders",
+    "short_description": "The primary resource for PMDD and PME information, peer support, and provider directory.",
+    "url": "https://iapmd.org",
+    "phone": null,
+    "region": "global",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "pmdd",
+      "mood",
+      "luteal"
+    ]
+  },
+  {
+    "id": "resource.iapmd.crisis",
+    "category": "pmdd",
+    "name": "IAPMD — Crisis Support",
+    "short_description": "IAPMD crisis support resources for people experiencing severe PMDD symptoms.",
+    "url": "https://iapmd.org/crisis-support",
+    "phone": null,
+    "region": "global",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "pmdd",
+      "crisis",
+      "mood"
+    ]
+  },
+  {
+    "id": "resource.efa",
+    "category": "endometriosis",
+    "name": "Endometriosis Foundation of America",
+    "short_description": "Patient resources, symptom diary tools, and information on finding a specialist for endometriosis.",
+    "url": "https://www.endofound.org",
+    "phone": null,
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "cramps",
+      "endometriosis",
+      "pelvic_pain"
+    ]
+  },
+  {
+    "id": "resource.endouk",
+    "category": "endometriosis",
+    "name": "Endometriosis UK",
+    "short_description": "UK patient charity for endometriosis — helpline, local support groups, and information on specialist centre networks.",
+    "url": "https://www.endometriosis-uk.org",
+    "phone": "0808 808 2227",
+    "region": "UK",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "cramps",
+      "endometriosis",
+      "pelvic_pain"
+    ]
+  },
+  {
+    "id": "resource.verity",
+    "category": "pcos",
+    "name": "Verity — PCOS UK",
+    "short_description": "UK charity for people with PCOS — information, peer support, and guidance on getting a diagnosis.",
+    "url": "https://www.verity-pcos.org.uk",
+    "phone": null,
+    "region": "UK",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "pcos",
+      "irregular"
+    ]
+  },
+  {
+    "id": "resource.pcosa",
+    "category": "pcos",
+    "name": "PCOS Awareness Association",
+    "short_description": "US non-profit providing information and community for people with PCOS.",
+    "url": "https://www.pcosaa.org",
+    "phone": null,
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "pcos",
+      "irregular"
+    ]
+  },
+  {
+    "id": "resource.nhs.periods",
+    "category": "gp",
+    "name": "NHS — Period Problems",
+    "short_description": "NHS guidance on heavy periods, painful periods, irregular periods, and when to see a GP.",
+    "url": "https://www.nhs.uk/conditions/periods/",
+    "phone": null,
+    "region": "UK",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "heavy_flow",
+      "cramps",
+      "irregular"
+    ]
+  },
+  {
+    "id": "resource.nhs.endo",
+    "category": "gp",
+    "name": "NHS — Endometriosis",
+    "short_description": "NHS patient information on endometriosis symptoms, diagnosis, and treatment pathways.",
+    "url": "https://www.nhs.uk/conditions/endometriosis/",
+    "phone": null,
+    "region": "UK",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "cramps",
+      "endometriosis"
+    ]
+  },
+  {
+    "id": "resource.nhs.pcos",
+    "category": "gp",
+    "name": "NHS — PCOS",
+    "short_description": "NHS patient information on polycystic ovary syndrome.",
+    "url": "https://www.nhs.uk/conditions/polycystic-ovary-syndrome-pcos/",
+    "phone": null,
+    "region": "UK",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "pcos",
+      "irregular"
+    ]
+  },
+  {
+    "id": "resource.medlineplus.mens",
+    "category": "gp",
+    "name": "MedlinePlus — Menstruation",
+    "short_description": "NIH plain-language health information on menstrual cycles and disorders. Public domain.",
+    "url": "https://medlineplus.gov/menstruation.html",
+    "phone": null,
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "general",
+      "heavy_flow",
+      "cramps",
+      "irregular"
+    ]
+  },
+  {
+    "id": "resource.medlineplus.endo",
+    "category": "gp",
+    "name": "MedlinePlus — Endometriosis",
+    "short_description": "NIH plain-language information on endometriosis.",
+    "url": "https://medlineplus.gov/endometriosis.html",
+    "phone": null,
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "cramps",
+      "endometriosis"
+    ]
+  },
+  {
+    "id": "resource.medlineplus.pmdd",
+    "category": "gp",
+    "name": "MedlinePlus — PMDD",
+    "short_description": "NIH plain-language information on premenstrual dysphoric disorder.",
+    "url": "https://medlineplus.gov/premenstrualdysphoricdisorder.html",
+    "phone": null,
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "pmdd",
+      "mood",
+      "luteal"
+    ]
+  },
+  {
+    "id": "resource.rainn",
+    "category": "crisis",
+    "name": "RAINN — Sexual Assault Hotline",
+    "short_description": "National Sexual Assault Hotline — confidential support 24/7.",
+    "url": "https://hotline.rainn.org",
+    "phone": "1-800-656-4673",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "crisis",
+      "safety"
+    ]
+  },
+  {
+    "id": "resource.ndvh",
+    "category": "crisis",
+    "name": "National Domestic Violence Hotline",
+    "short_description": "24/7 confidential support for people experiencing domestic violence.",
+    "url": "https://www.thehotline.org",
+    "phone": "1-800-799-7233",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "crisis",
+      "safety",
+      "dv"
+    ]
+  },
+  {
+    "id": "resource.refuge",
+    "category": "crisis",
+    "name": "Refuge — Domestic Abuse",
+    "short_description": "UK national charity providing support for women and children experiencing domestic violence.",
+    "url": "https://refuge.org.uk",
+    "phone": "0808 2000 247",
+    "region": "UK",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "crisis",
+      "safety",
+      "dv"
+    ]
+  },
+  {
+    "id": "resource.crisis_text",
+    "category": "mental_health",
+    "name": "Crisis Text Line",
+    "short_description": "Free 24/7 text-based mental health crisis support. Text HOME to 741741.",
+    "url": "https://www.crisistextline.org",
+    "phone": "741741",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "crisis",
+      "mental_health",
+      "mood"
+    ]
+  },
+  {
+    "id": "resource.samaritans",
+    "category": "mental_health",
+    "name": "Samaritans",
+    "short_description": "UK free 24/7 emotional support helpline.",
+    "url": "https://www.samaritans.org",
+    "phone": "116 123",
+    "region": "UK",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "crisis",
+      "mental_health",
+      "mood"
+    ]
+  },
+  {
+    "id": "resource.mind",
+    "category": "mental_health",
+    "name": "Mind — Mental Health Charity",
+    "short_description": "UK charity providing mental health information and local support.",
+    "url": "https://www.mind.org.uk",
+    "phone": null,
+    "region": "UK",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "mental_health",
+      "mood",
+      "pmdd"
+    ]
+  },
+  {
+    "id": "resource.nami",
+    "category": "mental_health",
+    "name": "NAMI — Mental Health Support",
+    "short_description": "National Alliance on Mental Illness — information and support for mental health conditions in the US.",
+    "url": "https://www.nami.org",
+    "phone": "1-800-950-6264",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "mental_health",
+      "mood"
+    ]
+  }
+]

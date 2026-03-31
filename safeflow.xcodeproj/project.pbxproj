@@ -7,6 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		078E2C4C2D6A4522B31123C8 /* SymptomPatternEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E954215BF114795B8EDFF2F /* SymptomPatternEngine.swift */; };
+		1E9B47B29E175F24C482F091 /* tips.json in Resources */ = {isa = PBXBuildFile; fileRef = 2716100D868C3095A2A7F8B6 /* tips.json */; };
+		4258F31950009A771FFD2BAB /* ContentModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2615D32F0F291FD5132C88B3 /* ContentModels.swift */; };
+		732DBD33F96FDB7565E9203E /* nudges.json in Resources */ = {isa = PBXBuildFile; fileRef = C857E6F10A3503075969CDDF /* nudges.json */; };
+		8FDC1DF9FB94376469C80938 /* symptom_rich_cycles.csv in Resources */ = {isa = PBXBuildFile; fileRef = EE453D4CD80C0EF166203A9C /* symptom_rich_cycles.csv */; };
+		AA11223344556677889900BB /* CyclePhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900AA /* CyclePhase.swift */; };
+		AA11223344556677889900DD /* CycleSeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900CC /* CycleSeedData.swift */; };
+		AA11223344556677889900FF /* CyclePredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900EE /* CyclePredictionEngine.swift */; };
+		AD98F4C4C596FA35562B2178 /* signals.json in Resources */ = {isa = PBXBuildFile; fileRef = 2CECA96FDA217ECAD0E3B085 /* signals.json */; };
+		B78D7DC838B549AAB7F3D5D9 /* InsightCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2E1432FC934814B484C260 /* InsightCard.swift */; };
+		BB11223344556677889900BB /* CyclePhaseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11223344556677889900AA /* CyclePhaseCard.swift */; };
+		BB11223344556677889900DD /* QuickLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11223344556677889900CC /* QuickLogView.swift */; };
+		BDD6ADD80D7817503073B907 /* ContentEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D569DC92C1BD5063934679 /* ContentEvaluator.swift */; };
+		C2CA3BB5227E61250FAE54DD /* symptom_rich_cycles.csv in Resources */ = {isa = PBXBuildFile; fileRef = EE453D4CD80C0EF166203A9C /* symptom_rich_cycles.csv */; };
+		C36ABC27D2DEEF3058EDD7B7 /* resources.json in Resources */ = {isa = PBXBuildFile; fileRef = 24377BF94DDC1920ADC9131C /* resources.json */; };
+		C6CAF31492E0B1DCCA518BA7 /* symptom_rich_cycles.csv in Resources */ = {isa = PBXBuildFile; fileRef = EE453D4CD80C0EF166203A9C /* symptom_rich_cycles.csv */; };
+		CC44556677889900AABBCCEE /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC44556677889900AABBCCDD /* ForecastView.swift */; };
+		CC55667788990011AABBCCFF /* PulseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC55667788990011AABBCCEE /* PulseView.swift */; };
 		CD218E662D4021EB009B5198 /* CycleDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E562D4021EB009B5198 /* CycleDay.swift */; };
 		CD218E672D4021EB009B5198 /* CycleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E5A2D4021EB009B5198 /* CycleStore.swift */; };
 		CD218E682D4021EB009B5198 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E5D2D4021EB009B5198 /* HomeViewModel.swift */; };
@@ -58,28 +76,17 @@
 		CD27097D2D46AFCC003994F9 /* sparse_data.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2709622D46AFCC003994F9 /* sparse_data.csv */; };
 		CD27097E2D46AFCC003994F9 /* sparse_data.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2709622D46AFCC003994F9 /* sparse_data.csv */; };
 		CD27097F2D46AFCC003994F9 /* sparse_data.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2709622D46AFCC003994F9 /* sparse_data.csv */; };
-		C2CA3BB5227E61250FAE54DD /* symptom_rich_cycles.csv in Resources */ = {isa = PBXBuildFile; fileRef = EE453D4CD80C0EF166203A9C /* symptom_rich_cycles.csv */; };
-		C6CAF31492E0B1DCCA518BA7 /* symptom_rich_cycles.csv in Resources */ = {isa = PBXBuildFile; fileRef = EE453D4CD80C0EF166203A9C /* symptom_rich_cycles.csv */; };
-		8FDC1DF9FB94376469C80938 /* symptom_rich_cycles.csv in Resources */ = {isa = PBXBuildFile; fileRef = EE453D4CD80C0EF166203A9C /* symptom_rich_cycles.csv */; };
 		CDBECD5F2D4010D2006A37C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBECD5E2D4010D2006A37C9 /* Assets.xcassets */; };
 		CDBECD632D4010D2006A37C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBECD622D4010D2006A37C9 /* Preview Assets.xcassets */; };
 		CDBECD6D2D4010D2006A37C9 /* safeflowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */; };
-		AA11223344556677889900BB /* CyclePhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900AA /* CyclePhase.swift */; };
-		AA11223344556677889900DD /* CycleSeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900CC /* CycleSeedData.swift */; };
-		AA11223344556677889900FF /* CyclePredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900EE /* CyclePredictionEngine.swift */; };
-		BB11223344556677889900BB /* CyclePhaseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11223344556677889900AA /* CyclePhaseCard.swift */; };
-		BB11223344556677889900DD /* QuickLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11223344556677889900CC /* QuickLogView.swift */; };
-		CC55667788990011AABBCCFF /* PulseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC55667788990011AABBCCEE /* PulseView.swift */; };
 		DD11223344556677889900AA /* DartboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11223344556677889900BB /* DartboardViewModel.swift */; };
 		DD11223344556677889900CC /* DartboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11223344556677889900DD /* DartboardView.swift */; };
 		DD11223344556677889900EE /* CategoryStripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11223344556677889900FF /* CategoryStripView.swift */; };
 		DD22334455667788990011AA /* FlowCenterIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD22334455667788990011BB /* FlowCenterIndicator.swift */; };
-		CC44556677889900AABBCCEE /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC44556677889900AABBCCDD /* ForecastView.swift */; };
 		EE1A2B3C4D5E6F7A8B9C0D1F /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1A2B3C4D5E6F7A8B9C0D1E /* NotificationService.swift */; };
 		EE2A3B4C5D6E7F8A9B0C1D2F /* PhaseTipCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2A3B4C5D6E7F8A9B0C1D2E /* PhaseTipCard.swift */; };
 		EE3A4B5C6D7E8F9A0B1C2D3F /* PatternNudgeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A4B5C6D7E8F9A0B1C2D3E /* PatternNudgeCard.swift */; };
-		078E2C4C2D6A4522B31123C8 /* SymptomPatternEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E954215BF114795B8EDFF2F /* SymptomPatternEngine.swift */; };
-		B78D7DC838B549AAB7F3D5D9 /* InsightCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2E1432FC934814B484C260 /* InsightCard.swift */; };
+		F72F6ADD51E8B5767A8BDA43 /* ContentLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB83B32D169194F44D093628 /* ContentLoader.swift */; };
 		FF33445566778899AABBCCAA /* WeekRibbonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33445566778899AABBCCBB /* WeekRibbonView.swift */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +108,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24377BF94DDC1920ADC9131C /* resources.json */ = {isa = PBXFileReference; includeInIndex = 1; path = resources.json; sourceTree = "<group>"; };
+		2615D32F0F291FD5132C88B3 /* ContentModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContentModels.swift; sourceTree = "<group>"; };
+		2716100D868C3095A2A7F8B6 /* tips.json */ = {isa = PBXFileReference; includeInIndex = 1; path = tips.json; sourceTree = "<group>"; };
+		2CECA96FDA217ECAD0E3B085 /* signals.json */ = {isa = PBXFileReference; includeInIndex = 1; path = signals.json; sourceTree = "<group>"; };
+		3E954215BF114795B8EDFF2F /* SymptomPatternEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomPatternEngine.swift; sourceTree = "<group>"; };
+		AA11223344556677889900AA /* CyclePhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePhase.swift; sourceTree = "<group>"; };
+		AA11223344556677889900CC /* CycleSeedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleSeedData.swift; sourceTree = "<group>"; };
+		AA11223344556677889900EE /* CyclePredictionEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePredictionEngine.swift; sourceTree = "<group>"; };
+		BB11223344556677889900AA /* CyclePhaseCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePhaseCard.swift; sourceTree = "<group>"; };
+		BB11223344556677889900CC /* QuickLogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickLogView.swift; sourceTree = "<group>"; };
+		C2D569DC92C1BD5063934679 /* ContentEvaluator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContentEvaluator.swift; sourceTree = "<group>"; };
+		C857E6F10A3503075969CDDF /* nudges.json */ = {isa = PBXFileReference; includeInIndex = 1; path = nudges.json; sourceTree = "<group>"; };
+		CC44556677889900AABBCCDD /* ForecastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastView.swift; sourceTree = "<group>"; };
+		CC55667788990011AABBCCEE /* PulseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PulseView.swift; sourceTree = "<group>"; };
 		CD218E562D4021EB009B5198 /* CycleDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleDay.swift; sourceTree = "<group>"; };
 		CD218E5A2D4021EB009B5198 /* CycleStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleStore.swift; sourceTree = "<group>"; };
 		CD218E5D2D4021EB009B5198 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -135,7 +156,6 @@
 		CD2709602D46AFCC003994F9 /* sparse_data_metadata.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparse_data_metadata.csv; sourceTree = "<group>"; };
 		CD2709612D46AFCC003994F9 /* sparse_data_predictions.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparse_data_predictions.csv; sourceTree = "<group>"; };
 		CD2709622D46AFCC003994F9 /* sparse_data.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparse_data.csv; sourceTree = "<group>"; };
-		EE453D4CD80C0EF166203A9C /* symptom_rich_cycles.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = symptom_rich_cycles.csv; sourceTree = "<group>"; };
 		CDBECD552D4010D1006A37C9 /* safeflow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safeflow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBECD5E2D4010D2006A37C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDBECD602D4010D2006A37C9 /* safeflow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = safeflow.entitlements; sourceTree = "<group>"; };
@@ -143,21 +163,15 @@
 		CDBECD682D4010D2006A37C9 /* safeflowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeflowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = safeflowTests.swift; sourceTree = "<group>"; };
 		CDBECD722D4010D2006A37C9 /* safeflowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeflowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA11223344556677889900AA /* CyclePhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePhase.swift; sourceTree = "<group>"; };
-		AA11223344556677889900CC /* CycleSeedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleSeedData.swift; sourceTree = "<group>"; };
-		AA11223344556677889900EE /* CyclePredictionEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePredictionEngine.swift; sourceTree = "<group>"; };
-		BB11223344556677889900AA /* CyclePhaseCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePhaseCard.swift; sourceTree = "<group>"; };
-		BB11223344556677889900CC /* QuickLogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickLogView.swift; sourceTree = "<group>"; };
-		CC55667788990011AABBCCEE /* PulseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PulseView.swift; sourceTree = "<group>"; };
 		DD11223344556677889900BB /* DartboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DartboardViewModel.swift; sourceTree = "<group>"; };
 		DD11223344556677889900DD /* DartboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DartboardView.swift; sourceTree = "<group>"; };
 		DD11223344556677889900FF /* CategoryStripView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryStripView.swift; sourceTree = "<group>"; };
 		DD22334455667788990011BB /* FlowCenterIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowCenterIndicator.swift; sourceTree = "<group>"; };
-		CC44556677889900AABBCCDD /* ForecastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastView.swift; sourceTree = "<group>"; };
+		EB83B32D169194F44D093628 /* ContentLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContentLoader.swift; sourceTree = "<group>"; };
 		EE1A2B3C4D5E6F7A8B9C0D1E /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		EE2A3B4C5D6E7F8A9B0C1D2E /* PhaseTipCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhaseTipCard.swift; sourceTree = "<group>"; };
 		EE3A4B5C6D7E8F9A0B1C2D3E /* PatternNudgeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatternNudgeCard.swift; sourceTree = "<group>"; };
-		3E954215BF114795B8EDFF2F /* SymptomPatternEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomPatternEngine.swift; sourceTree = "<group>"; };
+		EE453D4CD80C0EF166203A9C /* symptom_rich_cycles.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = symptom_rich_cycles.csv; sourceTree = "<group>"; };
 		FE2E1432FC934814B484C260 /* InsightCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightCard.swift; sourceTree = "<group>"; };
 		FF33445566778899AABBCCBB /* WeekRibbonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekRibbonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,6 +201,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		30ECBB2634F45A34D210D2CC /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				4F5DFD5D83FC1944F6C780A1 /* Services */,
+			);
+			name = Sources;
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		3A0D5F3F33A7A62E4A56AD1E /*  */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "";
+			path = "";
+			sourceTree = "<group>";
+		};
+		441725ED48A25995A64D976C /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				3A0D5F3F33A7A62E4A56AD1E /*  */,
+				C2D569DC92C1BD5063934679 /* ContentEvaluator.swift */,
+				EB83B32D169194F44D093628 /* ContentLoader.swift */,
+				2615D32F0F291FD5132C88B3 /* ContentModels.swift */,
+			);
+			name = Content;
+			path = Content;
+			sourceTree = "<group>";
+		};
+		4F5DFD5D83FC1944F6C780A1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				441725ED48A25995A64D976C /* Content */,
+			);
+			name = Services;
+			path = Services;
+			sourceTree = "<group>";
+		};
+		6A95F01E223B671B2834BF7D /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				C857E6F10A3503075969CDDF /* nudges.json */,
+				24377BF94DDC1920ADC9131C /* resources.json */,
+				2CECA96FDA217ECAD0E3B085 /* signals.json */,
+				2716100D868C3095A2A7F8B6 /* tips.json */,
+			);
+			name = Content;
+			path = Content;
+			sourceTree = "<group>";
+		};
 		CD218E552D4021EB009B5198 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,14 +296,6 @@
 				3E954215BF114795B8EDFF2F /* SymptomPatternEngine.swift */,
 			);
 			path = Persistence;
-			sourceTree = "<group>";
-		};
-		EE4A5B6C7D8E9F0A1B2C3D4E /* Notifications */ = {
-			isa = PBXGroup;
-			children = (
-				EE1A2B3C4D5E6F7A8B9C0D1E /* NotificationService.swift */,
-			);
-			path = Notifications;
 			sourceTree = "<group>";
 		};
 		CD218E5C2D4021EB009B5198 /* Services */ = {
@@ -421,6 +477,7 @@
 			isa = PBXGroup;
 			children = (
 				CD2709632D46AFCC003994F9 /* TestData */,
+				6A95F01E223B671B2834BF7D /* Content */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -442,6 +499,7 @@
 				CDBECD752D4010D2006A37C9 /* safeflowUITests */,
 				CDBECD562D4010D1006A37C9 /* Products */,
 				CD218EA92D43CD2B009B5198 /* Frameworks */,
+				30ECBB2634F45A34D210D2CC /* Sources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -492,6 +550,14 @@
 			path = safeflowUITests;
 			sourceTree = "<group>";
 		};
+		EE4A5B6C7D8E9F0A1B2C3D4E /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				EE1A2B3C4D5E6F7A8B9C0D1E /* NotificationService.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -508,8 +574,6 @@
 			dependencies = (
 			);
 			name = safeflow;
-			packageProductDependencies = (
-			);
 			productName = safeflow;
 			productReference = CDBECD552D4010D1006A37C9 /* safeflow.app */;
 			productType = "com.apple.product-type.application";
@@ -613,6 +677,10 @@
 				CD2709772D46AFCC003994F9 /* sparse_data_metadata.csv in Resources */,
 				CD2709712D46AFCC003994F9 /* regular_28_day_cycle_predictions.csv in Resources */,
 				C2CA3BB5227E61250FAE54DD /* symptom_rich_cycles.csv in Resources */,
+				732DBD33F96FDB7565E9203E /* nudges.json in Resources */,
+				C36ABC27D2DEEF3058EDD7B7 /* resources.json in Resources */,
+				AD98F4C4C596FA35562B2178 /* signals.json in Resources */,
+				1E9B47B29E175F24C482F091 /* tips.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,6 +763,9 @@
 				078E2C4C2D6A4522B31123C8 /* SymptomPatternEngine.swift in Sources */,
 				B78D7DC838B549AAB7F3D5D9 /* InsightCard.swift in Sources */,
 				FF33445566778899AABBCCAA /* WeekRibbonView.swift in Sources */,
+				BDD6ADD80D7817503073B907 /* ContentEvaluator.swift in Sources */,
+				F72F6ADD51E8B5767A8BDA43 /* ContentLoader.swift in Sources */,
+				4258F31950009A771FFD2BAB /* ContentModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
