@@ -139,6 +139,12 @@ final class DartboardViewModel: ObservableObject {
         successNote.prepare()
     }
 
+    // MARK: - Computed state
+
+    var hasLoggedToday: Bool {
+        committedFlow != nil || !committedSymptoms.isEmpty || committedMood != nil || !committedNotes.isEmpty
+    }
+
     // MARK: - Load existing day
 
     func loadFromStore() {

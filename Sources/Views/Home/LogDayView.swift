@@ -5,6 +5,8 @@ struct LogDayView: View {
     @Environment(\.dismiss) private var dismiss
     @ObservedObject var cycleStore: CycleStore
     let existingDay: CycleDay?
+    /// The date to save to when creating a new log. Defaults to today.
+    let targetDate: Date
     private let logger = Logger(subsystem: "com.thevgergroup.safeflow", category: "LogDayView")
 
     @State private var selectedFlow: FlowIntensity?
@@ -13,9 +15,10 @@ struct LogDayView: View {
     @State private var notes: String = ""
     @State private var selectedSymptomCategory: SymptomCategory = .pain
 
-    init(cycleStore: CycleStore, existingDay: CycleDay?) {
+    init(cycleStore: CycleStore, existingDay: CycleDay?, targetDate: Date = Date()) {
         self.cycleStore = cycleStore
         self.existingDay = existingDay
+        self.targetDate = existingDay?.date ?? targetDate
 
         if let day = existingDay {
             _selectedFlow = State(initialValue: day.flow)
@@ -202,7 +205,7 @@ struct LogDayView: View {
     }
 
     private func saveDay() {
-        let date = existingDay?.date ?? Date()
+        let date = targetDate
         let id = existingDay?.id ?? UUID()
         let day = CycleDay(
             id: id,

@@ -5,10 +5,10 @@ struct HomeView: View {
     @ObservedObject var cycleStore: CycleStore
     @EnvironmentObject private var securityService: SecurityService
 
-    @State private var showingLogSheet = false
     @State private var showingSettingsSheet = false
     @State private var dismissedNudgeIDs: Set<String> = DismissedNudges.load()
     @State private var dismissedSignalIDs: Set<String> = DismissedNudges.load()
+    @State private var editLogsDate: Date? = nil
     #if DEBUG
     @State private var showingDebugMenu = false
     #endif
@@ -18,6 +18,11 @@ struct HomeView: View {
             ScrollView {
                 VStack(spacing: AppTheme.Metrics.standardSpacing) {
 
+                    // 1. Log first — zero scroll required
+                    PulseView(cycleStore: cycleStore)
+                        .frame(minHeight: 360)
+
+                    // 2. Phase status
                     CyclePhaseCard(
                         phase: cycleStore.currentPhase(),
                         cycleDay: cycleStore.currentCycleDayNumber(),
@@ -26,14 +31,10 @@ struct HomeView: View {
                         hasEnoughData: cycleStore.calculateAverageCycleLength() != nil
                     )
 
-                    if let phase = cycleStore.currentPhase() {
-                        PhaseTipCard(phase: phase)
-                    }
+                    // 3. Edit historical logs
+                    EditLogsButton { editLogsDate = Date() }
 
-                    if let insight = cycleStore.todayInsight() {
-                        InsightCard(insight: insight)
-                    }
-
+                    // 4–6. Conditional signal / nudge / insight cards
                     ForEach(cycleStore.severitySignals()) { signal in
                         if !dismissedSignalIDs.contains(signal.id) {
                             SeveritySignalCard(signal: signal) {
@@ -52,15 +53,19 @@ struct HomeView: View {
                         }
                     }
 
-                    PulseView(cycleStore: cycleStore)
-                        .frame(minHeight: 360)
+                    if let insight = cycleStore.todayInsight() {
+                        InsightCard(insight: insight)
+                    }
 
+                    // 7. Phase tip
+                    if let phase = cycleStore.currentPhase() {
+                        PhaseTipCard(phase: phase)
+                    }
+
+                    // 8. Forecast
                     ForecastView(cycleStore: cycleStore)
 
-                    DailyLogCard(cycleDay: cycleStore.getCurrentDay())
-                        .onTapGesture { showingLogSheet = true }
-                        .accessibilityIdentifier("home.dailyLogCard")
-
+                    // 9. History heat map
                     CycleCalendarView(cycleStore: cycleStore)
                 }
                 .padding()
@@ -90,10 +95,9 @@ struct HomeView: View {
                     }
                     .accessibilityIdentifier("home.settingsButton")
                 }
-
             }
-            .sheet(isPresented: $showingLogSheet) {
-                LogDayView(cycleStore: cycleStore, existingDay: cycleStore.getCurrentDay())
+            .sheet(item: $editLogsDate) { date in
+                EditLogsSheet(cycleStore: cycleStore, initialDate: date)
             }
             .sheet(isPresented: $showingSettingsSheet) {
                 SettingsView()
@@ -107,115 +111,76 @@ struct HomeView: View {
         }
         .navigationViewStyle(.stack)
     }
-
 }
 
-// MARK: - Daily Log Card
+// MARK: - Edit Logs Button
 
-struct DailyLogCard: View {
-    let cycleDay: CycleDay?
+private struct EditLogsButton: View {
+    let action: () -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Today's Log")
-                .font(AppTheme.Typography.headlineFont)
-                .foregroundColor(AppTheme.Colors.deepGrayText)
-
-            if let day = cycleDay {
-                VStack(alignment: .leading, spacing: 8) {
-                    if let flow = day.flow {
-                        HStack(spacing: 6) {
-                            Image(systemName: flow.sfSymbol)
-                                .foregroundColor(AppTheme.Colors.secondaryPink)
-                            Text("Flow: \(flow.localizedName)")
-                                .foregroundColor(AppTheme.Colors.deepGrayText)
-                        }
-                    }
-
-                    if !day.symptoms.isEmpty {
-                        Text("Symptoms: \(day.symptoms.map { $0.localizedName }.joined(separator: ", "))")
-                            .foregroundColor(AppTheme.Colors.deepGrayText)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-
-                    if let mood = day.mood {
-                        HStack(spacing: 6) {
-                            Image(systemName: mood.sfSymbol)
-                                .foregroundColor(AppTheme.Colors.accentBlue)
-                            Text("Mood: \(mood.localizedName)")
-                                .foregroundColor(AppTheme.Colors.deepGrayText)
-                        }
-                    }
-
-                    if let notes = day.notes, !notes.isEmpty {
-                        Text("Notes: \(notes)")
-                            .foregroundColor(AppTheme.Colors.deepGrayText)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                }
-                .font(AppTheme.Typography.bodyFont)
-            } else {
-                Text("Tap to log your day")
-                    .font(AppTheme.Typography.bodyFont)
+        Button(action: action) {
+            HStack(spacing: 8) {
+                Image(systemName: "pencil.circle.fill")
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundColor(AppTheme.Colors.accentBlue)
+                Text("Edit Logs")
+                    .font(.system(.subheadline, design: .rounded, weight: .semibold))
+                    .foregroundColor(AppTheme.Colors.accentBlue)
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 12, weight: .semibold))
                     .foregroundColor(AppTheme.Colors.mediumGrayText)
             }
+            .padding(.horizontal, AppTheme.Metrics.cardPadding)
+            .padding(.vertical, 12)
+            .background(AppTheme.Colors.secondaryBackground)
+            .cornerRadius(AppTheme.Metrics.cornerRadius)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .cardStyle()
+        .accessibilityIdentifier("home.editLogsButton")
     }
 }
 
-// MARK: - Recent Logs Section
+// MARK: - Edit Logs Sheet
 
-struct RecentLogsSection: View {
-    let days: [CycleDay]
-    let onDelete: (UUID) -> Void
+private struct EditLogsSheet: View {
+    let cycleStore: CycleStore
+    @State private var selectedDate: Date
+    @Environment(\.dismiss) private var dismiss
+
+    init(cycleStore: CycleStore, initialDate: Date) {
+        self.cycleStore = cycleStore
+        _selectedDate = State(initialValue: initialDate)
+    }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Recent Logs")
-                .font(AppTheme.Typography.headlineFont)
-                .foregroundColor(AppTheme.Colors.deepGrayText)
+        NavigationView {
+            VStack(spacing: 0) {
+                DatePicker(
+                    "Select date",
+                    selection: $selectedDate,
+                    in: ...Date(),
+                    displayedComponents: .date
+                )
+                .datePickerStyle(.graphical)
+                .padding()
+                .tint(AppTheme.Colors.accentBlue)
 
-            if days.isEmpty {
-                Text("No recent logs")
-                    .font(AppTheme.Typography.bodyFont)
-                    .foregroundColor(AppTheme.Colors.mediumGrayText)
-            } else {
-                ForEach(days) { day in
-                    HStack {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(day.date, style: .date)
-                                .font(AppTheme.Typography.bodyFont)
-                                .foregroundColor(AppTheme.Colors.deepGrayText)
+                Divider()
 
-                            if let flow = day.flow {
-                                Label(flow.localizedName, systemImage: flow.sfSymbol)
-                                    .font(AppTheme.Typography.captionFont)
-                                    .foregroundColor(AppTheme.Colors.mediumGrayText)
-                            }
-
-                            if !day.symptoms.isEmpty {
-                                Text(day.symptoms.map { $0.localizedName }.joined(separator: ", "))
-                                    .font(AppTheme.Typography.captionFont)
-                                    .foregroundColor(AppTheme.Colors.mediumGrayText)
-                                    .fixedSize(horizontal: false, vertical: true)
-                            }
-                        }
-
-                        Spacer()
-
-                        Button {
-                            onDelete(day.id)
-                        } label: {
-                            Image(systemName: "trash")
-                                .foregroundColor(AppTheme.Colors.secondaryPink)
-                        }
-                        .accessibilityIdentifier("home.recentLog.delete.\(day.id)")
-                    }
-                    .padding()
-                    .background(AppTheme.Colors.secondaryBackground)
-                    .cornerRadius(AppTheme.Metrics.cornerRadius)
+                LogDayView(
+                    cycleStore: cycleStore,
+                    existingDay: cycleStore.getDay(for: selectedDate),
+                    targetDate: selectedDate
+                )
+            }
+            .navigationTitle(selectedDate.formatted(.dateTime.month(.wide).day().year()))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done") { dismiss() }
+                        .font(.system(.body, design: .rounded, weight: .semibold))
+                        .foregroundColor(AppTheme.Colors.accentBlue)
                 }
             }
         }

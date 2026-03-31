@@ -21,6 +21,19 @@ struct PulseView: View {
 
     var body: some View {
         VStack(spacing: 12) {
+            if viewModel.hasLoggedToday {
+                HStack(spacing: 5) {
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundColor(AppTheme.Colors.accentBlue.opacity(0.7))
+                    Text("Logged today")
+                        .font(.system(.caption2, design: .rounded, weight: .medium))
+                        .foregroundColor(AppTheme.Colors.mediumGrayText)
+                }
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .padding(.trailing, 4)
+            }
+
             ZStack(alignment: .leading) {
                 // Board gets the full width — no space stolen by the strip
                 DartboardView(viewModel: viewModel)
@@ -40,6 +53,9 @@ struct PulseView: View {
         .padding(.horizontal, 4)
         .padding(.horizontal, -12)
         .onAppear { viewModel.loadFromStore() }
+        .onReceive(cycleStore.objectWillChange) { _ in
+            DispatchQueue.main.async { viewModel.loadFromStore() }
+        }
     }
 }
 
