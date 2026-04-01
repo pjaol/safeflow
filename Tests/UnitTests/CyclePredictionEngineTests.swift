@@ -26,8 +26,12 @@ final class PeriodDetectionTests: XCTestCase {
     func testSinglePeriodDetected() {
         let days = period(start: "2025-01-01")
         let starts = engine.extractPeriodStarts(from: days)
-        XCTAssertEqual(starts.count, 1)
-        XCTAssertEqual(starts[0], date("2025-01-01"))
+        XCTAssertEqual(starts.count, 1, "Expected 1 period start, got \(starts.count)")
+        // Compare start-of-day in current calendar to handle UTC vs local timezone
+        if let first = starts.first {
+            let expected = Calendar.current.startOfDay(for: date("2025-01-01"))
+            XCTAssertEqual(first, expected)
+        }
     }
 
     func testSpottingOnlyNotCounted() {
