@@ -89,7 +89,7 @@
     "id": "nudge.cycle.overdue",
     "type": "health",
     "title": "Your cycle is later than expected",
-    "body": "There are a few reasons a cycle can be late — stress, illness, hormonal shifts, or sometimes pregnancy. Here's what to consider: if you're concerned, your GP is the right first step.",
+    "body": "Cycles can run longer for many reasons — stress, illness, changes in sleep or weight, or hormonal shifts. If this is unusual for you and you're concerned, a GP can help.",
     "sf_symbol": "calendar.badge.clock",
     "priority": "medium",
     "cycle_count_min": 2,

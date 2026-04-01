@@ -189,6 +189,8 @@ class CycleStore: ObservableObject {
     func todayInsight() -> SymptomInsight? {
         let dayIndex = Calendar.current.ordinality(of: .day, in: .year, for: dateProvider()) ?? 1
         let phase = currentPhase()
+        // No meaningful phase-anchored insight when the cycle is overdue
+        guard phase != nil else { return nil }
         let evaluator = ContentEvaluator(store: self)
 
         // Build insights using personal pattern engine but population norms from content pipeline

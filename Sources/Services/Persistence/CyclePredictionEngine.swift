@@ -227,6 +227,9 @@ struct CyclePredictionEngine {
         }
 
         let cycleDay = (calendar.dateComponents([.day], from: lastStart, to: todayStart).day ?? 0) + 1
+        // Overdue — no meaningful phase
+        guard cycleDay <= avgLength else { return nil }
+
         let periodLength = seedData?.typicalPeriodLength ?? 5
         let ovulationDay = avgLength - Self.lutealPhaseLength
 
