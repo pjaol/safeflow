@@ -1,0 +1,37 @@
+date,flow,symptoms,mood,notes
+2025-10-01,heavy,"cramps,fatigue",sad,"Cycle 1 — consistently heavy"
+2025-10-02,heavy,"cramps,backPain",neutral,
+2025-10-03,heavy,"fatigue,bloating",neutral,
+2025-10-04,heavy,"cramps",neutral,
+2025-10-05,medium,"fatigue",neutral,
+2025-10-06,light,,happy,
+2025-10-29,heavy,"cramps,headache",sad,"Cycle 2"
+2025-10-30,heavy,"cramps,fatigue",neutral,
+2025-10-31,heavy,"backPain,bloating",neutral,
+2025-11-01,heavy,"cramps",neutral,
+2025-11-02,medium,,neutral,
+2025-11-03,light,,happy,
+2025-11-26,heavy,"cramps,fatigue",sad,"Cycle 3"
+2025-11-27,heavy,"cramps,backPain",neutral,
+2025-11-28,heavy,"bloating,headache",neutral,
+2025-11-29,heavy,"cramps,fatigue",neutral,
+2025-11-30,medium,,neutral,
+2025-12-01,light,,neutral,
+2025-12-25,heavy,"cramps,fatigue",sad,"Cycle 4"
+2025-12-26,heavy,"cramps,backPain",neutral,
+2025-12-27,heavy,"bloating",neutral,
+2025-12-28,heavy,"fatigue",neutral,
+2025-12-29,medium,,neutral,
+2025-12-30,light,,happy,
+2026-01-22,heavy,"cramps,headache",sad,"Cycle 5"
+2026-01-23,heavy,"cramps,fatigue",neutral,
+2026-01-24,heavy,"backPain,bloating",neutral,
+2026-01-25,heavy,"cramps",neutral,
+2026-01-26,medium,,neutral,
+2026-01-27,light,,neutral,
+2026-02-19,heavy,"cramps,fatigue",sad,"Cycle 6 — still heavy"
+2026-02-20,heavy,"cramps,backPain",neutral,
+2026-02-21,heavy,"bloating,headache",neutral,
+2026-02-22,heavy,"fatigue",neutral,
+2026-02-23,medium,,neutral,
+2026-02-24,light,,happy,

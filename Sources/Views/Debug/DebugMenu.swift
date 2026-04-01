@@ -6,29 +6,116 @@ struct DebugMenu: View {
     @Environment(\.dismiss) private var dismiss
     @State private var loadStatus: String?
 
+    // MARK: - Scenarios
+
+    private struct Scenario {
+        let name: String
+        let description: String
+        let filename: String
+        let seedCycleLength: Int
+        let seedPeriodLength: Int
+    }
+
+    private let scenarios: [Scenario] = [
+        Scenario(
+            name: "Symptom-Rich (6 cycles)",
+            description: "Regular 28-day cycles with detailed symptom and mood logging across 6 cycles. Good general-purpose baseline.",
+            filename: "symptom_rich_cycles",
+            seedCycleLength: 28,
+            seedPeriodLength: 6
+        ),
+        Scenario(
+            name: "New User (1 cycle)",
+            description: "Only one period logged. Tests early-data states: wide prediction range, no nudges, no insights.",
+            filename: "scenario_new_user",
+            seedCycleLength: 28,
+            seedPeriodLength: 5
+        ),
+        Scenario(
+            name: "High Variability / PCOS",
+            description: "Cycles ranging 22–45 days across 7 cycles. Triggers high-variability nudge and increasing-variability (perimenopause) nudge.",
+            filename: "scenario_high_variability",
+            seedCycleLength: 34,
+            seedPeriodLength: 5
+        ),
+        Scenario(
+            name: "Heavy Flow Pattern",
+            description: "Consistently heavy flow across 6 cycles. Triggers heavy-flow severity signal.",
+            filename: "scenario_heavy_flow",
+            seedCycleLength: 28,
+            seedPeriodLength: 6
+        ),
+        Scenario(
+            name: "Escalating Cramps",
+            description: "Cramp days increase cycle over cycle (1→2→4→4→5→6). Triggers cramps-escalating severity signal.",
+            filename: "scenario_escalating_cramps",
+            seedCycleLength: 28,
+            seedPeriodLength: 5
+        ),
+        Scenario(
+            name: "Overdue Cycle",
+            description: "Last period was ~70 days ago with 5 prior regular cycles. Tests the overdue-cycle nudge and ring arc behaviour.",
+            filename: "scenario_overdue_cycle",
+            seedCycleLength: 28,
+            seedPeriodLength: 5
+        ),
+        Scenario(
+            name: "PMDD Pattern",
+            description: "Negative mood (anxious, irritable, sad, sensitive) logged in late luteal across 6 cycles. Triggers PMDD pattern signal.",
+            filename: "scenario_pmdd_pattern",
+            seedCycleLength: 28,
+            seedPeriodLength: 5
+        ),
+    ]
+
+    // MARK: - Body
+
     var body: some View {
         NavigationView {
             List {
                 Section("Data Management") {
                     Button("Clear All Data", role: .destructive) {
                         cycleStore.clearAllData()
-                        loadStatus = "Data cleared"
+                        loadStatus = "✓ Data cleared"
                     }
                 }
 
-                Section("Test Fixtures") {
-                    Button("Load Symptom-Rich Dataset") {
-                        loadSymptomRichData()
-                    }
+                Section {
                     if let status = loadStatus {
-                        Text(status)
-                            .font(.caption)
-                            .foregroundColor(AppTheme.Colors.mediumGrayText)
+                        HStack(spacing: 8) {
+                            Image(systemName: status.hasPrefix("✓") ? "checkmark.circle.fill" : "xmark.circle.fill")
+                                .foregroundColor(status.hasPrefix("✓") ? .green : .red)
+                                .font(.caption)
+                            Text(status)
+                                .font(.caption)
+                                .foregroundColor(AppTheme.Colors.mediumGrayText)
+                        }
+                    }
+                }
+
+                Section("Test Scenarios") {
+                    ForEach(scenarios, id: \.filename) { scenario in
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text(scenario.name)
+                                .font(.system(.subheadline, design: .rounded, weight: .semibold))
+                                .foregroundColor(AppTheme.Colors.deepGrayText)
+                            Text(scenario.description)
+                                .font(.system(.caption, design: .rounded))
+                                .foregroundColor(AppTheme.Colors.mediumGrayText)
+                                .fixedSize(horizontal: false, vertical: true)
+                            Button("Clear + Load") {
+                                loadScenario(scenario)
+                            }
+                            .font(.system(.caption, design: .rounded, weight: .semibold))
+                            .foregroundColor(AppTheme.Colors.accentBlue)
+                            .padding(.top, 2)
+                        }
+                        .padding(.vertical, 4)
                     }
                 }
 
                 Section("Testing") {
-                    NavigationLink("Test Cases") {
+                    NavigationLink("Prediction Test Cases") {
                         TestCaseRunnerView()
                     }
                 }
@@ -42,14 +129,14 @@ struct DebugMenu: View {
         }
     }
 
-    // MARK: - Symptom-Rich Fixture Loader
+    // MARK: - Loader
 
-    private func loadSymptomRichData() {
-        loadStatus = "Loading..."
+    private func loadScenario(_ scenario: Scenario) {
+        loadStatus = "Loading \(scenario.name)..."
         Task {
             do {
-                guard let url = Bundle.main.url(forResource: "symptom_rich_cycles", withExtension: "csv") else {
-                    await MainActor.run { loadStatus = "Error: file not found in bundle" }
+                guard let url = Bundle.main.url(forResource: scenario.filename, withExtension: "csv") else {
+                    await MainActor.run { loadStatus = "✗ File not found: \(scenario.filename).csv" }
                     return
                 }
                 let csv = try String(contentsOf: url, encoding: .utf8)
@@ -57,12 +144,11 @@ struct DebugMenu: View {
 
                 cycleStore.clearAllData()
 
-                // Seed data: 28-day cycle, last period = first entry date
                 if let firstEntry = entries.first {
                     let seed = CycleSeedData(
                         lastPeriodStartDate: firstEntry.date,
-                        typicalPeriodLength: 6,
-                        typicalCycleLength: 28
+                        typicalPeriodLength: scenario.seedPeriodLength,
+                        typicalCycleLength: scenario.seedCycleLength
                     )
                     cycleStore.saveSeedData(seed)
                 }
@@ -80,13 +166,13 @@ struct DebugMenu: View {
                 }
 
                 await MainActor.run {
-                    loadStatus = "Loaded \(entries.count) days across 6 cycles"
+                    loadStatus = "✓ Loaded \(scenario.name) — \(entries.count) days"
                     cycleStore.rescheduleSupplyReminder()
                 }
             } catch {
-                await MainActor.run { loadStatus = "Error: \(error.localizedDescription)" }
+                await MainActor.run { loadStatus = "✗ Error: \(error.localizedDescription)" }
             }
         }
     }
 }
-#endif 
+#endif
