@@ -33,7 +33,7 @@ REPO_ROOT   = Path(__file__).parent.parent
 WORKBOOK    = REPO_ROOT / "Content" / "clio_content.xlsx"
 OUTPUT_DIR  = REPO_ROOT / "Resources" / "Content"
 
-ALL_SHEETS  = ["tips", "nudges", "signals", "resources"]
+ALL_SHEETS  = ["tips", "nudges", "signals", "resources", "insights"]
 
 # ── Type coercion ──────────────────────────────────────────────────────────────
 
@@ -129,16 +129,23 @@ def validate(sheet_name: str):
     errors = []
     for r in records:
         rid = r.get("id", "<missing>")
-        if sheet_name != "resources":
+        if sheet_name in ("tips", "nudges", "signals"):
             if not r.get("title"):
                 errors.append(f"{rid}: missing 'title'")
             if not r.get("body"):
                 errors.append(f"{rid}: missing 'body'")
-        else:
+        elif sheet_name == "resources":
             if not r.get("name"):
                 errors.append(f"{rid}: missing 'name'")
             if not r.get("url") and not r.get("phone"):
                 errors.append(f"{rid}: needs at least a 'url' or 'phone'")
+        elif sheet_name == "insights":
+            if not r.get("symptom"):
+                errors.append(f"{rid}: missing 'symptom'")
+            if not r.get("phase"):
+                errors.append(f"{rid}: missing 'phase'")
+            if not r.get("prevalence"):
+                errors.append(f"{rid}: missing 'prevalence'")
 
     if errors:
         print(f"\n  VALIDATION ERRORS in {sheet_name}.json:")
@@ -167,6 +174,9 @@ SHEET_SCHEMAS = {
     "resources": [
         "id", "category", "name", "short_description", "url", "phone",
         "region", "languages", "tags",
+    ],
+    "insights": [
+        "id", "symptom", "phase", "prevalence", "percentage_string", "note", "valence",
     ],
 }
 
@@ -245,11 +255,55 @@ RESOURCES_DATA = [
     ("resource.nami",            "mental_health", "NAMI — Mental Health Support",          "National Alliance on Mental Illness — information and support for mental health conditions in the US.",                                          "https://www.nami.org",                                              "1-800-950-6264","US",     "en",    "mental_health,mood"),
 ]
 
+INSIGHTS_DATA = [
+    # id                                 symptom             phase         prevalence      percentage_string   note                                                                                                                                 valence
+    ("insight.menstrual.cramps",         "cramps",           "menstrual",  "very_common",  "around 70%",       "Cramps are one of the most reported period symptoms. Pain that stops you doing normal activities is worth discussing with a doctor.", ""),
+    ("insight.menstrual.bloating",       "bloating",         "menstrual",  "very_common",  "around 65%",       "",                                                                                                                                  ""),
+    ("insight.menstrual.backPain",       "backPain",         "menstrual",  "common",       "around 45%",       "",                                                                                                                                  ""),
+    ("insight.menstrual.fatigue",        "fatigue",          "menstrual",  "very_common",  "around 60%",       "Iron loss during menstruation contributes to fatigue for many people.",                                                              ""),
+    ("insight.menstrual.headache",       "headache",         "menstrual",  "common",       "around 35%",       "Hormone shifts at the start of the cycle can trigger headaches.",                                                                   ""),
+    ("insight.menstrual.nausea",         "nausea",           "menstrual",  "fairly_common","around 20%",       "",                                                                                                                                  ""),
+    ("insight.menstrual.breastTenderness","breastTenderness","menstrual",  "fairly_common","around 25%",       "",                                                                                                                                  ""),
+    ("insight.menstrual.insomnia",       "insomnia",         "menstrual",  "fairly_common","around 20%",       "",                                                                                                                                  ""),
+    ("insight.menstrual.foodCravings",   "foodCravings",     "menstrual",  "common",       "around 50%",       "",                                                                                                                                  ""),
+    ("insight.menstrual.brainFog",       "brainFog",         "menstrual",  "fairly_common","around 25%",       "",                                                                                                                                  ""),
+    ("insight.menstrual.acne",           "acne",             "menstrual",  "fairly_common","around 30%",       "",                                                                                                                                  ""),
+    ("insight.follicular.fatigue",       "fatigue",          "follicular", "less_common",  "around 15%",       "Fatigue is less typical in the follicular phase as oestrogen rises. If it is persistent, worth noting.",                            ""),
+    ("insight.follicular.headache",      "headache",         "follicular", "less_common",  "around 10%",       "",                                                                                                                                  ""),
+    ("insight.follicular.acne",          "acne",             "follicular", "fairly_common","around 20%",       "",                                                                                                                                  ""),
+    ("insight.follicular.bloating",      "bloating",         "follicular", "less_common",  "around 15%",       "",                                                                                                                                  ""),
+    ("insight.follicular.cramps",        "cramps",           "follicular", "rare",         "around 5-10%",     "Cramps outside your period are less typical. If this is consistent it is worth mentioning to a doctor.",                            ""),
+    ("insight.follicular.highEnergy",    "highEnergy",       "follicular", "common",       "around 55%",       "Many people notice a natural energy lift during the follicular phase.",                                                              ""),
+    ("insight.follicular.brainFog",      "brainFog",         "follicular", "less_common",  "around 10%",       "",                                                                                                                                  ""),
+    ("insight.ovulatory.mittelschmerz",  "mittelschmerz",    "ovulatory",  "common",       "around 40%",       "A brief one-sided ache or twinge around ovulation is very common and harmless.",                                                   ""),
+    ("insight.ovulatory.dischargeChanges","dischargeChanges","ovulatory",  "very_common",  "around 70%",       "Discharge changes around ovulation are a normal hormonal signal.",                                                                  ""),
+    ("insight.ovulatory.bloating",       "bloating",         "ovulatory",  "fairly_common","around 25%",       "",                                                                                                                                  ""),
+    ("insight.ovulatory.headache",       "headache",         "ovulatory",  "fairly_common","around 20%",       "The oestrogen peak before ovulation can trigger headaches in some people.",                                                         ""),
+    ("insight.ovulatory.breastTenderness","breastTenderness","ovulatory",  "fairly_common","around 30%",       "",                                                                                                                                  ""),
+    ("insight.ovulatory.highEnergy",     "highEnergy",       "ovulatory",  "very_common",  "around 60%",       "",                                                                                                                                  ""),
+    ("insight.luteal.breastTenderness",  "breastTenderness", "luteal",     "very_common",  "around 60%",       "",                                                                                                                                  ""),
+    ("insight.luteal.bloating",          "bloating",         "luteal",     "very_common",  "around 65%",       "",                                                                                                                                  ""),
+    ("insight.luteal.foodCravings",      "foodCravings",     "luteal",     "very_common",  "around 60%",       "",                                                                                                                                  ""),
+    ("insight.luteal.fatigue",           "fatigue",          "luteal",     "common",       "around 45%",       "Energy often dips in the late luteal phase as progesterone peaks.",                                                                 ""),
+    ("insight.luteal.insomnia",          "insomnia",         "luteal",     "common",       "around 35%",       "Progesterone fluctuations can affect sleep quality.",                                                                               ""),
+    ("insight.luteal.brainFog",          "brainFog",         "luteal",     "common",       "around 40%",       "",                                                                                                                                  ""),
+    ("insight.luteal.acne",              "acne",             "luteal",     "common",       "around 45%",       "",                                                                                                                                  ""),
+    ("insight.luteal.headache",          "headache",         "luteal",     "common",       "around 35%",       "Pre-menstrual headaches caused by the oestrogen drop before your period are very common.",                                          ""),
+    ("insight.luteal.cramps",            "cramps",           "luteal",     "fairly_common","around 20%",       "Some cramping in the late luteal phase is common as the uterus prepares.",                                                          ""),
+    ("insight.luteal.appetiteChanges",   "appetiteChanges",  "luteal",     "common",       "around 50%",       "",                                                                                                                                  ""),
+    ("insight.luteal.backPain",          "backPain",         "luteal",     "fairly_common","around 25%",       "",                                                                                                                                  ""),
+    ("insight.mood.luteal.negative",     "mood",             "luteal",     "very_common",  "around 75%",       "Mood changes in the luteal phase are one of the most reported cycle experiences.",                                                  "negative"),
+    ("insight.mood.menstrual.negative",  "mood",             "menstrual",  "common",       "around 50%",       "",                                                                                                                                  "negative"),
+    ("insight.mood.follicular.positive", "mood",             "follicular", "common",       "around 55%",       "Rising oestrogen in this phase often lifts mood and energy.",                                                                       "positive"),
+    ("insight.mood.ovulatory.positive",  "mood",             "ovulatory",  "common",       "around 55%",       "Rising oestrogen in this phase often lifts mood and energy.",                                                                       "positive"),
+]
+
 SHEET_DATA = {
     "tips":      TIPS_DATA,
     "nudges":    NUDGES_DATA,
     "signals":   SIGNALS_DATA,
     "resources": RESOURCES_DATA,
+    "insights":  INSIGHTS_DATA,
 }
 
 
@@ -267,6 +321,7 @@ def create_workbook():
         "nudges":    PatternFill("solid", fgColor="7B5EA7"),
         "signals":   PatternFill("solid", fgColor="D94F5C"),
         "resources": PatternFill("solid", fgColor="2E9E6B"),
+        "insights":  PatternFill("solid", fgColor="E57C4A"),
     }
 
     for sheet_name in ALL_SHEETS:

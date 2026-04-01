@@ -749,4 +749,34 @@ The following are explicitly not in scope for any version planned here. They wou
 
 ---
 
-*PRD v1.0 — SafeFlow — 2026-03-29*
+---
+
+## 12. Cycle Mode Backlog (Post-v1.0)
+
+These items emerged from the "Day 43 / Late label" design discussion (2026-04-01). They are not in scope for v0.x or v1.0 but should be designed together as a cohesive "cycle mode" system before implementation.
+
+### 12.1 Cycle Mode Setting
+
+A single opt-in in onboarding and Settings that adapts the entire prediction + insight layer:
+
+| Mode | Behaviour |
+|------|-----------|
+| **Regular** | Current behaviour. Day counter, predictions, variability nudges. |
+| **Irregular** | Suppress day counter when overdue. Widen prediction range. Suppress repeated variability nudges (fire at most once per 6 cycles). Surface GP/irregular resources proactively. |
+| **Perimenopause** | Suppress day counter entirely. Suppress all variability nudges. Replace prediction with "cycles may be irregular" copy. Surface perimenopause-specific resources. |
+| **Not currently cycling** | Post-partum, breastfeeding amenorrhea, medically induced pause. Suppress predictions entirely. Keep symptom/mood logging. No nudges about missing periods. |
+
+### 12.2 Design Principles for Cycle Mode
+
+- **User-declared, not inferred.** The app never infers mode from data. The user sets it. This avoids pregnancy inference, perimenopause inference, and any associated regulatory/trauma risk.
+- **Easily changeable.** One tap in Settings to switch mode. No friction, no confirmation dialogs.
+- **No pregnancy inference, ever.** Clio Daye does not prompt users to take a test, infer pregnancy from a missed period, or change UI in response to a late cycle beyond widening the prediction range.
+- **"Cycle pause" for grief-aware contexts.** Users post-miscarriage or post-loss may want to keep logging symptoms without cycle predictions running. Cycle pause is the mechanism — opt-in, no explanation required.
+
+### 12.3 Immediate Fix Already Applied (v0.3)
+
+The "· Late" label added to `CyclePhaseCard` was removed before shipping. The day counter now returns `nil` when beyond average cycle length, and the card shows the phase name only — no inference language. This is the correct minimal behaviour until cycle modes are implemented.
+
+---
+
+*PRD v1.0 — SafeFlow — 2026-03-29 | Section 12 added 2026-04-01*
