@@ -57,9 +57,10 @@ struct HomeView: View {
                         InsightCard(insight: insight)
                     }
 
-                    // 7. Phase tip
+                    // 7. Phase tip — sourced from content pipeline
                     if let phase = cycleStore.currentPhase() {
-                        PhaseTipCard(phase: phase)
+                        let tip = ContentEvaluator(store: cycleStore).dailyTip()
+                        PhaseTipCard(phase: phase, contentTip: tip)
                     }
 
                     // 8. Forecast

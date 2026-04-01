@@ -7,12 +7,16 @@ import SwiftUI
 /// without requiring any state or network calls.
 struct PhaseTipCard: View {
     let phase: CyclePhase
+    /// Content-pipeline tip. If nil, falls back to the built-in PhaseTip rotation.
+    var contentTip: ContentTip? = nil
 
-    private var tip: PhaseTip { PhaseTip.daily(for: phase) }
+    private var sfSymbol: String  { contentTip?.sfSymbol ?? PhaseTip.daily(for: phase).sfSymbol }
+    private var title: String     { contentTip?.title    ?? PhaseTip.daily(for: phase).title }
+    private var body_: String     { contentTip?.body     ?? PhaseTip.daily(for: phase).body }
 
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
-            Image(systemName: tip.sfSymbol)
+            Image(systemName: sfSymbol)
                 .font(.system(size: 18, weight: .semibold))
                 .foregroundColor(AppTheme.Colors.forPhase(phase.themeColorName))
                 .frame(width: 36, height: 36)
@@ -20,10 +24,10 @@ struct PhaseTipCard: View {
                 .clipShape(RoundedRectangle(cornerRadius: 8))
 
             VStack(alignment: .leading, spacing: 4) {
-                Text(tip.title)
+                Text(title)
                     .font(.system(.subheadline, design: .rounded, weight: .semibold))
                     .foregroundColor(AppTheme.Colors.deepGrayText)
-                Text(tip.body)
+                Text(body_)
                     .font(.system(.caption, design: .rounded))
                     .foregroundColor(AppTheme.Colors.mediumGrayText)
                     .fixedSize(horizontal: false, vertical: true)
@@ -36,7 +40,7 @@ struct PhaseTipCard: View {
         .shadow(color: Color.black.opacity(0.06), radius: 8, x: 0, y: 2)
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("home.phaseTipCard")
-        .accessibilityLabel("\(tip.title). \(tip.body)")
+        .accessibilityLabel("\(title). \(body_)")
     }
 }
 

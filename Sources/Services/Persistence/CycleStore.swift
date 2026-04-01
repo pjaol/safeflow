@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import SwiftUI
 
 @MainActor
 class CycleStore: ObservableObject {
@@ -167,11 +168,16 @@ class CycleStore: ObservableObject {
 
     /// Returns the highest-priority undismissed nudge for the current data, or nil.
     func currentNudge() -> CycleNudge? {
-        CycleNudge.evaluate(
-            cycleDays: cycleDays,
-            seedData: seedData,
-            engine: engine,
-            dismissed: DismissedNudges.load()
+        let evaluator = ContentEvaluator(store: self)
+        guard let nudge = evaluator.activeNudge(dismissed: DismissedNudges.load()) else { return nil }
+        return CycleNudge(
+            id: nudge.id,
+            sfSymbol: nudge.sfSymbol,
+            title: nudge.title,
+            body: nudge.body,
+            backgroundColor: nudge.type == "comfort"
+                ? Color(hex: "FDE8EF")
+                : Color(hex: "FEF3C7")
         )
     }
 
@@ -196,11 +202,15 @@ class CycleStore: ObservableObject {
 
     /// Returns any active severity signals (escalating symptoms, phase-inconsistent patterns).
     func severitySignals() -> [SeveritySignal] {
-        symptomEngine.severitySignals(
-            cycleDays: cycleDays,
-            seedData: seedData,
-            predictionEngine: engine,
-            today: dateProvider()
-        )
+        let evaluator = ContentEvaluator(store: self)
+        return evaluator.activeSignals(dismissed: DismissedNudges.load()).map { signal in
+            SeveritySignal(
+                id: signal.id,
+                symptom: nil,
+                title: signal.title,
+                body: signal.body,
+                priority: signal.priority == "high" ? .high : .medium
+            )
+        }
     }
 }
