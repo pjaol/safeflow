@@ -6,6 +6,9 @@ struct SettingsView: View {
     @State private var showingBiometricSetup = false
     @State private var showingPinSetup = false
     @State private var hasPin = false
+    @State private var showingDeleteConfirmation = false
+
+    var cycleStore: CycleStore? = nil
     
     var body: some View {
         NavigationView {
@@ -46,6 +49,33 @@ struct SettingsView: View {
                     }
                 }
                 
+                Section {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Label("Your data stays on this device", systemImage: "lock.shield.fill")
+                            .font(.system(.subheadline, design: .rounded, weight: .semibold))
+                            .foregroundColor(AppTheme.Colors.deepGrayText)
+                        Text("Clio Daye stores everything on your device only. Nothing is sent to any server, cloud, or third party — ever. No one else can access your cycle data remotely.")
+                            .font(.system(.caption, design: .rounded))
+                            .foregroundColor(AppTheme.Colors.mediumGrayText)
+                            .fixedSize(horizontal: false, vertical: true)
+                        Text("If you need to remove all data from this device, use the delete button below.")
+                            .font(.system(.caption, design: .rounded))
+                            .foregroundColor(AppTheme.Colors.mediumGrayText)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .padding(.vertical, 4)
+                } header: {
+                    Text("Your Data & Privacy")
+                }
+
+                Section {
+                    Button(role: .destructive) {
+                        showingDeleteConfirmation = true
+                    } label: {
+                        Label("Delete All My Data", systemImage: "trash")
+                    }
+                }
+
                 Section("About") {
                     HStack {
                         Text("Version")
@@ -101,6 +131,15 @@ struct SettingsView: View {
             .sheet(isPresented: $showingPinSetup) {
                 PinSetupView()
             }
+            .alert("Delete All Data?", isPresented: $showingDeleteConfirmation) {
+                Button("Delete Everything", role: .destructive) {
+                    cycleStore?.clearAllData()
+                    UserDefaults.standard.set(false, forKey: "hasCompletedOnboarding")
+                }
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text("This will permanently delete all your cycle logs, symptoms, and notes. This cannot be undone.")
+            }
             // Use a small async method (below) to fetch the hasPin value
             .task {
                 await loadPinStatus()
@@ -133,7 +172,7 @@ struct PrivacyView: View {
                     .foregroundColor(AppTheme.Colors.deepGrayText)
                     .padding(.top)
                 
-                Text("• All data is stored locally on your device\n• No cloud storage or syncing\n• Protected by device encryption")
+                Text("• All data is stored locally on your device\n• No cloud storage or syncing")
                     .font(AppTheme.Typography.bodyFont)
                     .foregroundColor(AppTheme.Colors.deepGrayText)
                 
@@ -142,7 +181,7 @@ struct PrivacyView: View {
                     .foregroundColor(AppTheme.Colors.deepGrayText)
                     .padding(.top)
                 
-                Text("• Optional biometric authentication\n• Data is encrypted at rest\n• No analytics or tracking")
+                Text("• Optional biometric authentication\n• No analytics or tracking")
                     .font(AppTheme.Typography.bodyFont)
                     .foregroundColor(AppTheme.Colors.deepGrayText)
             }

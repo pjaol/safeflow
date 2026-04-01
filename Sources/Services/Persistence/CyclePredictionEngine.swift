@@ -243,6 +243,8 @@ struct CyclePredictionEngine {
     }
 
     /// 1-indexed day number within the current cycle.
+    /// Returns nil once today is past the predicted next period start — an overdue
+    /// cycle has no meaningful day number and the UI should show "Late" instead.
     func currentCycleDayNumber(
         days: [CycleDay],
         seedData: CycleSeedData?,
@@ -261,7 +263,11 @@ struct CyclePredictionEngine {
             return nil
         }
 
-        return (calendar.dateComponents([.day], from: lastStart, to: todayStart).day ?? 0) + 1
+        let dayNumber = (calendar.dateComponents([.day], from: lastStart, to: todayStart).day ?? 0) + 1
+        let avgLength = averageCycleLength(from: days) ?? seedData?.typicalCycleLength ?? 28
+        // Beyond the expected cycle length → overdue, return nil so UI shows "Late"
+        guard dayNumber <= avgLength else { return nil }
+        return dayNumber
     }
 
     /// Average cycle length, rounded to nearest day. Returns `nil` when fewer

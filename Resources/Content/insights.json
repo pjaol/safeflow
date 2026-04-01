@@ -1,0 +1,353 @@
+[
+  {
+    "id": "insight.menstrual.cramps",
+    "symptom": "cramps",
+    "phase": "menstrual",
+    "prevalence": "very_common",
+    "percentage_string": "around 70%",
+    "note": "Cramps are one of the most reported period symptoms. Pain that stops you doing normal activities is worth discussing with a doctor.",
+    "valence": null
+  },
+  {
+    "id": "insight.menstrual.bloating",
+    "symptom": "bloating",
+    "phase": "menstrual",
+    "prevalence": "very_common",
+    "percentage_string": "around 65%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.menstrual.backPain",
+    "symptom": "backPain",
+    "phase": "menstrual",
+    "prevalence": "common",
+    "percentage_string": "around 45%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.menstrual.fatigue",
+    "symptom": "fatigue",
+    "phase": "menstrual",
+    "prevalence": "very_common",
+    "percentage_string": "around 60%",
+    "note": "Iron loss during menstruation contributes to fatigue for many people.",
+    "valence": null
+  },
+  {
+    "id": "insight.menstrual.headache",
+    "symptom": "headache",
+    "phase": "menstrual",
+    "prevalence": "common",
+    "percentage_string": "around 35%",
+    "note": "Hormone shifts at the start of the cycle can trigger headaches.",
+    "valence": null
+  },
+  {
+    "id": "insight.menstrual.nausea",
+    "symptom": "nausea",
+    "phase": "menstrual",
+    "prevalence": "fairly_common",
+    "percentage_string": "around 20%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.menstrual.breastTenderness",
+    "symptom": "breastTenderness",
+    "phase": "menstrual",
+    "prevalence": "fairly_common",
+    "percentage_string": "around 25%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.menstrual.insomnia",
+    "symptom": "insomnia",
+    "phase": "menstrual",
+    "prevalence": "fairly_common",
+    "percentage_string": "around 20%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.menstrual.foodCravings",
+    "symptom": "foodCravings",
+    "phase": "menstrual",
+    "prevalence": "common",
+    "percentage_string": "around 50%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.menstrual.brainFog",
+    "symptom": "brainFog",
+    "phase": "menstrual",
+    "prevalence": "fairly_common",
+    "percentage_string": "around 25%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.menstrual.acne",
+    "symptom": "acne",
+    "phase": "menstrual",
+    "prevalence": "fairly_common",
+    "percentage_string": "around 30%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.follicular.fatigue",
+    "symptom": "fatigue",
+    "phase": "follicular",
+    "prevalence": "less_common",
+    "percentage_string": "around 15%",
+    "note": "Fatigue is less typical in the follicular phase as oestrogen rises. If it is persistent, worth noting.",
+    "valence": null
+  },
+  {
+    "id": "insight.follicular.headache",
+    "symptom": "headache",
+    "phase": "follicular",
+    "prevalence": "less_common",
+    "percentage_string": "around 10%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.follicular.acne",
+    "symptom": "acne",
+    "phase": "follicular",
+    "prevalence": "fairly_common",
+    "percentage_string": "around 20%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.follicular.bloating",
+    "symptom": "bloating",
+    "phase": "follicular",
+    "prevalence": "less_common",
+    "percentage_string": "around 15%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.follicular.cramps",
+    "symptom": "cramps",
+    "phase": "follicular",
+    "prevalence": "rare",
+    "percentage_string": "around 5-10%",
+    "note": "Cramps outside your period are less typical. If this is consistent it is worth mentioning to a doctor.",
+    "valence": null
+  },
+  {
+    "id": "insight.follicular.highEnergy",
+    "symptom": "highEnergy",
+    "phase": "follicular",
+    "prevalence": "common",
+    "percentage_string": "around 55%",
+    "note": "Many people notice a natural energy lift during the follicular phase.",
+    "valence": null
+  },
+  {
+    "id": "insight.follicular.brainFog",
+    "symptom": "brainFog",
+    "phase": "follicular",
+    "prevalence": "less_common",
+    "percentage_string": "around 10%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.ovulatory.mittelschmerz",
+    "symptom": "mittelschmerz",
+    "phase": "ovulatory",
+    "prevalence": "common",
+    "percentage_string": "around 40%",
+    "note": "A brief one-sided ache or twinge around ovulation is very common and harmless.",
+    "valence": null
+  },
+  {
+    "id": "insight.ovulatory.dischargeChanges",
+    "symptom": "dischargeChanges",
+    "phase": "ovulatory",
+    "prevalence": "very_common",
+    "percentage_string": "around 70%",
+    "note": "Discharge changes around ovulation are a normal hormonal signal.",
+    "valence": null
+  },
+  {
+    "id": "insight.ovulatory.bloating",
+    "symptom": "bloating",
+    "phase": "ovulatory",
+    "prevalence": "fairly_common",
+    "percentage_string": "around 25%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.ovulatory.headache",
+    "symptom": "headache",
+    "phase": "ovulatory",
+    "prevalence": "fairly_common",
+    "percentage_string": "around 20%",
+    "note": "The oestrogen peak before ovulation can trigger headaches in some people.",
+    "valence": null
+  },
+  {
+    "id": "insight.ovulatory.breastTenderness",
+    "symptom": "breastTenderness",
+    "phase": "ovulatory",
+    "prevalence": "fairly_common",
+    "percentage_string": "around 30%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.ovulatory.highEnergy",
+    "symptom": "highEnergy",
+    "phase": "ovulatory",
+    "prevalence": "very_common",
+    "percentage_string": "around 60%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.luteal.breastTenderness",
+    "symptom": "breastTenderness",
+    "phase": "luteal",
+    "prevalence": "very_common",
+    "percentage_string": "around 60%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.luteal.bloating",
+    "symptom": "bloating",
+    "phase": "luteal",
+    "prevalence": "very_common",
+    "percentage_string": "around 65%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.luteal.foodCravings",
+    "symptom": "foodCravings",
+    "phase": "luteal",
+    "prevalence": "very_common",
+    "percentage_string": "around 60%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.luteal.fatigue",
+    "symptom": "fatigue",
+    "phase": "luteal",
+    "prevalence": "common",
+    "percentage_string": "around 45%",
+    "note": "Energy often dips in the late luteal phase as progesterone peaks.",
+    "valence": null
+  },
+  {
+    "id": "insight.luteal.insomnia",
+    "symptom": "insomnia",
+    "phase": "luteal",
+    "prevalence": "common",
+    "percentage_string": "around 35%",
+    "note": "Progesterone fluctuations can affect sleep quality.",
+    "valence": null
+  },
+  {
+    "id": "insight.luteal.brainFog",
+    "symptom": "brainFog",
+    "phase": "luteal",
+    "prevalence": "common",
+    "percentage_string": "around 40%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.luteal.acne",
+    "symptom": "acne",
+    "phase": "luteal",
+    "prevalence": "common",
+    "percentage_string": "around 45%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.luteal.headache",
+    "symptom": "headache",
+    "phase": "luteal",
+    "prevalence": "common",
+    "percentage_string": "around 35%",
+    "note": "Pre-menstrual headaches caused by the oestrogen drop before your period are very common.",
+    "valence": null
+  },
+  {
+    "id": "insight.luteal.cramps",
+    "symptom": "cramps",
+    "phase": "luteal",
+    "prevalence": "fairly_common",
+    "percentage_string": "around 20%",
+    "note": "Some cramping in the late luteal phase is common as the uterus prepares.",
+    "valence": null
+  },
+  {
+    "id": "insight.luteal.appetiteChanges",
+    "symptom": "appetiteChanges",
+    "phase": "luteal",
+    "prevalence": "common",
+    "percentage_string": "around 50%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.luteal.backPain",
+    "symptom": "backPain",
+    "phase": "luteal",
+    "prevalence": "fairly_common",
+    "percentage_string": "around 25%",
+    "note": null,
+    "valence": null
+  },
+  {
+    "id": "insight.mood.luteal.negative",
+    "symptom": "mood",
+    "phase": "luteal",
+    "prevalence": "very_common",
+    "percentage_string": "around 75%",
+    "note": "Mood changes in the luteal phase are one of the most reported cycle experiences.",
+    "valence": "negative"
+  },
+  {
+    "id": "insight.mood.menstrual.negative",
+    "symptom": "mood",
+    "phase": "menstrual",
+    "prevalence": "common",
+    "percentage_string": "around 50%",
+    "note": null,
+    "valence": "negative"
+  },
+  {
+    "id": "insight.mood.follicular.positive",
+    "symptom": "mood",
+    "phase": "follicular",
+    "prevalence": "common",
+    "percentage_string": "around 55%",
+    "note": "Rising oestrogen in this phase often lifts mood and energy.",
+    "valence": "positive"
+  },
+  {
+    "id": "insight.mood.ovulatory.positive",
+    "symptom": "mood",
+    "phase": "ovulatory",
+    "prevalence": "common",
+    "percentage_string": "around 55%",
+    "note": "Rising oestrogen in this phase often lifts mood and energy.",
+    "valence": "positive"
+  }
+]

@@ -64,6 +64,11 @@ struct CycleCalendarView: View {
             }
             .frame(height: gridHeight)
             .padding(.bottom, 14)
+            if !forecasts.isEmpty {
+                calendarDisclaimer
+                    .padding(.horizontal, horizontalPad)
+                    .padding(.bottom, 14)
+            }
         }
         .frame(maxWidth: .infinity)
         .background(AppTheme.Colors.secondaryBackground)
@@ -432,6 +437,19 @@ struct CycleCalendarView: View {
         let f = DateFormatter()
         f.dateFormat = "MMM"
         return f.string(from: date)
+    }
+
+    // MARK: - Disclaimer
+
+    private var calendarDisclaimer: some View {
+        Text("The fertile window shown is an estimate for cycle awareness only. Clio Daye is not a contraceptive method.")
+            .font(.system(.caption2, design: .rounded))
+            .foregroundColor(AppTheme.Colors.mediumGrayText)
+            .fixedSize(horizontal: false, vertical: true)
+            .padding(10)
+            .background(AppTheme.Colors.background.opacity(0.6))
+            .cornerRadius(8)
+            .accessibilityElement(children: .combine)
     }
 }
 

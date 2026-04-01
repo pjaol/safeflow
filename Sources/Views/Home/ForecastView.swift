@@ -79,6 +79,11 @@ struct ForecastView: View {
                 .frame(height: gridHeight)
                 .padding(.bottom, 14)
             }
+            if !forecasts.isEmpty {
+                forecastDisclaimer
+                    .padding(.horizontal, horizontalPad)
+                    .padding(.bottom, 14)
+            }
         }
         .frame(maxWidth: .infinity)
         .background(AppTheme.Colors.secondaryBackground)
@@ -398,6 +403,25 @@ struct ForecastView: View {
             .font(AppTheme.Typography.captionFont)
             .foregroundColor(AppTheme.Colors.mediumGrayText)
             .padding()
+    }
+
+    // MARK: - Disclaimer
+
+    private var forecastDisclaimer: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text("The fertile window shown is an estimate for cycle awareness only. Clio Daye is not a contraceptive method and cannot predict fertility with certainty.")
+                .font(.system(.caption2, design: .rounded))
+                .foregroundColor(AppTheme.Colors.mediumGrayText)
+                .fixedSize(horizontal: false, vertical: true)
+            Text("Predictions assume a typical 14-day luteal phase. Your experience may vary.")
+                .font(.system(.caption2, design: .rounded))
+                .foregroundColor(AppTheme.Colors.mediumGrayText)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .padding(10)
+        .background(AppTheme.Colors.background.opacity(0.6))
+        .cornerRadius(8)
+        .accessibilityElement(children: .combine)
     }
 }
 

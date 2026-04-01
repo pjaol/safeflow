@@ -306,7 +306,7 @@ struct MoodValenceDistribution {
     }
 }
 
-enum MoodValence {
+enum MoodValence: String {
     case positive, neutral, negative
 }
 

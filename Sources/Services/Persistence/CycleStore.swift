@@ -184,20 +184,60 @@ class CycleStore: ObservableObject {
     // MARK: - Symptom Pattern Insights
 
     /// Returns today's rotating insight based on personal symptom/mood patterns
-    /// and population context. Returns nil when there isn't enough data yet.
+    /// and population context from the content pipeline.
+    /// Returns nil when there isn't enough data yet.
     func todayInsight() -> SymptomInsight? {
         let dayIndex = Calendar.current.ordinality(of: .day, in: .year, for: dateProvider()) ?? 1
         let phase = currentPhase()
-        let all = symptomEngine.insights(
-            cycleDays: cycleDays,
-            seedData: seedData,
-            predictionEngine: engine,
-            today: dateProvider(),
-            currentPhase: phase,
-            dayIndex: dayIndex
-        )
-        guard !all.isEmpty else { return nil }
-        return all[dayIndex % all.count]
+        let evaluator = ContentEvaluator(store: self)
+
+        // Build insights using personal pattern engine but population norms from content pipeline
+        var results: [SymptomInsight] = []
+        for p in CyclePhase.allCases {
+            let top = symptomEngine.topSymptoms(
+                phase: p,
+                cycleDays: cycleDays,
+                seedData: seedData,
+                predictionEngine: engine,
+                today: dateProvider()
+            )
+            for (symptom, freq) in top {
+                let norm = evaluator.populationNorm(symptom: symptom, phase: p)
+                results.append(SymptomInsight(
+                    symptom: symptom,
+                    phase: p,
+                    personalFrequency: freq,
+                    populationNorm: norm,
+                    kind: .personalPattern
+                ))
+            }
+            if let valence = symptomEngine.moodValence(
+                phase: p,
+                cycleDays: cycleDays,
+                seedData: seedData,
+                predictionEngine: engine,
+                today: dateProvider()
+            ) {
+                let norm = evaluator.moodNorm(phase: p, valence: valence.dominant.valence)
+                results.append(SymptomInsight(
+                    symptom: nil,
+                    phase: p,
+                    personalFrequency: valence.dominant.frequency,
+                    populationNorm: norm,
+                    kind: .moodPattern(valence: valence.dominant.valence)
+                ))
+            }
+        }
+
+        // Prioritise current phase first, then by personal frequency
+        let prioritised = results.sorted {
+            if $0.phase == phase && $1.phase != phase { return true }
+            if $1.phase == phase && $0.phase != phase { return false }
+            return $0.personalFrequency > $1.personalFrequency
+        }
+
+        guard !prioritised.isEmpty else { return nil }
+        return prioritised[dayIndex % prioritised.count]
     }
 
     /// Returns any active severity signals (escalating symptoms, phase-inconsistent patterns).

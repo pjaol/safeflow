@@ -13,13 +13,13 @@ enum ContentLoader {
     static let nudges:    [ContentNudge]    = load("nudges")
     static let signals:   [ContentSignal]   = load("signals")
     static let resources: [ContentResource] = load("resources")
+    static let insights:  [ContentInsight]  = load("insights")
 
     // MARK: - Private loader
 
     private static func load<T: Decodable>(_ name: String) -> [T] {
-        guard let url = Bundle.main.url(forResource: name, withExtension: "json",
-                                        subdirectory: "Content") else {
-            logger.error("ContentLoader: missing bundle resource Content/\(name).json")
+        guard let url = Bundle.main.url(forResource: name, withExtension: "json") else {
+            logger.error("ContentLoader: missing bundle resource \(name).json")
             return []
         }
         do {

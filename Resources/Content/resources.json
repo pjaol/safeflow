@@ -38,7 +38,7 @@
     "category": "ob_gyn",
     "name": "ACOG — PCOS",
     "short_description": "Patient FAQ on polycystic ovary syndrome — symptoms, diagnosis, and management.",
-    "url": "https://www.acog.org/womens-health/faqs/polycystic-ovary-syndrome",
+    "url": "https://www.acog.org/womens-health/faqs/polycystic-ovary-syndrome-pcos",
     "phone": null,
     "region": "US",
     "languages": [
@@ -71,7 +71,7 @@
     "category": "pmdd",
     "name": "IAPMD — Crisis Support",
     "short_description": "IAPMD crisis support resources for people experiencing severe PMDD symptoms.",
-    "url": "https://iapmd.org/crisis-support",
+    "url": "https://www.iapmd.org/support",
     "phone": null,
     "region": "global",
     "languages": [
@@ -237,7 +237,7 @@
     "category": "gp",
     "name": "MedlinePlus — PMDD",
     "short_description": "NIH plain-language information on premenstrual dysphoric disorder.",
-    "url": "https://medlineplus.gov/premenstrualdysphoricdisorder.html",
+    "url": "https://medlineplus.gov/ency/article/007193.htm",
     "phone": null,
     "region": "US",
     "languages": [
@@ -364,6 +364,122 @@
     "tags": [
       "mental_health",
       "mood"
+    ]
+  },
+  {
+    "id": "resource.planned_parenthood",
+    "category": "reproductive_health",
+    "name": "Planned Parenthood",
+    "short_description": "US reproductive health organisation providing health care, education, and advocacy.",
+    "url": "https://www.plannedparenthood.org",
+    "phone": "1-800-230-7526",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "reproductive_rights",
+      "general"
+    ]
+  },
+  {
+    "id": "resource.abortion_finder",
+    "category": "reproductive_health",
+    "name": "Abortion Finder",
+    "short_description": "US directory of verified abortion providers by location.",
+    "url": "https://www.abortionfinder.org",
+    "phone": null,
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "reproductive_rights"
+    ]
+  },
+  {
+    "id": "resource.usfibroid",
+    "category": "ob_gyn",
+    "name": "US Fibroid Foundation",
+    "short_description": "US patient education and advocacy for uterine fibroids — the leading cause of heavy periods.",
+    "url": "https://www.fibroidfoundation.org",
+    "phone": null,
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "heavy_flow",
+      "fibroids"
+    ]
+  },
+  {
+    "id": "resource.btf",
+    "category": "gp",
+    "name": "British Thyroid Foundation",
+    "short_description": "UK patient charity for thyroid and related hormone conditions.",
+    "url": "https://www.btf-thyroid.org",
+    "phone": null,
+    "region": "UK",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "thyroid",
+      "irregular"
+    ]
+  },
+  {
+    "id": "resource.ata",
+    "category": "gp",
+    "name": "American Thyroid Association",
+    "short_description": "US patient information on thyroid conditions and their effect on the body.",
+    "url": "https://www.thyroid.org",
+    "phone": null,
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "thyroid",
+      "irregular"
+    ]
+  },
+  {
+    "id": "resource.jean_hailes",
+    "category": "ob_gyn",
+    "name": "Jean Hailes for Women's Health",
+    "short_description": "Australian women's health organisation providing information on menstrual health, hormones, and menopause.",
+    "url": "https://www.jeanhailes.org.au",
+    "phone": null,
+    "region": "AU",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "general",
+      "irregular",
+      "cramps"
+    ]
+  },
+  {
+    "id": "resource.sogc",
+    "category": "ob_gyn",
+    "name": "SOGC — Women's Health",
+    "short_description": "Society of Obstetricians and Gynaecologists of Canada — patient information on menstrual health, PCOS, endometriosis, and gynaecological conditions.",
+    "url": "https://www.sogc.org/en/patients",
+    "phone": null,
+    "region": "CA",
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "tags": [
+      "general",
+      "irregular",
+      "cramps",
+      "endometriosis",
+      "pcos"
     ]
   }
 ]

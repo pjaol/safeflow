@@ -46,6 +46,45 @@ struct ContentEvaluator {
         )
     }
 
+    // MARK: - Insights
+
+    /// Returns population-level norm for a symptom × phase combination from the content pipeline.
+    /// Falls back to a generic "common" norm if the JSON table doesn't have an entry.
+    func populationNorm(symptom: Symptom, phase: CyclePhase) -> PopulationNorm {
+        let row = ContentLoader.insights.first {
+            $0.symptom == symptom.rawValue && $0.phase == phase.rawValue
+        }
+        return row.map { ContentEvaluator.norm(from: $0) }
+            ?? PopulationNorm(prevalence: .common, percentageString: "varies", note: nil)
+    }
+
+    /// Returns population-level mood norm for a phase × valence from the content pipeline.
+    func moodNorm(phase: CyclePhase, valence: MoodValence) -> PopulationNorm {
+        let row = ContentLoader.insights.first {
+            $0.symptom == "mood"
+            && $0.phase == phase.rawValue
+            && $0.valence == valence.rawValue
+        }
+        return row.map { ContentEvaluator.norm(from: $0) }
+            ?? PopulationNorm(prevalence: .common, percentageString: "varies", note: nil)
+    }
+
+    private static func norm(from item: ContentInsight) -> PopulationNorm {
+        let prevalence: PopulationNorm.Prevalence
+        switch item.prevalence {
+        case "very_common":    prevalence = .veryCommon
+        case "fairly_common":  prevalence = .fairlyCommon
+        case "less_common":    prevalence = .lessCommon
+        case "rare":           prevalence = .rare
+        default:               prevalence = .common
+        }
+        return PopulationNorm(
+            prevalence: prevalence,
+            percentageString: item.percentageString,
+            note: item.note
+        )
+    }
+
     // MARK: - Tips
 
     /// Returns the tip to show today, rotating daily within eligible tips for the current phase.
@@ -120,6 +159,15 @@ struct ContentEvaluator {
         guard let min = nudge.cycleCountMin else { return false }
         guard completedCycles >= min else { return false }
 
+        // Named check type — delegates to a dedicated method (same pattern as signals)
+        if let checkType = nudge.checkType {
+            switch checkType {
+            case "cycle_overdue":          return isCycleOverdue()
+            case "increasing_variability": return isVariabilityIncreasing()
+            default: return false
+            }
+        }
+
         // Health pattern triggers
         if let max = nudge.avgCycleMax, let avg = avgCycleLength {
             guard avg < max else { return false }
@@ -159,6 +207,10 @@ struct ContentEvaluator {
             return hasCrampsInFollicular()
         case "severe_cluster":
             return hasSevereSymptomCluster()
+        case "cycle_overdue":
+            return isCycleOverdue()
+        case "pmdd_pattern":
+            return hasPmddPattern()
         default:
             return false
         }
@@ -236,6 +288,68 @@ struct ContentEvaluator {
             if periodSymptoms.intersection(severeSym).count >= 3 { severeCount += 1 }
         }
         return severeCount >= 3
+    }
+
+    /// Fires when the standard deviation of the most recent 3 cycle lengths
+    /// is at least 50% larger than the standard deviation of the prior 3,
+    /// indicating a trend toward increasing irregularity (perimenopause pattern).
+    private func isVariabilityIncreasing() -> Bool {
+        let lengths = engine.cycleLengths(from: periodStarts)
+        guard lengths.count >= 6 else { return false }
+        let older = Array(lengths.dropLast(3))
+        let recent = Array(lengths.suffix(3))
+        let stdDev: ([Int]) -> Double = { vals in
+            let mean = Double(vals.reduce(0, +)) / Double(vals.count)
+            let variance = vals.map { pow(Double($0) - mean, 2) }.reduce(0, +) / Double(vals.count)
+            return sqrt(variance)
+        }
+        let olderSD = stdDev(older)
+        let recentSD = stdDev(recent)
+        guard olderSD > 0 else { return recentSD > 3 }
+        return recentSD >= olderSD * 1.5
+    }
+
+    /// Fires when today is 7+ days past the latest predicted period date,
+    /// and the user has at least 2 complete cycles of prior data.
+    private func isCycleOverdue() -> Bool {
+        guard completedCycles >= 2 else { return false }
+        let days = store.getAllDays()
+        let seedData = store.seedData
+        guard let nextRange = engine.predictNextPeriodRange(days: days, seedData: seedData, today: Date()) else {
+            return false
+        }
+        let daysOverdue = calendar.dateComponents([.day], from: nextRange.latest, to: Date()).day ?? 0
+        return daysOverdue >= 7
+    }
+
+    /// Fires when 3+ consecutive cycles include 3+ negative mood states (anxious, irritable, sad, sensitive)
+    /// logged on days 20–28 of the cycle (late luteal window).
+    private func hasPmddPattern() -> Bool {
+        guard completedCycles >= 3 else { return false }
+        let days = store.getAllDays()
+        let negativeMoods: Set<Mood> = [.anxious, .irritable, .sad, .sensitive]
+        let recentStarts = Array(periodStarts.suffix(4))  // 3 complete cycles need 4 start dates
+        guard recentStarts.count >= 4 else { return false }
+
+        var matchingCycles = 0
+        for i in 0..<3 {
+            let cycleStart = recentStarts[i]
+            let cycleEnd   = recentStarts[i + 1]
+            let avgLen = avgCycleLength ?? 28
+            // Late luteal = days 20..28 from cycle start
+            guard let lutealStart = calendar.date(byAdding: .day, value: 19, to: cycleStart),
+                  let lutealEnd   = calendar.date(byAdding: .day, value: min(27, avgLen - 1), to: cycleStart)
+            else { continue }
+
+            let lateLutealDays = days.filter {
+                $0.date >= lutealStart && $0.date <= lutealEnd && $0.date < cycleEnd
+            }
+            let moodsLogged = Set(lateLutealDays.compactMap(\.mood))
+            if moodsLogged.intersection(negativeMoods).count >= 3 {
+                matchingCycles += 1
+            }
+        }
+        return matchingCycles >= 3
     }
 
     private func hasLongPeriods(minDays: Int) -> Bool {

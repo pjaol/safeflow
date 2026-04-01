@@ -97,7 +97,7 @@ struct InsightCard: View {
             }
             .frame(height: 6)
 
-            Text(insight.populationNorm.prevalenceLabel.capitalized + " in people who track their cycles")
+            Text(insight.populationNorm.solidarityLabel)
                 .font(.system(.caption2, design: .rounded))
                 .foregroundColor(AppTheme.Colors.mediumGrayText)
         }
@@ -213,6 +213,20 @@ private extension PopulationNorm {
         case .fairlyCommon: return 0.40
         case .lessCommon:   return 0.20
         case .rare:         return 0.08
+        }
+    }
+
+    /// Solidarity-framed label for the population bar.
+    /// Low prevalence renders as "a recognised experience, though less common" to avoid
+    /// implying the user's experience is unusual or not worth acting on (REQ-001 R3).
+    var solidarityLabel: String {
+        switch prevalence {
+        case .veryCommon, .common:
+            return prevalenceLabel.capitalized + " in people who track their cycles"
+        case .fairlyCommon:
+            return "A fairly common experience in people who track their cycles"
+        case .lessCommon, .rare:
+            return "A recognised experience, though less common"
         }
     }
 }

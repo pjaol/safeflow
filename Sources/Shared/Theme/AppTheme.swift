@@ -11,13 +11,11 @@ enum AppTheme {
         static let deepGrayText = Color(hex: "333333")
         static let mediumGrayText = Color(hex: "666666")
         
-        // New colors matching the concept
-        static let backgroundBlue = Color(hex: "E4F6FD") // Lighter blue for backgrounds
+        // Adaptive system background — warm near-white in light mode, proper dark in dark mode
         static let accentBlue = Color(hex: "7FCEF5")    // Brighter blue for accents
-        
-        // System colors with our theme
-        static let background = backgroundBlue
-        static let secondaryBackground = Color.white
+
+        static let background = Color(UIColor.systemGroupedBackground)
+        static let secondaryBackground = Color(UIColor.secondarySystemGroupedBackground)
 
         // Dartboard — four clearly distinct saturated colors, legible on light bg
         // Chosen for maximum hue separation: red / blue / violet / green
@@ -29,17 +27,38 @@ enum AppTheme {
         // Forecast grid — semantically named, independent of phase colors
         static let forecastPeriod  = Color(hex: "E8707A")  // warm coral
         static let forecastFertile = Color(hex: "3DB8C5")  // saturated teal
-        static let forecastMood    = Color(hex: "F5A623")  // amber
+        static let forecastMood    = Color(hex: "B45309")  // deep amber — WCAG AA on all app backgrounds
         static let forecastSymptom = Color(hex: "9B6FD4")  // muted purple
+
+        /// Accessible amber — replaces all previous #E6A817 / #F5A623 uses.
+        /// Contrast: 5.02:1 on white, 4.52:1 on app blue, 4.51:1 on pale yellow nudge bg.
+        static let amber = Color(hex: "B45309")
+
+        // Ring colours — saturated, legible on white card background at small stroke widths
+        static let ringMenstrual  = Color(hex: "E8707A")  // warm coral
+        static let ringFollicular = Color(hex: "3DB8C5")  // saturated teal
+        static let ringOvulatory  = Color(hex: "2E86C1")  // deep sky blue
+        static let ringLuteal     = Color(hex: "9B6FD4")  // muted purple
 
         /// Resolves a `CyclePhase.themeColorName` string to the matching Color.
         static func forPhase(_ colorName: String) -> Color {
             switch colorName {
             case "secondaryPink": return secondaryPink
-            case "primaryBlue":  return primaryBlue
-            case "accentBlue":   return accentBlue
-            case "paleYellow":   return paleYellow
-            default:             return primaryBlue
+            case "primaryBlue":   return primaryBlue
+            case "accentBlue":    return accentBlue
+            case "paleYellow":    return amber  // paleYellow is too light for icons/text; use accessible amber
+            default:              return primaryBlue
+            }
+        }
+
+        /// Saturated ring colour for the cycle arc — distinct per phase, legible on white.
+        static func ringColor(for colorName: String) -> Color {
+            switch colorName {
+            case "secondaryPink": return ringMenstrual
+            case "primaryBlue":   return ringFollicular
+            case "accentBlue":    return ringOvulatory
+            case "paleYellow":    return ringLuteal
+            default:              return ringFollicular
             }
         }
     }

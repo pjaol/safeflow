@@ -2,7 +2,7 @@
   {
     "id": "signal.crampsEscalating",
     "title": "Your cramp days are increasing",
-    "body": "Period pain that gets worse cycle over cycle is worth mentioning to a doctor. It can have treatable causes including endometriosis.",
+    "body": "Period pain that gets worse cycle over cycle is worth mentioning to a doctor. It can have several treatable causes.",
     "sf_symbol": "chart.line.uptrend.xyaxis",
     "priority": "high",
     "cycle_count_min": 3,
@@ -13,7 +13,7 @@
   {
     "id": "signal.heavyFlow",
     "title": "You have been logging heavy flow",
-    "body": "Consistently heavy periods are common but worth discussing with a doctor — especially if you are soaking through protection quickly or feeling unusually fatigued.",
+    "body": "Consistently heavy periods are worth discussing with a doctor — especially if you are soaking through a pad or tampon within an hour, on multiple consecutive hours, or feeling unusually fatigued.",
     "sf_symbol": "drop.triangle.fill",
     "priority": "high",
     "cycle_count_min": 3,
@@ -24,11 +24,22 @@
   {
     "id": "signal.crampsFollicular",
     "title": "Cramps outside your period",
-    "body": "You often log cramps during your follicular phase not just your period. This is less typical and worth mentioning to a doctor — there are several possible causes.",
+    "body": "Cramps outside your period can have several causes. It's worth mentioning to a doctor who can help investigate.",
     "sf_symbol": "waveform.path.ecg",
     "priority": "medium",
     "cycle_count_min": 3,
     "check_type": "cramps_follicular",
+    "threshold_value": null,
+    "source": null
+  },
+  {
+    "id": "signal.pmddPattern",
+    "title": "A pattern worth discussing with your doctor",
+    "body": "You've been logging significant mood symptoms in the days before your period across several cycles. If this pattern significantly affects your daily life, your doctor can help — there are recognised approaches that can make a real difference. The IAPMD has specialist support.",
+    "sf_symbol": "waveform.path.ecg",
+    "priority": "high",
+    "cycle_count_min": 3,
+    "check_type": "pmdd_pattern",
     "threshold_value": null,
     "source": null
   },

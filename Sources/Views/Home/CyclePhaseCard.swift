@@ -77,12 +77,7 @@ struct CyclePhaseCard: View {
 
     /// Returns a color with enough saturation/contrast to be visible on the card background.
     private func phaseIndicatorColor(_ phase: CyclePhase) -> Color {
-        switch phase {
-        case .luteal:    return Color(hex: "E6A817") // warm amber — paleYellow is too light
-        case .menstrual: return AppTheme.Colors.secondaryPink
-        case .follicular: return AppTheme.Colors.primaryBlue
-        case .ovulatory: return AppTheme.Colors.accentBlue
-        }
+        AppTheme.Colors.forPhase(phase.themeColorName)
     }
 
     private var predictionRow: some View {

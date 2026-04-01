@@ -45,6 +45,7 @@ struct ContentNudge: Codable, Identifiable {
     let symptomsAny: [String]
     let symptomsAll: [String]
     let dismissible: Bool
+    let checkType: String?      // optional named check, e.g. "cycle_overdue"
 
     enum CodingKeys: String, CodingKey {
         case id, type, title, body
@@ -58,6 +59,7 @@ struct ContentNudge: Codable, Identifiable {
         case symptomsAny     = "symptoms_any"
         case symptomsAll     = "symptoms_all"
         case dismissible
+        case checkType       = "check_type"
     }
 }
 
@@ -81,6 +83,27 @@ struct ContentSignal: Codable, Identifiable {
         case cycleCountMin = "cycle_count_min"
         case checkType     = "check_type"
         case source
+    }
+}
+
+// MARK: - Population Norm (for InsightCard)
+
+/// Population-level prevalence data for a symptom × phase combination.
+/// Loaded from Resources/Content/insights.json.
+struct ContentInsight: Codable, Identifiable {
+    let id: String
+    let symptom: String         // Symptom rawValue, or "mood" for mood norms
+    let phase: String           // menstrual | follicular | ovulatory | luteal
+    let prevalence: String      // very_common | common | fairly_common | less_common | rare
+    let percentageString: String // e.g. "around 70%"
+    let note: String?           // optional clinical context
+    // Mood-specific fields (only set when symptom == "mood")
+    let valence: String?        // positive | negative | neutral
+
+    enum CodingKeys: String, CodingKey {
+        case id, symptom, phase, prevalence
+        case percentageString = "percentage_string"
+        case note, valence
     }
 }
 

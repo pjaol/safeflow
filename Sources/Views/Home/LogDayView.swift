@@ -154,7 +154,7 @@ struct LogDayView: View {
 
     private var moodSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            sectionHeader("Mood", systemImage: "face.smiling", color: AppTheme.Colors.paleYellow)
+            sectionHeader("How are you feeling?", systemImage: "circle.grid.2x2.fill", color: AppTheme.Colors.amber)
 
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 4), spacing: 8) {
                 ForEach(Mood.allCases, id: \.self) { mood in
@@ -317,11 +317,11 @@ struct MoodCell: View {
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 10)
-            .background(isSelected ? AppTheme.Colors.paleYellow : AppTheme.Colors.paleYellow.opacity(0.2))
+            .background(isSelected ? AppTheme.Colors.amber.opacity(0.15) : AppTheme.Colors.amber.opacity(0.07))
             .cornerRadius(AppTheme.Metrics.cornerRadius)
             .overlay(
                 RoundedRectangle(cornerRadius: AppTheme.Metrics.cornerRadius)
-                    .strokeBorder(isSelected ? AppTheme.Colors.paleYellow : Color.clear, lineWidth: 2)
+                    .strokeBorder(isSelected ? AppTheme.Colors.amber : Color.clear, lineWidth: 2)
             )
         }
     }

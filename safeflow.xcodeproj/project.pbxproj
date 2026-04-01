@@ -18,6 +18,7 @@
 		AD98F4C4C596FA35562B2178 /* signals.json in Resources */ = {isa = PBXBuildFile; fileRef = 2CECA96FDA217ECAD0E3B085 /* signals.json */; };
 		B78D7DC838B549AAB7F3D5D9 /* InsightCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2E1432FC934814B484C260 /* InsightCard.swift */; };
 		BB11223344556677889900BB /* CyclePhaseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11223344556677889900AA /* CyclePhaseCard.swift */; };
+		CC99887766554433221100FF /* CycleRingSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC99887766554433221100EE /* CycleRingSummaryCard.swift */; };
 		BB11223344556677889900DD /* QuickLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11223344556677889900CC /* QuickLogView.swift */; };
 		BDD6ADD80D7817503073B907 /* ContentEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D569DC92C1BD5063934679 /* ContentEvaluator.swift */; };
 		C2CA3BB5227E61250FAE54DD /* symptom_rich_cycles.csv in Resources */ = {isa = PBXBuildFile; fileRef = EE453D4CD80C0EF166203A9C /* symptom_rich_cycles.csv */; };
@@ -79,6 +80,7 @@
 		CDBECD5F2D4010D2006A37C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBECD5E2D4010D2006A37C9 /* Assets.xcassets */; };
 		CDBECD632D4010D2006A37C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBECD622D4010D2006A37C9 /* Preview Assets.xcassets */; };
 		CDBECD6D2D4010D2006A37C9 /* safeflowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */; };
+		D9E1983807F2E1A042E2EDD4 /* GetSupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504469625D50C14C530203D9 /* GetSupportView.swift */; };
 		DD11223344556677889900AA /* DartboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11223344556677889900BB /* DartboardViewModel.swift */; };
 		DD11223344556677889900CC /* DartboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11223344556677889900DD /* DartboardView.swift */; };
 		DD11223344556677889900EE /* CategoryStripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11223344556677889900FF /* CategoryStripView.swift */; };
@@ -87,6 +89,7 @@
 		EE2A3B4C5D6E7F8A9B0C1D2F /* PhaseTipCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2A3B4C5D6E7F8A9B0C1D2E /* PhaseTipCard.swift */; };
 		EE3A4B5C6D7E8F9A0B1C2D3F /* PatternNudgeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A4B5C6D7E8F9A0B1C2D3E /* PatternNudgeCard.swift */; };
 		F72F6ADD51E8B5767A8BDA43 /* ContentLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB83B32D169194F44D093628 /* ContentLoader.swift */; };
+		FCEAA915176D4CFB4AF1D69A /* insights.json in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B26003B5E409A8EAB915 /* insights.json */; };
 		FF33445566778899AABBCCAA /* WeekRibbonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33445566778899AABBCCBB /* WeekRibbonView.swift */; };
 /* End PBXBuildFile section */
 
@@ -113,10 +116,12 @@
 		2716100D868C3095A2A7F8B6 /* tips.json */ = {isa = PBXFileReference; includeInIndex = 1; path = tips.json; sourceTree = "<group>"; };
 		2CECA96FDA217ECAD0E3B085 /* signals.json */ = {isa = PBXFileReference; includeInIndex = 1; path = signals.json; sourceTree = "<group>"; };
 		3E954215BF114795B8EDFF2F /* SymptomPatternEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomPatternEngine.swift; sourceTree = "<group>"; };
+		504469625D50C14C530203D9 /* GetSupportView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GetSupportView.swift; sourceTree = "<group>"; };
 		AA11223344556677889900AA /* CyclePhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePhase.swift; sourceTree = "<group>"; };
 		AA11223344556677889900CC /* CycleSeedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleSeedData.swift; sourceTree = "<group>"; };
 		AA11223344556677889900EE /* CyclePredictionEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePredictionEngine.swift; sourceTree = "<group>"; };
 		BB11223344556677889900AA /* CyclePhaseCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePhaseCard.swift; sourceTree = "<group>"; };
+		CC99887766554433221100EE /* CycleRingSummaryCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleRingSummaryCard.swift; sourceTree = "<group>"; };
 		BB11223344556677889900CC /* QuickLogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickLogView.swift; sourceTree = "<group>"; };
 		C2D569DC92C1BD5063934679 /* ContentEvaluator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContentEvaluator.swift; sourceTree = "<group>"; };
 		C857E6F10A3503075969CDDF /* nudges.json */ = {isa = PBXFileReference; includeInIndex = 1; path = nudges.json; sourceTree = "<group>"; };
@@ -167,6 +172,7 @@
 		DD11223344556677889900DD /* DartboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DartboardView.swift; sourceTree = "<group>"; };
 		DD11223344556677889900FF /* CategoryStripView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryStripView.swift; sourceTree = "<group>"; };
 		DD22334455667788990011BB /* FlowCenterIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowCenterIndicator.swift; sourceTree = "<group>"; };
+		DEB4B26003B5E409A8EAB915 /* insights.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = insights.json; sourceTree = "<group>"; };
 		EB83B32D169194F44D093628 /* ContentLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContentLoader.swift; sourceTree = "<group>"; };
 		EE1A2B3C4D5E6F7A8B9C0D1E /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		EE2A3B4C5D6E7F8A9B0C1D2E /* PhaseTipCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhaseTipCard.swift; sourceTree = "<group>"; };
@@ -201,10 +207,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		245670B015E1106199C3FA7C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				504469625D50C14C530203D9 /* GetSupportView.swift */,
+			);
+			name = Home;
+			path = Home;
+			sourceTree = "<group>";
+		};
 		30ECBB2634F45A34D210D2CC /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				4F5DFD5D83FC1944F6C780A1 /* Services */,
+				80F252B36BF6D4F356BF71F6 /* Views */,
 			);
 			name = Sources;
 			path = Sources;
@@ -246,9 +262,19 @@
 				24377BF94DDC1920ADC9131C /* resources.json */,
 				2CECA96FDA217ECAD0E3B085 /* signals.json */,
 				2716100D868C3095A2A7F8B6 /* tips.json */,
+				DEB4B26003B5E409A8EAB915 /* insights.json */,
 			);
 			name = Content;
 			path = Content;
+			sourceTree = "<group>";
+		};
+		80F252B36BF6D4F356BF71F6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				245670B015E1106199C3FA7C /* Home */,
+			);
+			name = Views;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CD218E552D4021EB009B5198 /* Utilities */ = {
@@ -327,6 +353,7 @@
 				CD218E5F2D4021EB009B5198 /* HomeView.swift */,
 				CD218E602D4021EB009B5198 /* LogDayView.swift */,
 				BB11223344556677889900AA /* CyclePhaseCard.swift */,
+				CC99887766554433221100EE /* CycleRingSummaryCard.swift */,
 				BB11223344556677889900CC /* QuickLogView.swift */,
 				CC55667788990011AABBCCEE /* PulseView.swift */,
 				DD11223344556677889900BB /* DartboardViewModel.swift */,
@@ -681,6 +708,7 @@
 				C36ABC27D2DEEF3058EDD7B7 /* resources.json in Resources */,
 				AD98F4C4C596FA35562B2178 /* signals.json in Resources */,
 				1E9B47B29E175F24C482F091 /* tips.json in Resources */,
+				FCEAA915176D4CFB4AF1D69A /* insights.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -750,6 +778,7 @@
 				AA11223344556677889900DD /* CycleSeedData.swift in Sources */,
 				AA11223344556677889900FF /* CyclePredictionEngine.swift in Sources */,
 				BB11223344556677889900BB /* CyclePhaseCard.swift in Sources */,
+				CC99887766554433221100FF /* CycleRingSummaryCard.swift in Sources */,
 				BB11223344556677889900DD /* QuickLogView.swift in Sources */,
 				CC55667788990011AABBCCFF /* PulseView.swift in Sources */,
 				DD11223344556677889900AA /* DartboardViewModel.swift in Sources */,
@@ -766,6 +795,7 @@
 				BDD6ADD80D7817503073B907 /* ContentEvaluator.swift in Sources */,
 				F72F6ADD51E8B5767A8BDA43 /* ContentLoader.swift in Sources */,
 				4258F31950009A771FFD2BAB /* ContentModels.swift in Sources */,
+				D9E1983807F2E1A042E2EDD4 /* GetSupportView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

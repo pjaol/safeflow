@@ -6,73 +6,70 @@ struct HomeView: View {
     @EnvironmentObject private var securityService: SecurityService
 
     @State private var showingSettingsSheet = false
+    @State private var showingSupportSheet = false
     @State private var dismissedNudgeIDs: Set<String> = DismissedNudges.load()
     @State private var dismissedSignalIDs: Set<String> = DismissedNudges.load()
     @State private var editLogsDate: Date? = nil
+    @State private var scrollToForecast = false
     #if DEBUG
     @State private var showingDebugMenu = false
     #endif
 
+    // Pre-compute active signals once so the body isn't calling @MainActor evaluator repeatedly
+    private var activeSignals: [SeveritySignal] {
+        cycleStore.severitySignals().filter { !dismissedSignalIDs.contains($0.id) }
+    }
+
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(spacing: AppTheme.Metrics.standardSpacing) {
+            ScrollViewReader { proxy in
+                ScrollView {
+                    VStack(spacing: AppTheme.Metrics.standardSpacing) {
 
-                    // 1. Log first — zero scroll required
-                    PulseView(cycleStore: cycleStore)
-                        .frame(minHeight: 360)
+                        // ── Zone 1: Log today ────────────────────────────────
+                        PulseView(cycleStore: cycleStore)
+                            .frame(minHeight: 360)
 
-                    // 2. Phase status
-                    CyclePhaseCard(
-                        phase: cycleStore.currentPhase(),
-                        cycleDay: cycleStore.currentCycleDayNumber(),
-                        predictionRange: cycleStore.predictNextPeriodRange(),
-                        averageCycleLength: cycleStore.calculateAverageCycleLength(),
-                        hasEnoughData: cycleStore.calculateAverageCycleLength() != nil
-                    )
-
-                    // 3. Edit historical logs
-                    EditLogsButton { editLogsDate = Date() }
-
-                    // 4–6. Conditional signal / nudge / insight cards
-                    ForEach(cycleStore.severitySignals()) { signal in
-                        if !dismissedSignalIDs.contains(signal.id) {
-                            SeveritySignalCard(signal: signal) {
-                                DismissedNudges.dismiss(signal.id)
+                        // ── Zone 2: Cycle ring summary (phase + alerts + insights + tips) ──
+                        CycleRingSummaryCard(
+                            cycleStore: cycleStore,
+                            phase: cycleStore.currentPhase(),
+                            cycleDay: cycleStore.currentCycleDayNumber(),
+                            predictionRange: cycleStore.predictNextPeriodRange(),
+                            averageCycleLength: cycleStore.calculateAverageCycleLength(),
+                            activeSignals: activeSignals,
+                            activeNudge: { () -> CycleNudge? in
+                                guard let nudge = cycleStore.currentNudge(),
+                                      !dismissedNudgeIDs.contains(nudge.id) else { return nil }
+                                return nudge
+                            }(),
+                            onDismissSignal: { id in
+                                DismissedNudges.dismiss(id)
                                 dismissedSignalIDs = DismissedNudges.load()
+                            },
+                            onDismissNudge: {
+                                if let nudge = cycleStore.currentNudge() {
+                                    DismissedNudges.dismiss(nudge.id)
+                                    dismissedNudgeIDs = DismissedNudges.load()
+                                }
                             }
-                        }
+                        )
+
+                        // ── Zone 6: Data views ───────────────────────────────
+                        ForecastView(cycleStore: cycleStore)
+                            .id("forecast")
+
+                        CycleCalendarView(cycleStore: cycleStore)
+                            .id("history")
                     }
-
-                    if let nudge = cycleStore.currentNudge() {
-                        if !dismissedNudgeIDs.contains(nudge.id) {
-                            PatternNudgeCard(nudge: nudge) {
-                                DismissedNudges.dismiss(nudge.id)
-                                dismissedNudgeIDs = DismissedNudges.load()
-                            }
-                        }
-                    }
-
-                    if let insight = cycleStore.todayInsight() {
-                        InsightCard(insight: insight)
-                    }
-
-                    // 7. Phase tip — sourced from content pipeline
-                    if let phase = cycleStore.currentPhase() {
-                        let tip = ContentEvaluator(store: cycleStore).dailyTip()
-                        PhaseTipCard(phase: phase, contentTip: tip)
-                    }
-
-                    // 8. Forecast
-                    ForecastView(cycleStore: cycleStore)
-
-                    // 9. History heat map
-                    CycleCalendarView(cycleStore: cycleStore)
+                    .padding()
                 }
-                .padding()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(AppTheme.Colors.background)
+                .onChange(of: scrollToForecast) { _, _ in
+                    withAnimation { proxy.scrollTo("forecast", anchor: .top) }
+                }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(AppTheme.Colors.background)
             .navigationTitle("Clio Daye")
             .toolbar {
                 #if DEBUG
@@ -96,12 +93,50 @@ struct HomeView: View {
                     }
                     .accessibilityIdentifier("home.settingsButton")
                 }
+
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    HStack(spacing: 4) {
+                        // Edit logs
+                        Button {
+                            editLogsDate = Date()
+                        } label: {
+                            Image(systemName: "doc.text")
+                                .foregroundColor(AppTheme.Colors.deepGrayText)
+                        }
+                        .accessibilityLabel("Edit logs")
+                        .accessibilityIdentifier("home.editLogsButton")
+
+                        // Jump to forecast
+                        Button {
+                            scrollToForecast.toggle()
+                        } label: {
+                            Image(systemName: "calendar")
+                                .foregroundColor(AppTheme.Colors.deepGrayText)
+                        }
+                        .accessibilityLabel("View forecast")
+                        .accessibilityIdentifier("home.forecastButton")
+
+                        // Get Support — always one tap away
+                        Button {
+                            showingSupportSheet = true
+                        } label: {
+                            Image(systemName: "heart.circle.fill")
+                                .font(.system(size: 20))
+                                .foregroundColor(AppTheme.Colors.secondaryPink)
+                        }
+                        .accessibilityLabel("Get Support — resources and helplines")
+                        .accessibilityIdentifier("home.getSupportButton")
+                    }
+                }
             }
             .sheet(item: $editLogsDate) { date in
                 EditLogsSheet(cycleStore: cycleStore, initialDate: date)
             }
+            .sheet(isPresented: $showingSupportSheet) {
+                GetSupportView(cycleStore: cycleStore)
+            }
             .sheet(isPresented: $showingSettingsSheet) {
-                SettingsView()
+                SettingsView(cycleStore: cycleStore)
                     .environmentObject(securityService)
             }
             #if DEBUG
