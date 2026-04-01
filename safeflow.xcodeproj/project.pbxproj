@@ -59,6 +59,7 @@
 		CD218E902D4198F5009B5198 /* PinSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E8F2D4198F5009B5198 /* PinSetupView.swift */; };
 		CD218E942D41994E009B5198 /* SecurityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E912D41994E009B5198 /* SecurityManager.swift */; };
 		CD218E972D41A086009B5198 /* SecurityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E962D41A086009B5198 /* SecurityTests.swift */; };
+		BB112233445566778899AA01 /* CyclePredictionEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB112233445566778899AA00 /* CyclePredictionEngineTests.swift */; };
 		CD218E9A2D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E982D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift */; };
 		CD218E9B2D41A0AF009B5198 /* safeflowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E992D41A0AF009B5198 /* safeflowUITests.swift */; };
 		CD218E9F2D4303F1009B5198 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E9C2D4303F1009B5198 /* AppTheme.swift */; };
@@ -161,6 +162,7 @@
 		CD218E8F2D4198F5009B5198 /* PinSetupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinSetupView.swift; sourceTree = "<group>"; };
 		CD218E912D41994E009B5198 /* SecurityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityManager.swift; sourceTree = "<group>"; };
 		CD218E962D41A086009B5198 /* SecurityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecurityTests.swift; path = Tests/UnitTests/SecurityTests.swift; sourceTree = SOURCE_ROOT; };
+		BB112233445566778899AA00 /* CyclePredictionEngineTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CyclePredictionEngineTests.swift; path = Tests/UnitTests/CyclePredictionEngineTests.swift; sourceTree = SOURCE_ROOT; };
 		CD218E982D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = safeflowUITestsLaunchTests.swift; path = Tests/UITests/safeflowUITestsLaunchTests.swift; sourceTree = SOURCE_ROOT; };
 		CD218E992D41A0AF009B5198 /* safeflowUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = safeflowUITests.swift; path = Tests/UITests/safeflowUITests.swift; sourceTree = SOURCE_ROOT; };
 		CD218E9C2D4303F1009B5198 /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
@@ -593,6 +595,7 @@
 			isa = PBXGroup;
 			children = (
 				CD218E962D41A086009B5198 /* SecurityTests.swift */,
+				BB112233445566778899AA00 /* CyclePredictionEngineTests.swift */,
 				CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */,
 			);
 			path = safeflowTests;
@@ -853,6 +856,7 @@
 			files = (
 				CDBECD6D2D4010D2006A37C9 /* safeflowTests.swift in Sources */,
 				CD218E972D41A086009B5198 /* SecurityTests.swift in Sources */,
+				BB112233445566778899AA01 /* CyclePredictionEngineTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

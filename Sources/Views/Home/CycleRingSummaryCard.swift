@@ -28,11 +28,14 @@ struct CycleRingSummaryCard: View {
     }
 
     /// 0–1 progress through the current cycle.
+    /// Returns 1.0 when overdue (has data but no current day number), 0 when no data at all.
     private var cycleProgress: Double {
-        guard let day = cycleDay, let length = averageCycleLength, length > 0 else {
-            return 0
+        if let day = cycleDay, let length = averageCycleLength, length > 0 {
+            return min(1.0, Double(day) / Double(length))
         }
-        return min(1.0, Double(day) / Double(length))
+        // Overdue: has cycle history but day is nil
+        if averageCycleLength != nil { return 1.0 }
+        return 0
     }
 
     private var alertCount: Int { activeSignals.count + (activeNudge != nil ? 1 : 0) }
@@ -70,6 +73,16 @@ struct CycleRingSummaryCard: View {
                                 .foregroundColor(AppTheme.Colors.mediumGrayText)
                         }
                         Text(phase.phaseDescription)
+                            .font(.system(.caption, design: .rounded))
+                            .foregroundColor(AppTheme.Colors.mediumGrayText)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .lineLimit(2)
+                    } else if averageCycleLength != nil {
+                        // Has data but cycle is overdue — phase is indeterminate
+                        Text("Cycle overdue")
+                            .font(.system(.title3, design: .rounded, weight: .bold))
+                            .foregroundColor(AppTheme.Colors.deepGrayText)
+                        Text("Your cycle is running longer than usual.")
                             .font(.system(.caption, design: .rounded))
                             .foregroundColor(AppTheme.Colors.mediumGrayText)
                             .fixedSize(horizontal: false, vertical: true)
