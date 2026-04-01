@@ -232,6 +232,7 @@ struct CycleDetailSheet: View {
 
     @Environment(\.dismiss) private var dismiss
     @State private var selectedTab = 0
+    @State private var showingSupport = false
 
     private var tabs: [DetailTab] { DetailTab.build(
         hasAlerts: !activeSignals.isEmpty || activeNudge != nil,
@@ -267,11 +268,24 @@ struct CycleDetailSheet: View {
             .navigationTitle(phase?.displayName ?? "Cycle")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        showingSupport = true
+                    } label: {
+                        Image(systemName: "heart.circle.fill")
+                            .font(.system(size: 22))
+                            .foregroundColor(AppTheme.Colors.secondaryPink)
+                    }
+                    .accessibilityLabel("Get support")
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") { dismiss() }
                         .font(.system(.body, design: .rounded, weight: .semibold))
                         .foregroundColor(AppTheme.Colors.accentBlue)
                 }
+            }
+            .sheet(isPresented: $showingSupport) {
+                GetSupportView(cycleStore: cycleStore)
             }
         }
     }
