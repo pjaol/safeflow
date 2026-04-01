@@ -346,6 +346,11 @@ struct CycleDetailSheet: View {
 
     private var overviewContent: some View {
         VStack(spacing: 16) {
+            // Overdue state — phase is nil but we have cycle history
+            if phase == nil && averageCycleLength != nil {
+                overdueCard
+            }
+
             // Phase + description
             if let phase {
                 HStack(alignment: .top, spacing: 16) {
@@ -417,6 +422,32 @@ struct CycleDetailSheet: View {
                 .shadow(color: Color.black.opacity(0.06), radius: 6, x: 0, y: 2)
             }
         }
+    }
+
+    private var overdueCard: some View {
+        HStack(alignment: .top, spacing: 16) {
+            Image(systemName: "calendar.badge.clock")
+                .font(.system(size: 22, weight: .semibold))
+                .foregroundColor(AppTheme.Colors.amber)
+                .frame(width: 52, height: 52)
+                .background(AppTheme.Colors.amber.opacity(0.12))
+                .clipShape(Circle())
+
+            VStack(alignment: .leading, spacing: 6) {
+                Text("Cycle running longer than usual")
+                    .font(.system(.subheadline, design: .rounded, weight: .semibold))
+                    .foregroundColor(AppTheme.Colors.deepGrayText)
+                Text("Cycles can run longer for many reasons — stress, illness, changes in sleep or weight, or hormonal shifts. If this is unusual for you and you're concerned, a GP can help.")
+                    .font(.system(.caption, design: .rounded))
+                    .foregroundColor(AppTheme.Colors.mediumGrayText)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+
+            Spacer(minLength: 0)
+        }
+        .padding(AppTheme.Metrics.cardPadding)
+        .background(AppTheme.Colors.amber.opacity(0.08))
+        .cornerRadius(AppTheme.Metrics.cornerRadius)
     }
 
     private func formattedRange(_ range: (earliest: Date, latest: Date)) -> String {

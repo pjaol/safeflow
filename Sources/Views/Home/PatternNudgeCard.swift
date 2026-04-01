@@ -32,13 +32,15 @@ struct PatternNudgeCard: View {
 
             Spacer(minLength: 0)
 
-            Button(action: onDismiss) {
-                Image(systemName: "xmark")
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(AppTheme.Colors.mediumGrayText)
-                    .padding(6)
+            if nudge.dismissible {
+                Button(action: onDismiss) {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundColor(AppTheme.Colors.mediumGrayText)
+                        .padding(6)
+                }
+                .accessibilityLabel("Dismiss")
             }
-            .accessibilityLabel("Dismiss")
         }
         .padding(AppTheme.Metrics.cardPadding)
         .background(nudge.backgroundColor)
@@ -57,6 +59,7 @@ struct CycleNudge: Identifiable, Equatable {
     let title: String
     let body: String
     let backgroundColor: Color
+    var dismissible: Bool = true
 
     // MARK: - Factory
 
