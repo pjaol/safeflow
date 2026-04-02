@@ -1,0 +1,7 @@
+First release of Clio Daye.
+
+— Cycle tracking with flow, symptoms, and mood logging
+— Phase-aware predictions with honest ranges
+— Pattern insights and health signals
+— Face ID / Touch ID / PIN protection
+— Everything stored on your device, always

@@ -1,0 +1,24 @@
+Clio Daye is a menstrual cycle tracker built on one principle: your health data belongs to you.
+
+Everything stays on your device. No accounts. No cloud sync. No analytics. No third-party SDKs. There is no server that can be breached, no company that can sell your data, and no subscription standing between you and your own health information.
+
+TRACK WHAT MATTERS
+Log your period, flow intensity, symptoms, and mood in seconds. Clio Daye supports over 15 symptoms and 12 mood states — from cramps and fatigue to brain fog and bloating — so your log actually reflects how you feel.
+
+UNDERSTAND YOUR CYCLE
+See where you are in your cycle today, not just when your next period is due. Clio Daye shows your current phase, an honest prediction range for your next period, and your estimated fertile window — all adapted to your actual cycle history, not a 28-day average.
+
+SPOT PATTERNS OVER TIME
+Clio Daye learns from your data. It surfaces insights about your personal symptom patterns, flags changes worth paying attention to, and connects you with trusted health resources when a pattern warrants it. No alarm. No drama. Just information.
+
+PRIVATE BY DESIGN
+— All data stored locally on your device
+— No account required, ever
+— Face ID, Touch ID, or PIN protection
+— One-tap delete: your data is gone, completely
+— Open source codebase — you can verify every claim
+
+HONEST ABOUT WHAT IT IS
+Clio Daye is a cycle awareness tool. It is not a contraceptive method, and it does not provide medical advice. When patterns suggest it, Clio Daye points you toward real healthcare providers — not a paywall.
+
+Requires iOS 17.5 or later. iPhone only.

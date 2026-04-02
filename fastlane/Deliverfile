@@ -1,0 +1,29 @@
+app_identifier "com.thevgergroup.safeflow"
+
+# Metadata
+metadata_path "./fastlane/metadata"
+screenshots_path "./fastlane/screenshots"
+
+# Category
+primary_category "HEALTH_AND_FITNESS"
+
+# Age rating — no objectionable content
+content_rating({
+  "CARTOON_FANTASY_VIOLENCE" => "NONE",
+  "REALISTIC_VIOLENCE" => "NONE",
+  "PROLONGED_GRAPHIC_SADISTIC_REALISTIC_VIOLENCE" => "NONE",
+  "PROFANITY_CRUDE_HUMOR" => "NONE",
+  "MATURE_SUGGESTIVE" => "NONE",
+  "HORROR_FEAR_THEMES" => "NONE",
+  "MEDICAL_TREATMENT_INFO" => "NONE",
+  "ALCOHOL_TOBACCO_DRUGS" => "NONE",
+  "GAMBLING" => "NONE",
+  "SEXUAL_CONTENT_NUDITY" => "NONE",
+  "GRAPHIC_SEXUAL_CONTENT_NUDITY" => "NONE",
+  "UNRATED_GAME_GAMBLING" => "NONE"
+})
+
+# Don't auto-submit — save as draft until we're ready
+submit_for_review false
+automatic_release false
+force true
