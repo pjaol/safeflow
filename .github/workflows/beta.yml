@@ -127,10 +127,9 @@ jobs:
             -configuration Release \
             -destination 'generic/platform=iOS' \
             -archivePath "$GITHUB_WORKSPACE/build/safeflow.xcarchive" \
-            -allowProvisioningUpdates \
             CODE_SIGN_STYLE=Manual \
-            CODE_SIGN_IDENTITY="Apple Distribution: patrick o'leary (8NQMHUGDM7)" \
-            PROVISIONING_PROFILE_SPECIFIER="d11b3db8-2b5a-4f31-ae98-0c9a078702cf" \
+            CODE_SIGN_IDENTITY="Apple Distribution" \
+            PROVISIONING_PROFILE_SPECIFIER="b6728ec4-c939-4251-8e7b-4ab8f24be2fc" \
             DEVELOPMENT_TEAM="${{ secrets.APPLE_TEAM_ID }}" \
             archive
 
