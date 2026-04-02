@@ -4,7 +4,8 @@ platform :ios do
 
   desc "Build and upload to TestFlight"
   lane :beta do
-    # Set up a temporary CI keychain — noop when running locally
+    # Creates a temporary keychain on CI and sets MATCH_KEYCHAIN_NAME /
+    # MATCH_KEYCHAIN_PASSWORD env vars. Safe no-op locally.
     setup_ci
 
     # Derive version from git tag (strips leading 'v' and pre-release suffix)
@@ -28,7 +29,7 @@ platform :ios do
       value: build_number
     )
 
-    # Import distribution certificate from base64 secret
+    # Import distribution certificate into the keychain setup_ci created
     import_certificate(
       certificate_path: "#{ENV["RUNNER_TEMP"]}/cert.p12",
       certificate_password: ENV["CERTIFICATES_P12_PASSWORD"],
@@ -41,7 +42,7 @@ platform :ios do
       path: "#{ENV["RUNNER_TEMP"]}/profile.mobileprovision"
     )
 
-    # Build archive
+    # Build archive and export IPA
     gym(
       scheme: "safeflow-Beta",
       configuration: "Beta",

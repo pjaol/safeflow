@@ -64,6 +64,4 @@ jobs:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
           ASC_KEY_CONTENT: ${{ secrets.ASC_KEY_CONTENT }}
-          MATCH_KEYCHAIN_NAME: signing_temp.keychain
-          MATCH_KEYCHAIN_PASSWORD: ${{ github.run_id }}
         run: fastlane beta
