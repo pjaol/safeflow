@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clio Daye — Cycle tracking. Privately.</title>
+  <meta name="description" content="The menstrual cycle tracker that keeps your data on your device. No accounts. No cloud. No exceptions.">
+  <link rel="icon" type="image/png" href="icon.png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:   #A8DFF7;
+      --pink:   #FEC8D8;
+      --yellow: #FFF5C3;
+      --text:   #1a1a2e;
+      --muted:  #555;
+      --radius: 16px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", "Helvetica Neue", sans-serif;
+      color: var(--text);
+      background: #fafafa;
+      line-height: 1.6;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(160deg, var(--pink) 0%, var(--blue) 60%, var(--yellow) 100%);
+      padding: 80px 24px 64px;
+      text-align: center;
+    }
+    .hero img {
+      width: 96px;
+      height: 96px;
+      border-radius: 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--muted);
+      margin-top: 12px;
+      max-width: 480px;
+      margin-inline: auto;
+    }
+    .badge {
+      display: inline-block;
+      margin-top: 32px;
+    }
+    .badge img { height: 52px; }
+
+    /* ── Sections ── */
+    .section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+    .section h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .section p, .section li {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+    .section ul {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .section ul li::before {
+      content: "→ ";
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ── Feature cards ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .card p  { font-size: 0.9rem; color: var(--muted); }
+
+    /* ── Privacy strip ── */
+    .privacy-strip {
+      background: var(--text);
+      color: white;
+      text-align: center;
+      padding: 48px 24px;
+    }
+    .privacy-strip h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 12px; }
+    .privacy-strip p  { color: #aaa; max-width: 520px; margin-inline: auto; }
+    .privacy-strip a  { color: var(--blue); text-decoration: none; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.85rem;
+      color: #aaa;
+    }
+    footer a { color: #888; }
+
+    /* ── Divider ── */
+    hr { border: none; border-top: 1px solid #eee; }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <img src="icon.png" alt="Clio Daye app icon">
+    <h1>Clio Daye</h1>
+    <p>Cycle tracking. Privately.</p>
+    <a class="badge" href="https://apps.apple.com/app/id0000000000">
+      <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+    </a>
+  </div>
+
+  <div class="section">
+    <h2>Your health data belongs to you.</h2>
+    <p>Clio Daye is a menstrual cycle tracker built on one principle: everything stays on your device. No accounts. No cloud sync. No analytics. No third-party SDKs. There is no server that can be breached, no company that can sell your data.</p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Log in seconds</h3>
+        <p>Period, flow, symptoms, mood — captured before you put your phone down.</p>
+      </div>
+      <div class="card">
+        <h3>Honest predictions</h3>
+        <p>Ranges based on your actual cycle history, not a 28-day average that doesn't fit you.</p>
+      </div>
+      <div class="card">
+        <h3>Spot patterns</h3>
+        <p>Insights about your symptoms over time, with links to trusted health resources.</p>
+      </div>
+      <div class="card">
+        <h3>Face ID protected</h3>
+        <p>Face ID, Touch ID, or PIN. Your data is locked, and you can delete it all in one tap.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="privacy-strip">
+    <h2>Private by design, not by policy.</h2>
+    <p>Most apps promise privacy. Clio Daye enforces it architecturally — there's no server to send your data to. Read the <a href="privacy.html">full privacy policy</a> or <a href="https://github.com/pjaol/safeflow">review the source code</a>.</p>
+  </div>
+
+  <footer>
+    <p>
+      <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+      <a href="support.html">Support</a> &nbsp;·&nbsp;
+      <a href="https://github.com/pjaol/safeflow">GitHub</a>
+    </p>
+    <p style="margin-top:8px">© 2026 The Vger Group</p>
+  </footer>
+
+</body>
+</html>
