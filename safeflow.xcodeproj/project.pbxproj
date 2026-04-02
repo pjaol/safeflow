@@ -702,7 +702,6 @@
 			);
 			mainGroup = CDBECD4C2D4010D1006A37C9;
 			packageReferences = (
-				CD218EA62D43CCD0009B5198 /* XCRemoteSwiftPackageReference "ElegantCalendar" */,
 			);
 			productRefGroup = CDBECD562D4010D1006A37C9 /* Products */;
 			projectDirPath = "";
@@ -1357,17 +1356,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		CD218EA62D43CCD0009B5198 /* XCRemoteSwiftPackageReference "ElegantCalendar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ThasianX/ElegantCalendar";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.3.2;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = CDBECD4D2D4010D1006A37C9 /* Project object */;
 }
