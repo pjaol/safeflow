@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="safeflow/Assets.xcassets/AppIcon.appiconset/AppIcon-256.png" width="80" alt="Clio Daye app icon" />
+</p>
+
 # Privacy Policy — Clio Daye
 
 **Last updated: April 2, 2026**
