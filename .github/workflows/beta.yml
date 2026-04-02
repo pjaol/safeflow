@@ -124,7 +124,7 @@ jobs:
           xcodebuild \
             -project safeflow.xcodeproj \
             -scheme safeflow-Beta \
-            -configuration Release \
+            -configuration Beta \
             -destination 'generic/platform=iOS' \
             -archivePath "$GITHUB_WORKSPACE/build/safeflow.xcarchive" \
             CODE_SIGN_STYLE=Manual \
