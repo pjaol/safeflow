@@ -64,6 +64,7 @@ struct SafeFlowApp: App {
     }
 
     private func handleLaunchArguments() {
+        #if DEBUG
         let args = ProcessInfo.processInfo.arguments
 
         if args.contains("UI-Testing") || args.contains("RESET_DATA") {
@@ -73,5 +74,6 @@ struct SafeFlowApp: App {
         if args.contains("RESET_ONBOARDING") || args.contains("UI-Testing") {
             hasCompletedOnboarding = false
         }
+        #endif
     }
 }

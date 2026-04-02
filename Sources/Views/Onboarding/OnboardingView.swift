@@ -299,6 +299,7 @@ private extension View {
     }
 }
 
+#if DEBUG
 #Preview {
     OnboardingView(
         cycleStore: CycleStore(),
@@ -306,3 +307,4 @@ private extension View {
     )
     .environmentObject(SecurityServicePreview.createPreview())
 }
+#endif

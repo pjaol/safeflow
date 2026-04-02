@@ -141,7 +141,9 @@ struct PinEntryView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     PinSetupView()
         .environmentObject(SecurityServicePreview.createPreview())
-} 
+}
+#endif 

@@ -84,14 +84,12 @@ class CycleStore: ObservableObject {
         Task { await saveData() }
     }
 
-    #if DEBUG
     func clearAllData() {
         cycleDays.removeAll()
         seedData = nil
         objectWillChange.send()
         Task { await saveData() }
     }
-    #endif
 
     // MARK: - Queries
 
