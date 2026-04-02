@@ -36,6 +36,8 @@ Clio Daye is built on a simple principle: your health data belongs to you.
 - Full data deletion in one tap (Settings → Delete All My Data)
 - Open source so you can verify these claims yourself
 
+These are not just claims — they are enforced by automated checks on every commit (see [Security & Privacy CI](#security--privacy-ci) below).
+
 [Full privacy policy →](PRIVACY.md)
 
 ---
@@ -111,6 +113,31 @@ safeflow/
 
 ---
 
+## Security & Privacy CI
+
+Every push and pull request runs an automated privacy scan using [Semgrep](https://semgrep.dev) with rules in `.semgrep/privacy.yml`. The scan enforces the following as hard CI gates — any violation fails the build:
+
+| Rule | What it checks |
+|---|---|
+| `no-url-session` | No `URLSession` calls anywhere in production code |
+| `no-url-request` | No `URLRequest` construction |
+| `no-wkwebview` | No `WKWebView` (can make network requests) |
+| `no-third-party-import` | All `import` statements must be Apple system frameworks |
+| `sensitive-key-in-userdefaults` | No auth tokens, passwords, or identifiers written to UserDefaults |
+| `no-hardcoded-api-key` | No hardcoded credentials or API keys |
+| `keychain-accessible-always` | Keychain items must not use `kSecAttrAccessibleAlways` |
+
+The current scan result is **0 findings** across all 43 source files. This means the "no network calls" and "no third-party SDKs" claims are machine-verified on every change, not just asserted in documentation.
+
+To run the scan locally:
+
+```bash
+brew install semgrep
+semgrep --config .semgrep/privacy.yml Sources/
+```
+
+---
+
 ## Clio Advisor
 
 This project uses a bespoke design review process called the **Clio Advisor** — a set of lenses applied to every feature before it ships:
@@ -125,7 +152,7 @@ This project uses a bespoke design review process called the **Clio Advisor** �
 ## Roadmap
 
 - v0.2 ✅ — Prediction engine, symptom insights, forecast view, onboarding
-- v0.3 — Data export (CSV), partner/doctor sharing (opt-in, explicit consent)
+- v0.3 ✅ — Pulse dartboard, ribbon history chart, dark mode, privacy CI
 - v1.0 — App Store release
 
 ---

@@ -281,7 +281,7 @@ struct OnboardingView: View {
             .frame(maxWidth: .infinity)
             .background(
                 RoundedRectangle(cornerRadius: AppTheme.Metrics.cornerRadius)
-                    .fill(Color.white)
+                    .fill(Color(UIColor.secondarySystemBackground))
                     .shadow(radius: 2)
             )
             .padding()
@@ -295,7 +295,7 @@ private extension View {
     func iconCircle() -> some View {
         self
             .padding()
-            .background(Circle().fill(Color.white).shadow(radius: 2))
+            .background(Circle().fill(Color(UIColor.secondarySystemBackground)).shadow(radius: 2))
     }
 }
 

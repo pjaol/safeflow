@@ -45,7 +45,7 @@ struct FlowStepSlider: View {
                                 Circle()
                                     .fill(isSelected
                                           ? AppTheme.Colors.secondaryPink
-                                          : Color.white)
+                                          : Color(UIColor.systemBackground))
                                     .frame(width: stopSize, height: stopSize)
                                     .shadow(color: AppTheme.Colors.secondaryPink.opacity(isSelected ? 0.55 : 0.0),
                                             radius: isSelected ? 12 : 0,

@@ -4,18 +4,54 @@ import SwiftUI
 enum AppTheme {
     /// Color palette for the app
     enum Colors {
-        static let primaryBlue = Color(hex: "A8DFF7")  // Soft sky blue
-        static let secondaryPink = Color(hex: "FEC8D8") // Soft pink
-        static let paleYellow = Color(hex: "FFF5C3")   // Pale yellow
-        static let neutralGray = Color(hex: "F5F5F5")
-        static let deepGrayText = Color(hex: "333333")
-        static let mediumGrayText = Color(hex: "666666")
+        static let primaryBlue = Color(UIColor { t in
+            t.userInterfaceStyle == .dark
+                ? UIColor(red: 0.30, green: 0.55, blue: 0.72, alpha: 1) // muted dark blue
+                : UIColor(red: 0.66, green: 0.87, blue: 0.97, alpha: 1) // #A8DFF7
+        })
+        static let secondaryPink = Color(UIColor { t in
+            t.userInterfaceStyle == .dark
+                ? UIColor(red: 0.72, green: 0.38, blue: 0.50, alpha: 1) // muted dark pink
+                : UIColor(red: 0.996, green: 0.784, blue: 0.847, alpha: 1) // #FEC8D8
+        })
+        static let paleYellow = Color(UIColor { t in
+            t.userInterfaceStyle == .dark
+                ? UIColor(red: 0.45, green: 0.40, blue: 0.18, alpha: 1) // muted dark yellow
+                : UIColor(red: 1.0, green: 0.961, blue: 0.765, alpha: 1) // #FFF5C3
+        })
+        static let neutralGray = Color(UIColor.systemGray6)
+        static let deepGrayText = Color(UIColor.label)
+        static let mediumGrayText = Color(UIColor.secondaryLabel)
         
         // Adaptive system background — warm near-white in light mode, proper dark in dark mode
-        static let accentBlue = Color(hex: "7FCEF5")    // Brighter blue for accents
+        static let accentBlue = Color(UIColor { t in
+            t.userInterfaceStyle == .dark
+                ? UIColor(red: 0.35, green: 0.62, blue: 0.82, alpha: 1) // muted dark accent
+                : UIColor(red: 0.498, green: 0.808, blue: 0.961, alpha: 1) // #7FCEF5
+        })
 
-        static let background = Color(UIColor.systemGroupedBackground)
-        static let secondaryBackground = Color(UIColor.secondarySystemGroupedBackground)
+        // Nudge card backgrounds — tinted surfaces that work in both modes
+        static let nudgeHealthBackground = Color(UIColor { t in
+            t.userInterfaceStyle == .dark
+                ? UIColor(red: 0.30, green: 0.27, blue: 0.12, alpha: 1) // warm dark amber tint
+                : UIColor(red: 0.996, green: 0.953, blue: 0.784, alpha: 1) // #FEF3C7
+        })
+        static let nudgeComfortBackground = Color(UIColor { t in
+            t.userInterfaceStyle == .dark
+                ? UIColor(red: 0.38, green: 0.18, blue: 0.24, alpha: 1) // warm dark pink tint
+                : UIColor(red: 0.992, green: 0.910, blue: 0.937, alpha: 1) // #FDE8EF
+        })
+
+        static let background = Color(UIColor { t in
+            t.userInterfaceStyle == .dark
+                ? UIColor.systemBackground                                      // near-black in dark
+                : UIColor(red: 0.894, green: 0.965, blue: 0.992, alpha: 1)    // #E4F6FD light pastel blue
+        })
+        static let secondaryBackground = Color(UIColor { t in
+            t.userInterfaceStyle == .dark
+                ? UIColor.secondarySystemBackground
+                : UIColor.white
+        })
 
         // Dartboard — four clearly distinct saturated colors, legible on light bg
         // Chosen for maximum hue separation: red / blue / violet / green

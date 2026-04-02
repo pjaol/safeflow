@@ -72,9 +72,9 @@ struct DartboardSegment: View {
     var body: some View {
         ZStack {
             // Idle: saturated color fill, white text
-            // Active: white fill, colored text/icon — unmistakably different
+            // Active: system background fill, colored text/icon — unmistakably different
             shape
-                .fill(isActive ? Color.white : category.color.opacity(0.78))
+                .fill(isActive ? Color(UIColor.systemBackground) : category.color.opacity(0.78))
                 .shadow(
                     color: isActive
                         ? category.color.opacity(0.45)
@@ -154,14 +154,14 @@ struct NotesBullseye: View {
             // Outer ring — always visible against the dartboard background
             Circle()
                 .strokeBorder(
-                    hasNotes ? AppTheme.Colors.primaryBlue : Color.white.opacity(0.7),
+                    hasNotes ? AppTheme.Colors.primaryBlue : Color(UIColor.systemBackground).opacity(0.7),
                     lineWidth: 2)
                 .frame(width: 42, height: 42)
 
             Circle()
                 .fill(hasNotes
                       ? AppTheme.Colors.primaryBlue.opacity(0.85)
-                      : Color.white)
+                      : Color(UIColor.systemBackground))
                 .frame(width: 38, height: 38)
                 .shadow(color: .black.opacity(0.22), radius: 8, x: 0, y: 3)
                 .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 1)

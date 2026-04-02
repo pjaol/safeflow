@@ -250,17 +250,16 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		3A0D5F3F33A7A62E4A56AD1E /*  */ = {
+		3A0D5F3F33A7A62E4A56AD1E = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		441725ED48A25995A64D976C /* Content */ = {
 			isa = PBXGroup;
 			children = (
-				3A0D5F3F33A7A62E4A56AD1E /*  */,
+				3A0D5F3F33A7A62E4A56AD1E,
 				C2D569DC92C1BD5063934679 /* ContentEvaluator.swift */,
 				EB83B32D169194F44D093628 /* ContentLoader.swift */,
 				2615D32F0F291FD5132C88B3 /* ContentModels.swift */,
@@ -946,8 +945,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = safeflow/safeflow.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "Resources/TestData/regular_28_day_cycle_metadata.csv Resources/TestData/regular_28_day_cycle.csv Resources/TestData/irregular_cycle.csv Resources/TestData/regular_28_day_cycle_predictions.csv Resources/TestData/sparse_data_metadata.csv safeflow/Preview\\ Content Resources/TestData/irregular_cycle_predictions.csv Resources/TestData Resources/TestData/irregular_cycle_metadata.csv Resources/TestData/sparse_data_predictions.csv Resources/TestData/sparse_data.csv Resources/TestData/symptom_rich_cycles.csv";
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "safeflow/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8NQMHUGDM7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -1146,8 +1145,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = safeflow/safeflow.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "Resources/TestData/regular_28_day_cycle_metadata.csv Resources/TestData/regular_28_day_cycle.csv Resources/TestData/irregular_cycle.csv Resources/TestData/regular_28_day_cycle_predictions.csv Resources/TestData/sparse_data_metadata.csv safeflow/Preview\\ Content Resources/TestData/irregular_cycle_predictions.csv Resources/TestData Resources/TestData/irregular_cycle_metadata.csv Resources/TestData/sparse_data_predictions.csv Resources/TestData/sparse_data.csv Resources/TestData/symptom_rich_cycles.csv";
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "safeflow/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8NQMHUGDM7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -1187,8 +1186,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = safeflow/safeflow.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "Resources/TestData/regular_28_day_cycle_metadata.csv Resources/TestData/regular_28_day_cycle.csv Resources/TestData/irregular_cycle.csv Resources/TestData/regular_28_day_cycle_predictions.csv Resources/TestData/sparse_data_metadata.csv safeflow/Preview\\ Content Resources/TestData/irregular_cycle_predictions.csv Resources/TestData Resources/TestData/irregular_cycle_metadata.csv Resources/TestData/sparse_data_predictions.csv Resources/TestData/sparse_data.csv Resources/TestData/symptom_rich_cycles.csv";
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "safeflow/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8NQMHUGDM7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

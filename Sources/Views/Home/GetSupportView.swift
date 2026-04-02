@@ -229,7 +229,11 @@ struct GetSupportView: View {
             }
         }
         .padding(12)
-        .background(Color(red: 0.72, green: 0.25, blue: 0.32))
+        .background(Color(UIColor { t in
+            t.userInterfaceStyle == .dark
+                ? UIColor(red: 0.50, green: 0.15, blue: 0.22, alpha: 1)
+                : UIColor(red: 0.72, green: 0.25, blue: 0.32, alpha: 1)
+        }))
         .cornerRadius(AppTheme.Metrics.cornerRadius)
         .accessibilityElement(children: .contain)
         .accessibilityLabel("If you need help now. Crisis and safety resources.")

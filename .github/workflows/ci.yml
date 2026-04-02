@@ -11,6 +11,19 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  privacy-scan:
+    name: Privacy & Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Semgrep privacy rules
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: .semgrep/privacy.yml
+
   build-and-test:
     name: Build & Test
     runs-on: macos-15

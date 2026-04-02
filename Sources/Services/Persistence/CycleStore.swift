@@ -176,8 +176,8 @@ class CycleStore: ObservableObject {
             title: nudge.title,
             body: nudge.body,
             backgroundColor: nudge.type == "comfort"
-                ? Color(hex: "FDE8EF")
-                : Color(hex: "FEF3C7"),
+                ? AppTheme.Colors.nudgeComfortBackground
+                : AppTheme.Colors.nudgeHealthBackground,
             dismissible: nudge.dismissible
         )
     }

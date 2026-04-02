@@ -1,0 +1,87 @@
+rules:
+
+  # ── Network calls ──────────────────────────────────────────────────────────
+  # Clio Daye must never make network requests. Any of these symbols in
+  # production code is a privacy violation.
+
+  - id: no-url-session
+    patterns:
+      - pattern: "URLSession.$METHOD(...)"
+    message: "Network call detected (URLSession). Clio Daye must not make network requests."
+    languages: [swift]
+    severity: ERROR
+    paths:
+      exclude:
+        - "Tests/**"
+
+  - id: no-url-request
+    patterns:
+      - pattern: "URLRequest(...)"
+    message: "Network call detected (URLRequest). Clio Daye must not make network requests."
+    languages: [swift]
+    severity: ERROR
+    paths:
+      exclude:
+        - "Tests/**"
+
+  - id: no-wkwebview
+    patterns:
+      - pattern: "WKWebView(...)"
+    message: "WKWebView detected — can make network requests. Not permitted in Clio Daye."
+    languages: [swift]
+    severity: ERROR
+    paths:
+      exclude:
+        - "Tests/**"
+
+  # ── Third-party SDKs ───────────────────────────────────────────────────────
+  # Only Apple system frameworks are permitted. Any import outside this list
+  # is a signal that a third-party dependency has been added.
+
+  - id: no-third-party-import
+    pattern-regex: "^import (?!SwiftUI|UIKit|Foundation|Combine|LocalAuthentication|Security|CryptoKit|CoreData|CoreFoundation|CoreGraphics|CoreText|CoreLocation|CoreMotion|HealthKit|CloudKit|StoreKit|UserNotifications|AVFoundation|SafariServices|WebKit|AuthenticationServices|os$|OSLog|XCTest|Testing)[A-Z]\\w+"
+    message: "Unexpected import detected. Clio Daye uses Apple frameworks only. If this is a new Apple framework, add it to the allowlist in .semgrep/privacy.yml."
+    languages: [swift]
+    severity: WARNING
+    paths:
+      exclude:
+        - "Tests/**"
+
+  # ── Sensitive data in UserDefaults ─────────────────────────────────────────
+  # Cycle data is stored in UserDefaults by design (documented in CLAUDE.md).
+  # This rule flags keys that look like auth credentials or identifiers.
+
+  - id: sensitive-key-in-userdefaults
+    patterns:
+      - pattern: "UserDefaults.$ANY.set($VAL, forKey: $KEY)"
+      - metavariable-regex:
+          metavariable: "$KEY"
+          regex: ".*(token|password|secret|auth|credential|ssn|email|phone|device_id|user_id).*"
+    message: "Sensitive key '$KEY' being written to UserDefaults. Use Keychain for credentials."
+    languages: [swift]
+    severity: ERROR
+
+  # ── Hardcoded secrets ──────────────────────────────────────────────────────
+
+  - id: no-hardcoded-api-key
+    patterns:
+      - pattern: "let $VAR = \"$VALUE\""
+      - metavariable-regex:
+          metavariable: "$VAR"
+          regex: ".*(api_?key|apiKey|secret|token|password|credential).*"
+      - metavariable-regex:
+          metavariable: "$VALUE"
+          regex: ".{8,}"
+    message: "Possible hardcoded credential in '$VAR'. Use Keychain or environment config."
+    languages: [swift]
+    severity: ERROR
+
+  # ── Insecure Keychain accessibility ───────────────────────────────────────
+  # kSecAttrAccessibleAlways makes Keychain items readable while device is locked.
+
+  - id: keychain-accessible-always
+    patterns:
+      - pattern: "kSecAttrAccessibleAlways"
+    message: "kSecAttrAccessibleAlways makes Keychain items readable while locked. Use kSecAttrAccessibleWhenUnlockedThisDeviceOnly."
+    languages: [swift]
+    severity: ERROR
