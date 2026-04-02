@@ -131,6 +131,10 @@ jobs:
             CODE_SIGN_IDENTITY="Apple Distribution" \
             PROVISIONING_PROFILE_SPECIFIER="b6728ec4-c939-4251-8e7b-4ab8f24be2fc" \
             DEVELOPMENT_TEAM="${{ secrets.APPLE_TEAM_ID }}" \
+            SKIP_INSTALL=NO \
+            BUILD_LIBRARY_FOR_DISTRIBUTION=NO \
+            -skip-testing:safeflowTests \
+            -skip-testing:safeflowUITests \
             archive
 
       - name: Export IPA
