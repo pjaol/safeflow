@@ -1,0 +1,81 @@
+default_platform :ios
+
+platform :ios do
+
+  desc "Build and upload to TestFlight"
+  lane :beta do
+    # Set up a temporary CI keychain — noop when running locally
+    setup_ci
+
+    # Derive version from git tag (strips leading 'v' and pre-release suffix)
+    # e.g. v0.4.0-alpha.1 → 0.4.0
+    raw_tag = ENV["RAW_TAG"] || last_git_tag
+    without_v = raw_tag.sub(/^v/, "")
+    marketing_version = without_v.split("-").first
+    build_number = ENV["BUILD_NUMBER"] || number_of_commits.to_s
+
+    UI.message "Version: #{marketing_version} (#{build_number})"
+
+    # Stamp Info.plist
+    set_info_plist_value(
+      path: "safeflow/Info.plist",
+      key: "CFBundleShortVersionString",
+      value: marketing_version
+    )
+    set_info_plist_value(
+      path: "safeflow/Info.plist",
+      key: "CFBundleVersion",
+      value: build_number
+    )
+
+    # Import distribution certificate from base64 secret
+    import_certificate(
+      certificate_path: "#{ENV["RUNNER_TEMP"]}/cert.p12",
+      certificate_password: ENV["CERTIFICATES_P12_PASSWORD"],
+      keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
+      keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"]
+    )
+
+    # Install provisioning profile
+    install_provisioning_profile(
+      path: "#{ENV["RUNNER_TEMP"]}/profile.mobileprovision"
+    )
+
+    # Build archive
+    gym(
+      scheme: "safeflow-Beta",
+      configuration: "Beta",
+      project: "safeflow.xcodeproj",
+      export_method: "app-store",
+      export_options: {
+        teamID: ENV["APPLE_TEAM_ID"],
+        provisioningProfiles: {
+          "com.thevgergroup.safeflow" => "b6728ec4-c939-4251-8e7b-4ab8f24be2fc"
+        },
+        uploadSymbols: true,
+        compileBitcode: false
+      },
+      output_directory: "build",
+      output_name: "safeflow",
+      clean: true
+    )
+
+    # Upload to TestFlight
+    api_key = app_store_connect_api_key(
+      key_id: ENV["ASC_KEY_ID"],
+      issuer_id: ENV["ASC_ISSUER_ID"],
+      key_content: ENV["ASC_KEY_CONTENT"],
+      is_key_content_base64: false
+    )
+
+    pilot(
+      api_key: api_key,
+      skip_waiting_for_build_processing: true,
+      skip_submission: true,
+      distribute_external: false,
+      notify_external_testers: false,
+      ipa: "build/safeflow.ipa"
+    )
+  end
+
+end

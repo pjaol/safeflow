@@ -23,159 +23,47 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode_16.2.app
+        run: sudo xcode-select -s /Applications/Xcode_16.4.app
 
-      - name: Install xcpretty
-        run: gem install xcpretty --no-document
+      - name: Set up fastlane
+        run: gem install fastlane --no-document
 
-      # ── Version ─────────────────────────────────────────────────────────────
-      # Git tag format: v0.4.0 or v0.4.0-alpha.1 or v0.4.0-beta.2
-      # App Store version: numeric only (strips pre-release suffix)
-      # Build number: github.run_number (always incrementing)
+      # ── Code Signing ─────────────────────────────────────────────────────────
+      # Decode cert and profile from secrets into RUNNER_TEMP so fastlane can
+      # import them. setup_ci (called inside the lane) creates the keychain.
       #
-      # Examples:
-      #   v0.4.0-alpha.1  →  App Store: 0.4.0  Build: 12
-      #   v0.4.0-beta.1   →  App Store: 0.4.0  Build: 15
-      #   v0.4.0          →  App Store: 0.4.0  Build: 18
-      #   v1.0.0          →  App Store: 1.0.0  Build: 42
-
-      - name: Set version numbers
-        run: |
-          # Determine tag — from push event or manual input
-          if [ "${{ github.event_name }}" = "push" ]; then
-            RAW_TAG="${{ github.ref_name }}"
-          else
-            RAW_TAG="${{ github.event.inputs.tag }}"
-          fi
-
-          # Strip leading 'v'
-          WITHOUT_V="${RAW_TAG#v}"
-
-          # Strip pre-release suffix (everything after first '-')
-          # e.g. 0.4.0-alpha.1 → 0.4.0
-          MARKETING_VERSION="${WITHOUT_V%%-*}"
-
-          BUILD_NUMBER="${{ github.run_number }}"
-
-          echo "RAW_TAG=$RAW_TAG"
-          echo "MARKETING_VERSION=$MARKETING_VERSION"
-          echo "BUILD_NUMBER=$BUILD_NUMBER"
-
-          # Stamp Info.plist
-          /usr/libexec/PlistBuddy \
-            -c "Set :CFBundleShortVersionString $MARKETING_VERSION" \
-            -c "Set :CFBundleVersion $BUILD_NUMBER" \
-            safeflow/Info.plist
-
-      # ── Code Signing ────────────────────────────────────────────────────────
-      # Secrets required (set in GitHub → Settings → Secrets → Actions):
+      # Secrets required:
       #   CERTIFICATES_P12          base64-encoded .p12 distribution cert
       #   CERTIFICATES_P12_PASSWORD export password for the .p12
       #   PROVISIONING_PROFILE      base64-encoded App Store .mobileprovision
       #   APPLE_TEAM_ID             10-char team ID
       #   ASC_KEY_ID                App Store Connect API key ID
       #   ASC_ISSUER_ID             App Store Connect issuer ID
-      #   ASC_KEY_CONTENT           Contents of the .p8 API key file
+      #   ASC_KEY_CONTENT           Contents of the .p8 API key file (not base64)
 
-      - name: Install certificate
+      - name: Decode certificate and profile
+        run: |
+          echo "${{ secrets.CERTIFICATES_P12 }}" | base64 --decode > "$RUNNER_TEMP/cert.p12"
+          echo "${{ secrets.PROVISIONING_PROFILE }}" | base64 --decode > "$RUNNER_TEMP/profile.mobileprovision"
+
+      # ── Version ──────────────────────────────────────────────────────────────
+      # Git tag format: v0.4.0 or v0.4.0-alpha.1 or v0.4.0-beta.2
+      # App Store version: numeric only (strips pre-release suffix)
+      # Build number: github.run_number (always incrementing)
+
+      - name: Run fastlane beta
         env:
-          CERTIFICATES_P12: ${{ secrets.CERTIFICATES_P12 }}
+          RAW_TAG: ${{ github.event_name == 'push' && github.ref_name || github.event.inputs.tag }}
+          BUILD_NUMBER: ${{ github.run_number }}
           CERTIFICATES_P12_PASSWORD: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
-        run: |
-          KEYCHAIN_PATH=$RUNNER_TEMP/signing.keychain-db
-          KEYCHAIN_PASSWORD=$(openssl rand -hex 16)
-
-          echo "$CERTIFICATES_P12" | base64 --decode > $RUNNER_TEMP/cert.p12
-
-          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
-          security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
-          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
-
-          security import "$RUNNER_TEMP/cert.p12" \
-            -P "$CERTIFICATES_P12_PASSWORD" \
-            -A -t cert -f pkcs12 \
-            -k "$KEYCHAIN_PATH"
-
-          security set-key-partition-list \
-            -S apple-tool:,apple: \
-            -s -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
-
-          security list-keychains -d user -s "$KEYCHAIN_PATH"
-
-      - name: Install provisioning profile
-        env:
-          PROVISIONING_PROFILE: ${{ secrets.PROVISIONING_PROFILE }}
-        run: |
-          PP_PATH=$RUNNER_TEMP/profile.mobileprovision
-          echo "$PROVISIONING_PROFILE" | base64 --decode > "$PP_PATH"
-
-          PP_UUID=$(security cms -D -i "$PP_PATH" \
-            | plutil -extract UUID raw -)
-
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp "$PP_PATH" ~/Library/MobileDevice/Provisioning\ Profiles/"$PP_UUID".mobileprovision
-
-      # ── Build ───────────────────────────────────────────────────────────────
-
-      - name: Build archive
-        run: |
-          xcodebuild \
-            -project safeflow.xcodeproj \
-            -scheme safeflow-Beta \
-            -configuration Beta \
-            -destination 'generic/platform=iOS' \
-            -archivePath "$GITHUB_WORKSPACE/build/safeflow.xcarchive" \
-            -sdk iphoneos \
-            CODE_SIGN_STYLE=Manual \
-            CODE_SIGN_IDENTITY="Apple Distribution" \
-            PROVISIONING_PROFILE_SPECIFIER="b6728ec4-c939-4251-8e7b-4ab8f24be2fc" \
-            DEVELOPMENT_TEAM="${{ secrets.APPLE_TEAM_ID }}" \
-            SKIP_INSTALL=NO \
-            SDKROOT=iphoneos \
-            SUPPORTED_PLATFORMS=iphoneos \
-            ENABLE_ON_DEMAND_RESOURCES=NO \
-            -skip-testing:safeflowTests \
-            -skip-testing:safeflowUITests \
-            archive
-
-      - name: Export IPA
-        run: |
-          cat > "$GITHUB_WORKSPACE/build/ExportOptions.plist" << EOF
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-            <key>method</key>
-            <string>app-store-connect</string>
-            <key>teamID</key>
-            <string>${{ secrets.APPLE_TEAM_ID }}</string>
-            <key>uploadSymbols</key>
-            <true/>
-            <key>compileBitcode</key>
-            <false/>
-          </dict>
-          </plist>
-          EOF
-
-          xcodebuild \
-            -exportArchive \
-            -archivePath "$GITHUB_WORKSPACE/build/safeflow.xcarchive" \
-            -exportPath "$GITHUB_WORKSPACE/build/export" \
-            -exportOptionsPlist "$GITHUB_WORKSPACE/build/ExportOptions.plist"
-
-      # ── Upload ──────────────────────────────────────────────────────────────
-
-      - name: Upload to TestFlight
-        uses: apple-actions/upload-testflight-build@v3
-        with:
-          app-path: ${{ github.workspace }}/build/export/safeflow.ipa
-          issuer-id: ${{ secrets.ASC_ISSUER_ID }}
-          api-key-id: ${{ secrets.ASC_KEY_ID }}
-          api-private-key: ${{ secrets.ASC_KEY_CONTENT }}
-
-      - name: Clean up keychain
-        if: always()
-        run: |
-          security delete-keychain $RUNNER_TEMP/signing.keychain-db || true
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_CONTENT: ${{ secrets.ASC_KEY_CONTENT }}
+          MATCH_KEYCHAIN_NAME: signing_temp.keychain
+          MATCH_KEYCHAIN_PASSWORD: ${{ github.run_id }}
+        run: fastlane beta
