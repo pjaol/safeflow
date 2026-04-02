@@ -126,7 +126,7 @@ jobs:
             -scheme safeflow-Beta \
             -configuration Release \
             -destination 'generic/platform=iOS' \
-            -archivePath $RUNNER_TEMP/safeflow.xcarchive \
+            -archivePath "$GITHUB_WORKSPACE/build/safeflow.xcarchive" \
             CODE_SIGN_STYLE=Manual \
             PROVISIONING_PROFILE_SPECIFIER="iOS Team Store Provisioning Profile: com.thevgergroup.safeflow" \
             archive \
@@ -134,7 +134,7 @@ jobs:
 
       - name: Export IPA
         run: |
-          cat > $RUNNER_TEMP/ExportOptions.plist << EOF
+          cat > "$GITHUB_WORKSPACE/build/ExportOptions.plist" << EOF
           <?xml version="1.0" encoding="UTF-8"?>
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
           <plist version="1.0">
@@ -153,16 +153,16 @@ jobs:
 
           xcodebuild \
             -exportArchive \
-            -archivePath $RUNNER_TEMP/safeflow.xcarchive \
-            -exportPath $RUNNER_TEMP/export \
-            -exportOptionsPlist $RUNNER_TEMP/ExportOptions.plist
+            -archivePath "$GITHUB_WORKSPACE/build/safeflow.xcarchive" \
+            -exportPath "$GITHUB_WORKSPACE/build/export" \
+            -exportOptionsPlist "$GITHUB_WORKSPACE/build/ExportOptions.plist"
 
       # ── Upload ──────────────────────────────────────────────────────────────
 
       - name: Upload to TestFlight
         uses: apple-actions/upload-testflight-build@v3
         with:
-          app-path: ${{ runner.temp }}/export/safeflow.ipa
+          app-path: ${{ github.workspace }}/build/export/safeflow.ipa
           issuer-id: ${{ secrets.ASC_ISSUER_ID }}
           api-key-id: ${{ secrets.ASC_KEY_ID }}
           api-private-key: ${{ secrets.ASC_KEY_CONTENT }}
