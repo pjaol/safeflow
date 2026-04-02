@@ -6,10 +6,10 @@ on:
       - 'v*'
   workflow_dispatch:
     inputs:
-      build_note:
-        description: 'TestFlight what to test note'
+      tag:
+        description: 'Version tag (e.g. v0.4.0-alpha.1)'
         required: false
-        default: 'Internal beta build'
+        default: 'v0.4.0-alpha.1'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -30,17 +30,54 @@ jobs:
       - name: Install xcpretty
         run: gem install xcpretty --no-document
 
+      # ── Version ─────────────────────────────────────────────────────────────
+      # Git tag format: v0.4.0 or v0.4.0-alpha.1 or v0.4.0-beta.2
+      # App Store version: numeric only (strips pre-release suffix)
+      # Build number: github.run_number (always incrementing)
+      #
+      # Examples:
+      #   v0.4.0-alpha.1  →  App Store: 0.4.0  Build: 12
+      #   v0.4.0-beta.1   →  App Store: 0.4.0  Build: 15
+      #   v0.4.0          →  App Store: 0.4.0  Build: 18
+      #   v1.0.0          →  App Store: 1.0.0  Build: 42
+
+      - name: Set version numbers
+        run: |
+          # Determine tag — from push event or manual input
+          if [ "${{ github.event_name }}" = "push" ]; then
+            RAW_TAG="${{ github.ref_name }}"
+          else
+            RAW_TAG="${{ github.event.inputs.tag }}"
+          fi
+
+          # Strip leading 'v'
+          WITHOUT_V="${RAW_TAG#v}"
+
+          # Strip pre-release suffix (everything after first '-')
+          # e.g. 0.4.0-alpha.1 → 0.4.0
+          MARKETING_VERSION="${WITHOUT_V%%-*}"
+
+          BUILD_NUMBER="${{ github.run_number }}"
+
+          echo "RAW_TAG=$RAW_TAG"
+          echo "MARKETING_VERSION=$MARKETING_VERSION"
+          echo "BUILD_NUMBER=$BUILD_NUMBER"
+
+          # Stamp Info.plist
+          /usr/libexec/PlistBuddy \
+            -c "Set :CFBundleShortVersionString $MARKETING_VERSION" \
+            -c "Set :CFBundleVersion $BUILD_NUMBER" \
+            safeflow/Info.plist
+
       # ── Code Signing ────────────────────────────────────────────────────────
-      # Cert and profile are stored as base64-encoded GitHub Secrets.
-      # To set these up:
-      #   1. Export your distribution certificate from Keychain as a .p12 file
-      #      (right-click → Export, choose Personal Information Exchange)
-      #   2. base64 -i YourCert.p12 | pbcopy  → paste as CERTIFICATES_P12 secret
-      #   3. Download your App Store provisioning profile from developer.apple.com
-      #   4. base64 -i YourProfile.mobileprovision | pbcopy → paste as PROVISIONING_PROFILE secret
-      #   5. Create an App Store Connect API key at appstoreconnect.apple.com/access/integrations/api
-      #      Store Key ID as ASC_KEY_ID, Issuer ID as ASC_ISSUER_ID,
-      #      and the .p8 file contents as ASC_KEY_CONTENT
+      # Secrets required (set in GitHub → Settings → Secrets → Actions):
+      #   CERTIFICATES_P12          base64-encoded .p12 distribution cert
+      #   CERTIFICATES_P12_PASSWORD export password for the .p12
+      #   PROVISIONING_PROFILE      base64-encoded App Store .mobileprovision
+      #   APPLE_TEAM_ID             10-char team ID
+      #   ASC_KEY_ID                App Store Connect API key ID
+      #   ASC_ISSUER_ID             App Store Connect issuer ID
+      #   ASC_KEY_CONTENT           Contents of the .p8 API key file
 
       - name: Install certificate
         env:
@@ -50,15 +87,12 @@ jobs:
           KEYCHAIN_PATH=$RUNNER_TEMP/signing.keychain-db
           KEYCHAIN_PASSWORD=$(openssl rand -hex 16)
 
-          # Decode cert
           echo "$CERTIFICATES_P12" | base64 --decode > $RUNNER_TEMP/cert.p12
 
-          # Create a temporary keychain
           security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
           security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
           security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
 
-          # Import cert into keychain
           security import "$RUNNER_TEMP/cert.p12" \
             -P "$CERTIFICATES_P12_PASSWORD" \
             -A -t cert -f pkcs12 \
@@ -85,29 +119,22 @@ jobs:
 
       # ── Build ───────────────────────────────────────────────────────────────
 
-      - name: Increment build number
-        run: |
-          BUILD_NUMBER=${{ github.run_number }}
-          /usr/libexec/PlistBuddy \
-            -c "Set :CFBundleVersion $BUILD_NUMBER" \
-            safeflow/Info.plist
-
       - name: Build archive
         run: |
           xcodebuild \
             -project safeflow.xcodeproj \
-            -scheme safeflow \
+            -scheme safeflow-Beta \
             -configuration Release \
             -destination 'generic/platform=iOS' \
             -archivePath $RUNNER_TEMP/safeflow.xcarchive \
             CODE_SIGN_STYLE=Manual \
-            PROVISIONING_PROFILE_SPECIFIER="safeflow AppStore" \
+            PROVISIONING_PROFILE_SPECIFIER="iOS Team Store Provisioning Profile: com.thevgergroup.safeflow" \
             archive \
             | xcpretty
 
       - name: Export IPA
         run: |
-          cat > $RUNNER_TEMP/ExportOptions.plist << 'EOF'
+          cat > $RUNNER_TEMP/ExportOptions.plist << EOF
           <?xml version="1.0" encoding="UTF-8"?>
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
           <plist version="1.0">

@@ -9,9 +9,9 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.thevgergroup.safeflow</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>0.4.0</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Clio Daye uses Face ID or Touch ID to securely protect your personal health data.</string>
 	<key>CFBundlePackageType</key>
