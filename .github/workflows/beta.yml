@@ -127,8 +127,9 @@ jobs:
             -configuration Release \
             -destination 'generic/platform=iOS' \
             -archivePath "$GITHUB_WORKSPACE/build/safeflow.xcarchive" \
-            CODE_SIGN_STYLE=Manual \
-            PROVISIONING_PROFILE_SPECIFIER="iOS Team Store Provisioning Profile: com.thevgergroup.safeflow" \
+            CODE_SIGN_STYLE=Automatic \
+            CODE_SIGN_IDENTITY="Apple Distribution" \
+            DEVELOPMENT_TEAM="${{ secrets.APPLE_TEAM_ID }}" \
             archive
 
       - name: Export IPA
