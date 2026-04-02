@@ -129,8 +129,7 @@ jobs:
             -archivePath "$GITHUB_WORKSPACE/build/safeflow.xcarchive" \
             CODE_SIGN_STYLE=Manual \
             PROVISIONING_PROFILE_SPECIFIER="iOS Team Store Provisioning Profile: com.thevgergroup.safeflow" \
-            archive \
-            | xcpretty
+            archive
 
       - name: Export IPA
         run: |
