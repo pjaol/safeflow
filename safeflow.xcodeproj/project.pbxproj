@@ -12,38 +12,39 @@
 		4258F31950009A771FFD2BAB /* ContentModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2615D32F0F291FD5132C88B3 /* ContentModels.swift */; };
 		732DBD33F96FDB7565E9203E /* nudges.json in Resources */ = {isa = PBXBuildFile; fileRef = C857E6F10A3503075969CDDF /* nudges.json */; };
 		8FDC1DF9FB94376469C80938 /* symptom_rich_cycles.csv in Resources */ = {isa = PBXBuildFile; fileRef = EE453D4CD80C0EF166203A9C /* symptom_rich_cycles.csv */; };
-		BB001122334455667788991C /* scenario_new_user.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788991A /* scenario_new_user.csv */; };
-		BB001122334455667788992C /* scenario_high_variability.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788992A /* scenario_high_variability.csv */; };
-		BB001122334455667788993C /* scenario_heavy_flow.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788993A /* scenario_heavy_flow.csv */; };
-		BB001122334455667788994C /* scenario_escalating_cramps.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788994A /* scenario_escalating_cramps.csv */; };
-		BB001122334455667788995C /* scenario_overdue_cycle.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788995A /* scenario_overdue_cycle.csv */; };
-		BB001122334455667788996C /* scenario_pmdd_pattern.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788996A /* scenario_pmdd_pattern.csv */; };
-		BB001122334455667788991D /* scenario_new_user.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788991A /* scenario_new_user.csv */; };
-		BB001122334455667788992D /* scenario_high_variability.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788992A /* scenario_high_variability.csv */; };
-		BB001122334455667788993D /* scenario_heavy_flow.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788993A /* scenario_heavy_flow.csv */; };
-		BB001122334455667788994D /* scenario_escalating_cramps.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788994A /* scenario_escalating_cramps.csv */; };
-		BB001122334455667788995D /* scenario_overdue_cycle.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788995A /* scenario_overdue_cycle.csv */; };
-		BB001122334455667788996D /* scenario_pmdd_pattern.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788996A /* scenario_pmdd_pattern.csv */; };
-		BB001122334455667788991E /* scenario_new_user.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788991A /* scenario_new_user.csv */; };
-		BB001122334455667788992E /* scenario_high_variability.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788992A /* scenario_high_variability.csv */; };
-		BB001122334455667788993E /* scenario_heavy_flow.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788993A /* scenario_heavy_flow.csv */; };
-		BB001122334455667788994E /* scenario_escalating_cramps.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788994A /* scenario_escalating_cramps.csv */; };
-		BB001122334455667788995E /* scenario_overdue_cycle.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788995A /* scenario_overdue_cycle.csv */; };
-		BB001122334455667788996E /* scenario_pmdd_pattern.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788996A /* scenario_pmdd_pattern.csv */; };
 		AA11223344556677889900BB /* CyclePhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900AA /* CyclePhase.swift */; };
 		AA11223344556677889900DD /* CycleSeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900CC /* CycleSeedData.swift */; };
 		AA11223344556677889900FF /* CyclePredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900EE /* CyclePredictionEngine.swift */; };
 		AD98F4C4C596FA35562B2178 /* signals.json in Resources */ = {isa = PBXBuildFile; fileRef = 2CECA96FDA217ECAD0E3B085 /* signals.json */; };
 		B78D7DC838B549AAB7F3D5D9 /* InsightCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2E1432FC934814B484C260 /* InsightCard.swift */; };
+		BB001122334455667788991C /* scenario_new_user.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788991A /* scenario_new_user.csv */; };
+		BB001122334455667788991D /* scenario_new_user.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788991A /* scenario_new_user.csv */; };
+		BB001122334455667788991E /* scenario_new_user.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788991A /* scenario_new_user.csv */; };
+		BB001122334455667788992C /* scenario_high_variability.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788992A /* scenario_high_variability.csv */; };
+		BB001122334455667788992D /* scenario_high_variability.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788992A /* scenario_high_variability.csv */; };
+		BB001122334455667788992E /* scenario_high_variability.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788992A /* scenario_high_variability.csv */; };
+		BB001122334455667788993C /* scenario_heavy_flow.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788993A /* scenario_heavy_flow.csv */; };
+		BB001122334455667788993D /* scenario_heavy_flow.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788993A /* scenario_heavy_flow.csv */; };
+		BB001122334455667788993E /* scenario_heavy_flow.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788993A /* scenario_heavy_flow.csv */; };
+		BB001122334455667788994C /* scenario_escalating_cramps.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788994A /* scenario_escalating_cramps.csv */; };
+		BB001122334455667788994D /* scenario_escalating_cramps.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788994A /* scenario_escalating_cramps.csv */; };
+		BB001122334455667788994E /* scenario_escalating_cramps.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788994A /* scenario_escalating_cramps.csv */; };
+		BB001122334455667788995C /* scenario_overdue_cycle.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788995A /* scenario_overdue_cycle.csv */; };
+		BB001122334455667788995D /* scenario_overdue_cycle.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788995A /* scenario_overdue_cycle.csv */; };
+		BB001122334455667788995E /* scenario_overdue_cycle.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788995A /* scenario_overdue_cycle.csv */; };
+		BB001122334455667788996C /* scenario_pmdd_pattern.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788996A /* scenario_pmdd_pattern.csv */; };
+		BB001122334455667788996D /* scenario_pmdd_pattern.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788996A /* scenario_pmdd_pattern.csv */; };
+		BB001122334455667788996E /* scenario_pmdd_pattern.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788996A /* scenario_pmdd_pattern.csv */; };
 		BB11223344556677889900BB /* CyclePhaseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11223344556677889900AA /* CyclePhaseCard.swift */; };
-		CC99887766554433221100FF /* CycleRingSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC99887766554433221100EE /* CycleRingSummaryCard.swift */; };
 		BB11223344556677889900DD /* QuickLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11223344556677889900CC /* QuickLogView.swift */; };
+		BB112233445566778899AA01 /* CyclePredictionEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB112233445566778899AA00 /* CyclePredictionEngineTests.swift */; };
 		BDD6ADD80D7817503073B907 /* ContentEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D569DC92C1BD5063934679 /* ContentEvaluator.swift */; };
 		C2CA3BB5227E61250FAE54DD /* symptom_rich_cycles.csv in Resources */ = {isa = PBXBuildFile; fileRef = EE453D4CD80C0EF166203A9C /* symptom_rich_cycles.csv */; };
 		C36ABC27D2DEEF3058EDD7B7 /* resources.json in Resources */ = {isa = PBXBuildFile; fileRef = 24377BF94DDC1920ADC9131C /* resources.json */; };
 		C6CAF31492E0B1DCCA518BA7 /* symptom_rich_cycles.csv in Resources */ = {isa = PBXBuildFile; fileRef = EE453D4CD80C0EF166203A9C /* symptom_rich_cycles.csv */; };
 		CC44556677889900AABBCCEE /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC44556677889900AABBCCDD /* ForecastView.swift */; };
 		CC55667788990011AABBCCFF /* PulseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC55667788990011AABBCCEE /* PulseView.swift */; };
+		CC99887766554433221100FF /* CycleRingSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC99887766554433221100EE /* CycleRingSummaryCard.swift */; };
 		CD218E662D4021EB009B5198 /* CycleDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E562D4021EB009B5198 /* CycleDay.swift */; };
 		CD218E672D4021EB009B5198 /* CycleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E5A2D4021EB009B5198 /* CycleStore.swift */; };
 		CD218E682D4021EB009B5198 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E5D2D4021EB009B5198 /* HomeViewModel.swift */; };
@@ -59,7 +60,6 @@
 		CD218E902D4198F5009B5198 /* PinSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E8F2D4198F5009B5198 /* PinSetupView.swift */; };
 		CD218E942D41994E009B5198 /* SecurityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E912D41994E009B5198 /* SecurityManager.swift */; };
 		CD218E972D41A086009B5198 /* SecurityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E962D41A086009B5198 /* SecurityTests.swift */; };
-		BB112233445566778899AA01 /* CyclePredictionEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB112233445566778899AA00 /* CyclePredictionEngineTests.swift */; };
 		CD218E9A2D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E982D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift */; };
 		CD218E9B2D41A0AF009B5198 /* safeflowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E992D41A0AF009B5198 /* safeflowUITests.swift */; };
 		CD218E9F2D4303F1009B5198 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E9C2D4303F1009B5198 /* AppTheme.swift */; };
@@ -130,22 +130,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		24377BF94DDC1920ADC9131C /* resources.json */ = {isa = PBXFileReference; includeInIndex = 1; path = resources.json; sourceTree = "<group>"; };
+		24377BF94DDC1920ADC9131C /* resources.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = resources.json; sourceTree = "<group>"; };
 		2615D32F0F291FD5132C88B3 /* ContentModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContentModels.swift; sourceTree = "<group>"; };
-		2716100D868C3095A2A7F8B6 /* tips.json */ = {isa = PBXFileReference; includeInIndex = 1; path = tips.json; sourceTree = "<group>"; };
-		2CECA96FDA217ECAD0E3B085 /* signals.json */ = {isa = PBXFileReference; includeInIndex = 1; path = signals.json; sourceTree = "<group>"; };
+		2716100D868C3095A2A7F8B6 /* tips.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = tips.json; sourceTree = "<group>"; };
+		2CECA96FDA217ECAD0E3B085 /* signals.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = signals.json; sourceTree = "<group>"; };
 		3E954215BF114795B8EDFF2F /* SymptomPatternEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomPatternEngine.swift; sourceTree = "<group>"; };
 		504469625D50C14C530203D9 /* GetSupportView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GetSupportView.swift; sourceTree = "<group>"; };
 		AA11223344556677889900AA /* CyclePhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePhase.swift; sourceTree = "<group>"; };
 		AA11223344556677889900CC /* CycleSeedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleSeedData.swift; sourceTree = "<group>"; };
 		AA11223344556677889900EE /* CyclePredictionEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePredictionEngine.swift; sourceTree = "<group>"; };
+		BB001122334455667788991A /* scenario_new_user.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_new_user.csv; sourceTree = "<group>"; };
+		BB001122334455667788992A /* scenario_high_variability.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_high_variability.csv; sourceTree = "<group>"; };
+		BB001122334455667788993A /* scenario_heavy_flow.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_heavy_flow.csv; sourceTree = "<group>"; };
+		BB001122334455667788994A /* scenario_escalating_cramps.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_escalating_cramps.csv; sourceTree = "<group>"; };
+		BB001122334455667788995A /* scenario_overdue_cycle.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_overdue_cycle.csv; sourceTree = "<group>"; };
+		BB001122334455667788996A /* scenario_pmdd_pattern.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_pmdd_pattern.csv; sourceTree = "<group>"; };
 		BB11223344556677889900AA /* CyclePhaseCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePhaseCard.swift; sourceTree = "<group>"; };
-		CC99887766554433221100EE /* CycleRingSummaryCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleRingSummaryCard.swift; sourceTree = "<group>"; };
 		BB11223344556677889900CC /* QuickLogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickLogView.swift; sourceTree = "<group>"; };
+		BB112233445566778899AA00 /* CyclePredictionEngineTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CyclePredictionEngineTests.swift; path = Tests/UnitTests/CyclePredictionEngineTests.swift; sourceTree = SOURCE_ROOT; };
 		C2D569DC92C1BD5063934679 /* ContentEvaluator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContentEvaluator.swift; sourceTree = "<group>"; };
-		C857E6F10A3503075969CDDF /* nudges.json */ = {isa = PBXFileReference; includeInIndex = 1; path = nudges.json; sourceTree = "<group>"; };
+		C857E6F10A3503075969CDDF /* nudges.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = nudges.json; sourceTree = "<group>"; };
 		CC44556677889900AABBCCDD /* ForecastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastView.swift; sourceTree = "<group>"; };
 		CC55667788990011AABBCCEE /* PulseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PulseView.swift; sourceTree = "<group>"; };
+		CC99887766554433221100EE /* CycleRingSummaryCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleRingSummaryCard.swift; sourceTree = "<group>"; };
 		CD218E562D4021EB009B5198 /* CycleDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleDay.swift; sourceTree = "<group>"; };
 		CD218E5A2D4021EB009B5198 /* CycleStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleStore.swift; sourceTree = "<group>"; };
 		CD218E5D2D4021EB009B5198 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -162,7 +169,6 @@
 		CD218E8F2D4198F5009B5198 /* PinSetupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinSetupView.swift; sourceTree = "<group>"; };
 		CD218E912D41994E009B5198 /* SecurityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityManager.swift; sourceTree = "<group>"; };
 		CD218E962D41A086009B5198 /* SecurityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecurityTests.swift; path = Tests/UnitTests/SecurityTests.swift; sourceTree = SOURCE_ROOT; };
-		BB112233445566778899AA00 /* CyclePredictionEngineTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CyclePredictionEngineTests.swift; path = Tests/UnitTests/CyclePredictionEngineTests.swift; sourceTree = SOURCE_ROOT; };
 		CD218E982D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = safeflowUITestsLaunchTests.swift; path = Tests/UITests/safeflowUITestsLaunchTests.swift; sourceTree = SOURCE_ROOT; };
 		CD218E992D41A0AF009B5198 /* safeflowUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = safeflowUITests.swift; path = Tests/UITests/safeflowUITests.swift; sourceTree = SOURCE_ROOT; };
 		CD218E9C2D4303F1009B5198 /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
@@ -198,12 +204,6 @@
 		EE2A3B4C5D6E7F8A9B0C1D2E /* PhaseTipCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhaseTipCard.swift; sourceTree = "<group>"; };
 		EE3A4B5C6D7E8F9A0B1C2D3E /* PatternNudgeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatternNudgeCard.swift; sourceTree = "<group>"; };
 		EE453D4CD80C0EF166203A9C /* symptom_rich_cycles.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = symptom_rich_cycles.csv; sourceTree = "<group>"; };
-		BB001122334455667788991A /* scenario_new_user.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_new_user.csv; sourceTree = "<group>"; };
-		BB001122334455667788992A /* scenario_high_variability.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_high_variability.csv; sourceTree = "<group>"; };
-		BB001122334455667788993A /* scenario_heavy_flow.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_heavy_flow.csv; sourceTree = "<group>"; };
-		BB001122334455667788994A /* scenario_escalating_cramps.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_escalating_cramps.csv; sourceTree = "<group>"; };
-		BB001122334455667788995A /* scenario_overdue_cycle.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_overdue_cycle.csv; sourceTree = "<group>"; };
-		BB001122334455667788996A /* scenario_pmdd_pattern.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_pmdd_pattern.csv; sourceTree = "<group>"; };
 		FE2E1432FC934814B484C260 /* InsightCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightCard.swift; sourceTree = "<group>"; };
 		FF33445566778899AABBCCBB /* WeekRibbonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekRibbonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -238,7 +238,6 @@
 			children = (
 				504469625D50C14C530203D9 /* GetSupportView.swift */,
 			);
-			name = Home;
 			path = Home;
 			sourceTree = "<group>";
 		};
@@ -248,7 +247,6 @@
 				4F5DFD5D83FC1944F6C780A1 /* Services */,
 				80F252B36BF6D4F356BF71F6 /* Views */,
 			);
-			name = Sources;
 			path = Sources;
 			sourceTree = "<group>";
 		};
@@ -257,7 +255,6 @@
 			children = (
 			);
 			name = "";
-			path = "";
 			sourceTree = "<group>";
 		};
 		441725ED48A25995A64D976C /* Content */ = {
@@ -268,7 +265,6 @@
 				EB83B32D169194F44D093628 /* ContentLoader.swift */,
 				2615D32F0F291FD5132C88B3 /* ContentModels.swift */,
 			);
-			name = Content;
 			path = Content;
 			sourceTree = "<group>";
 		};
@@ -277,7 +273,6 @@
 			children = (
 				441725ED48A25995A64D976C /* Content */,
 			);
-			name = Services;
 			path = Services;
 			sourceTree = "<group>";
 		};
@@ -290,7 +285,6 @@
 				2716100D868C3095A2A7F8B6 /* tips.json */,
 				DEB4B26003B5E409A8EAB915 /* insights.json */,
 			);
-			name = Content;
 			path = Content;
 			sourceTree = "<group>";
 		};
@@ -299,7 +293,6 @@
 			children = (
 				245670B015E1106199C3FA7C /* Home */,
 			);
-			name = Views;
 			path = Views;
 			sourceTree = "<group>";
 		};
@@ -885,6 +878,153 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		CDB18F442F7E0EA200B12B2F /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Beta;
+		};
+		CDB18F452F7E0EA200B12B2F /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = safeflow/safeflow.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "Resources/TestData/regular_28_day_cycle_metadata.csv Resources/TestData/regular_28_day_cycle.csv Resources/TestData/irregular_cycle.csv Resources/TestData/regular_28_day_cycle_predictions.csv Resources/TestData/sparse_data_metadata.csv safeflow/Preview\\ Content Resources/TestData/irregular_cycle_predictions.csv Resources/TestData Resources/TestData/irregular_cycle_metadata.csv Resources/TestData/sparse_data_predictions.csv Resources/TestData/sparse_data.csv Resources/TestData/symptom_rich_cycles.csv";
+				DEVELOPMENT_TEAM = 8NQMHUGDM7;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = safeflow/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Safe Flow";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thevgergroup.safeflow;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Beta;
+		};
+		CDB18F462F7E0EA200B12B2F /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thevgergroup.safeflowTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/safeflow.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/safeflow";
+			};
+			name = Beta;
+		};
+		CDB18F472F7E0EA200B12B2F /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thevgergroup.safeflowUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = safeflow;
+			};
+			name = Beta;
+		};
 		CDBECD7A2D4010D2006A37C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1008,6 +1148,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "Resources/TestData/regular_28_day_cycle_metadata.csv Resources/TestData/regular_28_day_cycle.csv Resources/TestData/irregular_cycle.csv Resources/TestData/regular_28_day_cycle_predictions.csv Resources/TestData/sparse_data_metadata.csv safeflow/Preview\\ Content Resources/TestData/irregular_cycle_predictions.csv Resources/TestData Resources/TestData/irregular_cycle_metadata.csv Resources/TestData/sparse_data_predictions.csv Resources/TestData/sparse_data.csv Resources/TestData/symptom_rich_cycles.csv";
+				DEVELOPMENT_TEAM = 8NQMHUGDM7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = safeflow/Info.plist;
@@ -1048,6 +1189,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "Resources/TestData/regular_28_day_cycle_metadata.csv Resources/TestData/regular_28_day_cycle.csv Resources/TestData/irregular_cycle.csv Resources/TestData/regular_28_day_cycle_predictions.csv Resources/TestData/sparse_data_metadata.csv safeflow/Preview\\ Content Resources/TestData/irregular_cycle_predictions.csv Resources/TestData Resources/TestData/irregular_cycle_metadata.csv Resources/TestData/sparse_data_predictions.csv Resources/TestData/sparse_data.csv Resources/TestData/symptom_rich_cycles.csv";
+				DEVELOPMENT_TEAM = 8NQMHUGDM7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Safe Flow";
@@ -1175,6 +1317,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CDBECD7A2D4010D2006A37C9 /* Debug */,
+				CDB18F442F7E0EA200B12B2F /* Beta */,
 				CDBECD7B2D4010D2006A37C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1184,6 +1327,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CDBECD7D2D4010D2006A37C9 /* Debug */,
+				CDB18F452F7E0EA200B12B2F /* Beta */,
 				CDBECD7E2D4010D2006A37C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1193,6 +1337,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CDBECD802D4010D2006A37C9 /* Debug */,
+				CDB18F462F7E0EA200B12B2F /* Beta */,
 				CDBECD812D4010D2006A37C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1202,6 +1347,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CDBECD832D4010D2006A37C9 /* Debug */,
+				CDB18F472F7E0EA200B12B2F /* Beta */,
 				CDBECD842D4010D2006A37C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

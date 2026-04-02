@@ -14,6 +14,8 @@
 	<string>1.0</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Clio Daye uses Face ID or Touch ID to securely protect your personal health data.</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>UILaunchScreen</key>
