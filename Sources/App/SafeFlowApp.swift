@@ -74,6 +74,42 @@ struct SafeFlowApp: App {
         if args.contains("RESET_ONBOARDING") || args.contains("UI-Testing") {
             hasCompletedOnboarding = false
         }
+
+        if args.contains("SKIP_ONBOARDING") {
+            hasCompletedOnboarding = true
+        }
+
+        if args.contains("LOAD_SYMPTOM_RICH") {
+            loadTestScenario(filename: "symptom_rich_cycles", cycleLength: 28, periodLength: 6)
+        }
         #endif
     }
+
+    #if DEBUG
+    private func loadTestScenario(filename: String, cycleLength: Int, periodLength: Int) {
+        Task {
+            guard let url = Bundle.main.url(forResource: filename, withExtension: "csv"),
+                  let csv = try? String(contentsOf: url, encoding: .utf8),
+                  let entries = try? TestDataLoader.shared.parseEntriesPublic(from: csv),
+                  let firstEntry = entries.first else { return }
+
+            let seed = CycleSeedData(
+                lastPeriodStartDate: firstEntry.date,
+                typicalPeriodLength: periodLength,
+                typicalCycleLength: cycleLength
+            )
+            cycleStore.saveSeedData(seed)
+            for entry in entries {
+                cycleStore.addOrUpdateDay(CycleDay(
+                    id: UUID(),
+                    date: entry.date,
+                    flow: entry.flow,
+                    symptoms: entry.symptoms,
+                    mood: entry.mood,
+                    notes: entry.notes
+                ))
+            }
+        }
+    }
+    #endif
 }

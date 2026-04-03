@@ -1,24 +1,31 @@
-Clio Daye is a menstrual cycle tracker built on one principle: your health data belongs to you.
+Your cycle data is yours. We mean that literally.
 
-Everything stays on your device. No accounts. No cloud sync. No analytics. No third-party SDKs. There is no server that can be breached, no company that can sell your data, and no subscription standing between you and your own health information.
+Most period tracking apps are free because they make money from your data. That data gets sold to advertisers, shared with data brokers, and in some US states has been requested by law enforcement. We found this unacceptable. So we built Clio Daye.
 
-TRACK WHAT MATTERS
-Log your period, flow intensity, symptoms, and mood in seconds. Clio Daye supports over 15 symptoms and 12 mood states — from cramps and fatigue to brain fog and bloating — so your log actually reflects how you feel.
+Everything you track in Clio Daye lives only on your device. There is no account to create, no server receiving your data, no cloud backup, no subscription, no ads. We have no access to your data. Nobody does except you.
 
-UNDERSTAND YOUR CYCLE
-See where you are in your cycle today, not just when your next period is due. Clio Daye shows your current phase, an honest prediction range for your next period, and your estimated fertile window — all adapted to your actual cycle history, not a 28-day average.
+That was the whole reason we built this.
 
-SPOT PATTERNS OVER TIME
-Clio Daye learns from your data. It surfaces insights about your personal symptom patterns, flags changes worth paying attention to, and connects you with trusted health resources when a pattern warrants it. No alarm. No drama. Just information.
+How it works
 
-PRIVATE BY DESIGN
-— All data stored locally on your device
-— No account required, ever
-— Face ID, Touch ID, or PIN protection
-— One-tap delete: your data is gone, completely
-— Open source codebase — you can verify every claim
+Clio Daye covers the things that matter in day-to-day cycle tracking. You can log flow intensity, 15 different symptoms, mood, and notes. It shows your current cycle phase and predicts when your next period is likely to start, with an honest uncertainty range rather than a false-precision date. Over time, it surfaces patterns in your flow, symptoms, and mood so you can see what your own cycle actually looks like.
 
-HONEST ABOUT WHAT IT IS
-Clio Daye is a cycle awareness tool. It is not a contraceptive method, and it does not provide medical advice. When patterns suggest it, Clio Daye points you toward real healthcare providers — not a paywall.
+Most apps tell you when your next period is due. Clio Daye shows you a rolling six-month picture of your cycle so you can plan ahead, not just react. Useful for travel, events, or simply knowing what kind of week you're heading into.
 
-Requires iOS 17.5 or later. iPhone only.
+Everything is protected by Face ID, Touch ID, or a PIN. If someone else picks up your phone, they cannot open the app without your permission.
+
+Who it's for
+
+Anyone who has a menstrual cycle. Clio Daye uses body-neutral language and doesn't assume gender. It's designed for people across all life stages, from first cycles through perimenopause.
+
+A lot of people who try Clio Daye have already had a bad experience with another app. Maybe you found out your previous app shared your data in ways you never agreed to. We built this for exactly that reason.
+
+Open source and free, forever
+
+Clio Daye is free with no subscription, no premium tier, and no advertising. The source code is public at github.com/pjaol/safeflow so anyone can read it and verify the privacy claims for themselves. We're not a venture-backed startup optimizing for growth. We're a small team who thought this tool should exist and built it.
+
+A note on what this isn't
+
+Clio Daye is not a contraceptive tool and should not be used as one. Predictions are estimates based on your logged history and become more accurate as you log more cycles. If you need contraception or have medical concerns about your cycle, please talk to a healthcare provider.
+
+Requires iOS 17.5 or later.

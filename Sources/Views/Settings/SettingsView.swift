@@ -85,12 +85,8 @@ struct SettingsView: View {
                             .foregroundColor(AppTheme.Colors.mediumGrayText)
                     }
                     
-                    NavigationLink {
-                        PrivacyView()
-                    } label: {
-                        Text("Privacy Policy")
-                            .foregroundColor(AppTheme.Colors.deepGrayText)
-                    }
+                    Link("Privacy Policy", destination: URL(string: "https://pjaol.github.io/safeflow/privacy")!)
+                        .foregroundColor(AppTheme.Colors.deepGrayText)
                 }
                 
                 #if DEBUG
@@ -154,43 +150,6 @@ struct SettingsView: View {
     }
 }
 
-struct PrivacyView: View {
-    var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: AppTheme.Metrics.standardSpacing) {
-                Text("Privacy Policy")
-                    .font(AppTheme.Typography.headlineFont)
-                    .foregroundColor(AppTheme.Colors.deepGrayText)
-                    .padding(.bottom)
-                
-                Text("Clio Daye is committed to protecting your privacy. All your data is stored locally on your device and is never shared with any third parties.")
-                    .font(AppTheme.Typography.bodyFont)
-                    .foregroundColor(AppTheme.Colors.deepGrayText)
-                
-                Text("Data Storage")
-                    .font(AppTheme.Typography.headlineFont)
-                    .foregroundColor(AppTheme.Colors.deepGrayText)
-                    .padding(.top)
-                
-                Text("• All data is stored locally on your device\n• No cloud storage or syncing")
-                    .font(AppTheme.Typography.bodyFont)
-                    .foregroundColor(AppTheme.Colors.deepGrayText)
-                
-                Text("Security")
-                    .font(AppTheme.Typography.headlineFont)
-                    .foregroundColor(AppTheme.Colors.deepGrayText)
-                    .padding(.top)
-                
-                Text("• Optional biometric authentication\n• No analytics or tracking")
-                    .font(AppTheme.Typography.bodyFont)
-                    .foregroundColor(AppTheme.Colors.deepGrayText)
-            }
-            .padding()
-            .cardStyle()
-        }
-        .background(AppTheme.Colors.background)
-    }
-}
 
 #if DEBUG
 struct SettingsView_Previews: PreviewProvider {

@@ -62,6 +62,8 @@
 		CD218E972D41A086009B5198 /* SecurityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E962D41A086009B5198 /* SecurityTests.swift */; };
 		CD218E9A2D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E982D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift */; };
 		CD218E9B2D41A0AF009B5198 /* safeflowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E992D41A0AF009B5198 /* safeflowUITests.swift */; };
+		SNAP00112233445566778899AA /* SnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = SNAP00112233445566778899AB /* SnapshotTests.swift */; };
+		SNAP00112233445566778899AC /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = SNAP00112233445566778899AD /* SnapshotHelper.swift */; };
 		CD218E9F2D4303F1009B5198 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E9C2D4303F1009B5198 /* AppTheme.swift */; };
 		CD218EA02D4303F1009B5198 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E9D2D4303F1009B5198 /* ViewModifiers.swift */; };
 		CD218EA52D43CC89009B5198 /* CycleCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218EA42D43CC89009B5198 /* CycleCalendarView.swift */; };
@@ -172,6 +174,8 @@
 		CD218E962D41A086009B5198 /* SecurityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecurityTests.swift; path = Tests/UnitTests/SecurityTests.swift; sourceTree = SOURCE_ROOT; };
 		CD218E982D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = safeflowUITestsLaunchTests.swift; path = Tests/UITests/safeflowUITestsLaunchTests.swift; sourceTree = SOURCE_ROOT; };
 		CD218E992D41A0AF009B5198 /* safeflowUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = safeflowUITests.swift; path = Tests/UITests/safeflowUITests.swift; sourceTree = SOURCE_ROOT; };
+		SNAP00112233445566778899AB /* SnapshotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotTests.swift; path = Tests/UITests/SnapshotTests.swift; sourceTree = SOURCE_ROOT; };
+		SNAP00112233445566778899AD /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = Tests/UITests/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		CD218E9C2D4303F1009B5198 /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		CD218E9D2D4303F1009B5198 /* ViewModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		CD218EA42D43CC89009B5198 /* CycleCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleCalendarView.swift; sourceTree = "<group>"; };
@@ -601,6 +605,8 @@
 			children = (
 				CD218E992D41A0AF009B5198 /* safeflowUITests.swift */,
 				CD218E982D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift */,
+				SNAP00112233445566778899AB /* SnapshotTests.swift */,
+				SNAP00112233445566778899AD /* SnapshotHelper.swift */,
 			);
 			path = safeflowUITests;
 			sourceTree = "<group>";
@@ -861,6 +867,8 @@
 			files = (
 				CD218E9B2D41A0AF009B5198 /* safeflowUITests.swift in Sources */,
 				CD218E9A2D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift in Sources */,
+				SNAP00112233445566778899AA /* SnapshotTests.swift in Sources */,
+				SNAP00112233445566778899AC /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -937,8 +945,8 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Beta;
 		};
@@ -951,7 +959,7 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
 				PROVISIONING_PROFILE_SPECIFIER = "b6728ec4-c939-4251-8e7b-4ab8f24be2fc";
-				SUPPORTED_PLATFORMS = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "safeflow/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8NQMHUGDM7;
