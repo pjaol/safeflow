@@ -179,14 +179,17 @@ platform :ios do
     pilot_args = {
       api_key: api_key,
       app_identifier: "com.thevgergroup.safeflow",
+      app_platform: "ios",
       distribute_external: true,
       groups: [group_name],
       notify_external_testers: true,
       skip_submission: false,
-      skip_waiting_for_build_processing: false,
+      skip_waiting_for_build_processing: true,
       changelog: ENV["CHANGELOG"] || "Bug fixes and improvements.",
+      distribute_only: true,
     }
     pilot_args[:build_number] = build_number if build_number
+    pilot_args[:app_version] = options[:version] if options[:version]
 
     pilot(pilot_args)
   end
@@ -280,6 +283,134 @@ platform :ios do
       }
     )
 
+    UI.success "Submitted! Apple will review within 24-48 hours."
+  end
+
+  desc "Set age rating and submit for App Store review directly via Spaceship"
+  lane :submit_with_age_rating do |options|
+    version = options[:version] || UI.input("App Store version number (e.g. 1.0):")
+
+    api_key_args = {
+      key_id: ENV["ASC_KEY_ID"],
+      issuer_id: ENV["ASC_ISSUER_ID"],
+    }
+    if ENV["ASC_KEY_PATH"]
+      api_key_args[:key_filepath] = ENV["ASC_KEY_PATH"]
+    else
+      api_key_args[:key_content] = ENV["ASC_KEY_CONTENT"]
+      api_key_args[:is_key_content_base64] = false
+    end
+    api_key = app_store_connect_api_key(api_key_args)
+
+    app_id = "6761509532"
+
+    # Authenticate Spaceship with the API key
+    Spaceship::ConnectAPI.auth(
+      key_id: api_key[:key_id],
+      issuer_id: api_key[:issuer_id],
+      filepath: ENV["ASC_KEY_PATH"]
+    )
+
+    UI.message "Finding v#{version} edit version..."
+    edit_states = "PREPARE_FOR_SUBMISSION,DEVELOPER_REJECTED,REJECTED,METADATA_REJECTED"
+    versions_response = Spaceship::ConnectAPI.get_app_store_versions(
+      app_id: app_id,
+      filter: { platform: "IOS", appStoreState: edit_states }
+    )
+    app_store_version = versions_response.to_models.find { |v| v.version_string == version }
+    UI.user_error!("Could not find v#{version} in an editable state") unless app_store_version
+    UI.message "Found version id: #{app_store_version.id}"
+
+    UI.message "Fetching app info for age rating..."
+    app_info = Spaceship::ConnectAPI.get_app_infos(app_id: app_id).to_models.find do |info|
+      info.app_store_state == "PREPARE_FOR_SUBMISSION" || info.app_store_state.nil?
+    end
+    app_info ||= Spaceship::ConnectAPI.get_app_infos(app_id: app_id).to_models.first
+    UI.user_error!("Could not find app info") unless app_info
+    UI.message "App info id: #{app_info.id}"
+
+    UI.message "Fetching age rating declaration..."
+    age_rating_response = Spaceship::ConnectAPI.get_age_rating_declaration(
+      app_info_id: app_info.id
+    )
+    age_rating = age_rating_response.to_models.first
+    UI.user_error!("Could not find age rating declaration") unless age_rating
+    UI.message "Age rating declaration id: #{age_rating.id}"
+
+    UI.message "Setting age rating..."
+    Spaceship::ConnectAPI.patch_age_rating_declaration(
+      age_rating_declaration_id: age_rating.id,
+      attributes: {
+        alcoholTobaccoOrDrugUseOrReferences:        "NONE",
+        contests:                                    "NONE",
+        gambling:                                    false,
+        gamblingSimulated:                           "NONE",
+        horrorOrFearThemes:                          "NONE",
+        matureOrSuggestiveThemes:                    "NONE",
+        medicalOrTreatmentInformation:               "NONE",
+        profanityOrCrudeHumor:                       "NONE",
+        sexualContentGraphicAndNudity:               "NONE",
+        sexualContentOrNudity:                       "NONE",
+        unrestrictedWebAccess:                       false,
+        violenceCartoonOrFantasy:                    "NONE",
+        violenceRealistic:                           "NONE",
+        violenceRealisticProlongedGraphicOrSadistic: "NONE",
+        lootBox:                                     false,
+        userGeneratedContent:                        false,
+        gunsOrOtherWeapons:                          "NONE",
+        parentalControls:                            false,
+        healthOrWellnessTopics:                      false,
+        ageAssurance:                                false,
+        advertising:                                 false,
+        messagingAndChat:                            false,
+      }
+    )
+    UI.success "Age rating set."
+
+    UI.message "Setting copyright and review contact info..."
+    Spaceship::ConnectAPI.patch_app_store_version(
+      app_store_version_id: app_store_version.id,
+      attributes: {
+        copyright: "#{Time.now.year} The Vger Group"
+      }
+    )
+
+    # Create review detail (contact info for reviewer)
+    begin
+      Spaceship::ConnectAPI.post_app_store_review_detail(
+        app_store_version_id: app_store_version.id,
+        attributes: {
+          contactFirstName: "Patrick",
+          contactLastName: "O'Leary",
+          contactPhone: ENV["REVIEW_CONTACT_PHONE"] || "+1 555 000 0000",
+          contactEmail: ENV["APPLE_ID"] || "pjaol@pjaol.com",
+          demoAccountRequired: false,
+          notes: "This is a privacy-first menstrual cycle tracking app. All data is stored on-device only. No login is required. The app may prompt for Face ID/Touch ID on launch — any biometric works, or tap Cancel to proceed with PIN (no PIN is set on a fresh install)."
+        }
+      )
+    rescue => e
+      UI.message "Review detail already exists or could not be created: #{e.message.split("\n").first}"
+    end
+
+    UI.message "Creating review submission..."
+    submission_response = Spaceship::ConnectAPI.post_review_submission(
+      app_id: app_id,
+      platform: "IOS"
+    )
+    submission = submission_response.to_models.first
+    UI.message "Review submission id: #{submission.id}"
+
+    UI.message "Adding v#{version} to review submission..."
+    Spaceship::ConnectAPI.post_review_submission_item(
+      review_submission_id: submission.id,
+      app_store_version_id: app_store_version.id
+    )
+
+    UI.message "Submitting for App Store review..."
+    Spaceship::ConnectAPI.patch_review_submission(
+      review_submission_id: submission.id,
+      attributes: { state: "SUBMITTED" }
+    )
     UI.success "Submitted! Apple will review within 24-48 hours."
   end
 
