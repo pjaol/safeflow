@@ -159,6 +159,165 @@ platform :ios do
     UI.success "Screenshots saved to fastlane/screenshots/en-US/"
   end
 
+  desc "Distribute a build to an external TestFlight group. Pass group:\"Group Name\" and optionally build_number:\"123\""
+  lane :distribute do |options|
+    group_name = options[:group] || UI.input("TestFlight external group name:")
+    build_number = options[:build_number]
+
+    api_key_args = {
+      key_id: ENV["ASC_KEY_ID"],
+      issuer_id: ENV["ASC_ISSUER_ID"],
+    }
+    if ENV["ASC_KEY_PATH"]
+      api_key_args[:key_filepath] = ENV["ASC_KEY_PATH"]
+    else
+      api_key_args[:key_content] = ENV["ASC_KEY_CONTENT"]
+      api_key_args[:is_key_content_base64] = false
+    end
+    api_key = app_store_connect_api_key(api_key_args)
+
+    pilot_args = {
+      api_key: api_key,
+      app_identifier: "com.thevgergroup.safeflow",
+      distribute_external: true,
+      groups: [group_name],
+      notify_external_testers: true,
+      skip_submission: false,
+      skip_waiting_for_build_processing: false,
+      changelog: ENV["CHANGELOG"] || "Bug fixes and improvements.",
+    }
+    pilot_args[:build_number] = build_number if build_number
+
+    pilot(pilot_args)
+  end
+
+  desc "Poll TestFlight until a build for the given version is processed, then submit for review. Pass version:\"1.0\""
+  lane :monitor_and_submit do |options|
+    version = options[:version] || UI.input("App Store version number (e.g. 1.0):")
+    poll_interval = (options[:interval] || 60).to_i
+
+    api_key_args = {
+      key_id: ENV["ASC_KEY_ID"],
+      issuer_id: ENV["ASC_ISSUER_ID"],
+    }
+    if ENV["ASC_KEY_PATH"]
+      api_key_args[:key_filepath] = ENV["ASC_KEY_PATH"]
+    else
+      api_key_args[:key_content] = ENV["ASC_KEY_CONTENT"]
+      api_key_args[:is_key_content_base64] = false
+    end
+    api_key = app_store_connect_api_key(api_key_args)
+
+    UI.message "Polling TestFlight for v#{version} build every #{poll_interval}s..."
+
+    build_number = nil
+    attempt = 0
+    loop do
+      attempt += 1
+      begin
+        build_number = latest_testflight_build_number(
+          api_key: api_key,
+          app_identifier: "com.thevgergroup.safeflow",
+          version: version,
+        )
+        UI.success "[attempt #{attempt}] Build #{build_number} is ready in TestFlight!"
+        break
+      rescue => e
+        UI.message "[attempt #{attempt}] Not ready yet (#{e.message.split("\n").first}) — retrying in #{poll_interval}s..."
+        sleep poll_interval
+      end
+    end
+
+    UI.message "Submitting v#{version} (build #{build_number}) for App Store review..."
+
+    deliver(
+      api_key: api_key,
+      app_identifier: "com.thevgergroup.safeflow",
+      app_version: version,
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      skip_metadata: true,
+      submit_for_review: true,
+      automatic_release: false,
+      force: true,
+      run_precheck_before_submit: false,
+      submission_information: {
+        # Export compliance
+        add_id_info_uses_idfa: false,
+        export_compliance_uses_encryption: false,
+        export_compliance_is_exempt: true,
+        # Age rating — all none/false for a health tracking app
+        content_rights_contains_third_party_content: false,
+        age_rating_override: "4+",
+        # Age rating questionnaire
+        kids_age_band: nil,
+        unrestricted_web_access: false,
+        contests: "NONE",
+        gambling: false,
+        gambling_and_contests: false,
+        sex_or_nudity_graphic: "NONE",
+        sex_or_nudity: "NONE",
+        violence_cartoon_or_fantasy: "NONE",
+        violence_realistic: "NONE",
+        violence_realistic_prolonged: "NONE",
+        violence_graphic_medical: "NONE",
+        profanity_or_crude_humor: "NONE",
+        horror_or_fear_themes: "NONE",
+        mature_or_suggestive_themes: "NONE",
+        simulated_gambling: "NONE",
+        gambling_simulation: "NONE",
+        medical_or_treatment_information: "NONE",
+        health_or_wellness_topics: "NONE",
+        alcohol_tobacco_or_drug_use: "NONE",
+        alcohol_tobacco_drugs_or_substances: "NONE",
+        sexual_content_or_nudity: "NONE",
+        loot_box: false,
+        user_generated_content: "NONE",
+        messaging_and_chat: "NONE",
+        advertising: false,
+        parental_controls: "NONE",
+        guns_or_other_weapons: "NONE",
+      }
+    )
+
+    UI.success "Submitted! Apple will review within 24-48 hours."
+  end
+
+  desc "Submit the latest uploaded build for App Store review"
+  lane :submit do |options|
+    version = options[:version] || UI.input("App Store version number (e.g. 1.0):")
+
+    api_key_args = {
+      key_id: ENV["ASC_KEY_ID"],
+      issuer_id: ENV["ASC_ISSUER_ID"],
+    }
+    if ENV["ASC_KEY_PATH"]
+      api_key_args[:key_filepath] = ENV["ASC_KEY_PATH"]
+    else
+      api_key_args[:key_content] = ENV["ASC_KEY_CONTENT"]
+      api_key_args[:is_key_content_base64] = false
+    end
+    api_key = app_store_connect_api_key(api_key_args)
+
+    deliver(
+      api_key: api_key,
+      app_identifier: "com.thevgergroup.safeflow",
+      app_version: version,
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      skip_metadata: true,
+      submit_for_review: true,
+      automatic_release: false,
+      force: true,
+      run_precheck_before_submit: false,
+      submission_information: {
+        add_id_info_uses_idfa: false,
+        export_compliance_uses_encryption: false,
+        export_compliance_is_exempt: true,
+      }
+    )
+  end
+
   desc "Upload metadata and screenshots to App Store (does not submit for review)"
   lane :metadata do
     # Use key_filepath if ASC_KEY_PATH is set (local dev), otherwise fall back to key_content (CI)
