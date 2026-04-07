@@ -1,0 +1,572 @@
+[
+  {
+    "appId": "org.iggymedia.periodtracker",
+    "title": "Flo Cycle & Period Tracker",
+    "developer": "FLO HEALTH UK LIMITED",
+    "developerWebsite": "https://flo.health/",
+    "reviews": 1831355,
+    "privacyPolicyUrl": "https://flo.health/privacy-policy",
+    "fetchStatus": "success",
+    "analysis": {
+      "collectsHealthData": true,
+      "collectsMenstrualData": true,
+      "sharesWithThirdParties": true,
+      "sellsData": false,
+      "hasAdvertising": true,
+      "cloudSyncRequired": null,
+      "canUseWithoutAccount": false,
+      "governingLaw": [
+        "GDPR (EU)"
+      ],
+      "gdpr": true,
+      "ccpa": false,
+      "notes": [
+        "Explicitly states data is not sold"
+      ]
+    },
+    "rawTextLength": 1113806,
+    "error": null
+  },
+  {
+    "appId": "com.helloclue.clue",
+    "title": "Clue Period & Cycle Tracker",
+    "developer": "BioWink GmbH",
+    "developerWebsite": "https://helloclue.com",
+    "reviews": 391758,
+    "privacyPolicyUrl": "https://helloclue.com/privacy",
+    "fetchStatus": "success",
+    "analysis": {
+      "collectsHealthData": true,
+      "collectsMenstrualData": true,
+      "sharesWithThirdParties": true,
+      "sellsData": false,
+      "hasAdvertising": true,
+      "cloudSyncRequired": false,
+      "canUseWithoutAccount": false,
+      "governingLaw": [
+        "GDPR (EU)"
+      ],
+      "gdpr": true,
+      "ccpa": false,
+      "notes": []
+    },
+    "rawTextLength": 264385,
+    "error": null
+  },
+  {
+    "appId": "Q5AWL8WCY6.iMapMyRide",
+    "title": "Map My Ride With GPS Tracker",
+    "developer": "Outside Television Inc",
+    "developerWebsite": "http://www.mapmyride.com",
+    "reviews": 243395,
+    "privacyPolicyUrl": "http://www.mapmyride.com/privacy",
+    "fetchStatus": "success",
+    "analysis": {
+      "collectsHealthData": false,
+      "collectsMenstrualData": false,
+      "sharesWithThirdParties": false,
+      "sellsData": false,
+      "hasAdvertising": false,
+      "cloudSyncRequired": null,
+      "canUseWithoutAccount": null,
+      "governingLaw": [],
+      "gdpr": false,
+      "ccpa": false,
+      "notes": []
+    },
+    "rawTextLength": 22449,
+    "error": null
+  },
+  {
+    "appId": "com.ouraring.oura",
+    "title": "Oura",
+    "developer": "Oura Health Oy",
+    "developerWebsite": "https://ouraring.com",
+    "reviews": 220793,
+    "privacyPolicyUrl": "https://ouraring.com/privacy-policy",
+    "fetchStatus": "success",
+    "analysis": {
+      "collectsHealthData": false,
+      "collectsMenstrualData": true,
+      "sharesWithThirdParties": true,
+      "sellsData": true,
+      "hasAdvertising": true,
+      "cloudSyncRequired": true,
+      "canUseWithoutAccount": false,
+      "governingLaw": [],
+      "gdpr": false,
+      "ccpa": false,
+      "notes": []
+    },
+    "rawTextLength": 1032438,
+    "error": null
+  },
+  {
+    "appId": "com.abishkking.periodcalendar",
+    "title": "Period Tracker Period Calendar",
+    "developer": "ABISHKKING LIMITED.",
+    "developerWebsite": "https://abishkking.com/",
+    "reviews": 167126,
+    "privacyPolicyUrl": null,
+    "fetchStatus": "not_found",
+    "analysis": null,
+    "rawTextLength": 0,
+    "error": "Could not find privacy policy URL"
+  },
+  {
+    "appId": "com.glowing.lexie",
+    "title": "Glow Eve Period Tracker",
+    "developer": "Glow",
+    "developerWebsite": "http://glowing.com",
+    "reviews": 113896,
+    "privacyPolicyUrl": "http://glowing.com/privacy",
+    "fetchStatus": "success",
+    "analysis": {
+      "collectsHealthData": true,
+      "collectsMenstrualData": true,
+      "sharesWithThirdParties": true,
+      "sellsData": false,
+      "hasAdvertising": true,
+      "cloudSyncRequired": null,
+      "canUseWithoutAccount": false,
+      "governingLaw": [
+        "GDPR (EU)",
+        "CCPA (California)"
+      ],
+      "gdpr": true,
+      "ccpa": true,
+      "notes": [
+        "Explicitly states data is not sold"
+      ]
+    },
+    "rawTextLength": 154978,
+    "error": null
+  },
+  {
+    "appId": "com.stardust.stardustapp",
+    "title": "Stardust Period Tracker",
+    "developer": "Stardust App LLC (New York)",
+    "developerWebsite": "https://stardust.app/",
+    "reviews": 101156,
+    "privacyPolicyUrl": "https://stardust.app/privacy-policy",
+    "fetchStatus": "success",
+    "analysis": {
+      "collectsHealthData": true,
+      "collectsMenstrualData": true,
+      "sharesWithThirdParties": true,
+      "sellsData": false,
+      "hasAdvertising": true,
+      "cloudSyncRequired": null,
+      "canUseWithoutAccount": null,
+      "governingLaw": [],
+      "gdpr": false,
+      "ccpa": false,
+      "notes": [
+        "Has a separate Health Data Privacy Policy for sensitive health data",
+        "Encrypts health data"
+      ]
+    },
+    "rawTextLength": 15185,
+    "error": null
+  },
+  {
+    "appId": "com.ovuline",
+    "title": "Ovia Cycle & Pregnancy Tracker",
+    "developer": "Ovuline, Inc.",
+    "developerWebsite": "http://www.oviahealth.com",
+    "reviews": 87637,
+    "privacyPolicyUrl": "http://www.oviahealth.com/privacy",
+    "fetchStatus": "success",
+    "analysis": {
+      "collectsHealthData": true,
+      "collectsMenstrualData": true,
+      "sharesWithThirdParties": true,
+      "sellsData": false,
+      "hasAdvertising": true,
+      "cloudSyncRequired": true,
+      "canUseWithoutAccount": false,
+      "governingLaw": [
+        "CCPA (California)"
+      ],
+      "gdpr": false,
+      "ccpa": true,
+      "notes": [
+        "Explicitly states data is not sold"
+      ]
+    },
+    "rawTextLength": 86238,
+    "error": null
+  },
+  {
+    "appId": "com.upwlabs.emma",
+    "title": "Glow Ovulation & Period App",
+    "developer": "Glow",
+    "developerWebsite": "https://glowing.com",
+    "reviews": 73608,
+    "privacyPolicyUrl": "https://glowing.com/privacy",
+    "fetchStatus": "success",
+    "analysis": {
+      "collectsHealthData": true,
+      "collectsMenstrualData": true,
+      "sharesWithThirdParties": true,
+      "sellsData": false,
+      "hasAdvertising": true,
+      "cloudSyncRequired": null,
+      "canUseWithoutAccount": false,
+      "governingLaw": [
+        "GDPR (EU)",
+        "CCPA (California)"
+      ],
+      "gdpr": true,
+      "ccpa": true,
+      "notes": [
+        "Explicitly states data is not sold"
+      ]
+    },
+    "rawTextLength": 154978,
+    "error": null
+  },
+  {
+    "appId": "com.gpapps.ptrackerlite",
+    "title": "Period Tracker by GP Apps",
+    "developer": "GP Apps",
+    "developerWebsite": "http://www.gpapps.com",
+    "reviews": 72988,
+    "privacyPolicyUrl": "http://www.gpapps.com/privacy-policy/",
+    "fetchStatus": "success (corrected)",
+    "analysis": {
+      "collectsHealthData": false,
+      "collectsMenstrualData": true,
+      "sharesWithThirdParties": true,
+      "sellsData": false,
+      "hasAdvertising": true,
+      "cloudSyncRequired": null,
+      "canUseWithoutAccount": null,
+      "governingLaw": [
+        "GDPR (EU)"
+      ],
+      "gdpr": true,
+      "ccpa": false,
+      "notes": []
+    },
+    "rawTextLength": 0,
+    "error": "HTTP 429"
+  },
+  {
+    "appId": "com.btang.thermometer",
+    "title": "Femometer Fertility Tracker",
+    "developer": "Bongmi Global Group",
+    "developerWebsite": "https://www.femometer.com",
+    "reviews": 69198,
+    "privacyPolicyUrl": "https://www.femometer.com/privacy",
+    "fetchStatus": "success",
+    "analysis": {
+      "collectsHealthData": true,
+      "collectsMenstrualData": true,
+      "sharesWithThirdParties": false,
+      "sellsData": true,
+      "hasAdvertising": false,
+      "cloudSyncRequired": null,
+      "canUseWithoutAccount": null,
+      "governingLaw": [],
+      "gdpr": false,
+      "ccpa": false,
+      "notes": []
+    },
+    "rawTextLength": 169430,
+    "error": null
+  },
+  {
+    "appId": "com.premom.easyathome",
+    "title": "Premom Ovulation Tracker & BBT",
+    "developer": "Easy Healthcare Corporation",
+    "developerWebsite": "https://www.premom.com",
+    "reviews": 53623,
+    "privacyPolicyUrl": "https://premom.com/privacy-policy/",
+    "fetchStatus": "success",
+    "analysis": {
+      "collectsHealthData": true,
+      "collectsMenstrualData": true,
+      "sharesWithThirdParties": true,
+      "sellsData": false,
+      "hasAdvertising": true,
+      "cloudSyncRequired": null,
+      "canUseWithoutAccount": null,
+      "governingLaw": [
+        "GDPR (EU)",
+        "CCPA (California)"
+      ],
+      "gdpr": true,
+      "ccpa": true,
+      "notes": [
+        "Easy Healthcare Corp had FTC settlement in 2023 for sharing reproductive health data with Chinese companies Remark Holdings and Agora (fertility tracking data shared without consent)"
+      ]
+    },
+    "rawTextLength": 0,
+    "error": "HTTP 429"
+  },
+  {
+    "appId": "com.lbrc.PeriodCalendar",
+    "title": "Period Tracker and Calendar",
+    "developer": "SimpleInnovation LLC",
+    "developerWebsite": "https://simpleinnovation.us/",
+    "reviews": 51920,
+    "privacyPolicyUrl": "https://simpleinnovation.us/privacy-policy",
+    "fetchStatus": "success",
+    "analysis": {
+      "collectsHealthData": true,
+      "collectsMenstrualData": true,
+      "sharesWithThirdParties": true,
+      "sellsData": false,
+      "hasAdvertising": true,
+      "cloudSyncRequired": null,
+      "canUseWithoutAccount": null,
+      "governingLaw": [
+        "GDPR (EU)",
+        "CCPA (California)"
+      ],
+      "gdpr": true,
+      "ccpa": true,
+      "notes": [
+        "Explicitly states data is not sold"
+      ]
+    },
+    "rawTextLength": 270963,
+    "error": null
+  },
+  {
+    "appId": "lively.cycle.syncing.period.tracker",
+    "title": "Lively - Period Tracker, Cycle",
+    "developer": "Lively Cycle, LLC",
+    "developerWebsite": "https://www.livelycycle.com",
+    "reviews": 32714,
+    "privacyPolicyUrl": "https://www.livelycycle.com/privacy",
+    "fetchStatus": "success",
+    "analysis": {
+      "collectsHealthData": false,
+      "collectsMenstrualData": true,
+      "sharesWithThirdParties": true,
+      "sellsData": false,
+      "hasAdvertising": true,
+      "cloudSyncRequired": null,
+      "canUseWithoutAccount": false,
+      "governingLaw": [
+        "CCPA (California)"
+      ],
+      "gdpr": false,
+      "ccpa": true,
+      "notes": [
+        "Explicitly states data is not sold"
+      ]
+    },
+    "rawTextLength": 67923,
+    "error": null
+  },
+  {
+    "appId": "com.naturalcycles.cordova",
+    "title": "Natural Cycles Fertility App",
+    "developer": "NaturalCycles Nordic AB",
+    "developerWebsite": "https://www.naturalcycles.com",
+    "reviews": 28753,
+    "privacyPolicyUrl": "https://www.naturalcycles.com/privacy-notice",
+    "fetchStatus": "success (corrected)",
+    "analysis": {
+      "collectsHealthData": true,
+      "collectsMenstrualData": true,
+      "sharesWithThirdParties": false,
+      "sellsData": false,
+      "hasAdvertising": false,
+      "cloudSyncRequired": true,
+      "canUseWithoutAccount": false,
+      "governingLaw": [
+        "GDPR (EU)",
+        "Swedish Law"
+      ],
+      "gdpr": true,
+      "ccpa": false,
+      "notes": [
+        "FDA-cleared contraceptive app",
+        "Governed by Swedish law / GDPR",
+        "Requires account and cloud sync (algorithm is cloud-based)"
+      ]
+    },
+    "rawTextLength": 0,
+    "error": "Could not find privacy policy URL"
+  },
+  {
+    "appId": "se.perigee.Pocket-Cycle",
+    "title": "Cycles: Period & Cycle Tracker",
+    "developer": "Perigee",
+    "developerWebsite": "https://www.cycles.app",
+    "reviews": 25354,
+    "privacyPolicyUrl": null,
+    "fetchStatus": "not_found",
+    "analysis": null,
+    "rawTextLength": 0,
+    "error": "Could not find privacy policy URL"
+  },
+  {
+    "appId": "fr.wemoms.wemoms",
+    "title": "WeMoms - Pregnancy & Baby App",
+    "developer": "Globalia",
+    "developerWebsite": "http://www.wemoms.com",
+    "reviews": 24637,
+    "privacyPolicyUrl": "http://www.wemoms.com/privacy",
+    "fetchStatus": "success",
+    "analysis": {
+      "collectsHealthData": false,
+      "collectsMenstrualData": true,
+      "sharesWithThirdParties": true,
+      "sellsData": false,
+      "hasAdvertising": true,
+      "cloudSyncRequired": null,
+      "canUseWithoutAccount": false,
+      "governingLaw": [
+        "GDPR (EU)"
+      ],
+      "gdpr": true,
+      "ccpa": false,
+      "notes": []
+    },
+    "rawTextLength": 27567,
+    "error": null
+  },
+  {
+    "appId": "com.period-tracker.lifeplus",
+    "title": "Period Tracker ⋆",
+    "developer": "Lucky Labs",
+    "developerWebsite": "https://myperiodtracker.net",
+    "reviews": 22685,
+    "privacyPolicyUrl": "http://myperiodtracker.net/privacy_policy",
+    "fetchStatus": "success",
+    "analysis": {
+      "collectsHealthData": false,
+      "collectsMenstrualData": true,
+      "sharesWithThirdParties": true,
+      "sellsData": true,
+      "hasAdvertising": true,
+      "cloudSyncRequired": null,
+      "canUseWithoutAccount": null,
+      "governingLaw": [
+        "GDPR (EU)"
+      ],
+      "gdpr": true,
+      "ccpa": false,
+      "notes": []
+    },
+    "rawTextLength": 29531,
+    "error": null
+  },
+  {
+    "appId": "com.wachanga.womancalendar",
+    "title": "Clover ఇ－Period Tracker, Cycle",
+    "developer": "Wachanga LTD",
+    "developerWebsite": "https://wachanga.com",
+    "reviews": 21098,
+    "privacyPolicyUrl": "https://wachanga.com/privacy",
+    "fetchStatus": "success",
+    "analysis": {
+      "collectsHealthData": true,
+      "collectsMenstrualData": true,
+      "sharesWithThirdParties": true,
+      "sellsData": false,
+      "hasAdvertising": true,
+      "cloudSyncRequired": null,
+      "canUseWithoutAccount": false,
+      "governingLaw": [
+        "GDPR (EU)"
+      ],
+      "gdpr": true,
+      "ccpa": false,
+      "notes": []
+    },
+    "rawTextLength": 55233,
+    "error": null
+  },
+  {
+    "appId": "com.vitalii.period",
+    "title": "My period calendar Pinkllama",
+    "developer": "Llama Luna Apps",
+    "developerWebsite": "https://llamaluna.com",
+    "reviews": 17837,
+    "privacyPolicyUrl": null,
+    "fetchStatus": "not_found",
+    "analysis": null,
+    "rawTextLength": 0,
+    "error": "Could not find privacy policy URL"
+  },
+  {
+    "appId": "com.efrac.movcalu2",
+    "title": "Menstrual Period Tracker",
+    "developer": "EFRAC",
+    "developerWebsite": "https://www.efrac.com/",
+    "reviews": 15868,
+    "privacyPolicyUrl": null,
+    "fetchStatus": "not_found",
+    "analysis": null,
+    "rawTextLength": 0,
+    "error": "Could not find privacy policy URL"
+  },
+  {
+    "appId": "com.ppfa.spotonapp",
+    "title": "Spot On Period Tracker",
+    "developer": "Planned Parenthood Direct, Inc.",
+    "developerWebsite": "https://www.plannedparenthooddirect.org/spot-on-period-tracker",
+    "reviews": 15405,
+    "privacyPolicyUrl": "https://www.plannedparenthooddirect.org/privacy-notice",
+    "fetchStatus": "success",
+    "analysis": {
+      "collectsHealthData": true,
+      "collectsMenstrualData": true,
+      "sharesWithThirdParties": true,
+      "sellsData": true,
+      "hasAdvertising": true,
+      "cloudSyncRequired": null,
+      "canUseWithoutAccount": false,
+      "governingLaw": [
+        "CCPA (California)"
+      ],
+      "gdpr": false,
+      "ccpa": true,
+      "notes": []
+    },
+    "rawTextLength": 224395,
+    "error": null
+  },
+  {
+    "appId": "com.meiyou.meetyou",
+    "title": "MeetYou - Period Tracker",
+    "developer": "Hangzhou Youzijie Information Technology Co., Ltd.",
+    "developerWebsite": "http://www.meetyouintl.com/",
+    "reviews": 14482,
+    "privacyPolicyUrl": null,
+    "fetchStatus": "not_found",
+    "analysis": null,
+    "rawTextLength": 0,
+    "error": "Could not find privacy policy URL"
+  },
+  {
+    "appId": "com.flolivingalisavitti.myfloapp",
+    "title": "MyFlo® Period Tracker Calendar",
+    "developer": "Flo Living",
+    "developerWebsite": "http://www.floliving.com/app",
+    "reviews": 14295,
+    "privacyPolicyUrl": null,
+    "fetchStatus": "not_found",
+    "analysis": null,
+    "rawTextLength": 0,
+    "error": "Could not find privacy policy URL"
+  },
+  {
+    "appId": "com.gpapps.ptracker",
+    "title": "Period Tracker Deluxe",
+    "developer": "GP Apps",
+    "developerWebsite": "http://www.gpapps.com",
+    "reviews": 10774,
+    "privacyPolicyUrl": "http://www.gpapps.com/privacy",
+    "fetchStatus": "http_429",
+    "analysis": null,
+    "rawTextLength": 0,
+    "error": "HTTP 429"
+  }
+]

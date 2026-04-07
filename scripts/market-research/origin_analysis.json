@@ -1,0 +1,2892 @@
+[
+  {
+    "appId": "org.iggymedia.periodtracker",
+    "title": "Flo Cycle & Period Tracker",
+    "developer": "FLO HEALTH UK LIMITED",
+    "developerWebsite": "https://flo.health/",
+    "reviews": 1831355,
+    "country": "UK",
+    "confidence": "high",
+    "method": "Company name FLO HEALTH UK LIMITED + UK-registered domain"
+  },
+  {
+    "appId": "com.helloclue.clue",
+    "title": "Clue Period & Cycle Tracker",
+    "developer": "BioWink GmbH",
+    "developerWebsite": "https://helloclue.com",
+    "reviews": 391758,
+    "country": "Germany",
+    "confidence": "medium",
+    "method": "Company suffix (gmbh)"
+  },
+  {
+    "appId": "Q5AWL8WCY6.iMapMyRide",
+    "title": "Map My Ride With GPS Tracker",
+    "developer": "Outside Television Inc",
+    "developerWebsite": "http://www.mapmyride.com",
+    "reviews": 243395,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.ouraring.oura",
+    "title": "Oura",
+    "developer": "Oura Health Oy",
+    "developerWebsite": "https://ouraring.com",
+    "reviews": 220793,
+    "country": "Finland",
+    "confidence": "medium",
+    "method": "Company suffix (oy)"
+  },
+  {
+    "appId": "com.abishkking.periodcalendar",
+    "title": "Period Tracker Period Calendar",
+    "developer": "ABISHKKING LIMITED.",
+    "developerWebsite": "https://abishkking.com/",
+    "reviews": 167126,
+    "country": "Canada",
+    "confidence": "high",
+    "method": "WHOIS country code (CA) - British Columbia"
+  },
+  {
+    "appId": "com.glowing.lexie",
+    "title": "Glow Eve Period Tracker",
+    "developer": "Glow",
+    "developerWebsite": "http://glowing.com",
+    "reviews": 113896,
+    "country": "Canada",
+    "confidence": "high",
+    "method": "WHOIS country code (CA)"
+  },
+  {
+    "appId": "com.stardust.stardustapp",
+    "title": "Stardust Period Tracker",
+    "developer": "Stardust App LLC (New York)",
+    "developerWebsite": "https://stardust.app/",
+    "reviews": 101156,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (llc)"
+  },
+  {
+    "appId": "com.ovuline",
+    "title": "Ovia Cycle & Pregnancy Tracker",
+    "developer": "Ovuline, Inc.",
+    "developerWebsite": "http://www.oviahealth.com",
+    "reviews": 87637,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.neiman.periodtracker",
+    "title": "My Cycle ؜",
+    "developer": "Aleksei Neiman",
+    "developerWebsite": null,
+    "reviews": 80704,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.upwlabs.emma",
+    "title": "Glow Ovulation & Period App",
+    "developer": "Glow",
+    "developerWebsite": "https://glowing.com",
+    "reviews": 73608,
+    "country": "Canada",
+    "confidence": "high",
+    "method": "WHOIS country code (CA)"
+  },
+  {
+    "appId": "com.gpapps.ptrackerlite",
+    "title": "Period Tracker by GP Apps",
+    "developer": "GP Apps",
+    "developerWebsite": "http://www.gpapps.com",
+    "reviews": 72988,
+    "country": "USA",
+    "confidence": "high",
+    "method": "WHOIS country code (US)"
+  },
+  {
+    "appId": "com.btang.thermometer",
+    "title": "Femometer Fertility Tracker",
+    "developer": "Bongmi Global Group",
+    "developerWebsite": "https://www.femometer.com",
+    "reviews": 69198,
+    "country": "China",
+    "confidence": "high",
+    "method": "WHOIS country code (CN)"
+  },
+  {
+    "appId": "com.nanobitsoftware.periodDiaryLite",
+    "title": "IVY Period & Pregnancy Tracker",
+    "developer": "String Health, Inc.",
+    "developerWebsite": null,
+    "reviews": 67903,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "co.lovetap.Female-by-Design",
+    "title": "Life - Period Tracker Calendar",
+    "developer": "Life Fertility Tracker IVS",
+    "developerWebsite": null,
+    "reviews": 62611,
+    "country": "Denmark",
+    "confidence": "medium",
+    "method": "Company suffix (ivs)"
+  },
+  {
+    "appId": "com.premom.easyathome",
+    "title": "Premom Ovulation Tracker & BBT",
+    "developer": "Easy Healthcare Corporation",
+    "developerWebsite": "https://www.premom.com",
+    "reviews": 53623,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (corporation)"
+  },
+  {
+    "appId": "com.lbrc.PeriodCalendar",
+    "title": "Period Tracker and Calendar",
+    "developer": "SimpleInnovation LLC",
+    "developerWebsite": "https://simpleinnovation.us/",
+    "reviews": 51920,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (llc)"
+  },
+  {
+    "appId": "lively.cycle.syncing.period.tracker",
+    "title": "Lively - Period Tracker, Cycle",
+    "developer": "Lively Cycle, LLC",
+    "developerWebsite": "https://www.livelycycle.com",
+    "reviews": 32714,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (llc)"
+  },
+  {
+    "appId": "com.naturalcycles.cordova",
+    "title": "Natural Cycles Fertility App",
+    "developer": "NaturalCycles Nordic AB",
+    "developerWebsite": "https://www.naturalcycles.com",
+    "reviews": 28753,
+    "country": "Sweden",
+    "confidence": "medium",
+    "method": "Company suffix (ab)"
+  },
+  {
+    "appId": "se.perigee.Pocket-Cycle",
+    "title": "Cycles: Period & Cycle Tracker",
+    "developer": "Perigee",
+    "developerWebsite": "https://www.cycles.app",
+    "reviews": 25354,
+    "country": "Sweden",
+    "confidence": "high",
+    "method": "Apple Bundle ID prefix (se. = Sweden)"
+  },
+  {
+    "appId": "fr.wemoms.wemoms",
+    "title": "WeMoms - Pregnancy & Baby App",
+    "developer": "Globalia",
+    "developerWebsite": "http://www.wemoms.com",
+    "reviews": 24637,
+    "country": "USA",
+    "confidence": "high",
+    "method": "WHOIS country code (US)"
+  },
+  {
+    "appId": "com.period-tracker.lifeplus",
+    "title": "Period Tracker ⋆",
+    "developer": "Lucky Labs",
+    "developerWebsite": "https://myperiodtracker.net",
+    "reviews": 22685,
+    "country": "Bahamas (registered)",
+    "confidence": "medium",
+    "method": "WHOIS country code (BS) - likely privacy registrar"
+  },
+  {
+    "appId": "com.wachanga.womancalendar",
+    "title": "Clover ఇ－Period Tracker, Cycle",
+    "developer": "Wachanga LTD",
+    "developerWebsite": "https://wachanga.com",
+    "reviews": 21098,
+    "country": "Cyprus",
+    "confidence": "high",
+    "method": "WHOIS country code (CY)"
+  },
+  {
+    "appId": "com.vitalii.period",
+    "title": "My period calendar Pinkllama",
+    "developer": "Llama Luna Apps",
+    "developerWebsite": "https://llamaluna.com",
+    "reviews": 17837,
+    "country": "USA",
+    "confidence": "high",
+    "method": "WHOIS country code (US)"
+  },
+  {
+    "appId": "com.efrac.movcalu2",
+    "title": "Menstrual Period Tracker",
+    "developer": "EFRAC",
+    "developerWebsite": "https://www.efrac.com/",
+    "reviews": 15868,
+    "country": "Poland",
+    "confidence": "high",
+    "method": "WHOIS country code (PL)"
+  },
+  {
+    "appId": "com.ppfa.spotonapp",
+    "title": "Spot On Period Tracker",
+    "developer": "Planned Parenthood Direct, Inc.",
+    "developerWebsite": "https://www.plannedparenthooddirect.org/spot-on-period-tracker",
+    "reviews": 15405,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.meiyou.meetyou",
+    "title": "MeetYou - Period Tracker",
+    "developer": "Hangzhou Youzijie Information Technology Co., Ltd.",
+    "developerWebsite": "http://www.meetyouintl.com/",
+    "reviews": 14482,
+    "country": "China",
+    "confidence": "high",
+    "method": "WHOIS - Fujian province, CN"
+  },
+  {
+    "appId": "com.flolivingalisavitti.myfloapp",
+    "title": "MyFlo® Period Tracker Calendar",
+    "developer": "Flo Living",
+    "developerWebsite": "http://www.floliving.com/app",
+    "reviews": 14295,
+    "country": "USA",
+    "confidence": "high",
+    "method": "WHOIS country code (US)"
+  },
+  {
+    "appId": "com.gpapps.ptracker",
+    "title": "Period Tracker Deluxe",
+    "developer": "GP Apps",
+    "developerWebsite": "http://www.gpapps.com",
+    "reviews": 10774,
+    "country": "USA",
+    "confidence": "high",
+    "method": "WHOIS country code (US)"
+  },
+  {
+    "appId": "com.pregmate.app",
+    "title": "Pregmate Ovulation Tracker",
+    "developer": "Asteria LLC",
+    "developerWebsite": null,
+    "reviews": 10698,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (llc)"
+  },
+  {
+    "appId": "com.flatcracker.PeriodPlus",
+    "title": "Period Tracking Calendar",
+    "developer": "Flatcracker Software",
+    "developerWebsite": "https://www.periodplus.com",
+    "reviews": 10599,
+    "country": "USA",
+    "confidence": "high",
+    "method": "WHOIS country code (US)"
+  },
+  {
+    "appId": "com.kindara.kindaraiphone",
+    "title": "Kindara: Fertility Tracker",
+    "developer": "Kindara, Inc.",
+    "developerWebsite": "http://www.kindara.com",
+    "reviews": 10104,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "ru.medkrug.kbrapp",
+    "title": "amma: Pregnancy & Baby Tracker",
+    "developer": "PERIOD TRACKER & PREGNANCY AND BABY CALENDAR LIMITED",
+    "developerWebsite": "https://amma.family",
+    "reviews": 9885,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (limited)"
+  },
+  {
+    "appId": "io.beek.musa",
+    "title": "Musa: Period & Self-Care Pet",
+    "developer": "Musa Health, Inc",
+    "developerWebsite": "http://musa.com",
+    "reviews": 9470,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.sevenlogics.PeriodTracker",
+    "title": "Period Tracker ‎",
+    "developer": "Sevenlogics, Inc.",
+    "developerWebsite": "https://www.sunflowr.com/",
+    "reviews": 8231,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.btang.femometer.eu",
+    "title": "Femometer - Fertility Tracker",
+    "developer": "Femometer",
+    "developerWebsite": "https://www.femometer.com",
+    "reviews": 8211,
+    "country": "China",
+    "confidence": "high",
+    "method": "WHOIS country code (CN)"
+  },
+  {
+    "appId": "com.hanchongzan.period",
+    "title": "Easy Period - Lite Tracker",
+    "developer": "重赞 韩",
+    "developerWebsite": "https://punchlinestudio.cn",
+    "reviews": 7315,
+    "country": "China",
+    "confidence": "high",
+    "method": "TLD (.cn)"
+  },
+  {
+    "appId": "com.tamtris.fertilityfriend",
+    "title": "Fertility Friend FF Tracker",
+    "developer": "Tamtris Web Services Inc.",
+    "developerWebsite": "https://fertilityfriend.com/",
+    "reviews": 7266,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.rocapine.harmony",
+    "title": "Harmony: Cycle Syncing, Period",
+    "developer": "Rocapine",
+    "developerWebsite": null,
+    "reviews": 6873,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.hashsw.myPillReminder",
+    "title": "myPill® Birth Control Reminder",
+    "developer": "Bouqt.com Ltd",
+    "developerWebsite": "https://mypill.app",
+    "reviews": 6529,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.ovulationcalendar.OC",
+    "title": "Ovulation Calculator Fertile Tracker & Calendar OC",
+    "developer": "Ovulation Calculator Pty Ltd",
+    "developerWebsite": "https://www.ovulationcalculator.com/",
+    "reviews": 5905,
+    "country": "Australia",
+    "confidence": "medium",
+    "method": "Company suffix (pty ltd)"
+  },
+  {
+    "appId": "femia.menstruationtracker.fertilityapp",
+    "title": "Femia - Fertility & Pregnancy",
+    "developer": "Magicfit Limited",
+    "developerWebsite": null,
+    "reviews": 5668,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (limited)"
+  },
+  {
+    "appId": "com.twentyeight.app",
+    "title": "28 Period & Cycle Tracker",
+    "developer": "28 Wellness, LLC",
+    "developerWebsite": "https://28.co/",
+    "reviews": 5541,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (llc)"
+  },
+  {
+    "appId": "co.codeleap.bearable",
+    "title": "Bearable - Symptom Tracker",
+    "developer": "Bearable Ltd",
+    "developerWebsite": "https://bearable.app/",
+    "reviews": 5201,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.winkpass.iperiodfree",
+    "title": "iPeriod Lite Period Tracker",
+    "developer": "Winkpass Creations, Inc.",
+    "developerWebsite": "https://iperiod.net/",
+    "reviews": 4865,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.himommyapp",
+    "title": "HiMommy: Ovulation & Pregnancy",
+    "developer": "Idea Accelerator",
+    "developerWebsite": "https://himommy.app/",
+    "reviews": 4739,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.escogitare.myperiod",
+    "title": "My Period Calendar",
+    "developer": "Sonya Marcarelli",
+    "developerWebsite": "https://www.escogitare.com",
+    "reviews": 4362,
+    "country": "Canada",
+    "confidence": "high",
+    "method": "WHOIS country code (CA)"
+  },
+  {
+    "appId": "com.femmhealth.FEMM",
+    "title": "FEMM Period Ovulation Tracker",
+    "developer": "FEMM Foundation",
+    "developerWebsite": "http://www.femmhealth.org/contact/",
+    "reviews": 3970,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.dworks.periodtrackerfree",
+    "title": "Period Tracker: Monthly Cycles",
+    "developer": "Nova Mobile, Inc.",
+    "developerWebsite": null,
+    "reviews": 3807,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.luna.app",
+    "title": "Luna - Period Tracker",
+    "developer": "Ashkan Hatef",
+    "developerWebsite": null,
+    "reviews": 3707,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "periodtracker.app",
+    "title": "Period Tracker ·",
+    "developer": "Luni",
+    "developerWebsite": null,
+    "reviews": 3606,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.samplytics.inito",
+    "title": "Inito Fertility & Ovulation",
+    "developer": "Samplytics",
+    "developerWebsite": null,
+    "reviews": 3481,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.insanedevelopers.periodtracker",
+    "title": "Period Tracker - Women Journal",
+    "developer": "Symon Johnson",
+    "developerWebsite": null,
+    "reviews": 3340,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "in.Plackal.LoveCyclesFree",
+    "title": "Maya - Period & Health",
+    "developer": "Plackal Tech",
+    "developerWebsite": "https://www.maya.live",
+    "reviews": 3004,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.ovulation.calculator.fertility.tracker.calendar.period",
+    "title": "Ovulation & Fertility Tracker",
+    "developer": "KHANDAKER RAHMAN",
+    "developerWebsite": "https://flipagramllc.com/",
+    "reviews": 2749,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "WJ89358R29.period",
+    "title": "iPeriod Period Tracker +",
+    "developer": "Winkpass Creations, Inc.",
+    "developerWebsite": "https://iperiod.net/",
+    "reviews": 2696,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.v1.Aavia",
+    "title": "Aavia: Cycle Symptom Relief",
+    "developer": "Aam Care, Inc.",
+    "developerWebsite": "https://www.aavia.io/?utm_source=appstore&utm_medium=link&utm_campaign=rebrand_launch",
+    "reviews": 2690,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "dev.apple.minsk.dkovba.PinkOvulationCalendar",
+    "title": "Menstrual Cycle Tracker",
+    "developer": "Anastasia Kovba",
+    "developerWebsite": null,
+    "reviews": 2543,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.app.x.tracker",
+    "title": "Sex Tracker - xTracker",
+    "developer": "MPR MEDIA INC",
+    "developerWebsite": null,
+    "reviews": 2337,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.miracare.ios",
+    "title": "Mira Fertility & Cycle Tracker",
+    "developer": "Quanovate Tech Inc",
+    "developerWebsite": "https://www.miracare.com",
+    "reviews": 2299,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.ovyapp.ios",
+    "title": "Ovy – Contraception Pregnancy",
+    "developer": "Ovy GmbH",
+    "developerWebsite": null,
+    "reviews": 2136,
+    "country": "Germany",
+    "confidence": "medium",
+    "method": "Company suffix (gmbh)"
+  },
+  {
+    "appId": "com.ovulation.baby.tracking.momsupport",
+    "title": "Momiary: Pregnancy Tracker",
+    "developer": "Chuong Tran Phuc",
+    "developerWebsite": "https://chuongmatrix.netlify.app",
+    "reviews": 1924,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "me.magicgirl.magicgirl",
+    "title": "Magicgirl Teen Period Tracker",
+    "developer": "Vipos.com",
+    "developerWebsite": "https://magicgirl.me",
+    "reviews": 1708,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.dmitry-kovba.maybebaby.free",
+    "title": "Fertility & Period Tracker",
+    "developer": "Anastasia Kovba",
+    "developerWebsite": null,
+    "reviews": 1693,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.aliceunzhakova.tryingtoconceive",
+    "title": "Trying to conceive Tracker app",
+    "developer": "Maksim Gudzik",
+    "developerWebsite": null,
+    "reviews": 1591,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "kr.co.ll2016.TheDay",
+    "title": "Bom Calendar - Period tracker",
+    "developer": "bomcomes Corp.",
+    "developerWebsite": "https://bomcomes.com",
+    "reviews": 1565,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (corp)"
+  },
+  {
+    "appId": "life.femin.pregnancy.period.ios",
+    "title": "Period Tracker－Pregnancy・Femin",
+    "developer": "Ocean Float Mobile",
+    "developerWebsite": "https://www.oceanfloatmobile.com",
+    "reviews": 1473,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.clearblue.alaska",
+    "title": "Period-Tracker",
+    "developer": "SPD Development Company Ltd",
+    "developerWebsite": "https://www.clearblue.com/period-cycle-tracker",
+    "reviews": 1379,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.brc.PeriodTrackerDiary",
+    "title": "Cycle Tracker: Period Calendar",
+    "developer": "SimpleInnovation LLC",
+    "developerWebsite": "https://simpleinnovation.us/",
+    "reviews": 1261,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (llc)"
+  },
+  {
+    "appId": "com.maxwell.periodlogfree",
+    "title": "Period Log",
+    "developer": "倩 赵",
+    "developerWebsite": "http://www.maxwellapps.com/",
+    "reviews": 1188,
+    "country": "China",
+    "confidence": "medium",
+    "method": "Chinese chars in developer name"
+  },
+  {
+    "appId": "com.bazilsoft.maybebaby",
+    "title": "Maybe Baby™ Fertility Tracker",
+    "developer": "BazilSoft",
+    "developerWebsite": "http://www.bazilsoft.com/Products.aspx",
+    "reviews": 1034,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.goddessapp.Goddess",
+    "title": "Goddess・Women's Wellness Coach",
+    "developer": "GDS EĞİTİM DANIŞMANLIK VE TEKNOLOJİ ANONİM ŞİRKETİ",
+    "developerWebsite": "https://www.goddesswomenapp.com/",
+    "reviews": 885,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.wearemoody.MoodyMonth",
+    "title": "Moody Month: Hormone Tracker",
+    "developer": "We Are Moody Ltd",
+    "developerWebsite": "https://us.moodymonth.com/",
+    "reviews": 878,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.healthandher.app",
+    "title": "Health & Her App",
+    "developer": "Health & Her Ltd",
+    "developerWebsite": "https://healthandher.com/",
+    "reviews": 758,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.flaskapp.cycle",
+    "title": "Cube Period Tracker",
+    "developer": "Flask LLP",
+    "developerWebsite": "https://flaskapp.com/",
+    "reviews": 755,
+    "country": "UK/US",
+    "confidence": "medium",
+    "method": "Company suffix (llp)"
+  },
+  {
+    "appId": "com.preggieapp.preggie",
+    "title": "MomLife: Pregnancy & Mom Chat",
+    "developer": "Wunderkind Media and Technology Corporation",
+    "developerWebsite": "http://mom.life/ru",
+    "reviews": 737,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (corporation)"
+  },
+  {
+    "appId": "com.chris.ios.mydays",
+    "title": "MyDays X",
+    "developer": "Christian Mueller",
+    "developerWebsite": "http://mydaysx.club",
+    "reviews": 727,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.tempdrop.tempdropmobileapp",
+    "title": "Tempdrop",
+    "developer": "Tempdrop Inc",
+    "developerWebsite": "https://www.tempdrop.com",
+    "reviews": 694,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.proactiveapp.womanlog",
+    "title": "WomanLog Calendar",
+    "developer": "Pro Active App",
+    "developerWebsite": "http://www.womanlog.com",
+    "reviews": 645,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.pepapp",
+    "title": "Period Tracker - Pepapp",
+    "developer": "Pepapp Teknoloji Anonim Sirketi",
+    "developerWebsite": "https://letspepapp.com",
+    "reviews": 597,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.ovulation.calendar.menstrual.calculator.fertility.period",
+    "title": "Period & Ovulation Calculator",
+    "developer": "AESTHETIC WIDGETS LTD",
+    "developerWebsite": "https://www.lifewavetech.app/",
+    "reviews": 575,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.AvvaStyle.WomanCalendar",
+    "title": "Period Tracker. Cycle Calendar",
+    "developer": "Tatyana Kolesnikova",
+    "developerWebsite": "https://avvastyle.com/woman.html",
+    "reviews": 564,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.unicorndreamfactory.period",
+    "title": "Period - period tracker",
+    "developer": "Unicorn Dream Factory LLC",
+    "developerWebsite": null,
+    "reviews": 525,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (llc)"
+  },
+  {
+    "appId": "com.proactiveapp.womanlogpro",
+    "title": "WomanLog Pro Calendar",
+    "developer": "Pro Active App",
+    "developerWebsite": "http://www.womanlog.com",
+    "reviews": 507,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.unyted.period.tracker",
+    "title": "Simple Period Tracker",
+    "developer": "Unyted Inc.",
+    "developerWebsite": null,
+    "reviews": 438,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.ladytimer.ladycalendar",
+    "title": "LADYTIMER Period Tracker",
+    "developer": "Vipos.com",
+    "developerWebsite": "https://ladytimer.com/iphone",
+    "reviews": 431,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.bellabeat.period",
+    "title": "Period. & Ovulation Diary",
+    "developer": "Sasa Kolda",
+    "developerWebsite": "http://www.babynewt.com",
+    "reviews": 428,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.lifeing.app",
+    "title": "Pregnancy Tracker - Lifeing",
+    "developer": "LIFEING LTD",
+    "developerWebsite": "https://mylifeing.com",
+    "reviews": 428,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.kompanion.period.ios",
+    "title": "Privé: Period & Cycle Tracker",
+    "developer": "Ornitorenk Dijital Hizmetler Anonim Sirketi",
+    "developerWebsite": "https://www.kompanionapp.com",
+    "reviews": 373,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.rommanapps.PeriodCalculater",
+    "title": "حواء - حاسبة الدورة الشهرية",
+    "developer": "Romman Smart Applications LLC",
+    "developerWebsite": "http://www.rommanapps.com",
+    "reviews": 369,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (llc)"
+  },
+  {
+    "appId": "co.bellehealth.bellehealth",
+    "title": "Belle Period & PMDD Tracker",
+    "developer": "Belle Health Ai Technologies Ltd",
+    "developerWebsite": "https://bellehealth.co/",
+    "reviews": 308,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.oneperiodtracker.one",
+    "title": "One Period Tracker & My Health",
+    "developer": "Period Tracker, LLC",
+    "developerWebsite": "https://oneperiodtracker.com/",
+    "reviews": 288,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (llc)"
+  },
+  {
+    "appId": "com.medart-studios.Fertility",
+    "title": "Fertility & Period Tracker •",
+    "developer": "Med ART Studios",
+    "developerWebsite": "https://sprout-apps.com",
+    "reviews": 284,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.mberezina.calendar",
+    "title": "Period tracker, calendar",
+    "developer": "Marina Berezina",
+    "developerWebsite": "https://calend.youtubevisitors.com",
+    "reviews": 271,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.bhi.periodplannerlite",
+    "title": "Period Tracker - Menstrual & Ovulation Calendar",
+    "developer": "BHI Technologies, Inc.",
+    "developerWebsite": null,
+    "reviews": 268,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.lunalife.luna",
+    "title": "luna: teen health & period app",
+    "developer": "Luna Life",
+    "developerWebsite": "https://www.weareluna.app",
+    "reviews": 251,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.tahara.taharaApp",
+    "title": "Tahara - طهارة",
+    "developer": "Tahara",
+    "developerWebsite": "https://app.tahara.sa",
+    "reviews": 244,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.dmitry-kovba.LightOvulationCalendar",
+    "title": "Fertility and Period Tracker",
+    "developer": "Anastasia Kovba",
+    "developerWebsite": null,
+    "reviews": 243,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "dev.apple.minsk.dkovba.NightOvulationCalendar",
+    "title": "Menstrual Periods Tracker",
+    "developer": "Anastasia Kovba",
+    "developerWebsite": null,
+    "reviews": 232,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "app.simpluna",
+    "title": "Simple Cycle Tracker Simpluna",
+    "developer": "Omoidasu, Inc.",
+    "developerWebsite": null,
+    "reviews": 225,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.maplelabs.periodtracker",
+    "title": "Period Tracker - Cycle Tracker",
+    "developer": "Maple Labs Co., Ltd",
+    "developerWebsite": "https://www.facebook.com/Period-Tracker-100587638016434/",
+    "reviews": 214,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.tamtris.menstrualcalendar",
+    "title": "Menstrual Calendar FMC",
+    "developer": "Tamtris Web Services Inc.",
+    "developerWebsite": "https://www.fertilityfriend.com",
+    "reviews": 191,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.ixensor.PixoTest.LH.Eveline",
+    "title": "Eveline Ovulation Cycle Track",
+    "developer": "iXensor",
+    "developerWebsite": null,
+    "reviews": 187,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.mymoontime.app",
+    "title": "My Moontime™ Period Tracker",
+    "developer": "My Moontime (apps)",
+    "developerWebsite": "http://www.mymoontime.com/",
+    "reviews": 186,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "co.bodyliteracy.readyourbody",
+    "title": "Read Your Body",
+    "developer": "The Body Literacy Collective CIC",
+    "developerWebsite": "https://www.readyourbody.com/",
+    "reviews": 186,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.evolutus.luna",
+    "title": "Luna Period Tracker For Teens",
+    "developer": "Evolutus NFP",
+    "developerWebsite": "https://lunatracker.app",
+    "reviews": 182,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.svgapps.periodtracker",
+    "title": "Period Tracker: Menstrual Flow",
+    "developer": "SVG Apps",
+    "developerWebsite": "http://svgapps.com",
+    "reviews": 177,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.pslove.periodtracker",
+    "title": "Blood: Period & Cycle Tracker",
+    "developer": "PSLove Pte. Ltd.",
+    "developerWebsite": "https://getblood.com/",
+    "reviews": 169,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.kahastudio.periodtracker",
+    "title": "Period Tracker Free of Ads App",
+    "developer": "KAHA INNOVATION COMPANY LIMITED",
+    "developerWebsite": "https://kahastudio.com",
+    "reviews": 162,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (limited)"
+  },
+  {
+    "appId": "com.zuwqb.vipao",
+    "title": "Fertility Tracker: Your Period",
+    "developer": "轩 李",
+    "developerWebsite": "https://myperiod.netlify.app",
+    "reviews": 149,
+    "country": "China",
+    "confidence": "medium",
+    "method": "Chinese chars in developer name"
+  },
+  {
+    "appId": "com.ysy.iMonthly",
+    "title": "Period Tracker: Cycle Calendar",
+    "developer": "Shanghai Yiqing Refrigeration Equipment Engineering Co., Ltd.",
+    "developerWebsite": null,
+    "reviews": 141,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.app.zankhana.periodtracker",
+    "title": "Period Tracker • Ovulation App",
+    "developer": "Prutvi",
+    "developerWebsite": "https://zankhana.ltd/",
+    "reviews": 107,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "ro.holdone.Lunation",
+    "title": "Period Cycle Tracker Lunation",
+    "developer": "Holdone Software SRL",
+    "developerWebsite": null,
+    "reviews": 105,
+    "country": "Italy",
+    "confidence": "medium",
+    "method": "Company suffix (srl)"
+  },
+  {
+    "appId": "com.tcoyf.cyclicity",
+    "title": "Cyclisity TCOYF Cycle Tracker",
+    "developer": "TCOYF Applications LLC",
+    "developerWebsite": "https://www.cyclisity.com/",
+    "reviews": 96,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (llc)"
+  },
+  {
+    "appId": "co.femble.cycle-companion",
+    "title": "Femble: Period Tracker",
+    "developer": "Femble GmbH",
+    "developerWebsite": null,
+    "reviews": 92,
+    "country": "Germany",
+    "confidence": "medium",
+    "method": "Company suffix (gmbh)"
+  },
+  {
+    "appId": "com.sports.Women-Calendar",
+    "title": "WomenCalendar: Periods & Cycle",
+    "developer": "Alaa CHERBIB",
+    "developerWebsite": "https://www.women-calendar.com/",
+    "reviews": 88,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "jp.co.nihon-e.rhythmfree",
+    "title": "リズム手帳 ｰ生理日管理～妊活まで",
+    "developer": "Nihon Enterprise Co.,Ltd.",
+    "developerWebsite": "https://diary.kirei-r.jp/",
+    "reviews": 86,
+    "country": "Japan",
+    "confidence": "high",
+    "method": "TLD (.jp)"
+  },
+  {
+    "appId": "com.AvvaStyle.WomanLog",
+    "title": "Teddy bear - Period Calendar",
+    "developer": "Tatyana Kolesnikova",
+    "developerWebsite": "http://avvastyle.com",
+    "reviews": 84,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.malangstudio.once",
+    "title": "Once(A special period tracker)",
+    "developer": "Malang Studio Co. Ltd,",
+    "developerWebsite": "https://assets.adxcorp.kr/redirect?url=https://apps.adxcorp.kr",
+    "reviews": 84,
+    "country": "South Korea",
+    "confidence": "high",
+    "method": "TLD (.kr)"
+  },
+  {
+    "appId": "com.artyomabramov.periodtracker",
+    "title": "Lu Period Tracker, Ovulation",
+    "developer": "Artyom Abramov",
+    "developerWebsite": null,
+    "reviews": 82,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.jazzyapps.periodtracker",
+    "title": "Ovulation App Period Tracker",
+    "developer": "Atthaporn Chanprakon",
+    "developerWebsite": null,
+    "reviews": 82,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "zCalendar.calendar",
+    "title": "Modern Fertility Tracker",
+    "developer": "Alexandr Rudenko",
+    "developerWebsite": "https://oe4b85a93.app-ads-txt.com",
+    "reviews": 81,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.kcc.ginamobile",
+    "title": "Period Tracker – U by Kotex",
+    "developer": "Kimberly-Clark Corporation",
+    "developerWebsite": null,
+    "reviews": 77,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (corporation)"
+  },
+  {
+    "appId": "pregnancytracking.app",
+    "title": "Pregnancy & Baby Tracking App",
+    "developer": "Marius Ardeleanu",
+    "developerWebsite": null,
+    "reviews": 71,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "app.realvision.periodtracker",
+    "title": "Period Tracker, Cycle Tracking",
+    "developer": "Real Vision Ltd",
+    "developerWebsite": "https://realvision.app",
+    "reviews": 66,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.orreco.Fitr",
+    "title": "FitrWoman",
+    "developer": "Orreco Ltd.",
+    "developerWebsite": "http://www.fitrwoman.com",
+    "reviews": 65,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.fbfsistemas.itabelinha",
+    "title": "iFertile",
+    "developer": "FBF Sistemas LTDA",
+    "developerWebsite": "https://www.fbfsistemas.com/home.html",
+    "reviews": 60,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.mmd.fperiod",
+    "title": "MMD Period Tracker Calendar",
+    "developer": "振 米",
+    "developerWebsite": null,
+    "reviews": 59,
+    "country": "China",
+    "confidence": "medium",
+    "method": "Chinese chars in developer name"
+  },
+  {
+    "appId": "app.joinher.periodtracker",
+    "title": "Chloe: Ovulation Tracker",
+    "developer": "Widgethub Limited",
+    "developerWebsite": "https://joinher.app",
+    "reviews": 57,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (limited)"
+  },
+  {
+    "appId": "com.hermanworks.HerMenstruation",
+    "title": "Her Calendar: Period Tracker",
+    "developer": "Yuting Li",
+    "developerWebsite": null,
+    "reviews": 55,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "Phan-Nhat-Dang.OvulationCalculator",
+    "title": "Track Ovulation, Conceive",
+    "developer": "Phan Nhat Đang",
+    "developerWebsite": "http://nhatdang.freetzi.com/",
+    "reviews": 55,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "org.heartofcode.drip.cycle.tracking",
+    "title": "drip period & cycle tracker",
+    "developer": "Heart of Code e.V.",
+    "developerWebsite": "https://dripapp.org",
+    "reviews": 53,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.aggie.bestie",
+    "title": "Bestie Cycle Tracker by Aggie",
+    "developer": "Biohacking Bestie LLC",
+    "developerWebsite": null,
+    "reviews": 49,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (llc)"
+  },
+  {
+    "appId": "com.MauriceWirthInternetagentur.OvulioBaby",
+    "title": "Ovulio Baby: Ovulation Tracker",
+    "developer": "MW Lifestyle GmbH",
+    "developerWebsite": "https://www.ovulio-baby.com",
+    "reviews": 48,
+    "country": "Germany",
+    "confidence": "medium",
+    "method": "Company suffix (gmbh)"
+  },
+  {
+    "appId": "com.rafiki.ruby",
+    "title": "Period Tracker - Ruby",
+    "developer": "Rafiki Apps",
+    "developerWebsite": "https://www.rafikiapps.com/",
+    "reviews": 47,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "health.charli.app",
+    "title": "CHARLI: Period & Cycle Tracker",
+    "developer": "Lucid Labs Pty Ltd",
+    "developerWebsite": "https://charli.health",
+    "reviews": 46,
+    "country": "Australia",
+    "confidence": "medium",
+    "method": "Company suffix (pty ltd)"
+  },
+  {
+    "appId": "com.DSmartApps.MeuCalendarioCiclos",
+    "title": "Calendário do Ciclo Menstrual",
+    "developer": "Dca Sm Solucoes Em Tecnologia Ltda",
+    "developerWebsite": "https://www.dsmartapps.app",
+    "reviews": 44,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.ovumai.Ovum",
+    "title": "Ovum: AI Health Partner",
+    "developer": "Ovum Technology",
+    "developerWebsite": "https://askovum.com/",
+    "reviews": 41,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.neodocs.ovfe",
+    "title": "iConceive - Fertility Tracker",
+    "developer": "Neodocs Healthcare Private Limited",
+    "developerWebsite": "https://neodocs.in",
+    "reviews": 38,
+    "country": "India",
+    "confidence": "high",
+    "method": "TLD (.in)"
+  },
+  {
+    "appId": "com.rk.periodtracker.pregnancy",
+    "title": "Period Tracker and Pregnancy",
+    "developer": "Zizagift Ltd.",
+    "developerWebsite": "http://zizagift.com/",
+    "reviews": 36,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.ibakstudio.iflow.ovulation.period.tracker",
+    "title": "Simple Period Track +Ovulation",
+    "developer": "SKYNES LAB LIMITED",
+    "developerWebsite": "https://skyneslab.com",
+    "reviews": 31,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (limited)"
+  },
+  {
+    "appId": "com.whisperarts.period.tracker",
+    "title": "Menstrual cycle tracker - Days",
+    "developer": "Whisper Arts",
+    "developerWebsite": "https://whisperarts.com",
+    "reviews": 30,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.period.tracker.calendar.menstrual.ovulation",
+    "title": "My Period & Ovulation Calendar",
+    "developer": "Asad Ahsan",
+    "developerWebsite": "https://iovulationcalculator.com/",
+    "reviews": 29,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "jp.co.mti.lunacycle",
+    "title": "Lunacycle(Menstrual Periods tracker)",
+    "developer": "MTI Ltd.",
+    "developerWebsite": null,
+    "reviews": 28,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.jmjordan.Cycles",
+    "title": "cycle.log",
+    "developer": "433 Labs",
+    "developerWebsite": "https://www.jmjordan.com/cycle.log/",
+    "reviews": 25,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.peakday",
+    "title": "PeakDay Fertility Tracker App",
+    "developer": "Couple to Couple League",
+    "developerWebsite": "https://www.peakday.com",
+    "reviews": 24,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.fp.period.tracker",
+    "title": "Flyer Period Tracker",
+    "developer": "Ofly Tech Co., Ltd.",
+    "developerWebsite": "http://guansuqx.com/3/app-ads.txt",
+    "reviews": 22,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.codeconical.xOvulate",
+    "title": "Fertility & Period Tracker Pro",
+    "developer": "MARK MANSER",
+    "developerWebsite": "https://xovulate.com",
+    "reviews": 22,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "flora.period.tracker.fertility.female.health.calendar.ai.app",
+    "title": "Moonly - Track Period & Cycle",
+    "developer": "FLORA K.K.",
+    "developerWebsite": "https://main.flora-tech.jp/",
+    "reviews": 21,
+    "country": "Japan",
+    "confidence": "high",
+    "method": "TLD (.jp)"
+  },
+  {
+    "appId": "com.thefittcycle.train.own",
+    "title": "The FITT Cycle App",
+    "developer": "FAST Track To Fit, LLC",
+    "developerWebsite": null,
+    "reviews": 21,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (llc)"
+  },
+  {
+    "appId": "com.gowalk.period.tracker",
+    "title": "Period Tracker Calendar Regles",
+    "developer": "Mutludev",
+    "developerWebsite": "https://mutludev.com/",
+    "reviews": 21,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.ove",
+    "title": "Ove - THE Period App for Teens",
+    "developer": "Ove Care Limited",
+    "developerWebsite": "https://www.ovecare.com",
+    "reviews": 18,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (limited)"
+  },
+  {
+    "appId": "com.health.ayda",
+    "title": "Ayda - Period Tracker",
+    "developer": "Ayda Health Inc.",
+    "developerWebsite": "https://www.aydaforme.com",
+    "reviews": 18,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.iYoni.app",
+    "title": "iYoni: Track Fertility & Cycle",
+    "developer": "LIFEBITE Sp. z o.o.",
+    "developerWebsite": null,
+    "reviews": 17,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.smikoapps.PeriodTrackerOvulationCalendar",
+    "title": "Period Tracker & Ovulation",
+    "developer": "Smiko",
+    "developerWebsite": "https://www.smikoapps.com/",
+    "reviews": 16,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "by.nsource.OvulationCalendar",
+    "title": "Women's Health - Ovulation App",
+    "developer": "Dzianis Kaniushyk",
+    "developerWebsite": null,
+    "reviews": 16,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.xunxin.PeriodCalendar",
+    "title": "Women's Period Calendar",
+    "developer": "寅康 童",
+    "developerWebsite": null,
+    "reviews": 16,
+    "country": "China",
+    "confidence": "medium",
+    "method": "Chinese chars in developer name"
+  },
+  {
+    "appId": "com.efrac.movcalu",
+    "title": "Menstrual Period Tracker Pro",
+    "developer": "EFRAC",
+    "developerWebsite": "https://www.efrac.com/",
+    "reviews": 15,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "apps.healthcare.periodtracker",
+    "title": "Period Tracker Companion",
+    "developer": "Purvisha Gadhiya",
+    "developerWebsite": null,
+    "reviews": 15,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.menstruationtracker",
+    "title": "Ovulation&menstrual tracker",
+    "developer": "Andrii Bashta",
+    "developerWebsite": null,
+    "reviews": 15,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.liz.monthly",
+    "title": "Monthly PRIVATE Period Tracker",
+    "developer": "Elizabeth Ha",
+    "developerWebsite": null,
+    "reviews": 15,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "one.lht.supermama",
+    "title": "Mia: AI Cycle & Period Tracker",
+    "developer": "Andrey Peshkov",
+    "developerWebsite": "https://supermama.io/en",
+    "reviews": 14,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.period.ark",
+    "title": "Cycle & Period Tracker Cherry",
+    "developer": "HONG KONG DEEPSCAPE TECHNOLOGY LIMITED",
+    "developerWebsite": null,
+    "reviews": 12,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (limited)"
+  },
+  {
+    "appId": "com.idreamdesign.period",
+    "title": "Period Tracker - Cycle Log App",
+    "developer": "Deebex Tech Ltd.",
+    "developerWebsite": "https://www.deebex.com",
+    "reviews": 12,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.woohoogames.womanapp2",
+    "title": "Woman App - period calendar",
+    "developer": "Tooly Tech LLC",
+    "developerWebsite": "https://womanapp2.web.app",
+    "reviews": 12,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (llc)"
+  },
+  {
+    "appId": "com.art.period",
+    "title": "Period Tracker Menstrual Cycle",
+    "developer": "DECODATION",
+    "developerWebsite": "https://decodation.com/",
+    "reviews": 11,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.shevinci.core",
+    "title": "SheVinci: Smart Care for Women",
+    "developer": "SheVinci",
+    "developerWebsite": "https://shevinci.com",
+    "reviews": 11,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "love.mayday.app",
+    "title": "Mayday: Period tracker for men",
+    "developer": "Nathan Ganser",
+    "developerWebsite": null,
+    "reviews": 10,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "period.ovulation.tracker",
+    "title": "Period Tracker & Ovulation App",
+    "developer": "Kartum Infotech",
+    "developerWebsite": "http://kartum.in/",
+    "reviews": 10,
+    "country": "India",
+    "confidence": "high",
+    "method": "TLD (.in)"
+  },
+  {
+    "appId": "com.fertilityfocus.OvuSense",
+    "title": "OvuSense Cycle & PCOS Tracker",
+    "developer": "VIO HealthTech Ltd",
+    "developerWebsite": "https://www.ovusense.com/",
+    "reviews": 10,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.elamris.PeriodTracker.Calendar",
+    "title": "Period Tracker Calendar Cycle",
+    "developer": "Bouazza El Amri",
+    "developerWebsite": null,
+    "reviews": 10,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.mjy.wpba",
+    "title": "Haoya Period Tracker &Cycle",
+    "developer": "春鹏 崔",
+    "developerWebsite": null,
+    "reviews": 9,
+    "country": "China",
+    "confidence": "medium",
+    "method": "Chinese chars in developer name"
+  },
+  {
+    "appId": "com.fertitude.fertitude",
+    "title": "Fertitude Women Health Tracker",
+    "developer": "Fertitude",
+    "developerWebsite": "https://www.fertitude.co",
+    "reviews": 9,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.wistim.wistim",
+    "title": "WiStim - Fertility Tracker",
+    "developer": "WISTIM",
+    "developerWebsite": "http://www.wistim.com",
+    "reviews": 6,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "eonsoft.com.MagicDiary",
+    "title": "Menstrual Calendar Diary",
+    "developer": "Seong Eon Kim",
+    "developerWebsite": "https://eonsoft21h.web.app",
+    "reviews": 6,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.huy.period-calendar-bmi-tracker.Period",
+    "title": "Cycle Calendar & Health",
+    "developer": "Huy Le",
+    "developerWebsite": null,
+    "reviews": 6,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.obie.ios",
+    "title": "Obie: AI for Women’s Health",
+    "developer": "Obie Health",
+    "developerWebsite": "https://www.obiehealth.com",
+    "reviews": 6,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.hersync.mobile",
+    "title": "HerSync : Period Cycle Tracker",
+    "developer": "Tafipal",
+    "developerWebsite": "https://hersync.app",
+    "reviews": 5,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.techbritinc.selin",
+    "title": "Selin: Your Period Tracker",
+    "developer": "Tech Brit, Inc",
+    "developerWebsite": "https://selin.app/",
+    "reviews": 5,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.satomilky.Selene",
+    "title": "Selene - BBT & Period Tracker",
+    "developer": "Satomi Furusawa",
+    "developerWebsite": null,
+    "reviews": 5,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.hedgehog.freya",
+    "title": "Period tracker • Freya",
+    "developer": "Galilea, d.o.o.",
+    "developerWebsite": "http://www.newroundcalendar.com",
+    "reviews": 5,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.numen.enria",
+    "title": "Enria: Period & Cycle Tracker",
+    "developer": "Proper Bits Ltd",
+    "developerWebsite": "https://enria.app",
+    "reviews": 5,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.fertility.tracker.calendar.calculator.ovulation",
+    "title": "Ovulation Tracker & Calculator",
+    "developer": "ESPRESSO TECH (SMC-PRIVATE) LIMITED",
+    "developerWebsite": "https://health-fitness-pro.fit",
+    "reviews": 5,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (limited)"
+  },
+  {
+    "appId": "com.periodtrackerovulation",
+    "title": "Ovulation Fertility Tracker",
+    "developer": "ICarta",
+    "developerWebsite": "https://www.icartatechnologies.com/our-apps",
+    "reviews": 5,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.maryonella02.fastinSync",
+    "title": "Fasting App for Women",
+    "developer": "Marinela Branzeanu",
+    "developerWebsite": null,
+    "reviews": 5,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.hollandneurotech.gogogaia",
+    "title": "Go Go Gaia Womens Health Hub",
+    "developer": "Holland Neurotech Inc.",
+    "developerWebsite": "https://go-go-gaia.com",
+    "reviews": 5,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.svelta.app",
+    "title": "Svelta: Fitness App For Women",
+    "developer": "Miguel Ferreira",
+    "developerWebsite": "https://www.svelta.app/",
+    "reviews": 5,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.despia.atta",
+    "title": "Atta: Women's Health Assistant",
+    "developer": "Yevheniia Buhaienko",
+    "developerWebsite": "https://atta.you/",
+    "reviews": 5,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.eshe.app",
+    "title": "Eshe: Period & Cycle Tracker",
+    "developer": "Prestodel ltd",
+    "developerWebsite": null,
+    "reviews": 5,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.mmtech.endocare.ios",
+    "title": "EndoCare : Endo/Period Tracker",
+    "developer": "Mathieu Mace",
+    "developerWebsite": null,
+    "reviews": 4,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "hu.pharmapromo.LadiesDiary",
+    "title": "Lady's Diary - Period Tracker",
+    "developer": "PharmaPromo",
+    "developerWebsite": "http://www.pharmapromo.hu/en/",
+    "reviews": 4,
+    "country": "Hungary",
+    "confidence": "high",
+    "method": "TLD (.hu)"
+  },
+  {
+    "appId": "jp.entale.paircare",
+    "title": "PairCare Shared Period Tracker",
+    "developer": "Entale, Inc.",
+    "developerWebsite": "https://paircare.jp/en/",
+    "reviews": 4,
+    "country": "Japan",
+    "confidence": "high",
+    "method": "TLD (.jp)"
+  },
+  {
+    "appId": "com.evecare.healthwellnessapp",
+    "title": "EveCare Period Tracker & Diary",
+    "developer": "Evecare Health Inc.",
+    "developerWebsite": null,
+    "reviews": 4,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "diet.fertility.ovulation.pregnancy",
+    "title": "Fertility Diet & Cycle Tracker",
+    "developer": "Riafy Technologies Pvt. Ltd.",
+    "developerWebsite": "http://thecookbk.com/support/index.php?appname=diet.fertility.ovulation.pregnancy&apptitle=Fertility%20Diet%20Plans",
+    "reviews": 4,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "app.theessence.nektar",
+    "title": "Essence Cycle Syncing Tracker",
+    "developer": "Essence Labs, Inc.",
+    "developerWebsite": "https://www.theessence.app/",
+    "reviews": 4,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.phileao.iflo",
+    "title": "Femoo: Period & Cycle Tracker",
+    "developer": "Phileao (Shanghai) Information Technology Co., Ltd.",
+    "developerWebsite": null,
+    "reviews": 3,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.nurexapps.periodtracker",
+    "title": "Period  -  Cycle tracker",
+    "developer": "nuriddin hakimov",
+    "developerWebsite": null,
+    "reviews": 3,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.laterwork.mooni",
+    "title": "Mooni: Period Wellness Tracker",
+    "developer": "LaterWorks Studio",
+    "developerWebsite": null,
+    "reviews": 3,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.spkstudiosllc.periodtrackerapp",
+    "title": "Period Tracker `",
+    "developer": "SPK Studios LLC",
+    "developerWebsite": null,
+    "reviews": 3,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (llc)"
+  },
+  {
+    "appId": "com.mizuki.Ohashi.Pilll",
+    "title": "Pill & Period Tracker: Pilll",
+    "developer": "yudai hirose",
+    "developerWebsite": "https://pilllapp.studio.site/",
+    "reviews": 3,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.periodtracker.calenderapp",
+    "title": "Period and Ovulation Tracker",
+    "developer": "Dmytro Melnichenko",
+    "developerWebsite": null,
+    "reviews": 3,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.altum.womanCalendar",
+    "title": "Woman Calendar Period Tracker",
+    "developer": "Eung Jin Kim",
+    "developerWebsite": null,
+    "reviews": 3,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.shawstad.womenstracker",
+    "title": "Period Calendar Cycle Tracker",
+    "developer": "Talk or Not, Inc.",
+    "developerWebsite": null,
+    "reviews": 3,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "Appio.Sansa",
+    "title": "Sansa: Menstrual Calendar",
+    "developer": "Iakhia Akhilgov",
+    "developerWebsite": "https://sansacycle.com",
+    "reviews": 3,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "br.eti.claudiocastro.tabelinha",
+    "title": "Feminine Calendar",
+    "developer": "Claudio H P Castro",
+    "developerWebsite": null,
+    "reviews": 3,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.mizan.OvulationTracker",
+    "title": "Ovara Period & Cycle Tracker",
+    "developer": "MD. MIZANUR RAHMAN",
+    "developerWebsite": null,
+    "reviews": 3,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "app.nayya.ios",
+    "title": "Nayya: Cycle & Mood Tracker",
+    "developer": "Igor Kosolap",
+    "developerWebsite": "https://nayya.app/",
+    "reviews": 3,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.barrelofsunshine.lunari",
+    "title": "Lunari - Period & Moon Cycle",
+    "developer": "Barrel of Sunshine",
+    "developerWebsite": null,
+    "reviews": 3,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "health.taahirah.app",
+    "title": "Taahirah Muslim Women's Health",
+    "developer": "Taahirah Ltd",
+    "developerWebsite": "https://taahirah.health/the-app/",
+    "reviews": 3,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.period.tracker.calendar.calculator.ovulation.teen",
+    "title": "Period Tracker Apps for Women",
+    "developer": "ESPRESSO TECH (SMC-PRIVATE) LIMITED",
+    "developerWebsite": "https://health-fitness-pro.fit",
+    "reviews": 2,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (limited)"
+  },
+  {
+    "appId": "com.blasapps.periodtracker",
+    "title": "Period Tracker - Cycle Log",
+    "developer": "Blas Prieto",
+    "developerWebsite": null,
+    "reviews": 2,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.Techsasoft.period.tracker",
+    "title": "iChums - Period Tracker",
+    "developer": "TECHSACARE PTE. LTD",
+    "developerWebsite": null,
+    "reviews": 2,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.iworld4us.Only-for-Women-f",
+    "title": "Only for women free - Period tracker calendar lite",
+    "developer": "Aleksandr Varaksa",
+    "developerWebsite": "http://www.iworld4us.com",
+    "reviews": 2,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.womansy.apps",
+    "title": "Period: Period Tracker & Cycle",
+    "developer": "Active Play Labs L.L.C-FZ",
+    "developerWebsite": "https://womansy-app.firebaseapp.com/landing/",
+    "reviews": 2,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.sprintsols.fertilitytracker",
+    "title": "My Fertility Track & Monitor",
+    "developer": "Zain Ali",
+    "developerWebsite": null,
+    "reviews": 2,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "app.afifa",
+    "title": "Afifa App: Muslim Women Health",
+    "developer": "Afifa App inc.",
+    "developerWebsite": null,
+    "reviews": 2,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "com.menstrual.tracker",
+    "title": "Estri Period & Cycle Tracker",
+    "developer": "Aditya Agarwal",
+    "developerWebsite": "https://periodstracker.com",
+    "reviews": 2,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.xunxin.WomenCalendar",
+    "title": "Period Tracker - Women's menstrual cycles period and ovulation tracker",
+    "developer": "寅康 童",
+    "developerWebsite": null,
+    "reviews": 1,
+    "country": "China",
+    "confidence": "medium",
+    "method": "Chinese chars in developer name"
+  },
+  {
+    "appId": "com.ISTLabs.PeriodTrackerPeriodCalendar",
+    "title": "Period Calendar: Cycle Tracker",
+    "developer": "INFOSTRING TECHNOLABS PRIVATE LIMITED",
+    "developerWebsite": "https://infostringtechnolabs.com/",
+    "reviews": 1,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (limited)"
+  },
+  {
+    "appId": "co.airapps.period",
+    "title": "Cycle Air - Period Tracker",
+    "developer": "Air Apps Systems",
+    "developerWebsite": "https://airapps.co/",
+    "reviews": 1,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.yagmurtezcan.herphase",
+    "title": "HerPhase – Period Tracker",
+    "developer": "yagmur tezcan",
+    "developerWebsite": "https://knkmobiles.com/herphase/index.html",
+    "reviews": 1,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.smooth.rosie",
+    "title": "Rosie - Period Tracker",
+    "developer": "Ali Sabry",
+    "developerWebsite": null,
+    "reviews": 1,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.loheden-syana.period-tracker",
+    "title": "Period Tracker Calendar: Syana",
+    "developer": "Loheden AI Solutions AB",
+    "developerWebsite": "https://loheden.com/digital-products",
+    "reviews": 1,
+    "country": "Sweden",
+    "confidence": "medium",
+    "method": "Company suffix (ab)"
+  },
+  {
+    "appId": "com.periodtracker.CycleTracker",
+    "title": "Period & Ovulation Tracker Pro",
+    "developer": "Rumble",
+    "developerWebsite": "http://rumbleenterprise.com",
+    "reviews": 1,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.periodtracker.cherri",
+    "title": "Simple Period Tracker - Cherri",
+    "developer": "sangwoo lee",
+    "developerWebsite": "https://support-cherri.blogspot.com",
+    "reviews": 1,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.evhen.MyCalendar",
+    "title": "Period tracker : My Calendar",
+    "developer": "Evgeniy Labunchak",
+    "developerWebsite": null,
+    "reviews": 1,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "es.ivi.calendario",
+    "title": "Calendario menstrual IVIDona",
+    "developer": "Equipo IVI SL",
+    "developerWebsite": "https://app.ividona.es",
+    "reviews": 1,
+    "country": "Spain",
+    "confidence": "high",
+    "method": "TLD (.es)"
+  },
+  {
+    "appId": "com.periodtracker.periodcycle.periodcalendar.ovulationtracker",
+    "title": "Period Tracker Calendar App",
+    "developer": "Mazahr Kaleem",
+    "developerWebsite": "https://mahawirnaeima.com",
+    "reviews": 1,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.imedicalapps.ovulationtracker",
+    "title": "Ovulation & Period Tracker",
+    "developer": "Putu Angga Risky Raharja",
+    "developerWebsite": "http://www.imedical-apps.com",
+    "reviews": 1,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.runbio.ovulation.app",
+    "title": "DAVID Ovulation Tracker",
+    "developer": "婕 李",
+    "developerWebsite": null,
+    "reviews": 1,
+    "country": "China",
+    "confidence": "medium",
+    "method": "Chinese chars in developer name"
+  },
+  {
+    "appId": "xyz.fathr.Fathr",
+    "title": "Mens Fertility Tracker - Fathr",
+    "developer": "Ajay Sharma",
+    "developerWebsite": "https://www.fathr.xyz",
+    "reviews": 1,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.youna.periodtracker",
+    "title": "Youna - Teen Period Tracker",
+    "developer": "Maryna Pavliuchenko",
+    "developerWebsite": "https://marynapavliuchenko.github.io/periodtracker-site",
+    "reviews": 1,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.ovina.app",
+    "title": "Menstrual Cycle Tracker: Ovina",
+    "developer": "Hardik Gojariya",
+    "developerWebsite": "https://sites.google.com/view/hardik-gojariya-apps/home",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.maksymencrm.menses",
+    "title": "Cycle Day: My Period Calendar",
+    "developer": "Maksym Zaivyi",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.bauchgefuehl.ios",
+    "title": "Period Tracker & Cycle Food",
+    "developer": "Josef Haras",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.vinhshin.cycle-period",
+    "title": "Menstrual Cycle - Tracker",
+    "developer": "Shin Vong",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.periodtracker.iris",
+    "title": "Iris: Period & Cycle Tracker",
+    "developer": "Arbaz Siddiqui",
+    "developerWebsite": "https://arbazsiddiqui.github.io/iris-support/index.html",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.app.flow.glow.periods.pregnancy.tracker",
+    "title": "Period Menstral Cycle Tracker",
+    "developer": "Dcodax Ltd",
+    "developerWebsite": "https://dcodax.com/contact/",
+    "reviews": 0,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.luna.applu",
+    "title": "Luna: Period & Cycle Tracker",
+    "developer": "APPLU DIGITAL LTDA",
+    "developerWebsite": "https://applu.me/",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.divinecore.period.tracker.ovulation.flow",
+    "title": "Period Tracker: Ovulation Flow",
+    "developer": "Ankit Sutariya",
+    "developerWebsite": "https://earthinfotechapp.blogspot.com",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.maita.perood",
+    "title": "HerPulse – AI Period Tracker",
+    "developer": "Ahmad Maaitah",
+    "developerWebsite": "https://oe8df57e5.app-ads-txt.com",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.wenly.app",
+    "title": "Wenly - Couple period tracker",
+    "developer": "Mathis Laversin",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.mahmoud.pertrack",
+    "title": "Pink Cycle - Period Tracker",
+    "developer": "Mohammad Mahmoud",
+    "developerWebsite": "https://y5dbcebf3.app-ads-txt.com",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.period.tracker.app.flow",
+    "title": "My Period Tracker & Ovulation",
+    "developer": "Bavachand Savaliya",
+    "developerWebsite": "https://bjsavaliya43.blogspot.com",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.zoeflow.app.tracker",
+    "title": "ZoeFlow - Period Tracker",
+    "developer": "BLOOM IT TECH",
+    "developerWebsite": "https://zoeflow.app/",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.periodtracker.ovulation.periodcalendar",
+    "title": "My Period Tracker & Calendar",
+    "developer": "AppAspect Technologies Pvt. Ltd.",
+    "developerWebsite": "https://www.appaspect.com/",
+    "reviews": 0,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "app.steps.ios.period",
+    "title": "Ovi Cycle & Period Tracker",
+    "developer": "StepsApp GmbH",
+    "developerWebsite": "https://steps.app/",
+    "reviews": 0,
+    "country": "Germany",
+    "confidence": "medium",
+    "method": "Company suffix (gmbh)"
+  },
+  {
+    "appId": "com.ldgroup.period",
+    "title": "PERIOD. Cycle & Period Tracker",
+    "developer": "Diederick Trampe",
+    "developerWebsite": "https://myperiod.app/",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.ashenishanka.periodtracker",
+    "title": "Period Tracker 2026",
+    "developer": "Ashen Ishanka Costha",
+    "developerWebsite": "https://ishankait-783cc.web.app/",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.ai.xiaoli.OvulationFlow",
+    "title": "period tracker : Ovi AI",
+    "developer": "Chestnuts Intelligence UG (haftungsbeschrankt)",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "Germany",
+    "confidence": "medium",
+    "method": "Company suffix (ug)"
+  },
+  {
+    "appId": "com.ovulation.cycle.period.tracker",
+    "title": "Period Tracker - Cycle Syncing",
+    "developer": "Hafiz Muhammad Talha",
+    "developerWebsite": "https://innoppia.pk/period-tracker/index.html",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.gamstersmithstudio.pixelperiod",
+    "title": "Period Tracker: P Forest",
+    "developer": "Chuang Yi Ting",
+    "developerWebsite": "https://gamstersmithstudio.com/pixel-period-forest-eng/",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.weiyou.periodpetai",
+    "title": "Period Tracker: AI Pet",
+    "developer": "WEI YOU CHEN",
+    "developerWebsite": "https://wow800915.github.io/",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.aiflo",
+    "title": "Plululu - Period Tracker",
+    "developer": "Gxlab Inc",
+    "developerWebsite": "https://flolulu.com",
+    "reviews": 0,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (inc)"
+  },
+  {
+    "appId": "app.periodtracking",
+    "title": "Period Tracking",
+    "developer": "Stanislav Cekunov",
+    "developerWebsite": "https://periodtracking.app",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.imaginationai.femverse.periodtracker",
+    "title": "FemVerse AI: Period Tracking",
+    "developer": "IMAGINATION AI PTE. LTD.",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.app.ovulationtracker",
+    "title": "Ovulation Tracker & Period App",
+    "developer": "Ovulation Tracker",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "io.digitalsauce.shesync",
+    "title": "SheSync - Period Tracker",
+    "developer": "Digital Sauce Pty Ltd",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "Australia",
+    "confidence": "medium",
+    "method": "Company suffix (pty ltd)"
+  },
+  {
+    "appId": "com.shvagerfm.womencalendar",
+    "title": "Period's calendar & tracker",
+    "developer": "Dmytro Shvaher",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.hilalum.FemCare",
+    "title": "SheTrack – Period Track",
+    "developer": "晨阳 段",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "China",
+    "confidence": "medium",
+    "method": "Chinese chars in developer name"
+  },
+  {
+    "appId": "br.com.sinapsevb.lotus",
+    "title": "Lotus Menstrual Calendar",
+    "developer": "Abraco Solucoes Inovadoras LTDA",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.GA.FemTrack",
+    "title": "Menstrual Calendar: Flowa",
+    "developer": "Georgios Avenidis",
+    "developerWebsite": "https://georgevalandis.com/flowa/",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.evhen.CalendarMenstruation",
+    "title": "Calendar Girl.",
+    "developer": "Ivan Beschetnikov",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.period.happy.rabbit",
+    "title": "NyxFlow - AI Menstrual Tracker",
+    "developer": "Shenzhen Youmei Interactive Technology Co.,LtD",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "app.ellie.calendar",
+    "title": "Dahe - Menstrual Calendar",
+    "developer": "Brinaldy Leonardo Mena",
+    "developerWebsite": "https://dahe.app/",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.dmitriykhan.F-Calendar",
+    "title": "Female Cycle Period Calendar",
+    "developer": "Dmitriy Khan",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.smilelab.smilereaderglobal",
+    "title": "SmileReaderG-Ovulation tracker",
+    "developer": "Smilelab Corp.",
+    "developerWebsite": "https://youtu.be/MJnQMXsVdWc",
+    "reviews": 0,
+    "country": "Belgium",
+    "confidence": "high",
+    "method": "TLD (.be)"
+  },
+  {
+    "appId": "com.ovulation.calculator.calendar.tracker.fertility.period.ovulationCalculator",
+    "title": "Period & Ovulation Tracker App",
+    "developer": "codesbunny",
+    "developerWebsite": "https://www.codesbunny.com/",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.sistamista.sista.prod",
+    "title": "Sista Period Ovulation Tracker",
+    "developer": "Ismet Ozozturk",
+    "developerWebsite": "https://sistamista.com",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.axe.pregnancyfyassistant",
+    "title": "Pregnancy Tracker & Baby Care",
+    "developer": "RAVINDHIRAN ANAND",
+    "developerWebsite": "http://pregnancyfy.com/",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "kr.co.diavision.LunaTracker",
+    "title": "Luna Tracker - Ovulation & LH",
+    "developer": "DiaVision Inc",
+    "developerWebsite": "https://www.diavision.co.kr",
+    "reviews": 0,
+    "country": "South Korea",
+    "confidence": "high",
+    "method": "TLD (.kr)"
+  },
+  {
+    "appId": "com.bigfeetproductions.makebabies",
+    "title": "Make Babies - The Connected Fertility Tracker",
+    "developer": "Big Feet Productions Ltd",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.ovom.patient",
+    "title": "Ovom: IVF & Fertility Tracker",
+    "developer": "Ovom Care GmbH",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "Germany",
+    "confidence": "medium",
+    "method": "Company suffix (gmbh)"
+  },
+  {
+    "appId": "ru.artembolotov.RedCalendar-Woman",
+    "title": "RedCalendar — Cycle Tracker",
+    "developer": "Artem Bolotov",
+    "developerWebsite": "https://calendar.red",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.evinuckan.venus",
+    "title": "Venus Cycle & Period Tracker",
+    "developer": "Evin Uckan Turan",
+    "developerWebsite": "https://www.venuscycle.app",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.verahealth.app",
+    "title": "Vera–Women's Health & AI Cycle",
+    "developer": "Liran Feder",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.despia.Avara",
+    "title": "Avara: Cycle Nutrition Tracker",
+    "developer": "Matas Jackus",
+    "developerWebsite": "https://termify.io/privacy-policy/fShijRFOMr",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.klo.womancalendar",
+    "title": "Female Cycle",
+    "developer": "Andrey Klochkov",
+    "developerWebsite": "https://klo-apps.com/",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.umituz.regltracker",
+    "title": "Period & Cycle Tracker - Perry",
+    "developer": "Umit UZ",
+    "developerWebsite": "https://umituz.com/projects/health-wellness/period-tracker",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.lunaletics.app",
+    "title": "Lunaletics: Cycle Syncing App",
+    "developer": "Lunaletics GmbH",
+    "developerWebsite": "https://lunaletics.com/",
+    "reviews": 0,
+    "country": "Germany",
+    "confidence": "medium",
+    "method": "Company suffix (gmbh)"
+  },
+  {
+    "appId": "com.ahmedelsaid.cycletracking",
+    "title": "Nisaa: Muslim Cycle Tracking",
+    "developer": "Tech Tinker LLC",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "USA",
+    "confidence": "medium",
+    "method": "Company suffix (llc)"
+  },
+  {
+    "appId": "com.heaox.wellness.menstrual.cycle",
+    "title": "CycleFit: PCOS, Perior Tracker",
+    "developer": "HEAOX WELLNESS LLP",
+    "developerWebsite": "https://heaox.com",
+    "reviews": 0,
+    "country": "UK/US",
+    "confidence": "medium",
+    "method": "Company suffix (llp)"
+  },
+  {
+    "appId": "tr.amatis.cycle",
+    "title": "Eva: Period & Cycle Tracker",
+    "developer": "Amatis",
+    "developerWebsite": "https://evacycle.app",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.florafl0w.app",
+    "title": "Flora Flow: Cycle Tracker",
+    "developer": "GreenCosmic LTD.",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "UK/HK",
+    "confidence": "medium",
+    "method": "Company suffix (ltd)"
+  },
+  {
+    "appId": "com.redizeuz.lunaCycle1",
+    "title": "LunaCycle: Cycle & Ovulation",
+    "developer": "Ebenezer Oteng",
+    "developerWebsite": "https://rayglan.blogspot.com/ads.txt",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.ahlya",
+    "title": "Ahlya: Cycle Syncing App",
+    "developer": "Ahlya",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "bloom.com.heba",
+    "title": "Roza: Cycle Sync Fitness",
+    "developer": "Heba Guirguis",
+    "developerWebsite": "https://plaid-spring-ed6.notion.site/Marketing-URL-2dc103f1fa8c80a0b5e3d5df594b5e71?pvs=74",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.eyupcanee.trenpy",
+    "title": "Trenpy | Private Cycle Tracker",
+    "developer": "Eyup Can Esen",
+    "developerWebsite": "https://trenpy.app",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.yeonlog.ForWomen",
+    "title": "Cycle & Period Tracker",
+    "developer": "DO YEON PARK",
+    "developerWebsite": "https://ivorywish.blogspot.com/",
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  },
+  {
+    "appId": "com.hendry.rasa",
+    "title": "Rasa: Cycle Sync Fitness",
+    "developer": "Hendry Nugroho",
+    "developerWebsite": null,
+    "reviews": 0,
+    "country": "Unknown",
+    "confidence": "low",
+    "method": "none"
+  }
+]
