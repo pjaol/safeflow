@@ -421,13 +421,9 @@
     <p>The geographic picture is striking. Of the 289 apps we found, roughly 51% have origins we couldn't definitively resolve; many small developers use WHOIS privacy protection. Of those we could identify, the US dominates at 18%, followed by a large cluster of "UK/HK" registrations (13.8%), a common pattern for companies seeking favorable corporate structures while operating elsewhere.</p>
 
     <div class="chart-section">
-      <h3 style="margin-top:32px;margin-bottom:4px;">Apps by country of origin</h3>
-      <p style="margin-bottom:16px;font-size:0.9rem;">Number of apps found per identified country. "Unknown" covers developers with WHOIS privacy protection or no resolvable website.</p>
-      <canvas id="chartApps" height="320"></canvas>
-
-      <h3 style="margin-top:40px;margin-bottom:4px;">Total App Store reviews by country</h3>
-      <p style="margin-bottom:16px;font-size:0.9rem;">Sum of all App Store reviews for apps from each country - used as a proxy for user reach. A small number of heavily-used apps from one country can outweigh dozens of smaller ones.</p>
-      <canvas id="chartReviews" height="320"></canvas>
+      <h3 style="margin-top:32px;margin-bottom:4px;">Apps and user reach by country</h3>
+      <p style="margin-bottom:16px;font-size:0.9rem;">Bars show number of apps per country (left axis). The line shows total App Store reviews as a proxy for user reach (right axis). Countries sorted by app count; "Unknown" covers developers with WHOIS privacy protection.</p>
+      <canvas id="chartCombined" height="360"></canvas>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
@@ -438,7 +434,7 @@
       const raw = [
         { country: 'Unknown',   apps: 148, reviews: 137127  },
         { country: 'USA',       apps:  53, reviews: 882499  },
-        { country: 'UK / HK',   apps:  42, reviews: 1865415 }, // UK + UK/HK + half UK/US
+        { country: 'UK / HK',   apps:  42, reviews: 1865415 },
         { country: 'China',     apps:  12, reviews: 100629  },
         { country: 'Germany',   apps:   8, reviews: 394034  },
         { country: 'Canada',    apps:   4, reviews: 358992  },
@@ -452,58 +448,146 @@
         { country: 'Other',     apps:   7, reviews: 1108    },
       ];
 
-      const palette = [
-        '#c9e8f7','#fbd3e2','#fff5c3','#a3d4a8','#f7c6a3',
-        '#c3b8f5','#f5e0a3','#a3c8f5','#f5a3b8','#b8f5e0',
-        '#e0c3f5','#f5c3c3','#c3f5f0','#d4e8a3'
-      ];
+      // Sort by app count descending
+      const sorted = raw.slice().sort((a, b) => b.apps - a.apps);
+      const labels  = sorted.map(d => d.country);
+      const appCounts = sorted.map(d => d.apps);
+      const reviewCounts = sorted.map(d => d.reviews);
 
-      const appsData  = raw.sort((a,b) => b.apps - a.apps);
-      const reviewData = [...raw].sort((a,b) => b.reviews - a.reviews);
+      // Fit a degree-3 polynomial through the review data points to smooth the trend
+      // Simple approach: compute polynomial regression coefficients
+      function polyFit(ys, degree) {
+        const n = ys.length;
+        const xs = ys.map((_, i) => i);
+        // Build Vandermonde matrix and solve via normal equations (small n, ok to do naively)
+        const A = xs.map(x => Array.from({length: degree + 1}, (_, p) => Math.pow(x, p)));
+        // A^T * A
+        const AT = A[0].map((_, ci) => A.map(row => row[ci]));
+        const ATA = AT.map(row => AT[0].map((_, ci) => row.reduce((s, _, ri) => s + row[ri] * A[ri][ci], 0)));
+        // A^T * y
+        const ATy = AT.map(row => row.reduce((s, v, i) => s + v * ys[i], 0));
+        // Gauss elimination
+        const m = degree + 1;
+        const aug = ATA.map((row, i) => [...row, ATy[i]]);
+        for (let col = 0; col < m; col++) {
+          let maxR = col;
+          for (let r = col + 1; r < m; r++) if (Math.abs(aug[r][col]) > Math.abs(aug[maxR][col])) maxR = r;
+          [aug[col], aug[maxR]] = [aug[maxR], aug[col]];
+          for (let r = col + 1; r < m; r++) {
+            const f = aug[r][col] / aug[col][col];
+            for (let c = col; c <= m; c++) aug[r][c] -= f * aug[col][c];
+          }
+        }
+        const coeffs = new Array(m).fill(0);
+        for (let r = m - 1; r >= 0; r--) {
+          coeffs[r] = aug[r][m];
+          for (let c = r + 1; c < m; c++) coeffs[r] -= aug[r][c] * coeffs[c];
+          coeffs[r] /= aug[r][r];
+        }
+        return coeffs; // [c0, c1, c2, ...] where y = c0 + c1*x + c2*x^2 + ...
+      }
 
-      const sharedOptions = (yLabel) => ({
-        indexAxis: 'y',
-        responsive: true,
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            callbacks: {
-              label: ctx => ' ' + ctx.parsed.x.toLocaleString() + ' ' + yLabel
+      function evalPoly(coeffs, x) {
+        return coeffs.reduce((s, c, p) => s + c * Math.pow(x, p), 0);
+      }
+
+      const coeffs = polyFit(reviewCounts, 3);
+      const trendLine = reviewCounts.map((_, i) => Math.max(0, evalPoly(coeffs, i)));
+
+      const barColour   = '#A8DFF7';
+      const barBorder   = '#6ec6f0';
+      const lineColour  = '#e8637a';
+
+      new Chart(document.getElementById('chartCombined'), {
+        data: {
+          labels,
+          datasets: [
+            {
+              type: 'bar',
+              label: 'Number of apps',
+              data: appCounts,
+              backgroundColor: barColour,
+              borderColor: barBorder,
+              borderWidth: 1,
+              borderRadius: 5,
+              yAxisID: 'yApps',
+              order: 2,
+            },
+            {
+              type: 'line',
+              label: 'Total reviews (trend)',
+              data: trendLine,
+              borderColor: lineColour,
+              backgroundColor: lineColour + '22',
+              borderWidth: 2.5,
+              pointRadius: 4,
+              pointBackgroundColor: lineColour,
+              tension: 0.4,
+              fill: false,
+              yAxisID: 'yReviews',
+              order: 1,
+            },
+            {
+              type: 'line',
+              label: 'Total reviews (actual)',
+              data: reviewCounts,
+              borderColor: lineColour,
+              backgroundColor: 'transparent',
+              borderWidth: 0,
+              pointRadius: 5,
+              pointBackgroundColor: lineColour,
+              pointBorderColor: 'white',
+              pointBorderWidth: 2,
+              showLine: false,
+              yAxisID: 'yReviews',
+              order: 0,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top',
+              labels: { color: '#555', font: { size: 11 }, boxWidth: 14, padding: 16 }
+            },
+            tooltip: {
+              callbacks: {
+                label: ctx => {
+                  if (ctx.dataset.label === 'Total reviews (trend)') return null;
+                  const val = ctx.parsed.y;
+                  return ' ' + ctx.dataset.label + ': ' + val.toLocaleString();
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { color: '#f0f0f0' },
+              ticks: { color: '#333', font: { size: 11 }, maxRotation: 35, minRotation: 25 }
+            },
+            yApps: {
+              type: 'linear',
+              position: 'left',
+              title: { display: true, text: 'Number of apps', color: '#555', font: { size: 11 } },
+              grid: { color: '#f0f0f0' },
+              ticks: { color: '#555', font: { size: 11 } }
+            },
+            yReviews: {
+              type: 'linear',
+              position: 'right',
+              title: { display: true, text: 'Total App Store reviews', color: lineColour, font: { size: 11 } },
+              grid: { drawOnChartArea: false },
+              ticks: {
+                color: lineColour,
+                font: { size: 11 },
+                callback: v => v >= 1000000 ? (v/1000000).toFixed(1)+'M' : v >= 1000 ? (v/1000).toFixed(0)+'K' : v
+              }
             }
           }
-        },
-        scales: {
-          x: { grid: { color: '#f0f0f0' }, ticks: { color: '#888', font: { size: 11 } } },
-          y: { grid: { display: false }, ticks: { color: '#333', font: { size: 12 } } }
         }
-      });
-
-      new Chart(document.getElementById('chartApps'), {
-        type: 'bar',
-        data: {
-          labels: appsData.map(d => d.country),
-          datasets: [{
-            data: appsData.map(d => d.apps),
-            backgroundColor: palette,
-            borderRadius: 6,
-            borderSkipped: false,
-          }]
-        },
-        options: sharedOptions('apps')
-      });
-
-      new Chart(document.getElementById('chartReviews'), {
-        type: 'bar',
-        data: {
-          labels: reviewData.map(d => d.country),
-          datasets: [{
-            data: reviewData.map(d => d.reviews),
-            backgroundColor: palette,
-            borderRadius: 6,
-            borderSkipped: false,
-          }]
-        },
-        options: sharedOptions('reviews')
       });
     })();
     </script>
@@ -517,7 +601,7 @@
     <h3>Premom: An FTC Settlement You Might Have Missed</h3>
 
     <div class="warning-box">
-      <p><strong>In 2023, the FTC settled with Easy Healthcare Corporation (Premom)</strong> after finding the company had secretly shared users' reproductive health data - including fertility tracking information - with two Chinese companies: Remark Holdings and Agora. This happened without user consent, despite Premom's privacy policy claiming otherwise. The app had 53,000+ App Store reviews at the time of our analysis.</p>
+      <p><strong>In 2023, the FTC settled with <a href="https://www.ftc.gov/legal-library/browse/cases-proceedings/202-3186-easy-healthcare-corporation-us-v" target="_blank" rel="noopener">Easy Healthcare Corporation (Premom)</a></strong> after finding the company had secretly shared users' reproductive health data - including fertility tracking information - with two Chinese companies: Remark Holdings and Agora. This happened without user consent, despite Premom's privacy policy claiming otherwise. The app had 53,000+ App Store reviews at the time of our analysis.</p>
     </div>
 
     <p>Premom is not an obscure app. It ranks in the top 15 by review count. The FTC settlement resulted in a fine and policy changes, but the incident illustrates a fundamental truth: privacy policies are promises, not guarantees. The only guarantee is architecture.</p>
