@@ -549,43 +549,53 @@
     </script>
     <p style="font-size:0.82rem;color:#aaa;margin-top:10px;">* UK/HK combined outstrips the USA by 2.1x in total reviews, driven almost entirely by Flo (1.83M). Flo is UK-incorporated but was founded in Belarus and operates primarily from Vilnius — the UK registration reflects legal structure, not true origin. &nbsp;** Chart covers 285 of 289 apps; Japan (3 apps, 111 reviews) and South Korea (2 apps, 84 reviews) are included in the underlying data but omitted from chart groupings.</p>
 
-    <h2>The Most Concerning Findings</h2>
+    <h2>A Documented Pattern of Privacy Failures</h2>
 
-    <h3>Femometer and MeetYou: Opaque Origins</h3>
+    <p>These aren't hypothetical risks. Across the past six years, period and fertility tracking apps have been the subject of federal investigations, class action lawsuits, congressional inquiries, and independent research investigations — all finding the same thing: apps collecting your most intimate health data, and sharing it with people you never agreed to share it with.</p>
 
-    <p>Our automated origin analysis initially flagged both apps as Chinese-owned based on WHOIS data, but direct verification tells a different story. Femometer is registered as <strong>Femometer Inc. in Princeton, NJ</strong> — a US company with Chinese investment backing. Its <a href="https://www.femometer.com/privacyPolicy" target="_blank" rel="noopener">privacy policy</a> claims both GDPR and CCPA compliance and names its data processors (Google, AWS, Stripe, Apple). MeetYou is registered as <strong>MeetYou Pte. Ltd. in Singapore</strong>, governed by Singapore's Personal Data Protection Act.</p>
+    <h3>Flo: the Market Leader with the Longest Paper Trail</h3>
 
-    <p>This is a good illustration of why automated origin detection has limits — WHOIS records pointed to Chinese infrastructure, but the legal entities are registered elsewhere. Neither app makes the strongest privacy case (both share data with third-party processors and use data for analytics and marketing), but the jurisdictional concern is materially different from a company operating solely under Chinese law.</p>
-
-    <h3>Premom: An FTC Settlement You Might Have Missed</h3>
-
-    <div class="warning-box">
-      <p><strong>In 2023, the FTC settled with <a href="https://www.ftc.gov/legal-library/browse/cases-proceedings/202-3186-easy-healthcare-corporation-us-v" target="_blank" rel="noopener">Easy Healthcare Corporation (Premom)</a></strong> after finding the company had secretly shared users' reproductive health data - including fertility tracking information - with two Chinese companies: Remark Holdings and Agora. This happened without user consent, despite Premom's privacy policy claiming otherwise. The app had 53,000+ App Store reviews at the time of our analysis.</p>
-    </div>
-
-    <p>Premom is not an obscure app. It ranks in the top 15 by review count. The FTC settlement resulted in a fine and policy changes, but the incident illustrates a fundamental truth: privacy policies are promises, not guarantees. If your data never leaves your phone, there's nothing to breach, sell, or hand over.</p>
-
-    <h3>Lucky Labs / Period Tracker ⋆: Bahamas-Registered, Data-Selling</h3>
-
-    <p>The app "Period Tracker ⋆" by Lucky Labs (22,000+ reviews) is registered in the Bahamas, a jurisdiction chosen specifically because it offers minimal regulatory oversight. Its privacy policy contains explicit data-selling language. It claims GDPR compliance, but enforcement of GDPR against a Bahamas-registered entity is theoretical at best.</p>
-
-    <h3>Flo: Belarus-Founded, UK-Incorporated, and at the Center of a $59.5M Settlement</h3>
-
-    <p>Flo is the market leader by a wide margin, with 1.83 million App Store reviews. It presents itself as a UK company — the legal entity is "Flo Health UK Limited" — but it was <a href="https://en.wikipedia.org/wiki/Flo_(app)" target="_blank" rel="noopener">founded in Belarus in 2015</a> by brothers Dmitry and Yuri Gurski, with its largest operations in Vilnius, Lithuania. The UK incorporation is a holding structure, not where the product is built.</p>
-
-    <p>Flo's privacy history is the most extensively documented of any app in this space:</p>
+    <p>Flo is the most-downloaded period tracker in the world, with 1.83 million App Store reviews. It was <a href="https://en.wikipedia.org/wiki/Flo_(app)" target="_blank" rel="noopener">founded in Belarus in 2015</a>, incorporated in the UK as a holding structure, and operates primarily from Vilnius, Lithuania. Its privacy history is also the most extensively documented:</p>
 
     <div class="warning-box">
       <p><strong>2021:</strong> FTC investigation and settlement for sharing user health data with Facebook and Google without consent, contrary to its stated privacy policy.</p>
       <p style="margin-top:10px;"><strong>2025 (July):</strong> <a href="https://www.labaton.com/cases/frasco-v-flo-health-inc" target="_blank" rel="noopener">Frasco v. Flo Health Inc.</a> settled for <strong>$59.5 million</strong> (combined with Google and Flurry). The class action covered 38 million users whose reproductive and menstrual health data was shared with Meta, Google, and others via in-app SDKs without consent, between 2016 and 2019.</p>
-      <p style="margin-top:10px;"><strong>2025 (August):</strong> In the related <a href="https://www.hipaajournal.com/jury-trial-meta-flo-health-consumer-privacy/" target="_blank" rel="noopener">jury trial against Meta</a>, a U.S. federal jury found Meta liable on three counts under California privacy law for receiving that data. With 38 million class members and statutory damages of $5,000 per violation under CIPA, the potential total exposure for Meta runs into the billions. A final damages judgment had not been issued at the time of writing.</p>
+      <p style="margin-top:10px;"><strong>2025 (August):</strong> In the related <a href="https://www.hipaajournal.com/jury-trial-meta-flo-health-consumer-privacy/" target="_blank" rel="noopener">jury trial against Meta</a>, a U.S. federal jury found Meta liable on three counts under California privacy law for receiving that data. With 38 million class members and statutory damages of $5,000 per violation under CIPA, the potential exposure for Meta runs into the billions.</p>
     </div>
 
-    <p>Flo currently claims not to sell user data and has made policy changes since the FTC settlement. We note this history not to single them out unfairly; by the standards of this market, they are more privacy-conscious than many competitors. But the track record illustrates the core problem: privacy promises are only as strong as the enforcement mechanisms behind them.</p>
+    <p>Flo currently claims not to sell user data and has made policy changes since the FTC settlement. We note this not to single them out unfairly; by the standards of this market they are more privacy-conscious than many competitors. But it took two federal investigations and a $59.5 million settlement to get there.</p>
+
+    <h3>Premom: Sharing Data With Third Parties While Claiming Not To</h3>
+
+    <div class="warning-box">
+      <p><strong>In 2023, the FTC settled with <a href="https://www.ftc.gov/legal-library/browse/cases-proceedings/202-3186-easy-healthcare-corporation-us-v" target="_blank" rel="noopener">Easy Healthcare Corporation (Premom)</a></strong> after finding the company had secretly shared users' reproductive health data — including fertility tracking information — with two companies without user consent, despite its privacy policy claiming otherwise. Premom has 53,000+ App Store reviews and ranks in the top 15 in this market.</p>
+    </div>
+
+    <h3>Glow: Fined by California's Attorney General</h3>
+
+    <div class="warning-box">
+      <p><strong>In 2020, the California Attorney General settled with Glow</strong> for <strong>$250,000</strong> after finding the app failed to adequately protect user health data and had a password-reset vulnerability that could allow third parties to access menstrual and fertility records. The <a href="https://oag.ca.gov/news/press-releases/attorney-general-becerra-announces-landmark-settlement-against-glow-inc-%E2%80%93" target="_blank" rel="noopener">settlement</a> was the first to require a company to specifically consider how privacy failures harm women.</p>
+    </div>
+
+    <h3>Stardust: Marketed as Encrypted, Found Sharing Data</h3>
+
+    <p>After the Dobbs decision in 2022, Stardust surged to #1 on the US App Store by marketing itself as end-to-end encrypted and privacy-safe. A <a href="https://techcrunch.com/2022/06/27/stardust-period-tracker-phone-number/" target="_blank" rel="noopener">TechCrunch investigation</a> found it was sharing users' phone numbers with third-party analytics firm Mixpanel, and that encryption keys generated on-device were being uploaded to Stardust's own servers — meaning Stardust could decrypt the data. The app subsequently removed all mentions of "end-to-end encryption" from its marketing.</p>
+
+    <h3>Ovia: Selling Employers a Window Into Their Staff's Pregnancies</h3>
+
+    <p>A <a href="https://www.washingtonpost.com/technology/2019/04/10/tracking-your-pregnancy-an-app-may-be-more-public-than-you-think/" target="_blank" rel="noopener">Washington Post investigation</a> found that Ovia sold a version of its fertility and pregnancy app directly to employers as a workplace "benefit." HR departments could access dashboards showing how many employees faced high-risk pregnancies, when new mothers planned to return to work, and what health questions staff were researching — all drawn from data users entered believing it was private.</p>
+
+    <h3>Maya, MIA Fem, and Others: Sharing Intimate Data With Facebook Before You Even Opened the App</h3>
+
+    <p>A <a href="https://privacyinternational.org/long-read/3196/no-bodys-business-mine-how-menstruations-apps-are-sharing-your-data" target="_blank" rel="noopener">2019 Privacy International investigation</a> found that several period apps were automatically transmitting intimate health data — menstrual cycle dates, mood, sexual activity, contraception choices — to Facebook the moment a user opened the app, regardless of whether the user had a Facebook account. Apps documented in the investigation included Maya (5M+ downloads), MIA Fem (1M+), and My Period Tracker. Four of the six exposed apps changed their practices after the investigation published.</p>
+
+    <h3>The FTC Expanded Its Rules Because of This Industry</h3>
+
+    <p>In July 2024, the FTC updated its Health Breach Notification Rule to <a href="https://www.ftc.gov/business-guidance/blog/2024/04/updated-ftc-health-breach-notification-rule-puts-new-provisions-place-protect-users-health-apps" target="_blank" rel="noopener">explicitly cover consumer health apps</a>, including period trackers. Apps are now required to notify users whenever their health data is shared without consent — not just when there's a hack. The rule was updated specifically because apps in this category had repeatedly shared sensitive health data without users' knowledge.</p>
 
     <h3>Natural Cycles: The Most Privacy-Conscious Cloud Option</h3>
 
-    <p>If you must use a cloud-based period tracker, Natural Cycles (Sweden, FDA-cleared as a contraceptive app) has the strongest privacy posture in our analysis: governed by Swedish law and GDPR, no advertising detected, no third-party data sharing detected. However, it requires a mandatory account and your data is uploaded to their servers — that's simply how the product works. Once your data leaves your phone, you're trusting a company, a legal system, and a server you'll never see.</p>
+    <p>If you must use a cloud-based period tracker, Natural Cycles (Sweden, FDA-cleared as a contraceptive app) has the strongest privacy posture in our analysis: governed by Swedish law and GDPR, no advertising detected, no third-party data sharing detected. However, it requires a mandatory account and your data is uploaded to their servers — that's simply how the product works. Once your data leaves your phone, you're trusting a company, a legal system, and a server you'll never see. Notably, in November 2024, Clue (Berlin-based) <a href="https://www.newsweek.com/period-tracking-app-refuses-disclose-data-american-authorities-1982841" target="_blank" rel="noopener">publicly stated it would refuse to comply</a> with any US government subpoena for user data — a meaningful stance, but one that only matters if your data is stored somewhere that could receive a subpoena in the first place.</p>
 
     <h2>The Real Problem: Your Data on Their Server</h2>
 
