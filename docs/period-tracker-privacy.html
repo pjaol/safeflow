@@ -426,8 +426,7 @@
 
     <div class="chart-section">
       <h3 style="margin-top:32px;margin-bottom:4px;">Apps and user reach by country</h3>
-      <p style="margin-bottom:4px;font-size:0.9rem;">Bars show number of apps per country (left axis). The curved line tracks total App Store reviews as a proxy for user reach (right axis), smoothed with cubic Bezier interpolation. Countries sorted by app count; "Unknown" covers developers with WHOIS privacy protection.</p>
-      <p style="margin-bottom:16px;font-size:0.85rem;color:#888;">Note: UK / HK combined outstrips the USA by more than 2x in total reviews, driven almost entirely by Flo (1.83M reviews). Flo is UK-incorporated but was founded in Belarus and operates primarily from Vilnius, Lithuania — the UK registration is a legal and financial structure, not a true indicator of origin.</p>
+      <p style="margin-bottom:16px;font-size:0.9rem;">Bars show number of apps per country (left axis). The curved line tracks total App Store reviews as a proxy for user reach (right axis), smoothed with cubic Bezier interpolation. Countries sorted by app count; "Unknown" covers developers with WHOIS privacy protection.</p>
       <div style="position:relative;height:50vh;min-height:300px;max-height:480px;">
         <canvas id="chartCombined"></canvas>
       </div>
@@ -548,6 +547,7 @@
       });
     })();
     </script>
+    <p style="font-size:0.82rem;color:#aaa;margin-top:10px;">* UK/HK combined outstrips the USA by 2.1x in total reviews, driven almost entirely by Flo (1.83M). Flo is UK-incorporated but was founded in Belarus and operates primarily from Vilnius — the UK registration reflects legal structure, not true origin. &nbsp;** Chart covers 285 of 289 apps; Japan (3 apps, 111 reviews) and South Korea (2 apps, 84 reviews) are included in the underlying data but omitted from chart groupings.</p>
 
     <h2>The Most Concerning Findings</h2>
 
@@ -573,11 +573,11 @@
 
     <p>Flo's privacy history is the most extensively documented of any app in this space:</p>
 
-    <ul>
-      <li><strong>2021:</strong> FTC investigation and settlement for sharing user health data with Facebook and Google without consent, contrary to its stated privacy policy.</li>
-      <li><strong>2025 (July):</strong> <a href="https://www.labaton.com/cases/frasco-v-flo-health-inc" target="_blank" rel="noopener">Frasco v. Flo Health Inc.</a> settled for <strong>$59.5 million</strong> (combined with Google and Flurry). The class action covered 38 million users whose reproductive and menstrual health data was shared with Meta, Google, and others via in-app SDKs without consent, between 2016 and 2019.</li>
-      <li><strong>2025 (August):</strong> In the related <a href="https://www.hipaajournal.com/jury-trial-meta-flo-health-consumer-privacy/" target="_blank" rel="noopener">jury trial against Meta</a>, a U.S. federal jury found Meta liable on three counts under California privacy law for receiving that data. With 38 million class members and statutory damages of $5,000 per violation under CIPA, the potential total exposure for Meta runs into the billions. A final damages judgment had not been issued at the time of writing.</li>
-    </ul>
+    <div class="warning-box">
+      <p><strong>2021:</strong> FTC investigation and settlement for sharing user health data with Facebook and Google without consent, contrary to its stated privacy policy.</p>
+      <p style="margin-top:10px;"><strong>2025 (July):</strong> <a href="https://www.labaton.com/cases/frasco-v-flo-health-inc" target="_blank" rel="noopener">Frasco v. Flo Health Inc.</a> settled for <strong>$59.5 million</strong> (combined with Google and Flurry). The class action covered 38 million users whose reproductive and menstrual health data was shared with Meta, Google, and others via in-app SDKs without consent, between 2016 and 2019.</p>
+      <p style="margin-top:10px;"><strong>2025 (August):</strong> In the related <a href="https://www.hipaajournal.com/jury-trial-meta-flo-health-consumer-privacy/" target="_blank" rel="noopener">jury trial against Meta</a>, a U.S. federal jury found Meta liable on three counts under California privacy law for receiving that data. With 38 million class members and statutory damages of $5,000 per violation under CIPA, the potential total exposure for Meta runs into the billions. A final damages judgment had not been issued at the time of writing.</p>
+    </div>
 
     <p>Flo currently claims not to sell user data and has made policy changes since the FTC settlement. We note this history not to single them out unfairly; by the standards of this market, they are more privacy-conscious than many competitors. But the track record illustrates the core problem: privacy promises are only as strong as the enforcement mechanisms behind them.</p>
 
