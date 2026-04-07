@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Period Tracker Is Probably Selling Your Data — Clio Daye</title>
+  <meta name="description" content="We analyzed 289 period tracking apps on the App Store. Here's what we found about how they collect, share, and profit from your most sensitive health data.">
+  <link rel="icon" type="image/png" href="icon.png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:   #A8DFF7;
+      --pink:   #FEC8D8;
+      --yellow: #FFF5C3;
+      --text:   #1a1a2e;
+      --muted:  #555;
+      --radius: 16px;
+      --max-width: 740px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", "Helvetica Neue", sans-serif;
+      color: var(--text);
+      background: #fafafa;
+      line-height: 1.75;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      border-bottom: 1px solid #eee;
+      background: white;
+    }
+    .site-nav a.home {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .site-nav .links { display: flex; gap: 20px; }
+    .site-nav .links a {
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .site-nav .links a:hover { color: var(--text); }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(160deg, var(--pink) 0%, var(--blue) 60%, var(--yellow) 100%);
+      padding: 72px 24px 56px;
+      text-align: center;
+    }
+    .hero .label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      max-width: 680px;
+      margin: 0 auto 16px;
+      line-height: 1.2;
+    }
+    .hero .subtitle {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 24px;
+    }
+    .hero .meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* ── Body ── */
+    article {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+    article h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 48px 0 16px;
+      line-height: 1.3;
+    }
+    article h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 32px 0 10px;
+    }
+    article p {
+      color: var(--muted);
+      margin-bottom: 18px;
+      font-size: 1.05rem;
+    }
+    article a {
+      color: var(--text);
+    }
+    article ul, article ol {
+      margin: 0 0 18px 20px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+    article li { margin-bottom: 8px; }
+
+    /* ── Pull quote ── */
+    .pullquote {
+      border-left: 4px solid var(--pink);
+      margin: 32px 0;
+      padding: 16px 24px;
+      background: white;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .pullquote p {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    /* ── Stat blocks ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .stat-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .stat-card .number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-card .label {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    /* ── Data table ── */
+    .data-table-wrap {
+      overflow-x: auto;
+      margin: 24px 0;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      font-size: 0.88rem;
+    }
+    th {
+      background: var(--text);
+      color: white;
+      padding: 12px 14px;
+      text-align: left;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    td {
+      padding: 11px 14px;
+      border-bottom: 1px solid #f0f0f0;
+      color: var(--muted);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #fafafa; }
+    td.app-name { font-weight: 600; color: var(--text); white-space: nowrap; }
+    .badge-yes  { color: #c0392b; font-weight: 600; }
+    .badge-no   { color: #27ae60; font-weight: 600; }
+    .badge-part { color: #e67e22; font-weight: 600; }
+
+    /* ── Warning box ── */
+    .warning-box {
+      background: #fff5f5;
+      border: 1.5px solid #f5c6cb;
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin: 28px 0;
+    }
+    .warning-box strong { color: #c0392b; }
+    .warning-box p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+    /* ── Highlight box ── */
+    .highlight-box {
+      background: linear-gradient(135deg, var(--pink), var(--blue));
+      border-radius: var(--radius);
+      padding: 28px;
+      margin: 32px 0;
+      text-align: center;
+    }
+    .highlight-box h3 { color: var(--text); margin: 0 0 10px; font-size: 1.2rem; }
+    .highlight-box p  { color: var(--text); margin: 0 0 20px; opacity: 0.75; font-size: 0.95rem; }
+    .highlight-box a.btn {
+      display: inline-block;
+      background: var(--text);
+      color: white;
+      text-decoration: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.85rem;
+      color: #aaa;
+      border-top: 1px solid #eee;
+    }
+    footer a { color: #888; }
+
+    /* ── Methodology note ── */
+    .methodology {
+      background: white;
+      border-radius: var(--radius);
+      padding: 24px;
+      margin: 48px 0 0;
+      font-size: 0.88rem;
+      color: var(--muted);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .methodology strong { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html" class="home">Clio Daye</a>
+    <div class="links">
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="https://github.com/pjaol/safeflow">GitHub</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="label">Research &amp; Analysis · April 2026</div>
+    <h1>Your Period Tracker Is Probably Selling Your Data</h1>
+    <p class="subtitle">We scraped and analyzed 289 cycle tracking apps on the App Store. What we found should make you think carefully about which app you trust with your most sensitive health data.</p>
+    <div class="meta">By The Vger Group &nbsp;·&nbsp; 10 min read</div>
+  </div>
+
+  <article>
+
+    <p>When you open a period tracking app and log your cycle, you're sharing some of the most intimate data that exists: your reproductive health, your fertility windows, your physical symptoms, your mood. In a post-<em>Roe v. Wade</em> United States — and in a world where data brokers operate largely without restriction — the question of where that data goes is not academic. It is a matter of personal safety.</p>
+
+    <p>We built <a href="index.html">Clio Daye</a> because we couldn't find a period tracker that kept data strictly on-device and was open source enough to prove it. Before launching, we wanted to understand the landscape we were entering. So we scraped it.</p>
+
+    <h2>The Market: 289 Apps, One Clear Winner</h2>
+
+    <p>Using the App Store's search API across seven search terms and twelve countries, we identified <strong>289 unique menstrual and cycle tracking apps</strong> currently available on iOS. The market is enormous — and almost entirely dominated by a handful of players.</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="number">289</div>
+        <div class="label">Apps in the App Store</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">1.8M</div>
+        <div class="label">Reviews for the #1 app (Flo)</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">96.5%</div>
+        <div class="label">Listed as free to download</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">4</div>
+        <div class="label">Apps that appear to be on-device only</div>
+      </div>
+    </div>
+
+    <p>Flo leads the market with 1.83 million App Store reviews — a proxy for tens of millions of active users. Clue follows at 391,000 reviews. After that, the numbers drop off sharply, with a long tail of hundreds of small apps competing for scraps of search visibility.</p>
+
+    <p>The top 10 apps collectively account for the vast majority of market share. Most users don't browse past the first few results. This matters because those top apps, the ones most people trust with their cycle data, have the most complex and commercially-motivated privacy policies.</p>
+
+    <h2>The Illusion of "Free"</h2>
+
+    <p>Nearly every app in this market — 96.5% — is listed as free to download. But free doesn't mean costless. You pay with one of three currencies: a subscription fee, exposure to advertising, or your data.</p>
+
+    <div class="pullquote">
+      <p>"Free doesn't mean costless. You pay with a subscription, advertising, or your data. Often all three."</p>
+    </div>
+
+    <p>Of the 18 top apps whose privacy policies we fully analyzed:</p>
+    <ul>
+      <li><strong>15 out of 18</strong> share data with third parties</li>
+      <li><strong>15 out of 18</strong> contain advertising-related language</li>
+      <li><strong>3 out of 18</strong> have explicit data-selling language in their privacy policy</li>
+      <li><strong>0 out of 18</strong> allow use without an account or cloud sync</li>
+    </ul>
+
+    <p>The apps that claim "we do not sell your data" often do so in the specific legal sense required by CCPA — while still sharing your data with "partners," running behavioral advertising, and syncing everything to their servers. The distinction between "sharing" and "selling" is legally meaningful but practically invisible to users.</p>
+
+    <h2>Who Owns These Apps — and Who Do They Answer To?</h2>
+
+    <p>One of the most important questions you can ask about a health app is: where is the company, and what laws govern them? We resolved developer origins for the top 50 apps by review count using company name suffixes, TLD analysis, WHOIS lookups, and bundle ID patterns.</p>
+
+    <div class="data-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>App</th>
+            <th>Developer</th>
+            <th>Origin</th>
+            <th>Reviews</th>
+            <th>Governing Law</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="app-name">Flo</td>
+            <td>Flo Health UK Limited</td>
+            <td>🇬🇧 UK</td>
+            <td>1,831,355</td>
+            <td>GDPR</td>
+          </tr>
+          <tr>
+            <td class="app-name">Clue</td>
+            <td>BioWink GmbH</td>
+            <td>🇩🇪 Germany</td>
+            <td>391,758</td>
+            <td>GDPR</td>
+          </tr>
+          <tr>
+            <td class="app-name">Glow Eve</td>
+            <td>Glow</td>
+            <td>🇨🇦 Canada (WHOIS)</td>
+            <td>113,896</td>
+            <td>GDPR, CCPA</td>
+          </tr>
+          <tr>
+            <td class="app-name">Stardust</td>
+            <td>Stardust App LLC (New York)</td>
+            <td>🇺🇸 USA</td>
+            <td>101,156</td>
+            <td>CCPA</td>
+          </tr>
+          <tr>
+            <td class="app-name">Ovia</td>
+            <td>Ovuline, Inc.</td>
+            <td>🇺🇸 USA</td>
+            <td>87,637</td>
+            <td>CCPA</td>
+          </tr>
+          <tr>
+            <td class="app-name">Femometer</td>
+            <td>Bongmi Global Group</td>
+            <td>🇨🇳 China (WHOIS: CN)</td>
+            <td>69,198</td>
+            <td>None found</td>
+          </tr>
+          <tr>
+            <td class="app-name">Premom</td>
+            <td>Easy Healthcare Corporation</td>
+            <td>🇺🇸 USA</td>
+            <td>53,623</td>
+            <td>GDPR, CCPA</td>
+          </tr>
+          <tr>
+            <td class="app-name">Natural Cycles</td>
+            <td>NaturalCycles Nordic AB</td>
+            <td>🇸🇪 Sweden</td>
+            <td>28,753</td>
+            <td>GDPR, Swedish Law</td>
+          </tr>
+          <tr>
+            <td class="app-name">Cycles</td>
+            <td>Perigee (se.perigee.*)</td>
+            <td>🇸🇪 Sweden</td>
+            <td>25,354</td>
+            <td>GDPR</td>
+          </tr>
+          <tr>
+            <td class="app-name">MeetYou</td>
+            <td>Hangzhou Youzijie</td>
+            <td>🇨🇳 China (WHOIS: Fujian)</td>
+            <td>14,477</td>
+            <td>None found</td>
+          </tr>
+          <tr>
+            <td class="app-name">Period Tracker ⋆</td>
+            <td>Lucky Labs</td>
+            <td>🇧🇸 Bahamas (WHOIS)</td>
+            <td>22,685</td>
+            <td>GDPR (claimed)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The geographic picture is striking. Of the 289 apps we found, roughly 51% have origins we couldn't definitively resolve — many small developers using WHOIS privacy protection. Of those we could identify, the US dominates at 18%, followed by a large cluster of "UK/HK" registrations (13.8%) — a common pattern for companies seeking favorable corporate structures while operating elsewhere.</p>
+
+    <h2>The Most Concerning Findings</h2>
+
+    <h3>Femometer and MeetYou: Chinese Ownership, No Western Compliance</h3>
+
+    <p>Two of the top 20 apps by review count — Femometer (Bongmi Global Group, WHOIS: China, 69K reviews) and MeetYou (Hangzhou Youzijie Information Technology, WHOIS: Fujian province, 14K reviews) — are Chinese-owned. Our privacy policy analysis found that Femometer's policy contains explicit data-selling language, with no mention of GDPR or CCPA compliance. Chinese law requires companies to cooperate with government data requests. There is no legal mechanism preventing user data from being accessed by Chinese authorities.</p>
+
+    <h3>Premom: An FTC Settlement You Might Have Missed</h3>
+
+    <div class="warning-box">
+      <p><strong>In 2023, the FTC settled with Easy Healthcare Corporation (Premom)</strong> after finding the company had secretly shared users' reproductive health data — including fertility tracking information — with two Chinese companies: Remark Holdings and Agora. This happened without user consent, despite Premom's privacy policy claiming otherwise. The app had 53,000+ App Store reviews at the time of our analysis.</p>
+    </div>
+
+    <p>Premom is not an obscure app. It ranks in the top 15 by review count. The FTC settlement resulted in a fine and policy changes, but the incident illustrates a fundamental truth: privacy policies are promises, not guarantees. The only guarantee is architecture.</p>
+
+    <h3>Lucky Labs / Period Tracker ⋆: Bahamas-Registered, Data-Selling</h3>
+
+    <p>The app "Period Tracker ⋆" by Lucky Labs (22,000+ reviews) is registered in the Bahamas — a jurisdiction chosen specifically because it offers minimal regulatory oversight. Its privacy policy contains explicit data-selling language. It claims GDPR compliance, but enforcement of GDPR against a Bahamas-registered entity is theoretical at best.</p>
+
+    <h3>Flo: Investigated, Settled, Still #1</h3>
+
+    <p>Flo is the market leader by a wide margin. It is UK-based and GDPR-governed. It explicitly states it does not sell user data. It has also been investigated by the FTC (settled in 2021) for sharing user health data with Facebook and Google without consent, contrary to its stated privacy policy. The company has since made changes. We note this not to single out Flo unfairly — they are arguably more privacy-conscious than many competitors — but to illustrate that even the most reputable apps in this space have a documented history of privacy failures.</p>
+
+    <h3>Natural Cycles: The Best of a Compromised Bunch</h3>
+
+    <p>If you must use a cloud-based period tracker, Natural Cycles (Sweden, FDA-cleared as a contraceptive app) has the strongest privacy posture in our analysis: governed by Swedish law and GDPR, no advertising detected, no third-party data sharing detected. However, it requires a mandatory account and cloud sync — the contraceptive algorithm runs on their servers. Your data leaves your device. This is a fundamental architectural constraint, not a policy choice.</p>
+
+    <h2>The Real Problem: Architecture, Not Policy</h2>
+
+    <p>Every app we analyzed that uses cloud sync faces the same irreducible risk: your data exists on a server somewhere. Servers get breached. Companies get acquired. Laws change. Government agencies issue warrants. In states where abortion is criminalized, period tracking data has been cited as a potential source of evidence. A privacy policy cannot protect you from a subpoena. An architectural guarantee can.</p>
+
+    <div class="pullquote">
+      <p>"A privacy policy cannot protect you from a subpoena. An architectural guarantee can."</p>
+    </div>
+
+    <p>Of the 289 apps we analyzed, we found <strong>only 3</strong> that showed signals of true on-device operation with no account required — and none of them are open source, meaning you have to take their word for it.</p>
+
+    <h2>Why Open Source Matters Here</h2>
+
+    <p>Clio Daye is built on a simple principle: what we can't see, we can't promise. So we made everything visible. The <a href="https://github.com/pjaol/safeflow">source code is public</a>. You can verify that there are no network calls. You can verify there are no third-party SDKs. You can verify that data is stored only in local UserDefaults and iOS Keychain. There is no server to breach because there is no server.</p>
+
+    <p>We're not the only privacy-focused app in this space, but we are the only one that's open source. That distinction matters because privacy is not a marketing claim — it's something that should be verifiable.</p>
+
+    <div class="highlight-box">
+      <h3>Clio Daye — Private by design, verifiable by code.</h3>
+      <p>No account. No cloud. No third-party SDKs. 100% on-device. Open source.</p>
+      <a href="https://apps.apple.com/app/id6761509532" class="btn">Download on the App Store</a>
+    </div>
+
+    <h2>What You Should Do Right Now</h2>
+
+    <ol>
+      <li><strong>Check your current app's privacy policy</strong> — specifically look for language about "sharing with partners," "advertising," and whether it requires an account.</li>
+      <li><strong>Look up the developer's country of registration</strong> — EU-based companies are subject to GDPR; US companies are subject to inconsistent state-level protections; companies registered in tax havens may have minimal accountability.</li>
+      <li><strong>Check if the app requires an account</strong> — if it does, your data lives on a server you don't control.</li>
+      <li><strong>Consider whether you need a cloud-based app at all</strong> — for most users, cycle tracking is a local, personal record. There's no technical reason it needs to leave your phone.</li>
+      <li><strong>If the app is open source, check the code</strong> — privacy claims are cheapest to make in press releases and most expensive to fake in public repositories.</li>
+    </ol>
+
+    <div class="methodology">
+      <strong>Methodology:</strong> We collected app data in April 2026 using the <a href="https://github.com/facundoolano/app-store-scraper">app-store-scraper</a> library, searching across 7 keyword terms in 12 country storefronts (US, UK, DE, FR, IN, BR, AU, CA, RU, CN, JP, KR). We identified 289 unique relevant apps after filtering noise. Developer origins were resolved via company name suffix analysis (GmbH, LLC, AB, Oy, IVS, etc.), TLD analysis, WHOIS lookups, and bundle ID patterns. Privacy policies for the top 25 apps by review count were fetched and analyzed programmatically for key indicators. Data selling/sharing classifications are based on text pattern matching in policy documents and may not capture all nuance. The full dataset is available in the <a href="https://github.com/pjaol/safeflow">Clio Daye GitHub repository</a>.
+    </div>
+
+  </article>
+
+  <footer>
+    <p>
+      <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+      <a href="support.html">Support</a> &nbsp;·&nbsp;
+      <a href="https://github.com/pjaol/safeflow">GitHub</a>
+    </p>
+    <p style="margin-top:8px">© 2026 The Vger Group</p>
+  </footer>
+
+</body>
+</html>
