@@ -426,7 +426,7 @@
 
     <div class="chart-section">
       <h3 style="margin-top:32px;margin-bottom:4px;">Apps and user reach by country</h3>
-      <p style="margin-bottom:4px;font-size:0.9rem;">Bars show number of apps per country (left axis). The line tracks total App Store reviews as a proxy for user reach (right axis). Countries sorted by app count; "Unknown" covers developers with WHOIS privacy protection.</p>
+      <p style="margin-bottom:4px;font-size:0.9rem;">Bars show number of apps per country (left axis). The curved line tracks total App Store reviews as a proxy for user reach (right axis), smoothed with cubic Bezier interpolation. Countries sorted by app count; "Unknown" covers developers with WHOIS privacy protection.</p>
       <p style="margin-bottom:16px;font-size:0.85rem;color:#888;">Note: UK / HK combined outstrips the USA by more than 2x in total reviews, driven almost entirely by Flo (1.83M reviews). Flo is UK-incorporated but was founded in Belarus and operates primarily from Vilnius, Lithuania — the UK registration is a legal and financial structure, not a true indicator of origin.</p>
       <div style="position:relative;height:50vh;min-height:300px;max-height:480px;">
         <canvas id="chartCombined"></canvas>
@@ -461,48 +461,11 @@
       const appCounts   = sorted.map(d => d.apps);
       const reviewCounts = sorted.map(d => d.reviews);
 
-      // Per-bar palette matching the site theme
       const palette = [
         '#c9e8f7','#fbd3e2','#fff5c3','#a3d4a8','#f7c6a3',
         '#c3b8f5','#f5e0a3','#a3c8f5','#f5a3b8','#b8f5e0',
         '#e0c3f5','#f5c3c3','#c3f5f0','#d4e8a3'
       ];
-      const paletteBorder = palette.map(c => c.replace(/[a-f0-9]{2}/gi, h => Math.max(0, parseInt(h,16) - 30).toString(16).padStart(2,'0')));
-
-      // Degree-3 polynomial regression, normalized to avoid Vandermonde overflow
-      function polyTrend(ys, degree) {
-        const n    = ys.length;
-        const yMax = Math.max(...ys) || 1;
-        const xMax = n - 1;
-        // Normalize both axes to [0,1] before fitting
-        const yn = ys.map(v => v / yMax);
-        const xn = ys.map((_, i) => i / xMax);
-        const m  = degree + 1;
-        const A  = xn.map(x => Array.from({length: m}, (_, p) => Math.pow(x, p)));
-        const AT = A[0].map((_, ci) => A.map(row => row[ci]));
-        const ATA = AT.map(row => AT[0].map((_, ci) => row.reduce((s, v, ri) => s + v * A[ri][ci], 0)));
-        const ATy = AT.map(row => row.reduce((s, v, i) => s + v * yn[i], 0));
-        const aug = ATA.map((row, i) => [...row, ATy[i]]);
-        for (let col = 0; col < m; col++) {
-          let max = col;
-          for (let r = col + 1; r < m; r++) if (Math.abs(aug[r][col]) > Math.abs(aug[max][col])) max = r;
-          [aug[col], aug[max]] = [aug[max], aug[col]];
-          for (let r = col + 1; r < m; r++) {
-            const f = aug[r][col] / aug[col][col];
-            for (let c = col; c <= m; c++) aug[r][c] -= f * aug[col][c];
-          }
-        }
-        const coeffs = new Array(m).fill(0);
-        for (let r = m - 1; r >= 0; r--) {
-          coeffs[r] = aug[r][m];
-          for (let c = r + 1; c < m; c++) coeffs[r] -= aug[r][c] * coeffs[c];
-          coeffs[r] /= aug[r][r];
-        }
-        // Evaluate at each x, denormalize back to original scale
-        return xn.map(x => Math.max(0, coeffs.reduce((s, c, p) => s + c * Math.pow(x, p), 0) * yMax));
-      }
-
-      const trendLine = polyTrend(reviewCounts, 3);
 
       const lineColour = '#e8637a';
 
@@ -523,33 +486,19 @@
             },
             {
               type: 'line',
-              label: 'Reviews trend',
-              data: trendLine,
+              label: 'Total reviews',
+              data: reviewCounts,
               borderColor: lineColour,
               backgroundColor: lineColour + '18',
               borderWidth: 2.5,
-              pointRadius: 0,
-              spanGaps: true,
-              tension: 0.3,
-              fill: false,
-              yAxisID: 'yReviews',
-              order: 1,
-            },
-            {
-              type: 'line',
-              label: 'Total reviews (actual)',
-              data: reviewCounts,
-              borderColor: lineColour,
-              backgroundColor: 'transparent',
-              borderWidth: 0,
-              pointRadius: 6,
+              pointRadius: 5,
               pointBackgroundColor: lineColour,
               pointBorderColor: 'white',
               pointBorderWidth: 2,
-              spanGaps: true,
-              showLine: false,
+              tension: 0.4,
+              fill: false,
               yAxisID: 'yReviews',
-              order: 0,
+              order: 1,
             },
           ]
         },
@@ -561,20 +510,11 @@
             legend: {
               display: true,
               position: 'top',
-              labels: {
-                color: '#555',
-                font: { size: 11 },
-                boxWidth: 14,
-                padding: 16,
-                filter: item => item.text !== 'Reviews trend (poly)'
-              }
+              labels: { color: '#555', font: { size: 11 }, boxWidth: 14, padding: 16 }
             },
             tooltip: {
               callbacks: {
-                label: ctx => {
-                  if (ctx.dataset.label === 'Reviews trend (poly)') return null;
-                  return ' ' + ctx.dataset.label + ': ' + Math.round(ctx.parsed.y).toLocaleString();
-                }
+                label: ctx => ' ' + ctx.dataset.label + ': ' + Math.round(ctx.parsed.y).toLocaleString()
               }
             }
           },
