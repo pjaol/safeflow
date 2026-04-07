@@ -428,7 +428,9 @@
       <h3 style="margin-top:32px;margin-bottom:4px;">Apps and user reach by country</h3>
       <p style="margin-bottom:4px;font-size:0.9rem;">Bars show number of apps per country (left axis). The line tracks total App Store reviews as a proxy for user reach (right axis). Countries sorted by app count; "Unknown" covers developers with WHOIS privacy protection.</p>
       <p style="margin-bottom:16px;font-size:0.85rem;color:#888;">Note: UK / HK combined outstrips the USA by more than 2x in total reviews — driven almost entirely by Flo (1.83M reviews). This reflects the global-market targeting you'd expect from a UK-registered company with English as the primary language.</p>
-      <canvas id="chartCombined" height="380"></canvas>
+      <div style="position:relative;height:50vh;min-height:300px;max-height:480px;">
+        <canvas id="chartCombined"></canvas>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
@@ -505,6 +507,7 @@
       const lineColour = '#e8637a';
 
       new Chart(document.getElementById('chartCombined'), {
+        type: 'bar',
         data: {
           labels,
           datasets: [
@@ -513,11 +516,24 @@
               label: 'Number of apps',
               data: appCounts,
               backgroundColor: palette,
-              borderColor: palette.map((_, i) => palette[i]),
-              borderWidth: 1,
+              borderWidth: 0,
               borderRadius: 5,
               yAxisID: 'yApps',
               order: 2,
+            },
+            {
+              type: 'line',
+              label: 'Reviews trend',
+              data: trendLine,
+              borderColor: lineColour,
+              backgroundColor: lineColour + '18',
+              borderWidth: 2.5,
+              pointRadius: 0,
+              spanGaps: true,
+              tension: 0.3,
+              fill: false,
+              yAxisID: 'yReviews',
+              order: 1,
             },
             {
               type: 'line',
@@ -530,27 +546,16 @@
               pointBackgroundColor: lineColour,
               pointBorderColor: 'white',
               pointBorderWidth: 2,
+              spanGaps: true,
               showLine: false,
               yAxisID: 'yReviews',
               order: 0,
-            },
-            {
-              type: 'line',
-              label: 'Reviews trend (poly)',
-              data: trendLine,
-              borderColor: lineColour,
-              backgroundColor: lineColour + '18',
-              borderWidth: 2.5,
-              pointRadius: 0,
-              tension: 0.4,
-              fill: false,
-              yAxisID: 'yReviews',
-              order: 1,
             },
           ]
         },
         options: {
           responsive: true,
+          maintainAspectRatio: false,
           interaction: { mode: 'index', intersect: false },
           plugins: {
             legend: {
