@@ -378,10 +378,10 @@
           </tr>
           <tr>
             <td class="app-name">Femometer</td>
-            <td>Bongmi Global Group</td>
-            <td>🇨🇳 China (WHOIS: CN)</td>
+            <td>Femometer Inc.</td>
+            <td>🇺🇸 USA (Princeton, NJ)</td>
             <td>69,198</td>
-            <td>GDPR, CCPA (claimed)</td>
+            <td>GDPR, CCPA</td>
           </tr>
           <tr>
             <td class="app-name">Premom</td>
@@ -406,10 +406,10 @@
           </tr>
           <tr>
             <td class="app-name">MeetYou</td>
-            <td>Hangzhou Youzijie</td>
-            <td>🇨🇳 China (WHOIS: Fujian)</td>
+            <td>MeetYou Pte. Ltd.</td>
+            <td>🇸🇬 Singapore</td>
             <td>14,477</td>
-            <td>None found</td>
+            <td>PDPA (Singapore)</td>
           </tr>
           <tr>
             <td class="app-name">Period Tracker ⋆</td>
@@ -422,7 +422,7 @@
       </table>
     </div>
 
-    <p>The geographic picture is striking. Of the 289 apps we found, roughly 51% have origins we couldn't definitively resolve; many small developers use WHOIS privacy protection. Of those we could identify, the US dominates by app count, but UK/HK-registered entities lead on user reach — driven almost entirely by Flo, which is incorporated in the UK but was founded in Belarus with its largest operations in Vilnius, Lithuania. The "UK" registration is largely a legal and financial structure, not a reflection of where the product is built or governed day-to-day.</p>
+    <p>The geographic picture is striking. Of the 289 apps we found, roughly 51% have origins we couldn't definitively resolve; many small developers use WHOIS privacy protection. Of those we could identify, the US dominates by app count, but UK-registered entities lead on user reach — driven almost entirely by Flo, which is incorporated in the UK but was founded in Belarus with its largest operations in Vilnius, Lithuania. The "UK" registration is largely a legal and financial structure, not a reflection of where the product is built or governed day-to-day.</p>
 
     <div class="chart-section">
       <h3 style="margin-top:32px;margin-bottom:4px;">Apps and user reach by country</h3>
@@ -551,9 +551,11 @@
 
     <h2>The Most Concerning Findings</h2>
 
-    <h3>Femometer and MeetYou: Chinese Ownership</h3>
+    <h3>Femometer and MeetYou: Opaque Origins</h3>
 
-    <p>Two of the top 20 apps by review count are Chinese-owned: Femometer (Bongmi Global Group, WHOIS: China, 69K reviews) and MeetYou (Hangzhou Youzijie Information Technology, WHOIS: Fujian province, 14K reviews). Femometer's <a href="https://www.femometer.com/privacyPolicy" target="_blank" rel="noopener">privacy policy</a> does reference GDPR and CCPA compliance, and names its third-party data processors (Google, AWS, Stripe, Apple). It includes a CCPA "right to opt-out of sales" disclosure and states data is used for analytics and marketing. The substantive concern is not the policy text itself, but jurisdiction: Chinese law requires companies to cooperate with government data requests, and there is no legal mechanism that would prevent Chinese authorities from accessing data held by a Chinese-owned company, regardless of what the privacy policy says.</p>
+    <p>Our automated origin analysis initially flagged both apps as Chinese-owned based on WHOIS data, but direct verification tells a different story. Femometer is registered as <strong>Femometer Inc. in Princeton, NJ</strong> — a US company with Chinese investment backing. Its <a href="https://www.femometer.com/privacyPolicy" target="_blank" rel="noopener">privacy policy</a> claims both GDPR and CCPA compliance and names its data processors (Google, AWS, Stripe, Apple). MeetYou is registered as <strong>MeetYou Pte. Ltd. in Singapore</strong>, governed by Singapore's Personal Data Protection Act.</p>
+
+    <p>This is a good illustration of why automated origin detection has limits — WHOIS records pointed to Chinese infrastructure, but the legal entities are registered elsewhere. Neither app makes the strongest privacy case (both share data with third-party processors and use data for analytics and marketing), but the jurisdictional concern is materially different from a company operating solely under Chinese law.</p>
 
     <h3>Premom: An FTC Settlement You Might Have Missed</h3>
 
