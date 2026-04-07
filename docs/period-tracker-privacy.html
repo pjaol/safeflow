@@ -343,8 +343,8 @@
         <tbody>
           <tr>
             <td class="app-name">Flo</td>
-            <td>Flo Health UK Limited</td>
-            <td>🇬🇧 UK</td>
+            <td>Flo Health Inc. (founded Belarus, HQ London/Vilnius)</td>
+            <td>🇧🇾 Belarus / 🇬🇧 UK</td>
             <td>1,831,355</td>
             <td>GDPR</td>
           </tr>
@@ -422,12 +422,12 @@
       </table>
     </div>
 
-    <p>The geographic picture is striking. Of the 289 apps we found, roughly 51% have origins we couldn't definitively resolve; many small developers use WHOIS privacy protection. Of those we could identify, the US dominates at 18%, followed by a large cluster of "UK/HK" registrations (13.8%), a common pattern for companies seeking favorable corporate structures while operating elsewhere.</p>
+    <p>The geographic picture is striking. Of the 289 apps we found, roughly 51% have origins we couldn't definitively resolve; many small developers use WHOIS privacy protection. Of those we could identify, the US dominates by app count, but UK/HK-registered entities lead on user reach — driven almost entirely by Flo, which is incorporated in the UK but was founded in Belarus with its largest operations in Vilnius, Lithuania. The "UK" registration is largely a legal and financial structure, not a reflection of where the product is built or governed day-to-day.</p>
 
     <div class="chart-section">
       <h3 style="margin-top:32px;margin-bottom:4px;">Apps and user reach by country</h3>
       <p style="margin-bottom:4px;font-size:0.9rem;">Bars show number of apps per country (left axis). The line tracks total App Store reviews as a proxy for user reach (right axis). Countries sorted by app count; "Unknown" covers developers with WHOIS privacy protection.</p>
-      <p style="margin-bottom:16px;font-size:0.85rem;color:#888;">Note: UK / HK combined outstrips the USA by more than 2x in total reviews — driven almost entirely by Flo (1.83M reviews). This reflects the global-market targeting you'd expect from a UK-registered company with English as the primary language.</p>
+      <p style="margin-bottom:16px;font-size:0.85rem;color:#888;">Note: UK / HK combined outstrips the USA by more than 2x in total reviews, driven almost entirely by Flo (1.83M reviews). Flo is UK-incorporated but was founded in Belarus and operates primarily from Vilnius, Lithuania — the UK registration is a legal and financial structure, not a true indicator of origin.</p>
       <div style="position:relative;height:50vh;min-height:300px;max-height:480px;">
         <canvas id="chartCombined"></canvas>
       </div>
@@ -627,9 +627,19 @@
 
     <p>The app "Period Tracker ⋆" by Lucky Labs (22,000+ reviews) is registered in the Bahamas, a jurisdiction chosen specifically because it offers minimal regulatory oversight. Its privacy policy contains explicit data-selling language. It claims GDPR compliance, but enforcement of GDPR against a Bahamas-registered entity is theoretical at best.</p>
 
-    <h3>Flo: Investigated, Settled, Still #1</h3>
+    <h3>Flo: Belarus-Founded, UK-Incorporated, and at the Center of a $59.5M Settlement</h3>
 
-    <p>Flo is the market leader by a wide margin. It is UK-based and GDPR-governed. It explicitly states it does not sell user data. It has also been investigated by the FTC (settled in 2021) for sharing user health data with Facebook and Google without consent, contrary to its stated privacy policy. The company has since made changes. We note this not to single out Flo unfairly; they are arguably more privacy-conscious than many competitors. But even the most reputable apps in this space have a documented history of privacy failures.</p>
+    <p>Flo is the market leader by a wide margin, with 1.83 million App Store reviews. It presents itself as a UK company — the legal entity is "Flo Health UK Limited" — but it was <a href="https://en.wikipedia.org/wiki/Flo_(app)" target="_blank" rel="noopener">founded in Belarus in 2015</a> by brothers Dmitry and Yuri Gurski, with its largest operations in Vilnius, Lithuania. The UK incorporation is a holding structure, not where the product is built.</p>
+
+    <p>Flo's privacy history is the most extensively documented of any app in this space:</p>
+
+    <ul>
+      <li><strong>2021:</strong> FTC investigation and settlement for sharing user health data with Facebook and Google without consent, contrary to its stated privacy policy.</li>
+      <li><strong>2025 (July):</strong> <a href="https://www.labaton.com/cases/frasco-v-flo-health-inc" target="_blank" rel="noopener">Frasco v. Flo Health Inc.</a> settled for <strong>$59.5 million</strong> (combined with Google and Flurry). The class action covered 38 million users whose reproductive and menstrual health data was shared with Meta, Google, and others via in-app SDKs without consent, between 2016 and 2019.</li>
+      <li><strong>2025 (August):</strong> In the related <a href="https://www.hipaajournal.com/jury-trial-meta-flo-health-consumer-privacy/" target="_blank" rel="noopener">jury trial against Meta</a>, a U.S. federal jury found Meta liable on three counts under California privacy law for receiving that data. With 38 million class members and statutory damages of $5,000 per violation under CIPA, the potential total exposure for Meta runs into the billions. A final damages judgment had not been issued at the time of writing.</li>
+    </ul>
+
+    <p>Flo currently claims not to sell user data and has made policy changes since the FTC settlement. We note this history not to single them out unfairly; by the standards of this market, they are more privacy-conscious than many competitors. But the track record illustrates the core problem: privacy promises are only as strong as the enforcement mechanisms behind them.</p>
 
     <h3>Natural Cycles: The Best of a Compromised Bunch</h3>
 
