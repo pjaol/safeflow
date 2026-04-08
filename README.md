@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="safeflow/Assets.xcassets/AppIcon.appiconset/AppIcon-256.png" width="120" alt="Clio Daye app icon" />
+  <img src="safeflow/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png" width="120" alt="Clio Daye app icon" />
 </p>
 
 # Clio Daye
