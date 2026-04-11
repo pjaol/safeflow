@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FlowStepSlider: View {
     @ObservedObject var viewModel: DartboardViewModel
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private let levels     = FlowIntensity.allCases
     private let softImpact = UIImpactFeedbackGenerator(style: .soft)
@@ -63,7 +64,7 @@ struct FlowStepSlider: View {
                                     .foregroundStyle(isSelected ? .white : AppTheme.Colors.secondaryPink)
                             }
                             .scaleEffect(isSelected ? 1.12 : 1.0)
-                            .animation(.spring(response: 0.25, dampingFraction: 0.65), value: viewModel.committedFlow)
+                            .animation(reduceMotion ? nil : .spring(response: 0.25, dampingFraction: 0.65), value: viewModel.committedFlow)
                             .onTapGesture { selectLevel(level) }
 
                             if idx < levels.count - 1 {

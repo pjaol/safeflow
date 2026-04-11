@@ -21,6 +21,7 @@ struct CycleRingSummaryCard: View {
     let onDismissNudge: () -> Void
 
     @State private var showingDetail = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private var phaseColor: Color {
         guard let phase else { return AppTheme.Colors.ringFollicular }
@@ -148,7 +149,7 @@ struct CycleRingSummaryCard: View {
                 style: StrokeStyle(lineWidth: 9, lineCap: .round)
             )
             .rotationEffect(.degrees(-90))
-            .animation(.easeInOut(duration: 0.6), value: cycleProgress)
+            .animation(reduceMotion ? nil : .easeInOut(duration: 0.6), value: cycleProgress)
     }
 
     private var totalItemCount: Int { alertCount + insightCount + tipCount }
@@ -232,6 +233,7 @@ struct CycleDetailSheet: View {
     let onDismissNudge: () -> Void
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var selectedTab = 0
     @State private var showingSupport = false
 
@@ -263,7 +265,7 @@ struct CycleDetailSheet: View {
                     }
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
-                .animation(.easeInOut(duration: 0.25), value: selectedTab)
+                .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: selectedTab)
             }
             .background(Color(UIColor.systemGroupedBackground).ignoresSafeArea())
             .navigationTitle(phase?.displayName ?? "Cycle")

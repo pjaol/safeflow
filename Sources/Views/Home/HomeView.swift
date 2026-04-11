@@ -4,6 +4,7 @@ import os
 struct HomeView: View {
     @ObservedObject var cycleStore: CycleStore
     @EnvironmentObject private var securityService: SecurityService
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @State private var showingSettingsSheet = false
     @State private var showingSupportSheet = false
@@ -67,7 +68,7 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(AppTheme.Colors.background)
                 .onChange(of: scrollToForecast) { _, _ in
-                    withAnimation { proxy.scrollTo("forecast", anchor: .top) }
+                    withAnimation(reduceMotion ? nil : .default) { proxy.scrollTo("forecast", anchor: .top) }
                 }
             }
             .navigationTitle("Clio Daye")
@@ -424,6 +425,7 @@ private struct LogDayFormView: View {
     @ObservedObject var cycleStore: CycleStore
     let targetDate: Date
     let existingDay: CycleDay?
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @State private var selectedFlow: FlowIntensity?
     @State private var selectedSymptoms: Set<Symptom> = []
@@ -477,7 +479,7 @@ private struct LogDayFormView: View {
                 .background(saved ? Color.green.opacity(0.8) : AppTheme.Colors.accentBlue)
                 .cornerRadius(AppTheme.Metrics.buttonCornerRadius)
             }
-            .animation(.easeInOut(duration: 0.2), value: saved)
+            .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: saved)
         }
     }
 

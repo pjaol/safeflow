@@ -4,6 +4,7 @@ struct OnboardingView: View {
     @EnvironmentObject private var securityService: SecurityService
     @ObservedObject var cycleStore: CycleStore
     @Binding var hasCompletedOnboarding: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @State private var showingPinSetup = false
     @State private var currentPage = 0
@@ -33,7 +34,7 @@ struct OnboardingView: View {
                 .onDisappear {
                     Task {
                         if await securityService.hasFallbackPin {
-                            withAnimation { currentPage = 3 }
+                            withAnimation(reduceMotion ? nil : .default) { currentPage = 3 }
                         }
                     }
                 }
@@ -143,7 +144,7 @@ struct OnboardingView: View {
 
                 Button("Skip for Now") {
                     securityService.skipSecurity()
-                    withAnimation { currentPage = 3 }
+                    withAnimation(reduceMotion ? nil : .default) { currentPage = 3 }
                 }
                 .font(AppTheme.Typography.bodyFont)
                 .foregroundColor(AppTheme.Colors.deepGrayText)

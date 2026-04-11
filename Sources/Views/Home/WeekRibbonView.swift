@@ -114,6 +114,7 @@ struct WeekRibbonView: View {
     let initialWeek: Date   // any date within the week to show first
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @State private var range: ChartRange = .week
     /// Offset in units of `range` from the anchor date
@@ -297,7 +298,7 @@ struct WeekRibbonView: View {
                     }
                     .onEnded { v in
                         let threshold: CGFloat = 40
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                        withAnimation(reduceMotion ? nil : .spring(response: 0.3, dampingFraction: 0.8)) {
                             dragOffset = 0
                         }
                         if v.translation.width < -threshold {
@@ -490,7 +491,7 @@ struct WeekRibbonView: View {
         let target = weekMonday(for: date)
         let weeks = cal.dateComponents([.weekOfYear], from: anchor, to: target).weekOfYear ?? 0
         // Set state first — onChange(of: pageOffset) will rebuild scores
-        withAnimation(.spring(response: 0.35, dampingFraction: 0.85)) {
+        withAnimation(reduceMotion ? nil : .spring(response: 0.35, dampingFraction: 0.85)) {
             range = .week
             pageOffset = weeks
         }
