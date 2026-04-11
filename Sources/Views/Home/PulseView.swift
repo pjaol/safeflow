@@ -26,6 +26,7 @@ struct PulseView: View {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.system(size: 12, weight: .semibold))
                         .foregroundColor(AppTheme.Colors.accentBlue.opacity(0.7))
+                        .accessibilityHidden(true)
                     Text("Logged today")
                         .font(.system(.caption2, design: .rounded, weight: .medium))
                         .foregroundColor(AppTheme.Colors.mediumGrayText)

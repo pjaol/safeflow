@@ -22,6 +22,7 @@ struct PhaseTipCard: View {
                 .frame(width: 36, height: 36)
                 .background(AppTheme.Colors.forPhase(phase.themeColorName).opacity(0.2))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
+                .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)

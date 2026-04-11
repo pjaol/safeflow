@@ -127,6 +127,7 @@ struct DartboardSegment: View {
             Image(systemName: item.sfSymbol)
                 .font(.system(size: 15, weight: .semibold))
                 .foregroundStyle(contentColor)
+                .accessibilityHidden(true)
             Text(item.label)
                 .font(.system(.caption2, design: .rounded, weight: .semibold))
                 .foregroundStyle(contentColor)
@@ -173,6 +174,7 @@ struct NotesBullseye: View {
                 .foregroundStyle(hasNotes
                                  ? .white
                                  : AppTheme.Colors.primaryBlue)
+                .accessibilityHidden(true)
         }
         .frame(width: 44, height: 44)
         .contentShape(Circle())

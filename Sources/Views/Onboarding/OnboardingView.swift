@@ -48,6 +48,7 @@ struct OnboardingView: View {
                 .font(.system(size: 60))
                 .foregroundColor(AppTheme.Colors.accentBlue)
                 .iconCircle()
+                .accessibilityHidden(true)
 
             Text("Your Privacy First")
                 .font(AppTheme.Typography.headlineFont)
@@ -70,6 +71,7 @@ struct OnboardingView: View {
                 .font(.system(size: 60))
                 .foregroundColor(AppTheme.Colors.secondaryPink)
                 .iconCircle()
+                .accessibilityHidden(true)
 
             Text("Know Your Cycle")
                 .font(AppTheme.Typography.headlineFont)
@@ -92,6 +94,7 @@ struct OnboardingView: View {
                 .font(.system(size: 60))
                 .foregroundColor(AppTheme.Colors.secondaryPink)
                 .iconCircle()
+                .accessibilityHidden(true)
 
             Text("Secure Your Data")
                 .font(AppTheme.Typography.headlineFont)
@@ -116,6 +119,7 @@ struct OnboardingView: View {
                     } label: {
                         HStack {
                             Image(systemName: "faceid")
+                                .accessibilityHidden(true)
                             Text("Set Up Face ID / Touch ID")
                         }
                         .frame(maxWidth: .infinity)
@@ -129,6 +133,7 @@ struct OnboardingView: View {
                 } label: {
                     HStack {
                         Image(systemName: "key.fill")
+                            .accessibilityHidden(true)
                         Text("Set Up PIN")
                     }
                     .frame(maxWidth: .infinity)
@@ -158,6 +163,7 @@ struct OnboardingView: View {
                 .font(.system(size: 60))
                 .foregroundColor(AppTheme.Colors.secondaryPink)
                 .iconCircle()
+                .accessibilityHidden(true)
 
             Text("Set Up Your Cycle")
                 .font(AppTheme.Typography.headlineFont)

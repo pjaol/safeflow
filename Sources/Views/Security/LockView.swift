@@ -20,6 +20,7 @@ struct LockView: View {
                     Image(systemName: "lock.shield")
                         .font(.system(size: 60))
                         .foregroundColor(AppTheme.Colors.primaryBlue)
+                        .accessibilityHidden(true)
                     
                     Text("Clio Daye is Locked")
                         .font(AppTheme.Typography.headlineFont)

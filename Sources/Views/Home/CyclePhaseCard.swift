@@ -72,6 +72,7 @@ struct CyclePhaseCard: View {
             Image(systemName: phase.sfSymbol)
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundColor(.white)
+                .accessibilityHidden(true)
         }
     }
 
@@ -87,6 +88,7 @@ struct CyclePhaseCard: View {
                     Image(systemName: "calendar")
                         .font(.caption)
                         .foregroundColor(AppTheme.Colors.mediumGrayText)
+                        .accessibilityHidden(true)
                     Text("Next period \(formattedRange(range))")
                         .font(AppTheme.Typography.captionFont)
                         .foregroundColor(AppTheme.Colors.mediumGrayText)

@@ -104,6 +104,7 @@ struct HomeView: View {
                         } label: {
                             Image(systemName: "doc.text")
                                 .foregroundColor(AppTheme.Colors.deepGrayText)
+                                .accessibilityHidden(true)
                         }
                         .accessibilityLabel("Edit logs")
                         .accessibilityIdentifier("home.editLogsButton")
@@ -114,6 +115,7 @@ struct HomeView: View {
                         } label: {
                             Image(systemName: "calendar")
                                 .foregroundColor(AppTheme.Colors.deepGrayText)
+                                .accessibilityHidden(true)
                         }
                         .accessibilityLabel("View forecast")
                         .accessibilityIdentifier("home.forecastButton")
@@ -125,6 +127,7 @@ struct HomeView: View {
                             Image(systemName: "heart.circle.fill")
                                 .font(.system(size: 20))
                                 .foregroundColor(AppTheme.Colors.secondaryPink)
+                                .accessibilityHidden(true)
                         }
                         .accessibilityLabel("Get Support — resources and helplines")
                         .accessibilityIdentifier("home.getSupportButton")
@@ -162,6 +165,7 @@ private struct EditLogsButton: View {
                 Image(systemName: "pencil.circle.fill")
                     .font(.system(size: 16, weight: .semibold))
                     .foregroundColor(AppTheme.Colors.accentBlue)
+                    .accessibilityHidden(true)
                 Text("Edit Logs")
                     .font(.system(.subheadline, design: .rounded, weight: .semibold))
                     .foregroundColor(AppTheme.Colors.accentBlue)
@@ -169,6 +173,7 @@ private struct EditLogsButton: View {
                 Image(systemName: "chevron.right")
                     .font(.system(size: 12, weight: .semibold))
                     .foregroundColor(AppTheme.Colors.mediumGrayText)
+                    .accessibilityHidden(true)
             }
             .padding(.horizontal, AppTheme.Metrics.cardPadding)
             .padding(.vertical, 12)
@@ -296,7 +301,9 @@ private struct LogCalendarView: View {
                         .font(.system(size: 14, weight: .semibold))
                         .foregroundColor(AppTheme.Colors.accentBlue)
                         .frame(width: 36, height: 36)
+                        .accessibilityHidden(true)
                 }
+                .accessibilityLabel("Previous month")
 
                 Spacer()
 
@@ -314,7 +321,9 @@ private struct LogCalendarView: View {
                         .font(.system(size: 14, weight: .semibold))
                         .foregroundColor(isCurrentMonth ? AppTheme.Colors.mediumGrayText.opacity(0.3) : AppTheme.Colors.accentBlue)
                         .frame(width: 36, height: 36)
+                        .accessibilityHidden(true)
                 }
+                .accessibilityLabel("Next month")
                 .disabled(isCurrentMonth)
             }
 
@@ -442,6 +451,7 @@ private struct LogDayFormView: View {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.system(size: 12))
                         .foregroundColor(AppTheme.Colors.accentBlue)
+                        .accessibilityHidden(true)
                     Text("Existing log — editing")
                         .font(.system(.caption2, design: .rounded))
                         .foregroundColor(AppTheme.Colors.mediumGrayText)
@@ -457,6 +467,7 @@ private struct LogDayFormView: View {
             Button(action: saveDay) {
                 HStack(spacing: 8) {
                     Image(systemName: saved ? "checkmark.circle.fill" : "square.and.arrow.down")
+                        .accessibilityHidden(true)
                     Text(saved ? "Saved" : (existingDay != nil ? "Update Log" : "Save Log"))
                 }
                 .font(.system(.body, design: .rounded, weight: .semibold))
@@ -563,6 +574,7 @@ private struct LogDayFormView: View {
         HStack(spacing: 6) {
             Image(systemName: systemImage).foregroundColor(color)
                 .font(.system(.callout, weight: .semibold))
+                .accessibilityHidden(true)
             Text(title).font(.system(.callout, design: .rounded, weight: .semibold))
                 .foregroundColor(AppTheme.Colors.deepGrayText)
         }

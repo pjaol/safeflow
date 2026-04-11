@@ -38,6 +38,7 @@ struct PatternNudgeCard: View {
                         .font(.system(size: 12, weight: .medium))
                         .foregroundColor(AppTheme.Colors.mediumGrayText)
                         .padding(6)
+                        .accessibilityHidden(true)
                 }
                 .accessibilityLabel("Dismiss")
             }

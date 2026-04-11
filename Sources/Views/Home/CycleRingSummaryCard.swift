@@ -107,6 +107,7 @@ struct CycleRingSummaryCard: View {
                 Image(systemName: "chevron.right")
                     .font(.system(size: 12, weight: .semibold))
                     .foregroundColor(AppTheme.Colors.mediumGrayText.opacity(0.5))
+                    .accessibilityHidden(true)
             }
             .padding(AppTheme.Metrics.cardPadding)
             .background(AppTheme.Colors.secondaryBackground)
@@ -275,6 +276,7 @@ struct CycleDetailSheet: View {
                         Image(systemName: "heart.circle.fill")
                             .font(.system(size: 22))
                             .foregroundColor(AppTheme.Colors.secondaryPink)
+                            .accessibilityHidden(true)
                     }
                     .accessibilityLabel("Get support")
                 }
@@ -375,6 +377,7 @@ struct CycleDetailSheet: View {
                         Image(systemName: phase.sfSymbol)
                             .font(.system(size: 22, weight: .semibold))
                             .foregroundColor(AppTheme.Colors.forPhase(phase.themeColorName))
+                            .accessibilityHidden(true)
                     }
                     VStack(alignment: .leading, spacing: 4) {
                         if let day = cycleDay {
@@ -407,6 +410,7 @@ struct CycleDetailSheet: View {
                         .frame(width: 36, height: 36)
                         .background(AppTheme.Colors.forecastPeriod.opacity(0.12))
                         .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .accessibilityHidden(true)
 
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Next period")
@@ -446,6 +450,7 @@ struct CycleDetailSheet: View {
                 .frame(width: 52, height: 52)
                 .background(AppTheme.Colors.amber.opacity(0.12))
                 .clipShape(Circle())
+                .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 6) {
                 Text("Cycle running longer than usual")
