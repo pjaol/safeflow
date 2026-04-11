@@ -1,0 +1,28 @@
+{
+  "configurations" : [
+    {
+      "id" : "default",
+      "name" : "Default"
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverageEnabled" : false
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:safeflow.xcodeproj",
+        "identifier" : "safeflowTests",
+        "name" : "safeflowTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:safeflow.xcodeproj",
+        "identifier" : "safeflowUITests",
+        "name" : "safeflowUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
