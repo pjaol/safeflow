@@ -12,14 +12,14 @@
     {
       "target" : {
         "containerPath" : "container:safeflow.xcodeproj",
-        "identifier" : "safeflowTests",
+        "identifier" : "CDBECD672D4010D2006A37C9",
         "name" : "safeflowTests"
       }
     },
     {
       "target" : {
         "containerPath" : "container:safeflow.xcodeproj",
-        "identifier" : "safeflowUITests",
+        "identifier" : "CDBECD712D4010D2006A37C9",
         "name" : "safeflowUITests"
       }
     }
