@@ -14,9 +14,7 @@ class SecurityService: ObservableObject {
     
     @Published var isAuthenticationRequired: Bool {
         didSet {
-            Task { @MainActor in
-                UserDefaults.standard.set(isAuthenticationRequired, forKey: "isAuthenticationRequired")
-            }
+            UserDefaults.standard.set(isAuthenticationRequired, forKey: "isAuthenticationRequired")
         }
     }
     
