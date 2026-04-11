@@ -61,7 +61,7 @@ final class SafeFlowUITests: XCTestCase {
         app.buttons["logDay.flow.light"].tap()
         app.buttons["logDay.cancelButton"].tap()
 
-        XCTAssertTrue(app.navigationBars["SafeFlow"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.navigationBars.firstMatch.waitForExistence(timeout: 2))
     }
 
     func testDeleteLogFromRecentLogs() throws {
@@ -127,7 +127,7 @@ final class SafeFlowUITests: XCTestCase {
         getStarted.tap()
 
         // After completing onboarding, should reach home or lock screen
-        let homeOrLock = app.navigationBars["SafeFlow"].waitForExistence(timeout: 3) ||
+        let homeOrLock = app.navigationBars.firstMatch.waitForExistence(timeout: 3) ||
                          app.staticTexts["SafeFlow is Locked"].waitForExistence(timeout: 3)
         XCTAssertTrue(homeOrLock)
     }
