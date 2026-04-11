@@ -90,7 +90,9 @@ struct HomeView: View {
                     } label: {
                         Image(systemName: "gear")
                             .foregroundColor(AppTheme.Colors.deepGrayText)
+                            .accessibilityHidden(true)
                     }
+                    .accessibilityLabel("Settings")
                     .accessibilityIdentifier("home.settingsButton")
                 }
 

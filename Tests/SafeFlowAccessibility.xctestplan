@@ -1,0 +1,82 @@
+{
+  "configurations" : [
+    {
+      "id" : "default-large",
+      "name" : "Large (default Dynamic Type)",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "UIContentSizeCategory",
+            "value" : "UICTContentSizeCategoryL"
+          }
+        ]
+      }
+    },
+    {
+      "id" : "extra-large",
+      "name" : "Extra Large",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "UIContentSizeCategory",
+            "value" : "UICTContentSizeCategoryXL"
+          }
+        ]
+      }
+    },
+    {
+      "id" : "axxlarge",
+      "name" : "AXXLarge (max Dynamic Type)",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "UIContentSizeCategory",
+            "value" : "UICTContentSizeCategoryAccessibilityExtraExtraLarge"
+          }
+        ]
+      }
+    },
+    {
+      "id" : "reduce-motion",
+      "name" : "Reduce Motion",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "UIAccessibilityIsReduceMotionEnabled",
+            "value" : "1"
+          }
+        ]
+      }
+    },
+    {
+      "id" : "bold-text",
+      "name" : "Bold Text",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "UIAccessibilityIsBoldTextEnabled",
+            "value" : "1"
+          }
+        ]
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true,
+    "defaultTestExecutionTimeAllowance" : 60
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:safeflow.xcodeproj",
+        "identifier" : "safeflowUITests",
+        "name" : "safeflowUITests"
+      },
+      "selectedTests" : [
+        "AccessibilityUITests",
+        "DynamicTypeUITests"
+      ]
+    }
+  ],
+  "version" : 1
+}

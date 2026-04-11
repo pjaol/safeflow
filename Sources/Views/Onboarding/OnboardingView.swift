@@ -184,6 +184,8 @@ struct OnboardingView: View {
                     )
                     .datePickerStyle(.compact)
                     .labelsHidden()
+                    .accessibilityLabel("Last period start date")
+                    .accessibilityHint("Select the date your most recent period began")
                     .accessibilityIdentifier("onboarding.lastPeriodDatePicker")
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -204,6 +206,8 @@ struct OnboardingView: View {
                             .frame(width: 72, alignment: .leading)
                         Stepper("", value: $periodLength, in: 2...10)
                             .labelsHidden()
+                            .accessibilityLabel("Period length, \(periodLength) days")
+                            .accessibilityHint("Adjust how many days your period typically lasts")
                             .accessibilityIdentifier("onboarding.periodLengthStepper")
                     }
                 }
@@ -228,6 +232,8 @@ struct OnboardingView: View {
                             .frame(width: 72, alignment: .leading)
                         Stepper("", value: $cycleLength, in: 15...60)
                             .labelsHidden()
+                            .accessibilityLabel("Cycle length, \(cycleLength) days")
+                            .accessibilityHint("Adjust the number of days from the start of one period to the start of the next")
                             .accessibilityIdentifier("onboarding.cycleLengthStepper")
                     }
                     Text("Not sure? Leave at 28 — we'll personalise this over time.")

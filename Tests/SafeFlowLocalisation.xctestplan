@@ -1,0 +1,92 @@
+{
+  "configurations" : [
+    {
+      "id" : "en-US",
+      "name" : "English (US)",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "AppleLanguages",
+            "value" : "(en)"
+          },
+          {
+            "key" : "AppleLocale",
+            "value" : "en_US"
+          }
+        ]
+      }
+    },
+    {
+      "id" : "es-MX",
+      "name" : "Spanish (Mexico)",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "AppleLanguages",
+            "value" : "(es)"
+          },
+          {
+            "key" : "AppleLocale",
+            "value" : "es_MX"
+          }
+        ]
+      }
+    },
+    {
+      "id" : "fr-FR",
+      "name" : "French (France)",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "AppleLanguages",
+            "value" : "(fr)"
+          },
+          {
+            "key" : "AppleLocale",
+            "value" : "fr_FR"
+          }
+        ]
+      }
+    },
+    {
+      "id" : "de-DE",
+      "name" : "German (Germany)",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "AppleLanguages",
+            "value" : "(de)"
+          },
+          {
+            "key" : "AppleLocale",
+            "value" : "de_DE"
+          }
+        ]
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true,
+    "defaultTestExecutionTimeAllowance" : 60
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:safeflow.xcodeproj",
+        "identifier" : "safeflowUITests",
+        "name" : "safeflowUITests"
+      },
+      "selectedTests" : [
+        "LocalisationUITests"
+      ]
+    },
+    {
+      "target" : {
+        "containerPath" : "container:safeflow.xcodeproj",
+        "identifier" : "safeflowTests",
+        "name" : "safeflowTests"
+      }
+    }
+  ],
+  "version" : 1
+}
