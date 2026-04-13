@@ -481,5 +481,343 @@
       "endometriosis",
       "pcos"
     ]
+  },
+
+  {
+    "id": "resource.endometriosis.mx",
+    "category": "endometriosis",
+    "name": "Endometriosis México",
+    "short_description": "Organización de pacientes fundada en 2009. Información, directorio de especialistas y grupos de apoyo para endometriosis en México.",
+    "url": "https://endometriosismexico.com",
+    "phone": null,
+    "region": "MX",
+    "languages": [
+      "es"
+    ],
+    "tags": [
+      "cramps",
+      "endometriosis",
+      "pelvic_pain"
+    ]
+  },
+  {
+    "id": "resource.fundacion.endometriosis.mx",
+    "category": "endometriosis",
+    "name": "Fundación Endometriosis México",
+    "short_description": "Atención integral a mujeres con endometriosis sin acceso a tratamiento especializado. Con sede en Jalisco, México.",
+    "url": "https://fundacionendometriosis.org",
+    "phone": null,
+    "region": "MX",
+    "languages": [
+      "es"
+    ],
+    "tags": [
+      "cramps",
+      "endometriosis",
+      "pelvic_pain"
+    ]
+  },
+  {
+    "id": "resource.saptel.mx",
+    "category": "mental_health",
+    "name": "SAPTEL — Apoyo Psicológico",
+    "short_description": "Servicio de apoyo psicológico y crisis por teléfono, gratuito, confidencial, disponible las 24 horas en México.",
+    "url": "https://www.saptel.org.mx",
+    "phone": "55 5259-8121",
+    "region": "MX",
+    "languages": [
+      "es"
+    ],
+    "tags": [
+      "crisis",
+      "mental_health",
+      "mood"
+    ]
+  },
+  {
+    "id": "resource.linea.vida.mx",
+    "category": "mental_health",
+    "name": "Línea de la Vida",
+    "short_description": "Línea nacional gratuita del gobierno mexicano para salud mental, crisis emocional y adicciones. Disponible 24/7.",
+    "url": "https://www.gob.mx/conasama/articulos/linea-de-la-vida-800-911-2000",
+    "phone": "800 911 2000",
+    "region": "MX",
+    "languages": [
+      "es"
+    ],
+    "tags": [
+      "crisis",
+      "mental_health",
+      "mood"
+    ]
+  },
+  {
+    "id": "resource.inmujeres.mx",
+    "category": "crisis",
+    "name": "INMUJERES — Vida sin Violencia",
+    "short_description": "Instituto Nacional de las Mujeres — recursos federales para mujeres que viven violencia de género. En caso de emergencia, llama al 911.",
+    "url": "https://vidasinviolencia.inmujeres.gob.mx",
+    "phone": "911",
+    "region": "MX",
+    "languages": [
+      "es"
+    ],
+    "tags": [
+      "crisis",
+      "safety",
+      "dv"
+    ]
+  },
+
+  {
+    "id": "resource.endofrance",
+    "category": "endometriosis",
+    "name": "EndoFrance",
+    "short_description": "Association française de lutte contre l'endométriose, agréée par le ministère de la Santé. Information, groupes de soutien régionaux et annuaire de spécialistes.",
+    "url": "https://www.endofrance.org",
+    "phone": null,
+    "region": "FR",
+    "languages": [
+      "fr"
+    ],
+    "tags": [
+      "cramps",
+      "endometriosis",
+      "pelvic_pain"
+    ]
+  },
+  {
+    "id": "resource.endomind.fr",
+    "category": "endometriosis",
+    "name": "ENDOmind",
+    "short_description": "Association nationale de patientes atteintes d'endométriose, agréée par le ministère de la Santé. Organise l'ENDOmarch et l'ENDOrun.",
+    "url": "https://www.endomind.org",
+    "phone": null,
+    "region": "FR",
+    "languages": [
+      "fr"
+    ],
+    "tags": [
+      "cramps",
+      "endometriosis",
+      "pelvic_pain"
+    ]
+  },
+  {
+    "id": "resource.tdpm.fr",
+    "category": "pmdd",
+    "name": "TDPM France",
+    "short_description": "Première et seule association française dédiée au Trouble Dysphorique Prémenstruel (TDPM). Sensibilisation, communauté de patientes et plaidoyer.",
+    "url": "https://www.assotdpmfrance.fr",
+    "phone": null,
+    "region": "FR",
+    "languages": [
+      "fr"
+    ],
+    "tags": [
+      "pmdd",
+      "mood",
+      "luteal"
+    ]
+  },
+  {
+    "id": "resource.sopk.fr",
+    "category": "pcos",
+    "name": "Asso'SOPK",
+    "short_description": "Association nationale de patientes atteintes du Syndrome des Ovaires Polykystiques (SOPK). Annuaire d'éducation thérapeutique et communauté de soutien.",
+    "url": "https://asso-sopk.com",
+    "phone": null,
+    "region": "FR",
+    "languages": [
+      "fr"
+    ],
+    "tags": [
+      "pcos",
+      "irregular"
+    ]
+  },
+  {
+    "id": "resource.fnsf.fr",
+    "category": "crisis",
+    "name": "Solidarité Femmes — 3919",
+    "short_description": "Numéro national de référence pour les femmes victimes de violences. Gratuit, disponible 24h/24, opératrices parlant 12 langues.",
+    "url": "http://www.solidaritefemmes.org",
+    "phone": "3919",
+    "region": "FR",
+    "languages": [
+      "fr"
+    ],
+    "tags": [
+      "crisis",
+      "safety",
+      "dv"
+    ]
+  },
+  {
+    "id": "resource.3114.fr",
+    "category": "mental_health",
+    "name": "3114 — Prévention du Suicide",
+    "short_description": "Numéro national officiel de prévention du suicide, disponible 24h/24. Répondu par des professionnels de santé formés.",
+    "url": "https://3114.fr",
+    "phone": "3114",
+    "region": "FR",
+    "languages": [
+      "fr"
+    ],
+    "tags": [
+      "crisis",
+      "mental_health",
+      "mood"
+    ]
+  },
+  {
+    "id": "resource.sosamitie.fr",
+    "category": "mental_health",
+    "name": "SOS Amitié",
+    "short_description": "Écoute émotionnelle et soutien en cas de crise par des bénévoles formés, disponible 24h/24. Gratuit et anonyme.",
+    "url": "https://www.sosamitie.org",
+    "phone": "09 72 39 40 50",
+    "region": "FR",
+    "languages": [
+      "fr"
+    ],
+    "tags": [
+      "crisis",
+      "mental_health",
+      "mood"
+    ]
+  },
+  {
+    "id": "resource.sexualites.fr",
+    "category": "sexual_health",
+    "name": "Sexualités-info-santé",
+    "short_description": "Portail officiel de santé sexuelle du gouvernement français (Santé publique France). Information validée par des experts sur les IST, la contraception et la santé reproductive.",
+    "url": "https://www.sexualites-info-sante.fr",
+    "phone": null,
+    "region": "FR",
+    "languages": [
+      "fr"
+    ],
+    "tags": [
+      "general",
+      "reproductive_rights"
+    ]
+  },
+
+  {
+    "id": "resource.endometriose.de",
+    "category": "endometriosis",
+    "name": "Endometriose-Vereinigung Deutschland",
+    "short_description": "Deutschlands größte Selbsthilfeorganisation für Endometriose-Betroffene. Persönliche Beratung, regionale Selbsthilfegruppen und Facharzt-Verzeichnis.",
+    "url": "https://www.endometriose-vereinigung.de",
+    "phone": "0341 3065305",
+    "region": "DE",
+    "languages": [
+      "de"
+    ],
+    "tags": [
+      "cramps",
+      "endometriosis",
+      "pelvic_pain"
+    ]
+  },
+  {
+    "id": "resource.pcos.de",
+    "category": "pcos",
+    "name": "PCOS Selbsthilfe Deutschland",
+    "short_description": "Nationale Selbsthilfeorganisation für Frauen mit PCOS (Polyzystisches Ovarsyndrom). Online-Selbsthilfegruppen, Beratung und Spezialisten-Vermittlung.",
+    "url": "https://www.pcos-selbsthilfe.org",
+    "phone": "0700-72678373",
+    "region": "DE",
+    "languages": [
+      "de"
+    ],
+    "tags": [
+      "pcos",
+      "irregular"
+    ]
+  },
+  {
+    "id": "resource.pmds.de",
+    "category": "pmdd",
+    "name": "PMDS Hilfe e.V.",
+    "short_description": "Deutsche Non-Profit-Organisation für PMDS (Prämenstruelles Dysphorisches Syndrom). Patientinnen-Community, Arzt-Verzeichnis und Aufklärungsarbeit.",
+    "url": "https://www.pmds-hilfe.de",
+    "phone": null,
+    "region": "DE",
+    "languages": [
+      "de"
+    ],
+    "tags": [
+      "pmdd",
+      "mood",
+      "luteal"
+    ]
+  },
+  {
+    "id": "resource.hilfetelefon.de",
+    "category": "crisis",
+    "name": "Hilfetelefon — Gewalt gegen Frauen",
+    "short_description": "Bundesweites Hilfetelefon für Frauen, die Gewalt erfahren. Kostenlos, anonym, 24/7 erreichbar in 15 Sprachen.",
+    "url": "https://www.hilfetelefon.de",
+    "phone": "116 016",
+    "region": "DE",
+    "languages": [
+      "de"
+    ],
+    "tags": [
+      "crisis",
+      "safety",
+      "dv"
+    ]
+  },
+  {
+    "id": "resource.telefonseelsorge.de",
+    "category": "mental_health",
+    "name": "TelefonSeelsorge",
+    "short_description": "Kostenlose, anonyme Krisenbegleitung und emotionale Unterstützung, 24/7 erreichbar. Auch per E-Mail und Chat.",
+    "url": "https://www.telefonseelsorge.de",
+    "phone": "0800 111 0 111",
+    "region": "DE",
+    "languages": [
+      "de"
+    ],
+    "tags": [
+      "crisis",
+      "mental_health",
+      "mood"
+    ]
+  },
+  {
+    "id": "resource.depressionshilfe.de",
+    "category": "mental_health",
+    "name": "Stiftung Deutsche Depressionshilfe",
+    "short_description": "Info-Telefon Depression: kostenlose anonyme Auskunft zu Depressionen, Behandlungsmöglichkeiten und lokalen Anlaufstellen.",
+    "url": "https://www.deutsche-depressionshilfe.de",
+    "phone": "0800 33 44 533",
+    "region": "DE",
+    "languages": [
+      "de"
+    ],
+    "tags": [
+      "mental_health",
+      "mood"
+    ]
+  },
+  {
+    "id": "resource.liebesleben.de",
+    "category": "sexual_health",
+    "name": "LIEBESLEBEN (BIÖG)",
+    "short_description": "Offizielle Sexualgesundheits-Initiative des Bundes (ehemals BZgA). Information zu HIV, STIs, Verhütung und sexueller Gesundheit.",
+    "url": "https://www.liebesleben.de",
+    "phone": null,
+    "region": "DE",
+    "languages": [
+      "de"
+    ],
+    "tags": [
+      "general",
+      "reproductive_rights"
+    ]
   }
 ]
