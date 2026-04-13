@@ -1,0 +1,19 @@
+version: 2
+updates:
+  # Fastlane / Ruby tooling
+  - package-ecosystem: "bundler"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # Market-research scripts are throwaway, not production code.
+  # Vulnerabilities here have no runtime impact on the iOS app.
+  # Exclude from automated scanning to avoid noise.
+  # To re-enable: remove the `ignore` block below.
+  - package-ecosystem: "npm"
+    directory: "/scripts/market-research"
+    schedule:
+      interval: "monthly"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch", "version-update:semver-minor", "version-update:semver-major"]

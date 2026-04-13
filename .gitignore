@@ -67,3 +67,4 @@ fastlane/test_output
 skills/
 skills-lock.json
 AGENTS.md
+scripts/market-research/node_modules/
