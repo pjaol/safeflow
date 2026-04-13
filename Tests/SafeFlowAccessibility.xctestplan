@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "default-large",
+      "id" : "7ecaf5b2-0af9-437f-aa9b-df455cba3ac0",
       "name" : "Large (default Dynamic Type)",
       "options" : {
         "environmentVariableEntries" : [
@@ -13,7 +13,7 @@
       }
     },
     {
-      "id" : "extra-large",
+      "id" : "2c6ca511-093a-47b1-8c1a-12d08c4c3b36",
       "name" : "Extra Large",
       "options" : {
         "environmentVariableEntries" : [
@@ -25,7 +25,7 @@
       }
     },
     {
-      "id" : "axxlarge",
+      "id" : "4c4e960b-860f-4eb8-adfc-4045a7a555c4",
       "name" : "AXXLarge (max Dynamic Type)",
       "options" : {
         "environmentVariableEntries" : [
@@ -37,7 +37,7 @@
       }
     },
     {
-      "id" : "reduce-motion",
+      "id" : "0894f483-e91c-4867-99fa-d263bff8176b",
       "name" : "Reduce Motion",
       "options" : {
         "environmentVariableEntries" : [
@@ -49,7 +49,7 @@
       }
     },
     {
-      "id" : "bold-text",
+      "id" : "3c6d5ff6-3ba3-4e93-ac0e-f49581980004",
       "name" : "Bold Text",
       "options" : {
         "environmentVariableEntries" : [

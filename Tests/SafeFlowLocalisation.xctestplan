@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "en-US",
+      "id" : "2c2e85c1-21bd-4820-9af0-14959d179395",
       "name" : "English (US)",
       "options" : {
         "environmentVariableEntries" : [
@@ -17,7 +17,7 @@
       }
     },
     {
-      "id" : "es-MX",
+      "id" : "abb52a26-2ed7-49f9-bb09-4fa3010886ea",
       "name" : "Spanish (Mexico)",
       "options" : {
         "environmentVariableEntries" : [
@@ -33,7 +33,7 @@
       }
     },
     {
-      "id" : "fr-FR",
+      "id" : "906cc139-457a-4858-9986-efbd7e910db3",
       "name" : "French (France)",
       "options" : {
         "environmentVariableEntries" : [
@@ -49,7 +49,7 @@
       }
     },
     {
-      "id" : "de-DE",
+      "id" : "5579622c-bde0-4eaf-bb4b-3753bd044861",
       "name" : "German (Germany)",
       "options" : {
         "environmentVariableEntries" : [

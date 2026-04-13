@@ -62,6 +62,9 @@
 		CD218E972D41A086009B5198 /* SecurityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E962D41A086009B5198 /* SecurityTests.swift */; };
 		CD218E9A2D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E982D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift */; };
 		CD218E9B2D41A0AF009B5198 /* safeflowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E992D41A0AF009B5198 /* safeflowUITests.swift */; };
+		CDA11Y012D4010D2006A37C9 /* AccessibilityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA11Y002D4010D2006A37C9 /* AccessibilityUITests.swift */; };
+		CDA11Y032D4010D2006A37C9 /* DynamicTypeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA11Y022D4010D2006A37C9 /* DynamicTypeUITests.swift */; };
+		CDL10N012D4010D2006A37C9 /* LocalisationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDL10N002D4010D2006A37C9 /* LocalisationUITests.swift */; };
 		CD218E9F2D4303F1009B5198 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E9C2D4303F1009B5198 /* AppTheme.swift */; };
 		CD218EA02D4303F1009B5198 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E9D2D4303F1009B5198 /* ViewModifiers.swift */; };
 		CD218EA52D43CC89009B5198 /* CycleCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218EA42D43CC89009B5198 /* CycleCalendarView.swift */; };
@@ -175,6 +178,9 @@
 		CD218E962D41A086009B5198 /* SecurityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecurityTests.swift; path = Tests/UnitTests/SecurityTests.swift; sourceTree = SOURCE_ROOT; };
 		CD218E982D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = safeflowUITestsLaunchTests.swift; path = Tests/UITests/safeflowUITestsLaunchTests.swift; sourceTree = SOURCE_ROOT; };
 		CD218E992D41A0AF009B5198 /* safeflowUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = safeflowUITests.swift; path = Tests/UITests/safeflowUITests.swift; sourceTree = SOURCE_ROOT; };
+		CDA11Y002D4010D2006A37C9 /* AccessibilityUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccessibilityUITests.swift; path = Tests/UITests/AccessibilityUITests.swift; sourceTree = SOURCE_ROOT; };
+		CDA11Y022D4010D2006A37C9 /* DynamicTypeUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamicTypeUITests.swift; path = Tests/UITests/DynamicTypeUITests.swift; sourceTree = SOURCE_ROOT; };
+		CDL10N002D4010D2006A37C9 /* LocalisationUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalisationUITests.swift; path = Tests/UITests/LocalisationUITests.swift; sourceTree = SOURCE_ROOT; };
 		CD218E9C2D4303F1009B5198 /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		CD218E9D2D4303F1009B5198 /* ViewModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		CD218EA42D43CC89009B5198 /* CycleCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleCalendarView.swift; sourceTree = "<group>"; };
@@ -191,6 +197,7 @@
 		CD2709602D46AFCC003994F9 /* sparse_data_metadata.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparse_data_metadata.csv; sourceTree = "<group>"; };
 		CD2709612D46AFCC003994F9 /* sparse_data_predictions.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparse_data_predictions.csv; sourceTree = "<group>"; };
 		CD2709622D46AFCC003994F9 /* sparse_data.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparse_data.csv; sourceTree = "<group>"; };
+		CDBA2CD12F8AD9DA00043524 /* SafeFlowDefault.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = SafeFlowDefault.xctestplan; path = Tests/SafeFlowDefault.xctestplan; sourceTree = "<group>"; };
 		CDBECD552D4010D1006A37C9 /* safeflow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safeflow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBECD5E2D4010D2006A37C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDBECD602D4010D2006A37C9 /* safeflow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = safeflow.entitlements; sourceTree = "<group>"; };
@@ -199,6 +206,8 @@
 		CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = safeflowTests.swift; sourceTree = "<group>"; };
 		CDBECD722D4010D2006A37C9 /* safeflowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeflowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDDC84D72F8AA9640013BF34 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		CDDC84D92F8AD8F10013BF34 /* SafeFlowAccessibility.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = SafeFlowAccessibility.xctestplan; path = Tests/SafeFlowAccessibility.xctestplan; sourceTree = "<group>"; };
+		CDDC84DA2F8AD8F10013BF34 /* SafeFlowLocalisation.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = SafeFlowLocalisation.xctestplan; path = Tests/SafeFlowLocalisation.xctestplan; sourceTree = "<group>"; };
 		DD11223344556677889900BB /* DartboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DartboardViewModel.swift; sourceTree = "<group>"; };
 		DD11223344556677889900DD /* DartboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DartboardView.swift; sourceTree = "<group>"; };
 		DD11223344556677889900FF /* CategoryStripView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryStripView.swift; sourceTree = "<group>"; };
@@ -544,6 +553,9 @@
 		CDBECD4C2D4010D1006A37C9 = {
 			isa = PBXGroup;
 			children = (
+				CDBA2CD12F8AD9DA00043524 /* SafeFlowDefault.xctestplan */,
+				CDDC84DA2F8AD8F10013BF34 /* SafeFlowLocalisation.xctestplan */,
+				CDDC84D92F8AD8F10013BF34 /* SafeFlowAccessibility.xctestplan */,
 				CD2709642D46AFCC003994F9 /* Resources */,
 				CD218E702D405C85009B5198 /* Utilities */,
 				CD218E652D4021EB009B5198 /* App */,
@@ -608,6 +620,9 @@
 			children = (
 				CD218E992D41A0AF009B5198 /* safeflowUITests.swift */,
 				CD218E982D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift */,
+				CDA11Y002D4010D2006A37C9 /* AccessibilityUITests.swift */,
+				CDA11Y022D4010D2006A37C9 /* DynamicTypeUITests.swift */,
+				CDL10N002D4010D2006A37C9 /* LocalisationUITests.swift */,
 				SNAP00112233445566778899AB /* SnapshotTests.swift */,
 				SNAP00112233445566778899AD /* SnapshotHelper.swift */,
 			);
@@ -871,6 +886,9 @@
 			files = (
 				CD218E9B2D41A0AF009B5198 /* safeflowUITests.swift in Sources */,
 				CD218E9A2D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift in Sources */,
+				CDA11Y012D4010D2006A37C9 /* AccessibilityUITests.swift in Sources */,
+				CDA11Y032D4010D2006A37C9 /* DynamicTypeUITests.swift in Sources */,
+				CDL10N012D4010D2006A37C9 /* LocalisationUITests.swift in Sources */,
 				SNAP00112233445566778899AA /* SnapshotTests.swift in Sources */,
 				SNAP00112233445566778899AC /* SnapshotHelper.swift in Sources */,
 			);
@@ -935,7 +953,6 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -948,7 +965,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "BETA $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};

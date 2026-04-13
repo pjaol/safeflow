@@ -1,8 +1,11 @@
 {
   "configurations" : [
     {
-      "id" : "default",
-      "name" : "Default"
+      "id" : "d71f5a67-b1ac-4590-b0a2-3a476cc166b8",
+      "name" : "Default",
+      "options" : {
+
+      }
     }
   ],
   "defaultOptions" : {
