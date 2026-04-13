@@ -26,18 +26,23 @@ else
 endif
 
 ## Run unit tests only (fast; no simulator UI required)
+## testSessionTimeout is excluded — it sleeps 605 s and is not suitable for CI
 test-unit:
 ifdef XCPRETTY
 	xcodebuild -project safeflow.xcodeproj \
 	  -scheme $(SCHEME) \
 	  -destination '$(DEST)' \
+	  -testPlan SafeFlowDefault \
 	  -only-testing:safeflowTests \
+	  -skip-testing:safeflowTests/SecurityTests/testSessionTimeout \
 	  test 2>&1 | xcpretty --color
 else
 	xcodebuild -project safeflow.xcodeproj \
 	  -scheme $(SCHEME) \
 	  -destination '$(DEST)' \
+	  -testPlan SafeFlowDefault \
 	  -only-testing:safeflowTests \
+	  -skip-testing:safeflowTests/SecurityTests/testSessionTimeout \
 	  test
 endif
 
