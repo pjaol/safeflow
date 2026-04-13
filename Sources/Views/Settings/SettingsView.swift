@@ -89,7 +89,7 @@ struct SettingsView: View {
                         .foregroundColor(AppTheme.Colors.deepGrayText)
                 }
                 
-                #if DEBUG
+                #if DEBUG || BETA
                 Section("Debug") {
                     Button("Reset Onboarding", role: .destructive) {
                         UserDefaults.standard.set(false, forKey: "hasCompletedOnboarding")
@@ -151,7 +151,7 @@ struct SettingsView: View {
 }
 
 
-#if DEBUG
+#if DEBUG || BETA
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         // Example: Using your `SecurityServicePreview.shared` or a normal SecurityService

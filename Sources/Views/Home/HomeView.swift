@@ -12,7 +12,7 @@ struct HomeView: View {
     @State private var dismissedSignalIDs: Set<String> = DismissedNudges.load()
     @State private var editLogsDate: Date? = nil
     @State private var scrollToForecast = false
-    #if DEBUG
+    #if DEBUG || BETA
     @State private var showingDebugMenu = false
     #endif
 
@@ -73,7 +73,7 @@ struct HomeView: View {
             }
             .navigationTitle("Clio Daye")
             .toolbar {
-                #if DEBUG
+                #if DEBUG || BETA
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         showingDebugMenu = true
@@ -145,7 +145,7 @@ struct HomeView: View {
                 SettingsView(cycleStore: cycleStore)
                     .environmentObject(securityService)
             }
-            #if DEBUG
+            #if DEBUG || BETA
             .sheet(isPresented: $showingDebugMenu) {
                 DebugMenu(cycleStore: cycleStore)
             }

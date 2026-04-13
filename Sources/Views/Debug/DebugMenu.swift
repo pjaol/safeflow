@@ -1,6 +1,6 @@
 import SwiftUI
 
-#if DEBUG
+#if DEBUG || BETA
 struct DebugMenu: View {
     @ObservedObject var cycleStore: CycleStore
     @Environment(\.dismiss) private var dismiss

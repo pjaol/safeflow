@@ -1,6 +1,6 @@
 import Foundation
 
-#if DEBUG
+#if DEBUG || BETA
 enum TestData {
     static func generateSampleData(numberOfCycles: Int = 3) -> [CycleDay] {
         var days: [CycleDay] = []

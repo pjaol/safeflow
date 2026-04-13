@@ -97,7 +97,7 @@ struct LockView: View {
     }
 }
 
-#if DEBUG
+#if DEBUG || BETA
 struct LockView_Previews: PreviewProvider {
     static var previews: some View {
         LockView()

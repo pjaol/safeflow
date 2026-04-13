@@ -312,7 +312,7 @@ private extension View {
     }
 }
 
-#if DEBUG
+#if DEBUG || BETA
 #Preview {
     OnboardingView(
         cycleStore: CycleStore(),
