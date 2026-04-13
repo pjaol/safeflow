@@ -21,6 +21,14 @@ struct SafeFlowApp: App {
 
     @StateObject private var securityWrapper = SecurityServiceWrapper()
 
+    init() {
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("UI-Testing") {
+            UserDefaults.standard.set(false, forKey: "isAuthenticationRequired")
+        }
+        #endif
+    }
+
     var body: some Scene {
         WindowGroup {
             GeometryReader { geometry in
@@ -64,7 +72,7 @@ struct SafeFlowApp: App {
     }
 
     private func handleLaunchArguments() {
-        #if DEBUG
+        #if DEBUG || BETA
         let args = ProcessInfo.processInfo.arguments
 
         if args.contains("UI-Testing") || args.contains("RESET_DATA") {
@@ -85,7 +93,7 @@ struct SafeFlowApp: App {
         #endif
     }
 
-    #if DEBUG
+    #if DEBUG || BETA
     private func loadTestScenario(filename: String, cycleLength: Int, periodLength: Int) {
         Task {
             guard let url = Bundle.main.url(forResource: filename, withExtension: "csv"),
