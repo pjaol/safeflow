@@ -5548,6 +5548,934 @@
         }
       },
       "comment": "Signal body (signals.json): PMDD pattern"
+    },
+    "Heat can help": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heat can help"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wärme kann helfen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El calor puede ayudar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La chaleur peut aider"
+          }
+        }
+      },
+      "comment": "Phase tip title: menstrual"
+    },
+    "A warm compress or hot water bottle on your lower abdomen may ease cramp discomfort.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A warm compress or hot water bottle on your lower abdomen may ease cramp discomfort."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eine Wärmflasche oder ein warmes Kompresse auf dem Unterbauch kann Krämpfe lindern."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una compresa caliente o una bolsa de agua caliente en el abdomen inferior puede aliviar los cólicos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une bouillotte ou une compresse chaude sur le bas-ventre peut soulager les crampes."
+          }
+        }
+      },
+      "comment": "Phase tip body: menstrual heat"
+    },
+    "Rest is productive": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rest is productive"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruhe ist produktiv"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El descanso es productivo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le repos est productif"
+          }
+        }
+      },
+      "comment": "Phase tip title: menstrual"
+    },
+    "Your body is doing real work this week. Lighter activity and extra sleep are a good call.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your body is doing real work this week. Lighter activity and extra sleep are a good call."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Körper leistet diese Woche echte Arbeit. Leichtere Aktivität und mehr Schlaf sind eine gute Wahl."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu cuerpo está haciendo un trabajo real esta semana. Actividad más ligera y dormir más es una buena idea."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre corps travaille vraiment cette semaine. Une activité plus légère et un peu plus de sommeil sont une bonne idée."
+          }
+        }
+      },
+      "comment": "Phase tip body: menstrual rest"
+    },
+    "Iron-rich foods": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iron-rich foods"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eisenreiche Lebensmittel"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alimentos ricos en hierro"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aliments riches en fer"
+          }
+        }
+      },
+      "comment": "Phase tip title: menstrual"
+    },
+    "Leafy greens, lentils, and beans can help replenish iron lost during your period.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leafy greens, lentils, and beans can help replenish iron lost during your period."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blattgemüse, Linsen und Bohnen können helfen, das während der Periode verlorene Eisen zu ergänzen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las verduras de hoja verde, las lentejas y los frijoles pueden ayudar a reponer el hierro perdido durante tu período."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les légumes verts, les lentilles et les haricots peuvent aider à reconstituer le fer perdu pendant les règles."
+          }
+        }
+      },
+      "comment": "Phase tip body: menstrual iron"
+    },
+    "Ibuprofen timing": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ibuprofen timing"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ibuprofen richtig einnehmen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuándo tomar ibuprofeno"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Timing de l'ibuprofène"
+          }
+        }
+      },
+      "comment": "Phase tip title: menstrual"
+    },
+    "Anti-inflammatory pain relief (like ibuprofen) works best taken with food at the first sign of cramps, rather than waiting.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anti-inflammatory pain relief (like ibuprofen) works best taken with food at the first sign of cramps, rather than waiting."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entzündungshemmende Schmerzmittel (wie Ibuprofen) wirken am besten, wenn sie beim ersten Anzeichen von Krämpfen mit einer Mahlzeit eingenommen werden, anstatt zu warten."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los analgésicos antiinflamatorios (como el ibuprofeno) funcionan mejor tomados con comida al primer signo de cólicos, en lugar de esperar."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les anti-douleurs anti-inflammatoires (comme l'ibuprofène) sont plus efficaces pris avec de la nourriture aux premiers signes de crampes, plutôt que d'attendre."
+          }
+        }
+      },
+      "comment": "Phase tip body: menstrual ibuprofen"
+    },
+    "Energy is building": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Energy is building"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Energie nimmt zu"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La energía está aumentando"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'énergie monte"
+          }
+        }
+      },
+      "comment": "Phase tip title: follicular"
+    },
+    "Estrogen rises during this phase — many people find focus and motivation easier right now.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estrogen rises during this phase — many people find focus and motivation easier right now."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Östrogen steigt in dieser Phase — viele Menschen finden es jetzt leichter, sich zu konzentrieren und motiviert zu bleiben."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los estrógenos aumentan durante esta fase — muchas personas encuentran más fácil concentrarse y mantenerse motivadas ahora."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les œstrogènes augmentent pendant cette phase — beaucoup de personnes trouvent la concentration et la motivation plus faciles en ce moment."
+          }
+        }
+      },
+      "comment": "Phase tip body: follicular energy"
+    },
+    "Good time for new things": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Good time for new things"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Zeit für Neues"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buen momento para cosas nuevas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bon moment pour de nouvelles choses"
+          }
+        }
+      },
+      "comment": "Phase tip title: follicular"
+    },
+    "Starting a new project or learning something new tends to feel easier in the follicular phase.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starting a new project or learning something new tends to feel easier in the follicular phase."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein neues Projekt zu starten oder etwas Neues zu lernen fühlt sich in der Follikelphase oft leichter an."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comenzar un nuevo proyecto o aprender algo nuevo tiende a sentirse más fácil en la fase folicular."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Démarrer un nouveau projet ou apprendre quelque chose de nouveau tend à sembler plus facile pendant la phase folliculaire."
+          }
+        }
+      },
+      "comment": "Phase tip body: follicular new things"
+    },
+    "Movement feels easier": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movement feels easier"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bewegung fällt leichter"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El movimiento se siente más fácil"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le mouvement est plus facile"
+          }
+        }
+      },
+      "comment": "Phase tip title: follicular"
+    },
+    "Higher estrogen supports muscle recovery, making this a good window for more intense workouts if that's your thing.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Higher estrogen supports muscle recovery, making this a good window for more intense workouts if that's your thing."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Höheres Östrogen unterstützt die Muskelregeneration, was diesen Zeitraum zu einem guten Fenster für intensivere Workouts macht, wenn das dein Ding ist."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los niveles más altos de estrógeno apoyan la recuperación muscular, lo que hace que este sea un buen momento para entrenamientos más intensos si es lo tuyo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un taux d'œstrogènes plus élevé soutient la récupération musculaire, ce qui en fait une bonne fenêtre pour des entraînements plus intenses si c'est votre truc."
+          }
+        }
+      },
+      "comment": "Phase tip body: follicular movement"
+    },
+    "Support your gut": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Support your gut"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Darm unterstützen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuida tu intestino"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prenez soin de votre intestin"
+          }
+        }
+      },
+      "comment": "Phase tip title: follicular"
+    },
+    "Fermented foods like yogurt and kimchi support the gut microbiome, which influences hormone processing.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fermented foods like yogurt and kimchi support the gut microbiome, which influences hormone processing."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fermentierte Lebensmittel wie Joghurt und Kimchi unterstützen das Darmmikrobiom, das die Hormonverarbeitung beeinflusst."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los alimentos fermentados como el yogur y el kimchi apoyan el microbioma intestinal, que influye en el procesamiento hormonal."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les aliments fermentés comme le yaourt et le kimchi soutiennent le microbiome intestinal, qui influence le traitement des hormones."
+          }
+        }
+      },
+      "comment": "Phase tip body: follicular gut"
+    },
+    "Peak energy window": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peak energy window"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Energie auf dem Höhepunkt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ventana de energía máxima"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pic d'énergie"
+          }
+        }
+      },
+      "comment": "Phase tip title: ovulatory"
+    },
+    "Many people feel most social and energised around ovulation. A good time for presentations or important conversations.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Many people feel most social and energised around ovulation. A good time for presentations or important conversations."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viele Menschen fühlen sich um den Eisprung herum am geselligsten und energiegeladensten. Ein guter Zeitpunkt für Präsentationen oder wichtige Gespräche."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muchas personas se sienten más sociables y con más energía alrededor de la ovulación. Un buen momento para presentaciones o conversaciones importantes."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beaucoup de personnes se sentent plus sociables et énergiques autour de l'ovulation. Un bon moment pour des présentations ou des conversations importantes."
+          }
+        }
+      },
+      "comment": "Phase tip body: ovulatory peak energy"
+    },
+    "Basal temperature rises": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Basal temperature rises"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Basaltemperatur steigt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La temperatura basal sube"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La température basale augmente"
+          }
+        }
+      },
+      "comment": "Phase tip title: ovulatory"
+    },
+    "A slight rise in basal body temperature after ovulation is normal — it confirms ovulation has occurred.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A slight rise in basal body temperature after ovulation is normal — it confirms ovulation has occurred."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein leichter Anstieg der Basaltemperatur nach dem Eisprung ist normal — er bestätigt, dass der Eisprung stattgefunden hat."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un ligero aumento de la temperatura corporal basal después de la ovulación es normal — confirma que la ovulación ha ocurrido."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une légère hausse de la température corporelle basale après l'ovulation est normale — elle confirme que l'ovulation a eu lieu."
+          }
+        }
+      },
+      "comment": "Phase tip body: ovulatory basal temp"
+    },
+    "Stay hydrated": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stay hydrated"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gut hydratiert bleiben"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mantente hidratada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restez hydratée"
+          }
+        }
+      },
+      "comment": "Phase tip title: ovulatory"
+    },
+    "Hormonal shifts around ovulation can increase body temperature slightly. Extra water helps.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hormonal shifts around ovulation can increase body temperature slightly. Extra water helps."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hormonelle Veränderungen rund um den Eisprung können die Körpertemperatur leicht erhöhen. Mehr Wasser hilft."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los cambios hormonales alrededor de la ovulación pueden aumentar ligeramente la temperatura corporal. Beber más agua ayuda."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les changements hormonaux autour de l'ovulation peuvent légèrement augmenter la température corporelle. Boire plus d'eau aide."
+          }
+        }
+      },
+      "comment": "Phase tip body: ovulatory hydration"
+    },
+    "Notice your body": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notice your body"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auf deinen Körper achten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Presta atención a tu cuerpo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Écoutez votre corps"
+          }
+        }
+      },
+      "comment": "Phase tip title: ovulatory"
+    },
+    "Some people feel mild one-sided pelvic discomfort around ovulation (mittelschmerz). It's common and usually brief.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Some people feel mild one-sided pelvic discomfort around ovulation (mittelschmerz). It's common and usually brief."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manche Menschen spüren um den Eisprung herum ein leichtes einseitiges Unterleibsziehen (Mittelschmerz). Das ist häufig und meist kurz."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Algunas personas sienten una leve molestia pélvica unilateral alrededor de la ovulación (mittelschmerz). Es común y suele ser breve."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Certaines personnes ressentent une légère gêne pelvienne d'un côté autour de l'ovulation (mittelschmerz). C'est courant et généralement bref."
+          }
+        }
+      },
+      "comment": "Phase tip body: ovulatory mittelschmerz"
+    },
+    "Mood may shift": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mood may shift"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stimmung kann sich verändern"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El estado de ánimo puede cambiar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'humeur peut changer"
+          }
+        }
+      },
+      "comment": "Phase tip title: luteal"
+    },
+    "Progesterone rises then drops in the luteal phase. If your mood dips in the second half, that's a recognised pattern.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progesterone rises then drops in the luteal phase. If your mood dips in the second half, that's a recognised pattern."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progesteron steigt und fällt dann in der Lutealphase. Wenn deine Stimmung in der zweiten Hälfte sinkt, ist das ein bekanntes Muster."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La progesterona sube y luego baja en la fase lútea. Si tu estado de ánimo decae en la segunda mitad, es un patrón reconocido."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La progestérone monte puis chute pendant la phase lutéale. Si votre humeur baisse dans la seconde moitié, c'est un schéma reconnu."
+          }
+        }
+      },
+      "comment": "Phase tip body: luteal mood"
+    },
+    "Magnesium may help": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Magnesium may help"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Magnesium kann helfen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El magnesio puede ayudar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le magnésium peut aider"
+          }
+        }
+      },
+      "comment": "Phase tip title: luteal"
+    },
+    "Some research links magnesium intake to reduced PMS symptoms. Dark chocolate and nuts are decent sources.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Some research links magnesium intake to reduced PMS symptoms. Dark chocolate and nuts are decent sources."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einige Studien zeigen, dass Magnesium PMS-Symptome lindern kann. Dunkle Schokolade und Nüsse sind gute Quellen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Algunas investigaciones relacionan el consumo de magnesio con la reducción de los síntomas del SPM. El chocolate negro y los frutos secos son buenas fuentes."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Certaines recherches associent la prise de magnésium à une réduction des symptômes du SPM. Le chocolat noir et les noix en sont de bonnes sources."
+          }
+        }
+      },
+      "comment": "Phase tip body: luteal magnesium"
+    },
+    "Sleep changes are normal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep changes are normal"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlafveränderungen sind normal"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los cambios en el sueño son normales"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les changements de sommeil sont normaux"
+          }
+        }
+      },
+      "comment": "Phase tip title: luteal"
+    },
+    "Progesterone can affect sleep quality in the luteal phase. Cooler room temperature and consistent sleep times help.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progesterone can affect sleep quality in the luteal phase. Cooler room temperature and consistent sleep times help."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progesteron kann die Schlafqualität in der Lutealphase beeinflussen. Eine kühlere Raumtemperatur und regelmäßige Schlafzeiten helfen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La progesterona puede afectar la calidad del sueño en la fase lútea. Una temperatura ambiente más fresca y horarios de sueño regulares ayudan."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La progestérone peut affecter la qualité du sommeil pendant la phase lutéale. Une température ambiante plus fraîche et des horaires de sommeil réguliers aident."
+          }
+        }
+      },
+      "comment": "Phase tip body: luteal sleep"
+    },
+    "Reduce salt if bloated": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reduce salt if bloated"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salz reduzieren bei Blähungen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reduce la sal si tienes hinchazón"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réduire le sel en cas de ballonnements"
+          }
+        }
+      },
+      "comment": "Phase tip title: luteal"
+    },
+    "Bloating is common in the late luteal phase. Reducing salty foods and increasing water can ease it.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloating is common in the late luteal phase. Reducing salty foods and increasing water can ease it."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blähungen sind in der späten Lutealphase häufig. Weniger salzige Lebensmittel und mehr Wasser können helfen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La hinchazón es común en la fase lútea tardía. Reducir los alimentos salados y aumentar el agua puede aliviarla."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les ballonnements sont courants en fin de phase lutéale. Réduire les aliments salés et augmenter l'apport en eau peut les soulager."
+          }
+        }
+      },
+      "comment": "Phase tip body: luteal bloating"
     }
   },
   "version": "1.0"
