@@ -205,7 +205,7 @@
 		CDBECD682D4010D2006A37C9 /* safeflowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeflowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = safeflowTests.swift; sourceTree = "<group>"; };
 		CDBECD722D4010D2006A37C9 /* safeflowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeflowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CDDC84D72F8AA9640013BF34 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		CDDC84D72F8AA9640013BF34 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = ../Sources/Localizable.xcstrings; sourceTree = "<group>"; };
 		CDDC84D92F8AD8F10013BF34 /* SafeFlowAccessibility.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = SafeFlowAccessibility.xctestplan; path = Tests/SafeFlowAccessibility.xctestplan; sourceTree = "<group>"; };
 		CDDC84DA2F8AD8F10013BF34 /* SafeFlowLocalisation.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = SafeFlowLocalisation.xctestplan; path = Tests/SafeFlowLocalisation.xctestplan; sourceTree = "<group>"; };
 		DD11223344556677889900BB /* DartboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DartboardViewModel.swift; sourceTree = "<group>"; };
@@ -723,6 +723,9 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				es,
+				fr,
 			);
 			mainGroup = CDBECD4C2D4010D1006A37C9;
 			packageReferences = (
