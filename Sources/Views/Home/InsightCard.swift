@@ -26,7 +26,7 @@ struct InsightCard: View {
                         .font(.system(.subheadline, design: .rounded, weight: .semibold))
                         .foregroundColor(AppTheme.Colors.deepGrayText)
 
-                    Text(insight.phase.displayName + " phase")
+                    Text(insight.phase.displayNameString + " phase")
                         .font(.system(.caption2, design: .rounded))
                         .foregroundColor(AppTheme.Colors.mediumGrayText)
                 }
@@ -158,7 +158,7 @@ private extension SymptomInsight {
     var headlineText: String {
         switch kind {
         case .personalPattern:
-            return symptom?.localizedName ?? "Symptom pattern"
+            return symptom?.localizedNameString ?? "Symptom pattern"
         case .moodPattern(let valence):
             switch valence {
             case .positive: return "Positive mood pattern"
@@ -173,7 +173,7 @@ private extension SymptomInsight {
         case .personalPattern:
             guard let s = symptom else { return "" }
             let freq = Int(round(personalFrequency * 100))
-            return "You log \(s.localizedName.lowercased()) on \(freq)% of your \(phase.dayLabel)s."
+            return "You log \(s.localizedNameString.lowercased()) on \(freq)% of your \(phase.dayLabel)s."
         case .moodPattern(let valence):
             let freq = Int(round(personalFrequency * 100))
             switch valence {

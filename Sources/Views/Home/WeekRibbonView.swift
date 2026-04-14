@@ -95,6 +95,14 @@ enum ChartRange: String, CaseIterable {
     case month = "1M"
     case threeMonth = "3M"
 
+    var label: LocalizedStringKey {
+        switch self {
+        case .week:       return "1W"
+        case .month:      return "1M"
+        case .threeMonth: return "3M"
+        }
+    }
+
     var columnCount: Int {
         switch self {
         case .week:       return 7
@@ -115,6 +123,7 @@ struct WeekRibbonView: View {
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.locale) private var locale
 
     @State private var range: ChartRange = .week
     /// Offset in units of `range` from the anchor date
@@ -163,9 +172,11 @@ struct WeekRibbonView: View {
     private var windowLabel: String {
         let dates = windowDates()
         guard let first = dates.first, let last = dates.last else { return "" }
-        let sf = DateFormatter(); sf.dateFormat = "MMM d"
-        let ef = DateFormatter()
-        ef.dateFormat = cal.isDate(first, equalTo: last, toGranularity: .month) ? "d" : "MMM d"
+        let sameMonth = cal.isDate(first, equalTo: last, toGranularity: .month)
+        let sf = DateFormatter(); sf.locale = locale
+        sf.setLocalizedDateFormatFromTemplate("MMMd")
+        let ef = DateFormatter(); ef.locale = locale
+        ef.setLocalizedDateFormatFromTemplate(sameMonth ? "d" : "MMMd")
         return "\(sf.string(from: first)) – \(ef.string(from: last))"
     }
 
@@ -192,7 +203,7 @@ struct WeekRibbonView: View {
                 // Range picker
                 Picker("Range", selection: $range) {
                     ForEach(ChartRange.allCases, id: \.self) { r in
-                        Text(r.rawValue).tag(r)
+                        Text(r.label).tag(r)
                     }
                 }
                 .pickerStyle(.segmented)
@@ -508,12 +519,12 @@ struct WeekRibbonView: View {
     }
 
     private func dayAbbrev(_ date: Date) -> String {
-        let f = DateFormatter(); f.dateFormat = "EEE"
+        let f = DateFormatter(); f.dateFormat = "EEE"; f.locale = locale
         return f.string(from: date).uppercased()
     }
 
     private func monthAbbrev(_ date: Date) -> String {
-        let f = DateFormatter(); f.dateFormat = "MMM"
+        let f = DateFormatter(); f.dateFormat = "MMM"; f.locale = locale
         return f.string(from: date)
     }
 }
@@ -523,7 +534,7 @@ struct WeekRibbonView: View {
 enum RibbonDimension: CaseIterable {
     case mood, energy, flow, pain, body, fatigue
 
-    var label: String {
+    var label: LocalizedStringKey {
         switch self {
         case .mood:    return "Mood"
         case .energy:  return "Energy"
@@ -727,13 +738,15 @@ struct DayDetailCard: View {
     let day: CycleDay?
     @ObservedObject var cycleStore: CycleStore
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.locale) private var locale
     @State private var showingLogSheet = false
 
     private let cal = Calendar.current
 
     private var dateLabel: String {
         let f = DateFormatter()
-        f.dateFormat = "EEEE, MMM d"
+        f.locale = locale
+        f.setLocalizedDateFormatFromTemplate("EEEEMMMd")
         return f.string(from: date)
     }
 
@@ -838,7 +851,7 @@ struct DayDetailCard: View {
 
     @ViewBuilder
     private func detailSection<Content: View>(
-        title: String,
+        title: LocalizedStringKey,
         color: Color,
         @ViewBuilder content: () -> Content
     ) -> some View {

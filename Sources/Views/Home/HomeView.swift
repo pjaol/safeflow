@@ -192,6 +192,7 @@ private struct EditLogsSheet: View {
     let cycleStore: CycleStore
     @State private var selectedDate: Date
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.locale) private var locale
 
     init(cycleStore: CycleStore, initialDate: Date) {
         self.cycleStore = cycleStore
@@ -231,7 +232,7 @@ private struct EditLogsSheet: View {
                 }
             }
             .background(AppTheme.Colors.background)
-            .navigationTitle(selectedDate.formatted(.dateTime.month(.abbreviated).day().year()))
+            .navigationTitle(selectedDate.formatted(.dateTime.month(.abbreviated).day().year().locale(locale)))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -252,18 +253,22 @@ private struct LogCalendarView: View {
     let loggedDates: Set<String>
 
     @State private var displayedMonth: Date
+    @Environment(\.locale) private var locale
 
     private let cal = Calendar.current
     private let dayFormatter: DateFormatter = {
         let f = DateFormatter(); f.dateFormat = "yyyy-MM-dd"; return f
     }()
     private let cols = Array(repeating: GridItem(.flexible(), spacing: 0), count: 7)
-    private let weekdaySymbols: [String] = {
-        var syms = Calendar.current.veryShortWeekdaySymbols
+
+    private var weekdaySymbols: [String] {
+        var locCal = Calendar.current
+        locCal.locale = locale
+        var syms = locCal.veryShortWeekdaySymbols
         // Rotate so week starts on Monday (index 1 = Mon … 0 = Sun moves to end)
         let sun = syms.removeFirst(); syms.append(sun)
         return syms
-    }()
+    }
 
     init(selectedDate: Binding<Date>, loggedDates: Set<String>) {
         _selectedDate = selectedDate
@@ -308,7 +313,7 @@ private struct LogCalendarView: View {
 
                 Spacer()
 
-                Text(displayedMonth.formatted(.dateTime.month(.wide).year()))
+                Text(displayedMonth.formatted(.dateTime.month(.wide).year().locale(locale)))
                     .font(.system(.subheadline, design: .rounded, weight: .semibold))
                     .foregroundColor(AppTheme.Colors.deepGrayText)
 
@@ -470,7 +475,11 @@ private struct LogDayFormView: View {
                 HStack(spacing: 8) {
                     Image(systemName: saved ? "checkmark.circle.fill" : "square.and.arrow.down")
                         .accessibilityHidden(true)
-                    Text(saved ? "Saved" : (existingDay != nil ? "Update Log" : "Save Log"))
+                    Group {
+                        if saved { Text("Saved") }
+                        else if existingDay != nil { Text("Update Log") }
+                        else { Text("Save Log") }
+                    }
                 }
                 .font(.system(.body, design: .rounded, weight: .semibold))
                 .foregroundColor(.white)
@@ -572,7 +581,7 @@ private struct LogDayFormView: View {
         .shadow(color: Color.black.opacity(0.06), radius: 6, x: 0, y: 2)
     }
 
-    private func sectionHeader(_ title: String, systemImage: String, color: Color) -> some View {
+    private func sectionHeader(_ title: LocalizedStringKey, systemImage: String, color: Color) -> some View {
         HStack(spacing: 6) {
             Image(systemName: systemImage).foregroundColor(color)
                 .font(.system(.callout, weight: .semibold))

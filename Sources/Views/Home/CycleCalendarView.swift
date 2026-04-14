@@ -109,7 +109,7 @@ struct CycleCalendarView: View {
         }
     }
 
-    private func legendChip(color: Color, label: String, dashed: Bool = false) -> some View {
+    private func legendChip(color: Color, label: LocalizedStringKey, dashed: Bool = false) -> some View {
         HStack(spacing: 4) {
             if dashed {
                 RoundedRectangle(cornerRadius: 2)
@@ -662,7 +662,7 @@ struct DayDetailView: View {
                         }
                         if !day.symptoms.isEmpty {
                             Section {
-                                ForEach(Array(day.symptoms).sorted { $0.localizedName < $1.localizedName }, id: \.self) { symptom in
+                                ForEach(Array(day.symptoms).sorted { $0.localizedNameString < $1.localizedNameString }, id: \.self) { symptom in
                                     Label(symptom.localizedName, systemImage: symptom.sfSymbol)
                                         .font(AppTheme.Typography.bodyFont)
                                 }

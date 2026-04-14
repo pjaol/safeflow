@@ -9,6 +9,8 @@ struct CyclePhaseCard: View {
     let averageCycleLength: Int?
     let hasEnoughData: Bool
 
+    @Environment(\.locale) private var locale
+
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             if let phase {
@@ -137,21 +139,15 @@ struct CyclePhaseCard: View {
     // MARK: - Date Formatting
 
     private func formattedRange(_ range: (earliest: Date, latest: Date)) -> String {
-        let formatter = DateFormatter()
         let calendar = Calendar.current
-
-        if calendar.isDate(range.earliest, equalTo: range.latest, toGranularity: .month) {
-            formatter.dateFormat = "d"
-            let endStr = formatter.string(from: range.latest)
-            formatter.dateFormat = "MMM d"
-            let startStr = formatter.string(from: range.earliest)
-            return "\(startStr)–\(endStr)"
-        } else {
-            formatter.dateFormat = "MMM d"
-            let startStr = formatter.string(from: range.earliest)
-            let endStr = formatter.string(from: range.latest)
-            return "\(startStr) – \(endStr)"
-        }
+        let sameMonth = calendar.isDate(range.earliest, equalTo: range.latest, toGranularity: .month)
+        let sf = DateFormatter(); sf.locale = locale
+        sf.setLocalizedDateFormatFromTemplate("MMMd")
+        let ef = DateFormatter(); ef.locale = locale
+        ef.setLocalizedDateFormatFromTemplate(sameMonth ? "d" : "MMMd")
+        return sameMonth
+            ? "\(sf.string(from: range.earliest))–\(ef.string(from: range.latest))"
+            : "\(sf.string(from: range.earliest)) – \(ef.string(from: range.latest))"
     }
 }
 

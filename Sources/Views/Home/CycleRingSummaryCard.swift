@@ -171,10 +171,7 @@ struct CycleRingSummaryCard: View {
     private var badgeRow: some View {
         HStack(spacing: 8) {
             if alertCount > 0 {
-                badge(
-                    label: "\(alertCount) alert\(alertCount == 1 ? "" : "s")",
-                    color: AppTheme.Colors.amber
-                )
+                alertBadge(count: alertCount, color: AppTheme.Colors.amber)
             }
             if insightCount > 0 {
                 badge(label: "1 insight", color: phaseColor)
@@ -190,7 +187,17 @@ struct CycleRingSummaryCard: View {
         }
     }
 
-    private func badge(label: String, color: Color) -> some View {
+    private func alertBadge(count: Int, color: Color) -> some View {
+        Text(count == 1 ? "\(count) alert" : "\(count) alerts")
+            .font(.system(.caption2, design: .rounded, weight: .semibold))
+            .foregroundColor(color)
+            .padding(.horizontal, 7)
+            .padding(.vertical, 3)
+            .background(color.opacity(0.12))
+            .cornerRadius(6)
+    }
+
+    private func badge(label: LocalizedStringKey, color: Color) -> some View {
         Text(label)
             .font(.system(.caption2, design: .rounded, weight: .semibold))
             .foregroundColor(color)
@@ -205,7 +212,7 @@ struct CycleRingSummaryCard: View {
     private var accessibilityLabel: String {
         var parts: [String] = []
         if let phase {
-            parts.append(phase.displayName + " phase")
+            parts.append(phase.displayNameString + " phase")
         }
         if let day = cycleDay {
             parts.append("day \(day)")
@@ -491,7 +498,7 @@ struct CycleDetailSheet: View {
 private enum DetailTab: String, Hashable, CaseIterable {
     case overview, insights, tips, alerts
 
-    var label: String {
+    var label: LocalizedStringKey {
         switch self {
         case .overview:  return "Overview"
         case .insights:  return "Insights"

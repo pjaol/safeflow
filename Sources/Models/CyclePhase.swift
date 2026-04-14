@@ -1,4 +1,4 @@
-import Foundation
+import SwiftUI
 
 enum CyclePhase: String, CaseIterable {
     case menstrual
@@ -6,26 +6,36 @@ enum CyclePhase: String, CaseIterable {
     case ovulatory
     case luteal
 
-    var displayName: String {
+    var displayName: LocalizedStringKey {
         switch self {
-        case .menstrual: return NSLocalizedString("Menstrual", comment: "")
-        case .follicular: return NSLocalizedString("Follicular", comment: "")
-        case .ovulatory: return NSLocalizedString("Ovulation Window", comment: "")
-        case .luteal: return NSLocalizedString("Luteal", comment: "")
+        case .menstrual: return "Menstrual"
+        case .follicular: return "Follicular"
+        case .ovulatory: return "Ovulation Window"
+        case .luteal: return "Luteal"
+        }
+    }
+
+    /// Plain String variant for use in string interpolation and concatenation contexts.
+    var displayNameString: String {
+        switch self {
+        case .menstrual: return String(localized: "Menstrual")
+        case .follicular: return String(localized: "Follicular")
+        case .ovulatory: return String(localized: "Ovulation Window")
+        case .luteal: return String(localized: "Luteal")
         }
     }
 
     /// One-line description shown on the cycle phase card.
-    var phaseDescription: String {
+    var phaseDescription: LocalizedStringKey {
         switch self {
         case .menstrual:
-            return NSLocalizedString("Rest if you can. Your body is doing real work.", comment: "")
+            return "Rest if you can. Your body is doing real work."
         case .follicular:
-            return NSLocalizedString("Energy typically builds. Good time for new projects.", comment: "")
+            return "Energy typically builds. Good time for new projects."
         case .ovulatory:
-            return NSLocalizedString("Often the highest-energy point of your cycle.", comment: "")
+            return "Often the highest-energy point of your cycle."
         case .luteal:
-            return NSLocalizedString("Energy may dip toward the end of this phase.", comment: "")
+            return "Energy may dip toward the end of this phase."
         }
     }
 

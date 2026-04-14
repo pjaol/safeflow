@@ -93,7 +93,7 @@ struct DartboardSegment: View {
         .animation(.spring(response: 0.25, dampingFraction: 0.5), value: bouncing)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(item.label)
-        .accessibilityHint(isActive ? "Logged. Tap to remove." : "Tap to log \(item.label).")
+        .accessibilityHint(isActive ? "Logged. Tap to remove." : "Tap to log \(item.labelString).")
         .accessibilityAddTraits(isActive ? [.isButton, .isSelected] : .isButton)
     }
 
@@ -131,7 +131,7 @@ struct DartboardSegment: View {
             Text(item.label)
                 .font(.system(.caption2, design: .rounded, weight: .semibold))
                 .foregroundStyle(contentColor)
-                .lineLimit(1)
+                .lineLimit(2)
                 .minimumScaleFactor(0.6)
                 .frame(width: 64)
                 .multilineTextAlignment(.center)

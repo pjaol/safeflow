@@ -123,7 +123,7 @@ struct ForecastView: View {
         }
     }
 
-    private func legendChip(color: Color, label: String) -> some View {
+    private func legendChip(color: Color, label: LocalizedStringKey) -> some View {
         HStack(spacing: 4) {
             RoundedRectangle(cornerRadius: 3)
                 .fill(color)

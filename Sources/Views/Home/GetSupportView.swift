@@ -9,6 +9,7 @@ struct GetSupportView: View {
     let cycleStore: CycleStore
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.locale) private var locale
 
     /// Selected country filter. nil = All.
     @State private var selectedRegion: String? = nil
@@ -39,9 +40,13 @@ struct GetSupportView: View {
         self.activeTags = Array(Set(tags))
     }
 
-    /// Two-letter ISO region code from device locale, uppercased. e.g. "US", "GB", "AU".
+    /// Region code matching our resources.json conventions, derived from the active app locale.
+    /// Maps iOS "GB" → "UK" to match resource region tags.
     private var userRegion: String? {
-        Locale.current.region?.identifier.uppercased()
+        let code = locale.region?.identifier.uppercased()
+            ?? Locale.current.region?.identifier.uppercased()
+        guard let code else { return nil }
+        return code == "GB" ? "UK" : code
     }
 
     /// All distinct non-global regions present in the resource list, sorted for display.
@@ -53,26 +58,43 @@ struct GetSupportView: View {
 
     /// Crisis resources pinned to top — filtered by country if a region is selected,
     /// but never filtered by the online-only toggle (phone lines must never be hidden).
+    /// Global crisis resources are suppressed when the active region has its own crisis entries,
+    /// so locale-specific hotlines always take precedence over English-language global fallbacks.
     private var crisisResources: [ContentResource] {
         let all = ContentLoader.resources.filter {
             $0.tags.contains("crisis") || $0.tags.contains("dv")
         }
-        if let selected = selectedRegion {
-            return all.filter {
-                $0.region.uppercased() == selected || $0.region.uppercased() == "GLOBAL"
+
+        // Determine the effective region: explicit filter selection or device locale
+        let effectiveRegion = selectedRegion ?? userRegion
+
+        if let region = effectiveRegion {
+            let regional = all.filter { $0.region.uppercased() == region }
+            // If locale-specific crisis resources exist, show only those — suppress global fallbacks
+            if !regional.isEmpty {
+                return regional
             }
+            // No regional entries: fall back to global
+            return all.filter { $0.region.uppercased() == "GLOBAL" }
         }
-        return all
+
+        // No region context: show all (regional + global), sorted regional first
+        return all.sorted { a, _ in a.region.uppercased() != "GLOBAL" }
     }
 
     private var nonCrisisGroupedResources: [(category: String, resources: [ContentResource])] {
         let crisisIds = Set(crisisResources.map(\.id))
         var all = ContentLoader.resources.filter { !crisisIds.contains($0.id) }
 
-        // Apply country filter: show selected region + global, or all if no filter
-        if let selected = selectedRegion {
+        // Apply country filter
+        let effectiveRegion = selectedRegion ?? userRegion
+        if let region = effectiveRegion {
+            let regional = all.filter { $0.region.uppercased() == region }
+            // Per-category: if a regional entry exists, suppress global entries in that category
+            let regionalCategories = Set(regional.map(\.category))
             all = all.filter {
-                $0.region.uppercased() == selected || $0.region.uppercased() == "GLOBAL"
+                $0.region.uppercased() == region ||
+                ($0.region.uppercased() == "GLOBAL" && !regionalCategories.contains($0.category))
             }
         }
 
@@ -137,7 +159,7 @@ struct GetSupportView: View {
 
                     ForEach(nonCrisisGroupedResources, id: \.category) { group in
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(group.category)
+                            Text(categoryLocalizedLabel(group.category))
                                 .font(.system(.subheadline, design: .rounded, weight: .semibold))
                                 .foregroundColor(AppTheme.Colors.mediumGrayText)
                                 .padding(.horizontal, 4)
@@ -155,6 +177,13 @@ struct GetSupportView: View {
             .background(AppTheme.Colors.background)
             .navigationTitle("Get Support")
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                // Pre-select the user's locale region if we have resources for it
+                if selectedRegion == nil, let region = userRegion,
+                   availableRegions.contains(where: { $0.uppercased() == region }) {
+                    selectedRegion = region
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") { dismiss() }
@@ -200,14 +229,8 @@ struct GetSupportView: View {
         }
     }
 
-    private func regionLabel(_ region: String) -> String {
-        switch region {
-        case "US": return "United States"
-        case "UK": return "United Kingdom"
-        case "AU": return "Australia"
-        case "CA": return "Canada"
-        default:   return region
-        }
+    private func regionLabel(_ region: String) -> LocalizedStringKey {
+        LocalizedStringKey(region)
     }
 
     private var crisisSection: some View {
@@ -264,8 +287,13 @@ struct GetSupportView: View {
         case "crisis":             return "Crisis & Safety"
         case "mental_health":      return "Mental Health"
         case "reproductive_health": return "Reproductive Health"
+        case "sexual_health":      return "Sexual Health"
         default:                   return raw.replacingOccurrences(of: "_", with: " ").capitalized
         }
+    }
+
+    private func categoryLocalizedLabel(_ raw: String) -> LocalizedStringKey {
+        LocalizedStringKey(categoryLabel(raw))
     }
 }
 
@@ -317,7 +345,7 @@ private struct ResourceRow: View {
                         LinkButton(label: "Visit", systemImage: "arrow.up.right.square", urlString: url)
                     }
                     if let phone = resource.phone, !phone.isEmpty {
-                        LinkButton(label: phone, systemImage: "phone", urlString: "tel:\(phone.filter { $0.isNumber || $0 == "+" })")
+                        LinkButton(label: LocalizedStringKey(phone), systemImage: "phone", urlString: "tel:\(phone.filter { $0.isNumber || $0 == "+" })")
                     }
                 }
                 .padding(.top, 2)
@@ -367,7 +395,7 @@ private struct ResourceRow: View {
 // MARK: - FilterChip
 
 private struct FilterChip: View {
-    let label: String
+    let label: LocalizedStringKey
     let isActive: Bool
     let action: () -> Void
 
@@ -390,7 +418,7 @@ private struct FilterChip: View {
 // MARK: - LinkButton
 
 private struct LinkButton: View {
-    let label: String
+    let label: LocalizedStringKey
     let systemImage: String
     let urlString: String
 

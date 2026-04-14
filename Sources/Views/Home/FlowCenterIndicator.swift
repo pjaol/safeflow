@@ -104,7 +104,7 @@ struct FlowStepSlider: View {
         .padding(.horizontal, 4)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("Flow intensity")
-        .accessibilityValue(viewModel.committedFlow?.localizedName ?? "Not logged")
+        .accessibilityValue(viewModel.committedFlow?.localizedNameString ?? "Not logged")
         .accessibilityAdjustableAction { direction in
             adjustFlow(direction)
         }

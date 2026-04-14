@@ -40,7 +40,7 @@ struct LogDayView: View {
                 .padding()
             }
             .background(AppTheme.Colors.background)
-            .navigationTitle(existingDay != nil ? "Edit Log" : "New Log")
+            .navigationTitle(existingDay != nil ? LocalizedStringKey("Edit Log") : LocalizedStringKey("New Log"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -193,7 +193,7 @@ struct LogDayView: View {
 
     // MARK: - Helpers
 
-    private func sectionHeader(_ title: String, systemImage: String, color: Color) -> some View {
+    private func sectionHeader(_ title: LocalizedStringKey, systemImage: String, color: Color) -> some View {
         HStack(spacing: 6) {
             Image(systemName: systemImage)
                 .foregroundColor(color)
@@ -225,7 +225,7 @@ struct LogDayView: View {
 // MARK: - Flow Chip
 
 struct FlowChip: View {
-    let label: String
+    let label: LocalizedStringKey
     let sfSymbol: String
     let isSelected: Bool
     let color: Color
@@ -253,7 +253,7 @@ struct FlowChip: View {
 // MARK: - Category Tab
 
 struct CategoryTab: View {
-    let label: String
+    let label: LocalizedStringKey
     let isSelected: Bool
     let action: () -> Void
 

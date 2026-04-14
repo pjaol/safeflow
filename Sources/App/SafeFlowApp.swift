@@ -5,6 +5,7 @@ import os
 struct SafeFlowApp: App {
     @StateObject private var cycleStore = CycleStore()
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
+    @AppStorage("appLanguage") private var appLanguage: String = "en"
     private let logger = Logger(subsystem: "com.thevgergroup.safeflow", category: "SafeFlowApp")
 
     private class SecurityServiceWrapper: ObservableObject {
@@ -41,9 +42,34 @@ struct SafeFlowApp: App {
                 }
             }
             .ignoresSafeArea()
+            .environment(\.locale, Locale(identifier: appLanguage.isEmpty ? "en" : appLanguage))
             .onAppear { handleLaunchArguments() }
+            // #if DEBUG || BETA
+            // .overlay(alignment: .bottom) { localeDebugBanner }
+            // #endif
         }
     }
+
+    // #if DEBUG || BETA
+    // private var localeDebugBanner: some View {
+    //     let resolvedLocale = Locale(identifier: appLanguage.isEmpty ? "en" : appLanguage)
+    //     let osLanguages = (UserDefaults.standard.array(forKey: "AppleLanguages") as? [String])?.prefix(2).joined(separator: ", ") ?? "?"
+    //     let osLocale = UserDefaults.standard.string(forKey: "AppleLocale") ?? Locale.current.identifier
+    //
+    //     return VStack(spacing: 2) {
+    //         Text("appLanguage: \"\(appLanguage)\" → \(resolvedLocale.identifier)")
+    //         Text("OS AppleLanguages: \(osLanguages)")
+    //         Text("OS AppleLocale: \(osLocale)")
+    //         Text("Bundle locale: \(Bundle.main.preferredLocalizations.first ?? "?")")
+    //     }
+    //     .font(.system(size: 10, design: .monospaced))
+    //     .foregroundColor(.white)
+    //     .padding(.horizontal, 8)
+    //     .padding(.vertical, 4)
+    //     .background(Color.black.opacity(0.75))
+    //     .padding(.bottom, 8)
+    // }
+    // #endif
 
     @ViewBuilder
     private func mainContent(securityService: SecurityService, geometry: GeometryProxy) -> some View {
