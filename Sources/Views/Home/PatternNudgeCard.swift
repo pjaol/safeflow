@@ -21,10 +21,10 @@ struct PatternNudgeCard: View {
                 .foregroundColor(AppTheme.Colors.deepGrayText)
 
             VStack(alignment: .leading, spacing: 6) {
-                Text(nudge.title)
+                Text(LocalizedStringKey(nudge.title))
                     .font(.system(.subheadline, design: .rounded, weight: .semibold))
                     .foregroundColor(AppTheme.Colors.deepGrayText)
-                Text(nudge.body)
+                Text(LocalizedStringKey(nudge.body))
                     .font(.system(.caption, design: .rounded))
                     .foregroundColor(AppTheme.Colors.mediumGrayText)
                     .fixedSize(horizontal: false, vertical: true)
@@ -119,7 +119,7 @@ struct CycleNudge: Identifiable, Equatable {
             id: "pattern.shortCycle",
             sfSymbol: "calendar",
             title: "Your cycles are running short",
-            body: "Your average cycle is around \(avg) days. Cycles shorter than 21 days are worth mentioning to a doctor — it's a common and treatable pattern.",
+            body: "Cycles shorter than 21 days are worth mentioning to a doctor — it's a common and treatable pattern.",
             backgroundColor: AppTheme.Colors.nudgeHealthBackground
         )
     }
@@ -130,7 +130,7 @@ struct CycleNudge: Identifiable, Equatable {
             id: "pattern.longCycle",
             sfSymbol: "calendar",
             title: "Your cycles are running long",
-            body: "Your average cycle is around \(avg) days. Cycles over 35 days can have a few different causes — a doctor can help figure out what's going on.",
+            body: "Cycles over 35 days can have a few different causes — a doctor can help figure out what's going on.",
             backgroundColor: AppTheme.Colors.nudgeHealthBackground
         )
     }

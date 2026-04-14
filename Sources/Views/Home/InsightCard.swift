@@ -122,10 +122,10 @@ struct SeveritySignalCard: View {
                 .clipShape(RoundedRectangle(cornerRadius: 8))
 
             VStack(alignment: .leading, spacing: 4) {
-                Text(signal.title)
+                Text(LocalizedStringKey(signal.title))
                     .font(.system(.subheadline, design: .rounded, weight: .semibold))
                     .foregroundColor(AppTheme.Colors.deepGrayText)
-                Text(signal.body)
+                Text(LocalizedStringKey(signal.body))
                     .font(.system(.caption, design: .rounded))
                     .foregroundColor(AppTheme.Colors.mediumGrayText)
                     .fixedSize(horizontal: false, vertical: true)

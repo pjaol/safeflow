@@ -4794,6 +4794,760 @@
           }
         }
       }
+    },
+    "Your cycles are running short": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your cycles are running short"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Zyklus ist zu kurz"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus ciclos son cortos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vos cycles sont trop courts"
+          }
+        }
+      },
+      "comment": "Nudge title: short cycle pattern"
+    },
+    "Your cycles are running long": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your cycles are running long"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Zyklus ist zu lang"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus ciclos son largos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vos cycles sont trop longs"
+          }
+        }
+      },
+      "comment": "Nudge title: long cycle pattern"
+    },
+    "Your cycle length varies a lot": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your cycle length varies a lot"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Zykluslänge schwankt stark"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La duración de tus ciclos varía mucho"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La durée de vos cycles varie beaucoup"
+          }
+        }
+      },
+      "comment": "Nudge title: high variability pattern"
+    },
+    "Your periods are running long": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your periods are running long"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Periode dauert zu lange"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus períodos son largos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vos règles durent longtemps"
+          }
+        }
+      },
+      "comment": "Nudge title: long period pattern"
+    },
+    "You've been logging cramps": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You've been logging cramps"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast Krämpfe erfasst"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Has registrado cólicos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous avez noté des crampes"
+          }
+        }
+      },
+      "comment": "Nudge title: comfort nudge for cramps"
+    },
+    "Your average cycle is around %lld days. Cycles shorter than 21 days are worth mentioning to a doctor — it’s a common and treatable pattern.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your average cycle is around %lld days. Cycles shorter than 21 days are worth mentioning to a doctor — it’s a common and treatable pattern."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein durchschnittlicher Zyklus beträgt etwa %lld Tage. Zyklen unter 21 Tagen solltest du mit einer Ärztin besprechen — das ist ein häufiges und behandelbares Muster."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu ciclo promedio es de %lld días. Los ciclos de menos de 21 días vale la pena mencionárselos a un médico — es un patrón común y tratable."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre cycle moyen dure environ %lld jours. Les cycles inférieurs à 21 jours méritent d’être mentionnés à un médecin — c’est un schéma courant et traitable."
+          }
+        }
+      },
+      "comment": "Nudge body: short cycle, %lld = average cycle length in days"
+    },
+    "Your average cycle is around %lld days. Cycles over 35 days can have a few different causes — a doctor can help figure out what’s going on.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your average cycle is around %lld days. Cycles over 35 days can have a few different causes — a doctor can help figure out what’s going on."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein durchschnittlicher Zyklus beträgt etwa %lld Tage. Zyklen über 35 Tage können verschiedene Ursachen haben — eine Ärztin kann helfen, das abzuklären."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu ciclo promedio es de %lld días. Los ciclos de más de 35 días pueden tener varias causas — un médico puede ayudarte a entender qué está pasando."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre cycle moyen dure environ %lld jours. Les cycles supérieurs à 35 jours peuvent avoir plusieurs causes — un médecin peut vous aider à comprendre ce qui se passe."
+          }
+        }
+      },
+      "comment": "Nudge body: long cycle, %lld = average cycle length in days"
+    },
+    "Periods consistently over 7 days are worth mentioning to a doctor. There are several common, treatable causes.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Periods consistently over 7 days are worth mentioning to a doctor. There are several common, treatable causes."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perioden, die durchgehend über 7 Tage dauern, solltest du mit einer Ärztin besprechen. Es gibt mehrere häufige, behandelbare Ursachen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los períodos que duran más de 7 días de forma constante merecen mencionarse a un médico. Hay varias causas comunes y tratables."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Des règles qui durent régulièrement plus de 7 jours méritent d’être signalées à un médecin. Il existe plusieurs causes courantes et traitables."
+          }
+        }
+      },
+      "comment": "Nudge body: long period"
+    },
+    "A few things that can help: heat on your lower abdomen, ibuprofen taken with food at the first sign (not after), and magnesium-rich foods like dark chocolate and nuts.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A few things that can help: heat on your lower abdomen, ibuprofen taken with food at the first sign (not after), and magnesium-rich foods like dark chocolate and nuts."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein paar Dinge, die helfen können: Wärme auf dem Unterbauch, Ibuprofen beim ersten Anzeichen mit Essen nehmen (nicht danach) und magnesiumreiche Lebensmittel wie dunkle Schokolade und Nüsse."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Algunas cosas que pueden ayudar: calor en el abdomen inferior, ibuprofeno tomado con comida al primer signo (no después) y alimentos ricos en magnesio como el chocolate negro y los frutos secos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quelques choses qui peuvent aider : de la chaleur sur le bas-ventre, de l’ibuprofène pris avec de la nourriture aux premiers signes (pas après), et des aliments riches en magnésium comme le chocolat noir et les noix."
+          }
+        }
+      },
+      "comment": "Nudge body: cramps comfort suggestion"
+    },
+    "Your cramp days are increasing": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your cramp days are increasing"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Krampftage nehmen zu"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus días con cólicos están aumentando"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vos jours de crampes augmentent"
+          }
+        }
+      },
+      "comment": "Signal title: escalating cramps"
+    },
+    "You've been logging heavy flow": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You've been logging heavy flow"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast starke Blutungen erfasst"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Has registrado flujo abundante"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous avez noté des règles abondantes"
+          }
+        }
+      },
+      "comment": "Signal title: heavy flow pattern"
+    },
+    "Cramps outside your period": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cramps outside your period"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Krämpfe außerhalb deiner Periode"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cólicos fuera de tu período"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crampes en dehors de vos règles"
+          }
+        }
+      },
+      "comment": "Signal title: cramps in follicular phase"
+    },
+    "A pattern worth discussing with your doctor": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A pattern worth discussing with your doctor"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein Muster, das du mit deiner Ärztin besprechen solltest"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un patrón que vale la pena hablar con tu médico"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un schéma à discuter avec votre médecin"
+          }
+        }
+      },
+      "comment": "Signal title: PMDD pattern"
+    },
+    "Severe symptoms most cycles": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Severe symptoms most cycles"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Symptome in den meisten Zyklen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Síntomas graves en la mayoría de los ciclos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Symptômes sévères la plupart des cycles"
+          }
+        }
+      },
+      "comment": "Signal title: severe symptom cluster"
+    },
+    "Period pain that gets worse cycle over cycle is worth mentioning to a doctor. It can have treatable causes.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Period pain that gets worse cycle over cycle is worth mentioning to a doctor. It can have treatable causes."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regelschmerzen, die von Zyklus zu Zyklus schlimmer werden, solltest du mit einer Ärztin besprechen. Es kann behandelbare Ursachen geben."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El dolor menstrual que empeora de ciclo en ciclo vale la pena mencionárselo a un médico. Puede tener causas tratables."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Des douleurs menstruelles qui s’aggravent d’un cycle à l’autre méritent d’être signalées à un médecin. Elles peuvent avoir des causes traitables."
+          }
+        }
+      },
+      "comment": "Signal body: escalating cramps"
+    },
+    "Consistently heavy periods are common but worth discussing with a doctor — especially if you’re soaking through protection quickly or feeling fatigued.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consistently heavy periods are common but worth discussing with a doctor — especially if you’re soaking through protection quickly or feeling fatigued."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durchgehend starke Perioden sind häufig, aber es lohnt sich, sie mit einer Ärztin zu besprechen — besonders wenn du Schutz schnell durchtränkst oder dich ungewöhnlich müde fühlst."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los períodos abundantes de forma constante son comunes, pero vale la pena discutirlos con un médico — especialmente si empapas la protección rápidamente o te sientes inusualmente fatigada."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Des règles constamment abondantes sont courantes mais méritent d’être discutées avec un médecin — surtout si vous saturez rapidement votre protection ou ressentez une fatigue inhabituelles."
+          }
+        }
+      },
+      "comment": "Signal body: heavy flow"
+    },
+    "You often log cramps during your follicular phase, not just your period. This is less typical and worth tracking — a doctor can help figure out what’s going on.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You often log cramps during your follicular phase, not just your period. This is less typical and worth tracking — a doctor can help figure out what’s going on."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du erfasst häufig Krämpfe in deiner Follikelphase, nicht nur während der Periode. Das ist weniger typisch und es lohnt sich, es zu beobachten — eine Ärztin kann helfen herauszufinden, was los ist."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frecuentemente registras cólicos durante tu fase folicular, no solo durante tu período. Esto es menos típico y vale la pena seguirlo — un médico puede ayudar a entender qué está pasando."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous notez souvent des crampes pendant votre phase folliculaire, pas seulement pendant vos règles. C’est moins courant et cela vaut la peine d’être suivi — un médecin peut vous aider à comprendre ce qui se passe."
+          }
+        }
+      },
+      "comment": "Signal body: cramps in follicular phase"
+    },
+    "You are consistently logging multiple high-intensity symptoms. This pattern is worth discussing with a doctor — there are well-understood and treatable causes.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You are consistently logging multiple high-intensity symptoms. This pattern is worth discussing with a doctor — there are well-understood and treatable causes."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du erfasst regelmäßig mehrere starke Symptome. Dieses Muster ist es wert, mit einer Ärztin besprochen zu werden — es gibt gut verstandene und behandelbare Ursachen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estás registrando de forma constante múltiples síntomas de alta intensidad. Este patrón vale la pena discutirlo con un médico — hay causas bien conocidas y tratables."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous enregistrez régulièrement plusieurs symptômes intenses. Ce schéma mérite d’être discuté avec un médecin — il existe des causes bien comprises et traitables."
+          }
+        }
+      },
+      "comment": "Signal body: severe symptom cluster"
+    },
+    "Cycles shorter than 21 days are worth mentioning to a doctor — it’s a common and treatable pattern.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycles shorter than 21 days are worth mentioning to a doctor — it’s a common and treatable pattern."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zyklen unter 21 Tagen solltest du mit einer Ärztin besprechen — das ist ein häufiges und behandelbares Muster."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los ciclos de menos de 21 días vale la pena mencionárselos a un médico — es un patrón común y tratable."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les cycles inférieurs à 21 jours méritent d’être mentionnés à un médecin — c’est un schéma courant et traitable."
+          }
+        }
+      },
+      "comment": "Nudge body: short cycle"
+    },
+    "Cycles over 35 days can have a few different causes — a doctor can help figure out what’s going on.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycles over 35 days can have a few different causes — a doctor can help figure out what’s going on."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zyklen über 35 Tage können verschiedene Ursachen haben — eine Ärztin kann helfen, das abzuklären."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los ciclos de más de 35 días pueden tener varias causas — un médico puede ayudarte a entender qué está pasando."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les cycles supérieurs à 35 jours peuvent avoir plusieurs causes — un médecin peut vous aider à comprendre ce qui se passe."
+          }
+        }
+      },
+      "comment": "Nudge body: long cycle"
+    },
+    "Your cycles vary by more than a week from month to month. This is fairly common but worth a chat with a doctor if it's been going on a while.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your cycles vary by more than a week from month to month. This is fairly common but worth a chat with a doctor if it's been going on a while."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Zyklen schwanken von Monat zu Monat um mehr als eine Woche. Das ist recht häufig, aber nach einer Weile lohnt sich ein Gespräch mit einer Ärztin."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus ciclos varían más de una semana de un mes a otro. Esto es bastante común, pero vale la pena consultarlo con un médico si lleva tiempo ocurriendo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vos cycles varient de plus d’une semaine d’un mois à l’autre. C’est assez courant, mais il est utile d’en parler à un médecin si cela dure depuis un moment."
+          }
+        }
+      },
+      "comment": "Nudge body: high variability"
+    },
+    "Period pain that gets worse cycle over cycle is worth mentioning to a doctor. It can have several treatable causes.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Period pain that gets worse cycle over cycle is worth mentioning to a doctor. It can have several treatable causes."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regelschmerzen, die von Zyklus zu Zyklus schlimmer werden, solltest du mit einer Ärztin besprechen. Es kann mehrere behandelbare Ursachen geben."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El dolor menstrual que empeora de ciclo en ciclo vale la pena mencionárselo a un médico. Puede tener varias causas tratables."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Des douleurs menstruelles qui s’aggravent d’un cycle à l’autre méritent d’être signalées à un médecin. Elles peuvent avoir plusieurs causes traitables."
+          }
+        }
+      },
+      "comment": "Signal body (signals.json): cramps escalating"
+    },
+    "Consistently heavy periods are worth discussing with a doctor — especially if you are soaking through a pad or tampon within an hour, on multiple consecutive hours, or feeling unusually fatigued.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consistently heavy periods are worth discussing with a doctor — especially if you are soaking through a pad or tampon within an hour, on multiple consecutive hours, or feeling unusually fatigued."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durchgehend starke Perioden sind es wert, mit einer Ärztin besprochen zu werden — besonders wenn du Schutz innerhalb einer Stunde durchtränkst, mehrere aufeinanderfolgende Stunden lang, oder dich ungewöhnlich müde fühlst."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los períodos abundantes de forma constante vale la pena discutirlos con un médico — especialmente si empapas una compresa o tampón en una hora, durante varias horas consecutivas, o si te sientes inusualmente fatigada."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Des règles constamment abondantes méritent d’être discutées avec un médecin — surtout si vous saturez une protection en une heure, sur plusieurs heures consécutives, ou si vous vous sentez inhabituellement fatiguée."
+          }
+        }
+      },
+      "comment": "Signal body (signals.json): heavy flow"
+    },
+    "You have been logging heavy flow": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You have been logging heavy flow"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast starke Blutungen erfasst"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Has registrado flujo abundante"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous avez noté des règles abondantes"
+          }
+        }
+      },
+      "comment": "Signal title (signals.json): heavy flow pattern"
+    },
+    "Cramps outside your period can have several causes. It's worth mentioning to a doctor who can help investigate.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cramps outside your period can have several causes. It's worth mentioning to a doctor who can help investigate."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Krämpfe außerhalb deiner Periode können verschiedene Ursachen haben. Es lohnt sich, das mit einer Ärztin zu besprechen, die helfen kann, die Ursache zu finden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los cólicos fuera de tu período pueden tener varias causas. Vale la pena mencionárselos a un médico que pueda investigarlos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les crampes en dehors de vos règles peuvent avoir plusieurs causes. Il vaut la peine d’en parler à un médecin qui pourra les investiguer."
+          }
+        }
+      },
+      "comment": "Signal body (signals.json): cramps in follicular phase"
+    },
+    "You've been logging significant mood symptoms in the days before your period across several cycles. If this pattern significantly affects your daily life, your doctor can help — there are recognised approaches that can make a real difference. The IAPMD has specialist support.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You've been logging significant mood symptoms in the days before your period across several cycles. If this pattern significantly affects your daily life, your doctor can help — there are recognised approaches that can make a real difference. The IAPMD has specialist support."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast in mehreren Zyklen erhebliche Stimmungssymptome in den Tagen vor deiner Periode erfasst. Wenn dieses Muster deinen Alltag stark beeinträchtigt, kann deine Ärztin helfen — es gibt anerkannte Ansätze, die wirklich einen Unterschied machen können. Die IAPMD bietet Fachunterstützung."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Has registrado síntomas de ánimo significativos en los días anteriores a tu período durante varios ciclos. Si este patrón afecta significativamente tu vida diaria, tu médico puede ayudar — existen enfoques reconocidos que pueden marcar una gran diferencia. La IAPMD ofrece apoyo especializado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous avez noté des symptômes d’humeur significatifs dans les jours précédant vos règles sur plusieurs cycles. Si ce schéma affecte considérablement votre vie quotidienne, votre médecin peut vous aider — il existe des approches reconnues qui peuvent faire une vraie différence. L’IAPMD offre un soutien spécialisé."
+          }
+        }
+      },
+      "comment": "Signal body (signals.json): PMDD pattern"
     }
   },
   "version": "1.0"
