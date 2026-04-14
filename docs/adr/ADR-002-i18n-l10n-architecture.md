@@ -17,6 +17,8 @@ Clio Daye needed in-app language switching for TestFlight testers across de-DE, 
 
 ### 1. In-app locale switching via `@AppStorage` + SwiftUI environment
 
+The `.environment(\.locale, ...)` override is **DEBUG and BETA builds only**. Production builds let SwiftUI resolve locale from the bundle naturally, which iOS Settings → General → Apps → Clio Daye → Language controls.
+
 ```swift
 // SafeFlowApp.swift
 @AppStorage("appLanguage") private var appLanguage: String = "en"
@@ -24,10 +26,16 @@ Clio Daye needed in-app language switching for TestFlight testers across de-DE, 
 WindowGroup {
     ...
 }
+#if DEBUG || BETA
 .environment(\.locale, Locale(identifier: appLanguage.isEmpty ? "en" : appLanguage))
+#endif
 ```
 
-A `Picker` in `DebugMenu` writes to `appLanguage`. The SwiftUI locale environment cascades to all child views automatically.
+A `Picker` in `DebugMenu` (also `#if DEBUG || BETA`) writes to `appLanguage`. The SwiftUI locale environment cascades to all child views automatically.
+
+**Why the build flag matters:** Without it, `@AppStorage("appLanguage")` persists across installs. A TestFlight tester who set `"de-DE"` in the debug menu would carry that value into a production build, overriding whatever language they configured in iOS Settings. Worse, the default value of `"en"` would silently force English on any user whose device language is fr, de, or es — regardless of their iOS Settings choice.
+
+**Production behaviour:** SwiftUI's bundle locale resolution is the source of truth. iOS handles the per-app language setting UI natively. No app code needed.
 
 **Key insight:** This only works if all user-visible strings use `LocalizedStringKey` — not `NSLocalizedString` or `String(localized:)`. The latter two resolve at call time using the system/bundle locale and completely ignore `.environment(\.locale, ...)`.
 
@@ -222,9 +230,23 @@ The effective region is derived from `@Environment(\.locale)` (not `Locale.curre
 
 ---
 
+## Production vs DEBUG/BETA locale behaviour
+
+| Build | Locale source | Controlled by |
+|-------|--------------|---------------|
+| Production (App Store) | Bundle locale via SwiftUI default | iOS Settings → General → Apps → Clio Daye → Language |
+| BETA (TestFlight) | `@AppStorage("appLanguage")` via `.environment(\.locale, ...)` | Debug menu picker in-app |
+| DEBUG (Xcode) | `@AppStorage("appLanguage")` via `.environment(\.locale, ...)` | Debug menu picker in-app |
+
+**Important:** `appLanguage` persists in `UserDefaults`. If a tester changes language in the debug menu, that value survives app updates. The `#if DEBUG || BETA` guard on `.environment(\.locale, ...)` ensures this stored value never affects production builds — production always defers to the system.
+
+**Conflict that was fixed:** Without the build flag, `appLanguage` defaulting to `"en"` would silently override a German or French user's iOS Settings language choice in production.
+
+---
+
 ## Debugging locale issues
 
-The debug banner (visible in DEBUG and BETA builds) shows:
+The debug banner (commented out, re-enable in `SafeFlowApp.swift` if needed for DEBUG/BETA) shows:
 
 ```
 appLanguage: "de-DE" → de-DE
@@ -236,6 +258,8 @@ Bundle locale: en
 `Bundle locale: fr` on a clean English device = `en.lproj` missing from the built bundle → add explicit `en` entries to all xcstrings keys.
 
 `Bundle locale: en` with app displaying wrong language = OS-level per-app language override stored in system database. Fix: delete and recreate the simulator (wipe alone is not sufficient).
+
+`appLanguage` stored value wrong in BETA = reset via debug menu or `UserDefaults.standard.removeObject(forKey: "appLanguage")`.
 
 ---
 
