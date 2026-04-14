@@ -42,7 +42,9 @@ struct SafeFlowApp: App {
                 }
             }
             .ignoresSafeArea()
+            #if DEBUG || BETA
             .environment(\.locale, Locale(identifier: appLanguage.isEmpty ? "en" : appLanguage))
+            #endif
             .onAppear { handleLaunchArguments() }
             // #if DEBUG || BETA
             // .overlay(alignment: .bottom) { localeDebugBanner }
