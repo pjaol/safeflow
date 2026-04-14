@@ -22,7 +22,7 @@ struct HomeView: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollViewReader { proxy in
                 ScrollView {
                     VStack(spacing: AppTheme.Metrics.standardSpacing) {
@@ -206,7 +206,7 @@ private struct EditLogsSheet: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack(spacing: 0) {
                     // Custom calendar with logged-day dots
@@ -423,9 +423,9 @@ private struct DayCell: View {
     }
 }
 
-// MARK: - Log Day Form View (inline, no NavigationView)
+// MARK: - Log Day Form View (inline, no NavigationStack)
 
-/// The log form without its own NavigationView — embedded inside EditLogsSheet's scroll view.
+/// The log form without its own NavigationStack — embedded inside EditLogsSheet's scroll view.
 private struct LogDayFormView: View {
     @ObservedObject var cycleStore: CycleStore
     let targetDate: Date

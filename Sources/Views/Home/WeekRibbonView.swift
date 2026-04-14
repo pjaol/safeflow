@@ -198,7 +198,7 @@ struct WeekRibbonView: View {
     // MARK: - Body
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 0) {
                 // Range picker
                 Picker("Range", selection: $range) {
@@ -298,7 +298,7 @@ struct WeekRibbonView: View {
             .background(
                 GeometryReader { geo in
                     Color.clear.onAppear { chartCanvasWidth = geo.size.width }
-                        .onChange(of: geo.size.width) { chartCanvasWidth = $0 }
+                        .onChange(of: geo.size.width) { _, newValue in chartCanvasWidth = newValue }
                 }
             )
             .offset(x: dragOffset)
@@ -751,7 +751,7 @@ struct DayDetailCard: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     if let day {

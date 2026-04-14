@@ -503,7 +503,7 @@ struct MonthSummaryView: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Group {
                 if weekGroups.isEmpty {
                     VStack(spacing: 12) {
@@ -650,7 +650,7 @@ struct DayDetailView: View {
     @State private var showingLogSheet = false
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Group {
                 if let day = existingDay {
                     List {

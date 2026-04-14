@@ -200,7 +200,7 @@ struct NotesSheet: View {
     @State private var text: String = ""
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(alignment: .leading, spacing: 16) {
                 Text("How are you feeling today?")
                     .font(.system(.subheadline, design: .rounded, weight: .medium))

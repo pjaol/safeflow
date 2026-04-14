@@ -29,7 +29,7 @@ struct LogDayView: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack(spacing: AppTheme.Metrics.standardSpacing) {
                     flowSection

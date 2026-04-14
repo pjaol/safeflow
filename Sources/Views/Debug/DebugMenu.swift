@@ -73,7 +73,7 @@ struct DebugMenu: View {
     // MARK: - Body
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 Section("Data Management") {
                     Button("Clear All Data", role: .destructive) {

@@ -10,7 +10,7 @@ struct PinSetupView: View {
     @State private var localError: String?
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Section {
                     SecureField("Enter PIN", text: $pin)
@@ -91,7 +91,7 @@ struct PinEntryView: View {
     @State private var isAuthenticating = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Section {
                     SecureField("Enter PIN", text: $pin)

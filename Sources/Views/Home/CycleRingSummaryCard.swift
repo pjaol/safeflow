@@ -251,7 +251,7 @@ struct CycleDetailSheet: View {
     )}
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 0) {
                 // Tab selector
                 tabSelector

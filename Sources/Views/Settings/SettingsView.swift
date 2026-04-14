@@ -11,7 +11,7 @@ struct SettingsView: View {
     var cycleStore: CycleStore? = nil
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Section("Security") {
                     Toggle("Require Authentication", isOn: Binding(
