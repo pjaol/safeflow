@@ -6476,6 +6476,142 @@
         }
       },
       "comment": "Phase tip body: luteal bloating"
+    },
+    "Your average cycle is running short. Cycles under 21 days are worth mentioning to a doctor — it is a common and treatable pattern.": {
+      "localizations": {
+        "de": { "stringUnit": { "state": "translated", "value": "Dein durchschnittlicher Zyklus ist kurz. Zyklen unter 21 Tagen sind es wert, mit einer Ärztin zu besprechen — es ist ein häufiges und behandelbares Muster." } },
+        "es": { "stringUnit": { "state": "translated", "value": "Tu ciclo promedio es corto. Los ciclos menores de 21 días vale la pena mencionarlos a tu médico — es un patrón común y tratable." } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Votre cycle moyen est court. Les cycles de moins de 21 jours méritent d'être mentionnés à un médecin — c'est un schéma courant et traitable." } }
+      },
+      "comment": "Nudge body: short cycle (nudges.json)"
+    },
+    "Your average cycle is running long. Cycles over 35 days can have a few different causes — a doctor can help figure out what is going on.": {
+      "localizations": {
+        "de": { "stringUnit": { "state": "translated", "value": "Dein durchschnittlicher Zyklus ist lang. Zyklen über 35 Tage können verschiedene Ursachen haben — eine Ärztin kann helfen herauszufinden, was los ist." } },
+        "es": { "stringUnit": { "state": "translated", "value": "Tu ciclo promedio es largo. Los ciclos de más de 35 días pueden tener varias causas — tu médico puede ayudarte a entender qué está pasando." } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Votre cycle moyen est long. Les cycles de plus de 35 jours peuvent avoir plusieurs causes — un médecin peut vous aider à comprendre ce qui se passe." } }
+      },
+      "comment": "Nudge body: long cycle (nudges.json)"
+    },
+    "Your cycles vary by more than a week from month to month. This is fairly common but worth a chat with a doctor if it has been going on a while.": {
+      "localizations": {
+        "de": { "stringUnit": { "state": "translated", "value": "Deine Zyklen variieren von Monat zu Monat um mehr als eine Woche. Das ist ziemlich verbreitet, aber es lohnt sich, mit einer Ärztin zu sprechen, wenn das schon länger so ist." } },
+        "es": { "stringUnit": { "state": "translated", "value": "Tus ciclos varían más de una semana de un mes a otro. Es bastante común, pero vale la pena hablarlo con tu médico si lleva un tiempo así." } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Vos cycles varient de plus d'une semaine d'un mois à l'autre. C'est assez courant, mais cela vaut la peine d'en parler à un médecin si cela dure depuis un moment." } }
+      },
+      "comment": "Nudge body: high variability (nudges.json)"
+    },
+    "Your cycle pattern is shifting": {
+      "localizations": {
+        "de": { "stringUnit": { "state": "translated", "value": "Dein Zyklusmuster verändert sich" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Tu patrón de ciclo está cambiando" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Votre schéma de cycle évolue" } }
+      },
+      "comment": "Nudge title: cycle pattern shifting (nudges.json)"
+    },
+    "Cycle lengths that become more irregular over time are common in the years before menopause — a phase called perimenopause that can begin in your 40s. It can also have other causes. Either way, your doctor can help make sense of what you're experiencing.": {
+      "localizations": {
+        "de": { "stringUnit": { "state": "translated", "value": "Unregelmäßiger werdende Zykluslängen sind in den Jahren vor der Menopause häufig — eine Phase namens Perimenopause, die in den 40ern beginnen kann. Es kann auch andere Ursachen haben. In jedem Fall kann deine Ärztin helfen, was du erlebst, einzuordnen." } },
+        "es": { "stringUnit": { "state": "translated", "value": "La irregularidad creciente de los ciclos es común en los años previos a la menopausia — una fase llamada perimenopausia que puede comenzar alrededor de los 40. También puede tener otras causas. En cualquier caso, tu médico puede ayudarte a entender lo que estás viviendo." } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Des cycles de plus en plus irréguliers sont courants dans les années précédant la ménopause — une phase appelée périménopause qui peut commencer dans la quarantaine. Cela peut aussi avoir d'autres causes. Dans tous les cas, votre médecin peut vous aider à comprendre ce que vous vivez." } }
+      },
+      "comment": "Nudge body: cycle pattern shifting / perimenopause (nudges.json)"
+    },
+    "Periods consistently over 7 days are worth mentioning to a doctor. There are several common treatable causes.": {
+      "localizations": {
+        "de": { "stringUnit": { "state": "translated", "value": "Regelmäßig über 7 Tage dauernde Perioden sind es wert, mit einer Ärztin zu besprechen. Es gibt mehrere häufige und behandelbare Ursachen." } },
+        "es": { "stringUnit": { "state": "translated", "value": "Los períodos que duran más de 7 días de manera consistente vale la pena mencionarlos a tu médico. Hay varias causas comunes y tratables." } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Des règles qui durent régulièrement plus de 7 jours méritent d'être mentionnées à un médecin. Il existe plusieurs causes courantes et traitables." } }
+      },
+      "comment": "Nudge body: long period (nudges.json)"
+    },
+    "Your cycle is later than expected": {
+      "localizations": {
+        "de": { "stringUnit": { "state": "translated", "value": "Dein Zyklus dauert länger als erwartet" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Tu ciclo llega más tarde de lo esperado" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Votre cycle est plus tardif que prévu" } }
+      },
+      "comment": "Nudge title: cycle late (nudges.json)"
+    },
+    "You have been logging cramps": {
+      "localizations": {
+        "de": { "stringUnit": { "state": "translated", "value": "Du hast Krämpfe erfasst" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Has registrado cólicos" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Vous avez noté des crampes" } }
+      },
+      "comment": "Nudge title: cramps comfort (nudges.json)"
+    },
+    "A few things that can help: heat on your lower abdomen, gentle movement if it feels okay, and magnesium-rich foods like dark chocolate and nuts. Over-the-counter pain relief may help — your pharmacist can advise on what's suitable for you.": {
+      "localizations": {
+        "de": { "stringUnit": { "state": "translated", "value": "Ein paar Dinge, die helfen können: Wärme auf dem Unterbauch, sanfte Bewegung wenn es sich gut anfühlt, und magnesiumreiche Lebensmittel wie dunkle Schokolade und Nüsse. Rezeptfreie Schmerzmittel können helfen — deine Apothekerin kann beraten, was für dich geeignet ist." } },
+        "es": { "stringUnit": { "state": "translated", "value": "Algunas cosas que pueden ayudar: calor en el abdomen bajo, movimiento suave si te sientes bien, y alimentos ricos en magnesio como el chocolate negro y las nueces. Los analgésicos de venta libre pueden ayudar — tu farmacéutico puede aconsejarte sobre lo que es adecuado para ti." } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Quelques choses qui peuvent aider : la chaleur sur le bas-ventre, un mouvement doux si vous vous en sentez capable, et des aliments riches en magnésium comme le chocolat noir et les noix. Les antidouleurs en vente libre peuvent aider — votre pharmacien peut vous conseiller sur ce qui vous convient." } }
+      },
+      "comment": "Nudge body: cramps comfort (nudges.json)"
+    },
+    "Persistent fatigue this phase": {
+      "localizations": {
+        "de": { "stringUnit": { "state": "translated", "value": "Anhaltende Erschöpfung in dieser Phase" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Fatiga persistente en esta fase" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Fatigue persistante cette phase" } }
+      },
+      "comment": "Nudge title: fatigue (nudges.json)"
+    },
+    "Fatigue around your period is common. Iron-rich foods, staying hydrated, and not skipping sleep all help. If it feels disabling it is worth mentioning to your doctor.": {
+      "localizations": {
+        "de": { "stringUnit": { "state": "translated", "value": "Erschöpfung rund um deine Periode ist häufig. Eisenreiche Lebensmittel, ausreichend Flüssigkeit und kein Schlaf auslassen helfen. Wenn es sich lähmend anfühlt, ist es wert, mit deiner Ärztin darüber zu sprechen." } },
+        "es": { "stringUnit": { "state": "translated", "value": "La fatiga alrededor de tu período es común. Los alimentos ricos en hierro, mantenerse hidratada y no saltarse el sueño ayudan. Si se siente incapacitante, vale la pena mencionárselo a tu médico." } },
+        "fr": { "stringUnit": { "state": "translated", "value": "La fatigue autour de vos règles est courante. Les aliments riches en fer, rester hydratée et ne pas manquer de sommeil aident. Si cela vous semble invalidant, cela vaut la peine d'en parler à votre médecin." } }
+      },
+      "comment": "Nudge body: fatigue (nudges.json)"
+    },
+    "Bloating logged consistently": {
+      "localizations": {
+        "de": { "stringUnit": { "state": "translated", "value": "Regelmäßige Blähungen erfasst" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Hinchazón registrada de forma constante" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Ballonnements notés régulièrement" } }
+      },
+      "comment": "Nudge title: bloating (nudges.json)"
+    },
+    "Hormonal bloating before and during your period is very common. Reducing salt, eating smaller meals, and staying hydrated can help ease it.": {
+      "localizations": {
+        "de": { "stringUnit": { "state": "translated", "value": "Hormonelle Blähungen vor und während deiner Periode sind sehr häufig. Salz reduzieren, kleinere Mahlzeiten essen und ausreichend trinken kann helfen, sie zu lindern." } },
+        "es": { "stringUnit": { "state": "translated", "value": "La hinchazón hormonal antes y durante tu período es muy común. Reducir la sal, comer porciones más pequeñas y mantenerse hidratada puede ayudar a aliviarla." } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Les ballonnements hormonaux avant et pendant vos règles sont très courants. Réduire le sel, manger de petites portions et rester hydratée peut aider à les soulager." } }
+      },
+      "comment": "Nudge body: bloating (nudges.json)"
+    },
+    "Sleep disruption logged": {
+      "localizations": {
+        "de": { "stringUnit": { "state": "translated", "value": "Schlafstörungen erfasst" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Alteración del sueño registrada" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Perturbation du sommeil notée" } }
+      },
+      "comment": "Nudge title: sleep disruption (nudges.json)"
+    },
+    "Progesterone fluctuations can disrupt sleep in the luteal and menstrual phases. A consistent bedtime, cooler room, and avoiding screens before sleep all help.": {
+      "localizations": {
+        "de": { "stringUnit": { "state": "translated", "value": "Progesteronschwankungen können den Schlaf in der Luteal- und Menstruationsphase stören. Eine regelmäßige Schlafenszeit, ein kühleres Zimmer und das Vermeiden von Bildschirmen vor dem Schlafen helfen." } },
+        "es": { "stringUnit": { "state": "translated", "value": "Las fluctuaciones de progesterona pueden alterar el sueño en las fases lútea y menstrual. Un horario de sueño constante, una habitación más fresca y evitar las pantallas antes de dormir ayudan." } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Les fluctuations de progestérone peuvent perturber le sommeil dans les phases lutéale et menstruelle. Une heure de coucher régulière, une chambre plus fraîche et éviter les écrans avant de dormir aident." } }
+      },
+      "comment": "Nudge body: sleep disruption (nudges.json)"
+    },
+    "Brain fog logged consistently": {
+      "localizations": {
+        "de": { "stringUnit": { "state": "translated", "value": "Regelmäßiger Gehirnnebel erfasst" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Niebla mental registrada de forma constante" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Brouillard cérébral noté régulièrement" } }
+      },
+      "comment": "Nudge title: brain fog (nudges.json)"
+    },
+    "Difficulty concentrating around your period is linked to hormone shifts, not your capability. Breaking tasks into smaller steps and building in rest helps.": {
+      "localizations": {
+        "de": { "stringUnit": { "state": "translated", "value": "Konzentrationsschwierigkeiten rund um deine Periode hängen mit Hormonschwankungen zusammen, nicht mit deinen Fähigkeiten. Aufgaben in kleinere Schritte aufzuteilen und Pausen einzuplanen hilft." } },
+        "es": { "stringUnit": { "state": "translated", "value": "La dificultad para concentrarse alrededor de tu período está relacionada con los cambios hormonales, no con tu capacidad. Dividir las tareas en pasos más pequeños y planificar descansos ayuda." } },
+        "fr": { "stringUnit": { "state": "translated", "value": "La difficulté à se concentrer autour de vos règles est liée aux variations hormonales, pas à vos capacités. Diviser les tâches en petites étapes et prévoir des pauses aide." } }
+      },
+      "comment": "Nudge body: brain fog (nudges.json)"
     }
   },
   "version": "1.0"
