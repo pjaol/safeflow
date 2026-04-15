@@ -142,6 +142,7 @@ struct WeekRibbonView: View {
     @State private var dragOffset: CGFloat = 0
     /// Width of the chart canvas (minus Y-axis strip) — set via GeometryReader
     @State private var chartCanvasWidth: CGFloat = 300
+    @State private var showingAccessibleChart = false
 
     private let cal = Calendar.current
 
@@ -228,9 +229,23 @@ struct WeekRibbonView: View {
                     .padding(.vertical, 10)
 
                 // Chart area
-                chartArea
-                    .padding(.horizontal, 16)
-                    .id("\(range)-\(pageOffset)")
+                ZStack {
+                    chartArea
+                        .accessibilityHidden(!range.supportsDayTap)
+
+                    if !range.supportsDayTap {
+                        // Invisible prose summary for VoiceOver in month/3M mode
+                        Text(chartAccessibilitySummary)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .opacity(0)
+                            .accessibilityLabel(chartAccessibilitySummary)
+                            .accessibilityAction(named: "Show chart as list") {
+                                showingAccessibleChart = true
+                            }
+                    }
+                }
+                .padding(.horizontal, 16)
+                .id("\(range)-\(pageOffset)")
 
                 // Tap hint
                 Group {
@@ -263,6 +278,9 @@ struct WeekRibbonView: View {
             .onAppear { currentScores = buildScores() }
             .onChange(of: pageOffset) { currentScores = buildScores() }
             .onChange(of: range) { currentScores = buildScores() }
+            .sheet(isPresented: $showingAccessibleChart) {
+                RibbonSummarySheet(scores: currentScores, windowLabel: windowLabel)
+            }
             .sheet(item: $selectedDate) { date in
                 DayDetailCard(
                     date: date,
@@ -385,7 +403,7 @@ struct WeekRibbonView: View {
                             .contentShape(Rectangle())
                         }
                         .buttonStyle(.plain)
-                        .accessibilityLabel(date.formatted(.dateTime.weekday(.wide).month(.wide).day()))
+                        .accessibilityLabel(dayAccessibilityLabel(for: date, scores: currentScores))
                         .accessibilityHint("Tap to see details for this day")
                     }
                 }
@@ -547,6 +565,53 @@ struct WeekRibbonView: View {
     private func monthAbbrev(_ date: Date) -> String {
         let f = DateFormatter(); f.dateFormat = "MMM"; f.locale = locale
         return f.string(from: date)
+    }
+
+    // MARK: - Accessibility helpers
+
+    /// Enriched label for a single day button in week mode: date + key dimension highlights.
+    private func dayAccessibilityLabel(for date: Date, scores: [DimensionScore]) -> String {
+        let datePart = date.formatted(.dateTime.weekday(.wide).month(.wide).day())
+        guard let score = scores.first(where: { cal.isDate($0.date, inSameDayAs: date) }),
+              score.day != nil else {
+            return datePart + ", no log"
+        }
+        var parts: [String] = [datePart]
+        if score.flow < -0.1 {
+            let label = score.flow <= -0.75 ? "heavy flow" : score.flow <= -0.5 ? "medium flow" : score.flow <= -0.25 ? "light flow" : "spotting"
+            parts.append(label)
+        }
+        if score.pain < -0.3 { parts.append("pain") }
+        if score.fatigue < -0.3 { parts.append("fatigue") }
+        if score.mood >= 0.5 { parts.append("positive mood") }
+        else if score.mood <= -0.5 { parts.append("low mood") }
+        return parts.joined(separator: ", ")
+    }
+
+    /// Prose summary of the current window's scores for VoiceOver in month/3M mode.
+    private var chartAccessibilitySummary: String {
+        let dates = windowDates()
+        guard !currentScores.isEmpty else {
+            return "\(windowLabel). No data logged in this period."
+        }
+        let logged = currentScores.filter { $0.day != nil }
+        guard !logged.isEmpty else {
+            return "\(windowLabel). No days logged."
+        }
+        let flowDays   = logged.filter { $0.flow < -0.1 }.count
+        let painDays   = logged.filter { $0.pain < -0.3 }.count
+        let fatigueDays = logged.filter { $0.fatigue < -0.3 }.count
+        let positiveDays = logged.filter { $0.mood >= 0.5 }.count
+        let lowMoodDays  = logged.filter { $0.mood <= -0.5 }.count
+
+        var parts: [String] = ["\(windowLabel)."]
+        parts.append("\(logged.count) of \(dates.count) days logged.")
+        if flowDays > 0 { parts.append("\(flowDays) flow day\(flowDays == 1 ? "" : "s").") }
+        if painDays > 0 { parts.append("Pain on \(painDays) day\(painDays == 1 ? "" : "s").") }
+        if fatigueDays > 0 { parts.append("Fatigue on \(fatigueDays) day\(fatigueDays == 1 ? "" : "s").") }
+        if positiveDays > 0 { parts.append("Positive mood on \(positiveDays) day\(positiveDays == 1 ? "" : "s").") }
+        if lowMoodDays > 0 { parts.append("Low mood on \(lowMoodDays) day\(lowMoodDays == 1 ? "" : "s").") }
+        return parts.joined(separator: " ")
     }
 }
 
@@ -1043,6 +1108,88 @@ struct FlowLayout: Layout {
             x += size.width + spacing
             rowH = max(rowH, size.height)
         }
+    }
+}
+
+// MARK: - RibbonSummarySheet
+
+/// Accessible alternative to the ribbon chart — presented via VoiceOver custom action
+/// in month and 3-month modes. Shows each logged day as a plain list row.
+private struct RibbonSummarySheet: View {
+    let scores: [DimensionScore]
+    let windowLabel: String
+    @Environment(\.dismiss) private var dismiss
+
+    private let df: DateFormatter = {
+        let f = DateFormatter()
+        f.dateStyle = .medium
+        f.timeStyle = .none
+        return f
+    }()
+
+    private var loggedScores: [DimensionScore] {
+        scores.filter { $0.day != nil }
+    }
+
+    var body: some View {
+        NavigationStack {
+            Group {
+                if loggedScores.isEmpty {
+                    VStack {
+                        Spacer()
+                        Text("No days logged in this period")
+                            .font(AppTheme.Typography.bodyFont)
+                            .foregroundColor(AppTheme.Colors.mediumGrayText)
+                        Spacer()
+                    }
+                } else {
+                    List(loggedScores, id: \.date) { score in
+                        Section(header: Text(df.string(from: score.date))) {
+                            if score.flow < -0.1 {
+                                let label = score.flow <= -0.75 ? "Heavy" : score.flow <= -0.5 ? "Medium" : score.flow <= -0.25 ? "Light" : "Spotting"
+                                labelRow("Flow", value: label)
+                            }
+                            if score.pain < -0.1 {
+                                labelRow("Pain", value: intensityLabel(-score.pain))
+                            }
+                            if score.fatigue < -0.1 {
+                                labelRow("Fatigue", value: intensityLabel(-score.fatigue))
+                            }
+                            if score.body < -0.1 {
+                                labelRow("Body symptoms", value: intensityLabel(-score.body))
+                            }
+                            if abs(score.mood) > 0.1 {
+                                labelRow("Mood", value: score.mood >= 0 ? "Positive" : "Low")
+                            }
+                            if abs(score.energy) > 0.1 {
+                                labelRow("Energy", value: score.energy >= 0 ? "High" : "Low")
+                            }
+                        }
+                    }
+                }
+            }
+            .navigationTitle(windowLabel)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") { dismiss() }
+                }
+            }
+        }
+    }
+
+    private func intensityLabel(_ value: Double) -> String {
+        value >= 0.7 ? "High" : value >= 0.4 ? "Moderate" : "Mild"
+    }
+
+    private func labelRow(_ label: String, value: String) -> some View {
+        HStack {
+            Text(label).foregroundColor(AppTheme.Colors.deepGrayText)
+            Spacer()
+            Text(value).foregroundColor(AppTheme.Colors.mediumGrayText)
+        }
+        .font(AppTheme.Typography.bodyFont)
+        .accessibilityElement(children: .combine)
     }
 }
 
