@@ -74,6 +74,7 @@ private struct FlowButton: View {
             .cornerRadius(AppTheme.Metrics.cornerRadius)
         }
         .accessibilityIdentifier("quickLog.flow.\(flow.rawValue)")
+        .accessibilityLabel("\(flow.localizedName) flow")
     }
 }
 

@@ -117,6 +117,7 @@
 		FFAA112233445566778899CC /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = FFAA112233445566778899BB /* PrivacyInfo.xcprivacy */; };
 		SNAP00112233445566778899AA /* SnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = SNAP00112233445566778899AB /* SnapshotTests.swift */; };
 		SNAP00112233445566778899AC /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = SNAP00112233445566778899AD /* SnapshotHelper.swift */; };
+		A11Y00112233445566778899AA /* AccessibilityAuditTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11Y00112233445566778899AB /* AccessibilityAuditTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,6 +224,7 @@
 		FFAA112233445566778899BB /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		SNAP00112233445566778899AB /* SnapshotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotTests.swift; path = Tests/UITests/SnapshotTests.swift; sourceTree = SOURCE_ROOT; };
 		SNAP00112233445566778899AD /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = Tests/UITests/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
+		A11Y00112233445566778899AB /* AccessibilityAuditTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccessibilityAuditTests.swift; path = Tests/UITests/AccessibilityAuditTests.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -625,6 +627,7 @@
 				CDL10N002D4010D2006A37C9 /* LocalisationUITests.swift */,
 				SNAP00112233445566778899AB /* SnapshotTests.swift */,
 				SNAP00112233445566778899AD /* SnapshotHelper.swift */,
+				A11Y00112233445566778899AB /* AccessibilityAuditTests.swift */,
 			);
 			path = safeflowUITests;
 			sourceTree = "<group>";
@@ -894,6 +897,7 @@
 				CDL10N012D4010D2006A37C9 /* LocalisationUITests.swift in Sources */,
 				SNAP00112233445566778899AA /* SnapshotTests.swift in Sources */,
 				SNAP00112233445566778899AC /* SnapshotHelper.swift in Sources */,
+				A11Y00112233445566778899AA /* AccessibilityAuditTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -80,6 +80,9 @@ struct LogDayView: View {
                     selectedFlow = nil
                 }
                 .accessibilityIdentifier("logDay.flow.none")
+                .accessibilityLabel("No flow")
+                .accessibilityHint("Select if you have no period today")
+                .accessibilityAddTraits(selectedFlow == nil ? [.isButton, .isSelected] : .isButton)
 
                 ForEach(FlowIntensity.allCases, id: \.self) { flow in
                     FlowChip(
@@ -91,6 +94,8 @@ struct LogDayView: View {
                         selectedFlow = flow
                     }
                     .accessibilityIdentifier("logDay.flow.\(flow.rawValue)")
+                    .accessibilityLabel("\(flow.localizedName) flow")
+                    .accessibilityAddTraits(selectedFlow == flow ? [.isButton, .isSelected] : .isButton)
                 }
             }
         }
@@ -116,6 +121,7 @@ struct LogDayView: View {
                             selectedSymptomCategory = category
                         }
                         .accessibilityIdentifier("logDay.symptomCategory.\(category.rawValue)")
+                        .accessibilityAddTraits(selectedSymptomCategory == category ? [.isButton, .isSelected] : .isButton)
                     }
                 }
                 .padding(.horizontal, 2)
@@ -136,6 +142,7 @@ struct LogDayView: View {
                         }
                     }
                     .accessibilityIdentifier("logDay.symptom.\(symptom.rawValue)")
+                    .accessibilityAddTraits(selectedSymptoms.contains(symptom) ? [.isButton, .isSelected] : .isButton)
                 }
             }
 
@@ -165,6 +172,7 @@ struct LogDayView: View {
                         selectedMood = (selectedMood == mood) ? nil : mood
                     }
                     .accessibilityIdentifier("logDay.mood.\(mood.rawValue)")
+                    .accessibilityAddTraits(selectedMood == mood ? [.isButton, .isSelected] : .isButton)
                 }
             }
         }
@@ -185,6 +193,8 @@ struct LogDayView: View {
                 .scrollContentBackground(.hidden)
                 .background(Color.clear)
                 .accessibilityIdentifier("logDay.notesEditor")
+                .accessibilityLabel("Notes")
+                .accessibilityHint("Add any additional notes about how you're feeling today")
         }
         .padding(AppTheme.Metrics.cardPadding)
         .background(AppTheme.Colors.secondaryBackground)
@@ -296,6 +306,7 @@ struct SymptomChip: View {
             .background(isSelected ? AppTheme.Colors.accentBlue : AppTheme.Colors.accentBlue.opacity(0.12))
             .cornerRadius(AppTheme.Metrics.cornerRadius)
         }
+        .accessibilityLabel(symptom.localizedName)
     }
 }
 
@@ -328,5 +339,6 @@ struct MoodCell: View {
                     .strokeBorder(isSelected ? AppTheme.Colors.amber : Color.clear, lineWidth: 2)
             )
         }
+        .accessibilityLabel(mood.localizedName)
     }
 }

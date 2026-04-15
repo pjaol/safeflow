@@ -32,6 +32,8 @@ struct LockView: View {
                             securityService.isAuthenticationRequired = true
                         }
                         .buttonStyle(PrimaryButtonStyle())
+                        .accessibilityLabel("Set Up Security")
+                        .accessibilityHint("Enable Face ID, Touch ID, or PIN to protect your data")
                     } else if securityService.canUseBiometrics {
                         // Show Face ID/Touch ID button
                         Button {
@@ -43,12 +45,16 @@ struct LockView: View {
                             )
                         }
                         .buttonStyle(PrimaryButtonStyle())
-                        
+                        .accessibilityLabel("Unlock with Face ID or Touch ID")
+                        .accessibilityHint("Authenticate using biometrics to open the app")
+
                         if hasPin {
                             Button("Use PIN Instead") {
                                 showingPinEntry = true
                             }
                             .buttonStyle(SecondaryButtonStyle())
+                            .accessibilityLabel("Use PIN Instead")
+                            .accessibilityHint("Enter your PIN to unlock the app")
                         }
                     } else if hasPin {
                         // Show PIN entry button
@@ -56,6 +62,8 @@ struct LockView: View {
                             showingPinEntry = true
                         }
                         .buttonStyle(PrimaryButtonStyle())
+                        .accessibilityLabel("Enter PIN")
+                        .accessibilityHint("Enter your PIN to unlock the app")
                     }
                     
                     Spacer()

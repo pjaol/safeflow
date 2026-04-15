@@ -99,12 +99,14 @@ struct ForecastView: View {
                 .font(AppTheme.Typography.headlineFont)
                 .foregroundColor(AppTheme.Colors.deepGrayText)
             Spacer()
-            Picker("", selection: $monthCount) {
+            Picker("Forecast range", selection: $monthCount) {
                 Text("3 mo").tag(3)
                 Text("6 mo").tag(6)
             }
             .pickerStyle(.segmented)
             .frame(width: 110)
+            .accessibilityLabel("Forecast range")
+            .accessibilityHint("Select how many months to forecast")
         }
         .padding(.horizontal, horizontalPad)
         .padding(.vertical, 12)
@@ -128,10 +130,12 @@ struct ForecastView: View {
             RoundedRectangle(cornerRadius: 3)
                 .fill(color)
                 .frame(width: 14, height: 8)
+                .accessibilityHidden(true)
             Text(label)
                 .font(.system(.caption2, design: .rounded))
                 .foregroundColor(AppTheme.Colors.mediumGrayText)
         }
+        .accessibilityElement(children: .combine)
     }
 
     // MARK: - Column Headers

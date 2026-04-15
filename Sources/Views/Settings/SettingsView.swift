@@ -31,7 +31,10 @@ struct SettingsView: View {
                         }
                     ))
                     .tint(AppTheme.Colors.primaryBlue)
-                    
+                    .accessibilityLabel("Require Authentication")
+                    .accessibilityHint("When enabled, you must authenticate with Face ID, Touch ID, or PIN to open the app")
+                    .accessibilityIdentifier("settings.requireAuthToggle")
+
                     if securityService.isAuthenticationRequired {
                         if securityService.canUseBiometrics {
                             Button("Test Face ID/Touch ID") {
@@ -40,12 +43,18 @@ struct SettingsView: View {
                                 }
                             }
                             .foregroundColor(AppTheme.Colors.primaryBlue)
+                            .accessibilityLabel("Test Face ID or Touch ID")
+                            .accessibilityHint("Verify that biometric authentication is working correctly")
+                            .accessibilityIdentifier("settings.testBiometricButton")
                         }
-                        
+
                         Button(hasPin ? "Change PIN" : "Set Up PIN") {
                             showingPinSetup = true
                         }
                         .foregroundColor(AppTheme.Colors.secondaryPink)
+                        .accessibilityLabel(hasPin ? "Change PIN" : "Set Up PIN")
+                        .accessibilityHint(hasPin ? "Replace your existing PIN with a new one" : "Create a PIN as a fallback to biometric authentication")
+                        .accessibilityIdentifier("settings.pinButton")
                     }
                 }
                 
