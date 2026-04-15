@@ -28,6 +28,7 @@ struct CyclePhaseCard: View {
         .shadow(color: Color.black.opacity(0.07), radius: 8, x: 0, y: 2)
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("home.cyclePhaseCard")
+        .accessibilityLabel(cardAccessibilityLabel)
     }
 
     // MARK: - Sub-views
@@ -134,6 +135,23 @@ struct CyclePhaseCard: View {
             return AppTheme.Colors.forPhase(phase.themeColorName).opacity(0.15)
         }
         return AppTheme.Colors.secondaryBackground
+    }
+
+    // MARK: - Accessibility
+
+    private var cardAccessibilityLabel: String {
+        guard let phase else {
+            return "Cycle Tracking. Log your first period to see your cycle phase and predictions."
+        }
+        var parts: [String] = [phase.displayNameString]
+        if let day = cycleDay { parts.append("day \(day)") }
+        if let range = predictionRange {
+            parts.append("next period \(formattedRange(range))")
+        }
+        if let length = averageCycleLength {
+            parts.append("average cycle \(length) days")
+        }
+        return parts.joined(separator: ", ")
     }
 
     // MARK: - Date Formatting

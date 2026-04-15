@@ -17,14 +17,20 @@ struct PinSetupView: View {
                         .keyboardType(.numberPad)
                         .textContentType(.oneTimeCode)
                         .font(AppTheme.Typography.bodyFont)
+                        .accessibilityLabel("PIN")
+                        .accessibilityHint("Enter a numeric PIN of at least 4 digits")
+                        .accessibilityIdentifier("pinSetup.pinField")
                 }
-                
+
                 if showingConfirmation {
                     Section {
                         SecureField("Confirm PIN", text: $confirmPin)
                             .keyboardType(.numberPad)
                             .textContentType(.oneTimeCode)
                             .font(AppTheme.Typography.bodyFont)
+                            .accessibilityLabel("Confirm PIN")
+                            .accessibilityHint("Re-enter your PIN to confirm it")
+                            .accessibilityIdentifier("pinSetup.confirmPinField")
                     }
                 }
                 
@@ -74,10 +80,13 @@ struct PinSetupView: View {
                             }
                         }
                     }
-                    .disabled((!showingConfirmation && pin.count < 4) || 
+                    .disabled((!showingConfirmation && pin.count < 4) ||
                              (showingConfirmation && confirmPin.count < 4) ||
                              isSettingPin)
                     .foregroundColor(AppTheme.Colors.primaryBlue)
+                    .accessibilityLabel(showingConfirmation ? "Save PIN" : "Next")
+                    .accessibilityHint(showingConfirmation ? "Save your PIN and enable lock protection" : "Proceed to confirm your PIN")
+                    .accessibilityIdentifier(showingConfirmation ? "pinSetup.saveButton" : "pinSetup.nextButton")
                 }
             }
         }
@@ -98,8 +107,11 @@ struct PinEntryView: View {
                         .keyboardType(.numberPad)
                         .textContentType(.oneTimeCode)
                         .font(AppTheme.Typography.bodyFont)
+                        .accessibilityLabel("PIN")
+                        .accessibilityHint("Enter your PIN to unlock the app")
+                        .accessibilityIdentifier("pinEntry.pinField")
                 }
-                
+
                 if let error = securityService.authenticationError {
                     Section {
                         Text(error)
@@ -124,17 +136,19 @@ struct PinEntryView: View {
                             isAuthenticating = true
                             do {
                                 if try await securityService.authenticateWithPin(pin) {
-                                    // Successful authentication
                                     isPresented = false
                                 }
                             } catch {
-                                // Error will be shown through securityService.authenticationError
+                                // Error shown via securityService.authenticationError
                             }
                             isAuthenticating = false
                         }
                     }
                     .disabled(pin.count < 4 || isAuthenticating)
                     .foregroundColor(AppTheme.Colors.primaryBlue)
+                    .accessibilityLabel("Unlock")
+                    .accessibilityHint("Submit your PIN to unlock the app")
+                    .accessibilityIdentifier("pinEntry.unlockButton")
                 }
             }
         }

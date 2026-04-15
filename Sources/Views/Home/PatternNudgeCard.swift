@@ -19,6 +19,7 @@ struct PatternNudgeCard: View {
             Image(systemName: nudge.sfSymbol)
                 .font(.system(size: 20, weight: .semibold))
                 .foregroundColor(AppTheme.Colors.deepGrayText)
+                .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 6) {
                 Text(LocalizedStringKey(nudge.title))
@@ -40,15 +41,16 @@ struct PatternNudgeCard: View {
                         .padding(6)
                         .accessibilityHidden(true)
                 }
-                .accessibilityLabel("Dismiss")
+                .accessibilityLabel("Dismiss \(nudge.title)")
             }
         }
         .padding(AppTheme.Metrics.cardPadding)
         .background(nudge.backgroundColor)
         .cornerRadius(AppTheme.Metrics.cornerRadius)
         .shadow(color: Color.black.opacity(0.07), radius: 8, x: 0, y: 2)
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: .contain)
         .accessibilityIdentifier("home.patternNudgeCard.\(nudge.id)")
+        .accessibilityLabel("\(nudge.title). \(nudge.body)")
     }
 }
 
