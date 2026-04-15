@@ -103,6 +103,14 @@ enum ChartRange: String, CaseIterable {
         }
     }
 
+    var accessibilityLabel: String {
+        switch self {
+        case .week:       return "week"
+        case .month:      return "month"
+        case .threeMonth: return "3 months"
+        }
+    }
+
     var columnCount: Int {
         switch self {
         case .week:       return 7
@@ -201,7 +209,7 @@ struct WeekRibbonView: View {
         NavigationStack {
             VStack(spacing: 0) {
                 // Range picker
-                Picker("Range", selection: $range) {
+                Picker("Chart range", selection: $range) {
                     ForEach(ChartRange.allCases, id: \.self) { r in
                         Text(r.label).tag(r)
                     }
@@ -210,6 +218,8 @@ struct WeekRibbonView: View {
                 .padding(.horizontal, 20)
                 .padding(.top, 10)
                 .padding(.bottom, 4)
+                .accessibilityLabel("Chart range")
+                .accessibilityHint("Select 1 week, 1 month, or 3 months")
                 .onChange(of: range) { pageOffset = 0 }
 
                 // Nav bar
@@ -356,6 +366,7 @@ struct WeekRibbonView: View {
                                 Text(dayAbbrev(date))
                                     .font(.system(size: 10, weight: .semibold, design: .rounded))
                                     .foregroundStyle(Color(.tertiaryLabel))
+                                    .accessibilityHidden(true)
                                 Text("\(cal.component(.day, from: date))")
                                     .font(.system(size: 13, weight: .semibold, design: .rounded))
                                     .foregroundStyle(
@@ -363,6 +374,7 @@ struct WeekRibbonView: View {
                                         ? AppTheme.Colors.primaryBlue
                                         : AppTheme.Colors.deepGrayText
                                     )
+                                    .accessibilityHidden(true)
                                 Circle()
                                     .fill(cal.isDateInToday(date)
                                           ? AppTheme.Colors.primaryBlue
@@ -373,6 +385,8 @@ struct WeekRibbonView: View {
                             .contentShape(Rectangle())
                         }
                         .buttonStyle(.plain)
+                        .accessibilityLabel(date.formatted(.dateTime.weekday(.wide).month(.wide).day()))
+                        .accessibilityHint("Tap to see details for this day")
                     }
                 }
                 .padding(.leading, 36)
@@ -411,12 +425,15 @@ struct WeekRibbonView: View {
                 Image(systemName: "chevron.left")
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundStyle(AppTheme.Colors.primaryBlue)
+                    .accessibilityHidden(true)
             }
+            .accessibilityLabel("Previous \(range.accessibilityLabel)")
             Spacer()
             Text(windowLabel)
                 .font(.system(.subheadline, design: .rounded, weight: .semibold))
                 .foregroundStyle(AppTheme.Colors.deepGrayText)
                 .id("\(range)-\(pageOffset)")
+                .accessibilityAddTraits(.isHeader)
             Spacer()
             Button { pageOffset += 1 } label: {
                 Image(systemName: "chevron.right")
@@ -424,7 +441,9 @@ struct WeekRibbonView: View {
                     .foregroundStyle(isAtCurrentWindow
                                      ? Color(.tertiaryLabel)
                                      : AppTheme.Colors.primaryBlue)
+                    .accessibilityHidden(true)
             }
+            .accessibilityLabel("Next \(range.accessibilityLabel)")
             .disabled(isAtCurrentWindow)
         }
     }
@@ -461,11 +480,13 @@ struct WeekRibbonView: View {
                         RoundedRectangle(cornerRadius: 3)
                             .fill(dim.color.opacity(0.75))
                             .frame(width: 24, height: 8)
+                            .accessibilityHidden(true)
                         Text(dim.label)
                             .font(.system(size: 11, design: .rounded))
                             .foregroundStyle(AppTheme.Colors.mediumGrayText)
                         Spacer()
                     }
+                    .accessibilityElement(children: .combine)
                 }
             }
             // Period marker legend

@@ -394,15 +394,20 @@ private struct DayCell: View {
                     .frame(width: 34, height: 34)
                     .background(cellBackground)
                     .clipShape(Circle())
+                    .accessibilityHidden(true)
 
                 // Log dot
                 Circle()
                     .fill(hasLog ? logDotColor : Color.clear)
                     .frame(width: 4, height: 4)
+                    .accessibilityHidden(true)
             }
         }
         .disabled(isFuture)
         .frame(maxWidth: .infinity)
+        .accessibilityLabel(date.formatted(.dateTime.weekday(.wide).month(.wide).day()) + (hasLog ? ", logged" : ""))
+        .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
+        .accessibilityHint(isFuture ? "" : "Tap to select this date")
     }
 
     private var cellTextColor: Color {

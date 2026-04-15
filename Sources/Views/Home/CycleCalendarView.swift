@@ -86,12 +86,14 @@ struct CycleCalendarView: View {
                 .font(AppTheme.Typography.headlineFont)
                 .foregroundColor(AppTheme.Colors.deepGrayText)
             Spacer()
-            Picker("", selection: $monthCount) {
+            Picker("History range", selection: $monthCount) {
                 Text("3 mo").tag(3)
                 Text("6 mo").tag(6)
             }
             .pickerStyle(.segmented)
             .frame(width: 110)
+            .accessibilityLabel("History range")
+            .accessibilityHint("Select how many months of history to display")
         }
         .padding(.horizontal, horizontalPad)
         .padding(.vertical, 12)
@@ -115,13 +117,16 @@ struct CycleCalendarView: View {
                 RoundedRectangle(cornerRadius: 2)
                     .strokeBorder(color, style: StrokeStyle(lineWidth: 1, dash: [2, 2]))
                     .frame(width: 10, height: 10)
+                    .accessibilityHidden(true)
             } else {
                 RoundedRectangle(cornerRadius: 2).fill(color).frame(width: 10, height: 10)
+                    .accessibilityHidden(true)
             }
             Text(label)
                 .font(.system(.caption2, design: .rounded))
                 .foregroundColor(AppTheme.Colors.mediumGrayText)
         }
+        .accessibilityElement(children: .combine)
     }
 
     /// Mood legend: three small squares showing the three buckets side-by-side
@@ -132,10 +137,12 @@ struct CycleCalendarView: View {
                 RoundedRectangle(cornerRadius: 2).fill(moodColor(.neutral)).frame(width: 6, height: 10)
                 RoundedRectangle(cornerRadius: 2).fill(moodColor(.negative)).frame(width: 6, height: 10)
             }
+            .accessibilityHidden(true)
             Text("Mood")
                 .font(.system(.caption2, design: .rounded))
                 .foregroundColor(AppTheme.Colors.mediumGrayText)
         }
+        .accessibilityElement(children: .combine)
     }
 
     // MARK: - Column headers
@@ -179,16 +186,23 @@ struct CycleCalendarView: View {
             return (date, cycleStore.getDay(for: date))
         }
 
+        let monthName = shortMonth(month)
         return HStack(spacing: 0) {
             Text(shortMonth(month))
                 .font(.system(.caption, design: .rounded, weight: .semibold))
                 .foregroundColor(AppTheme.Colors.deepGrayText)
                 .frame(width: monthLabelWidth, alignment: .leading)
+                .accessibilityHidden(true)
 
             dayStrip(columns: columns, daysInMonth: daysInMonth, colWidth: colWidth)
+                .accessibilityHidden(true)
         }
         .frame(height: rowHeight)
         .contentShape(Rectangle())
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(monthName) — \(logSummary(columns: columns, daysInMonth: daysInMonth))")
+        .accessibilityHint("Tap to view detailed chart for this period")
+        .accessibilityAddTraits(.isButton)
         .onTapGesture { location in
             // Convert tap X to the actual date that was tapped.
             // The month label occupies monthLabelWidth pts on the left;
@@ -423,6 +437,21 @@ struct CycleCalendarView: View {
         }
         runs.append((runStart, runEnd))
         return runs
+    }
+
+    // MARK: - Accessibility helpers
+
+    /// Builds a concise VoiceOver summary for a month row, e.g. "5 days logged, 3 with symptoms"
+    private func logSummary(columns: [(date: Date, day: CycleDay?)], daysInMonth: Int) -> String {
+        let logged = columns.prefix(daysInMonth).compactMap(\.day)
+        guard !logged.isEmpty else { return "no logs" }
+        let withFlow = logged.filter { $0.flow != nil }.count
+        let withSymptoms = logged.filter { !$0.symptoms.isEmpty }.count
+        var parts: [String] = []
+        if withFlow > 0 { parts.append("\(withFlow) flow day\(withFlow == 1 ? "" : "s")") }
+        if withSymptoms > 0 { parts.append("\(withSymptoms) with symptoms") }
+        if parts.isEmpty { parts.append("\(logged.count) logged") }
+        return parts.joined(separator: ", ")
     }
 
     // MARK: - Layout helpers

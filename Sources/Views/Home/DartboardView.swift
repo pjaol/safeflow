@@ -185,7 +185,8 @@ struct NotesBullseye: View {
             showingNotes = true
         })
         .accessibilityLabel(hasNotes ? "Edit note" : "Add note")
-        .accessibilityHint("Long press to open notes")
+        .accessibilityHint("Double-tap and hold to open notes")
+        .accessibilityAction(named: "Open notes") { showingNotes = true }
         .sheet(isPresented: $showingNotes) {
             NotesSheet(viewModel: viewModel)
         }
