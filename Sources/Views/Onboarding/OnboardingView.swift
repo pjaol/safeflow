@@ -27,6 +27,13 @@ struct OnboardingView: View {
             }
             .tabViewStyle(.page)
             .indexViewStyle(.page(backgroundDisplayMode: .always))
+            .accessibilityLabel("Onboarding, \(currentPage + 1) of 4")
+            .onChange(of: currentPage) { _, page in
+                UIAccessibility.post(
+                    notification: .screenChanged,
+                    argument: pageTitle(for: page)
+                )
+            }
         }
         .sheet(isPresented: $showingPinSetup) {
             PinSetupView()
@@ -280,6 +287,18 @@ struct OnboardingView: View {
             .foregroundColor(AppTheme.Colors.mediumGrayText)
         }
         .tag(3)
+    }
+
+    // MARK: - Accessibility helpers
+
+    private func pageTitle(for page: Int) -> String {
+        switch page {
+        case 0: return "Your Privacy First, page 1 of 4"
+        case 1: return "Know Your Cycle, page 2 of 4"
+        case 2: return "Secure Your Data, page 3 of 4"
+        case 3: return "Set Up Your Cycle, page 4 of 4"
+        default: return "Onboarding"
+        }
     }
 
     // MARK: - Card helper
