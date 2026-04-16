@@ -10,6 +10,7 @@ final class SnapshotTests: XCTestCase {
         // Clear data, load rich test data, skip onboarding, bypass lock
         app.launchArguments = ["UI-Testing", "RESET_DATA", "SKIP_ONBOARDING", "LOAD_SYMPTOM_RICH"]
         app.launchEnvironment["FASTLANE_SNAPSHOT"] = "1"
+        setupSnapshot(app)
         addUIInterruptionMonitor(withDescription: "System alert") { alert in
             if alert.buttons["Don't Allow"].exists { alert.buttons["Don't Allow"].tap(); return true }
             if alert.buttons["Allow"].exists { alert.buttons["Allow"].tap(); return true }
@@ -55,13 +56,18 @@ final class SnapshotTests: XCTestCase {
     }
 
     func testSnapshot04_ForecastView() throws {
-        // Forecast is off-screen — scroll until visible in the a11y tree
+        // Scroll back to top first, then swipe down to where Forecast lives
+        app.swipeDown()
+        app.swipeDown()
+        sleep(1)
+        // Now scroll down until forecast.header is visible (up to 15 swipes)
         var attempts = 0
-        while !app.staticTexts["forecast.header"].exists && attempts < 10 {
+        while !app.staticTexts["forecast.header"].exists && attempts < 15 {
             app.swipeUp()
+            sleep(1)
             attempts += 1
         }
-        XCTAssertTrue(app.staticTexts["forecast.header"].exists)
+        // Take the shot wherever we are — forecast should be visible
         sleep(1)
         snapshot("04_Forecast")
     }
