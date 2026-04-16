@@ -27,7 +27,6 @@ struct OnboardingView: View {
             }
             .tabViewStyle(.page)
             .indexViewStyle(.page(backgroundDisplayMode: .always))
-            .accessibilityLabel("Onboarding, \(currentPage + 1) of 4")
             .onChange(of: currentPage) { _, page in
                 UIAccessibility.post(
                     notification: .screenChanged,
@@ -133,6 +132,7 @@ struct OnboardingView: View {
                         .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(PrimaryButtonStyle())
+                    .accessibilityHint(String(localized: "Enables Face ID or Touch ID to lock the app"))
                     .accessibilityIdentifier("onboarding.biometricButton")
                 }
 
@@ -147,6 +147,7 @@ struct OnboardingView: View {
                     .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(SecondaryButtonStyle())
+                .accessibilityHint(String(localized: "Creates a numeric PIN to lock the app"))
                 .accessibilityIdentifier("onboarding.pinButton")
 
                 Button("Skip for Now") {
@@ -155,6 +156,7 @@ struct OnboardingView: View {
                 }
                 .font(AppTheme.Typography.bodyFont)
                 .foregroundColor(AppTheme.Colors.deepGrayText)
+                .accessibilityHint(String(localized: "You can enable lock protection later in Settings"))
                 .accessibilityIdentifier("onboarding.skipSecurityButton")
             }
             .padding(.horizontal, 40)

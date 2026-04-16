@@ -18,6 +18,15 @@ enum DartboardCategory: Int, CaseIterable {
         }
     }
 
+    var labelString: String {
+        switch self {
+        case .pain:   return String(localized: "Pain")
+        case .energy: return String(localized: "Energy")
+        case .mood:   return String(localized: "Mood")
+        case .gut:    return String(localized: "Body")
+        }
+    }
+
     var sfSymbol: String {
         switch self {
         case .pain:   return "exclamationmark.triangle.fill"

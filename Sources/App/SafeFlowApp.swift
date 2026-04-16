@@ -5,7 +5,7 @@ import os
 struct SafeFlowApp: App {
     @StateObject private var cycleStore = CycleStore()
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
-    @AppStorage("appLanguage") private var appLanguage: String = "en"
+    @AppStorage("appLanguage") private var appLanguage: String = "system"
     private let logger = Logger(subsystem: "com.thevgergroup.safeflow", category: "SafeFlowApp")
 
     private class SecurityServiceWrapper: ObservableObject {
@@ -43,7 +43,7 @@ struct SafeFlowApp: App {
             }
             .ignoresSafeArea()
             #if DEBUG || BETA
-            .environment(\.locale, Locale(identifier: appLanguage.isEmpty ? "en" : appLanguage))
+            .environment(\.locale, appLanguage == "system" || appLanguage.isEmpty ? .current : Locale(identifier: appLanguage))
             #endif
             .onAppear { handleLaunchArguments() }
             // #if DEBUG || BETA

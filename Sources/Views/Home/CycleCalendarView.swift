@@ -88,12 +88,13 @@ struct CycleCalendarView: View {
             Spacer()
             Picker("History range", selection: $monthCount) {
                 Text("3 mo").tag(3)
+                    .accessibilityLabel(String(localized: "3 months"))
                 Text("6 mo").tag(6)
+                    .accessibilityLabel(String(localized: "6 months"))
             }
             .pickerStyle(.segmented)
             .frame(width: 110)
-            .accessibilityLabel("History range")
-            .accessibilityHint("Select how many months of history to display")
+            .accessibilityHint(String(localized: "Select how many months of history to display"))
         }
         .padding(.horizontal, horizontalPad)
         .padding(.vertical, 12)

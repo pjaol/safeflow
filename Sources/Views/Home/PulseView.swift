@@ -42,12 +42,10 @@ struct PulseView: View {
                 DartboardView(viewModel: viewModel)
                     .frame(maxWidth: .infinity)
                     .padding(.leading, 56)
-                    .accessibilityLabel("Symptoms and mood — tap a segment to log it, long press centre to add a note")
 
                 // Strip floats over the left edge of the board
                 CategoryStripView(viewModel: viewModel)
                     .frame(width: 48)
-                    .accessibilityLabel("Symptom categories")
             }
             .frame(maxWidth: .infinity)
 
@@ -57,8 +55,6 @@ struct PulseView: View {
         }
         .padding(.horizontal, 4)
         .padding(.horizontal, -12)
-        .accessibilityElement(children: .contain)
-        .accessibilityLabel("Daily log")
         .onAppear { viewModel.loadFromStore() }
         .onReceive(cycleStore.objectWillChange) { _ in
             DispatchQueue.main.async { viewModel.loadFromStore() }

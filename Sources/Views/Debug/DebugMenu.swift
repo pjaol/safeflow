@@ -5,7 +5,7 @@ struct DebugMenu: View {
     @ObservedObject var cycleStore: CycleStore
     @Environment(\.dismiss) private var dismiss
     @State private var loadStatus: String?
-    @AppStorage("appLanguage") private var appLanguage: String = ""
+    @AppStorage("appLanguage") private var appLanguage: String = "system"
 
 
     // MARK: - Scenarios
@@ -118,6 +118,7 @@ struct DebugMenu: View {
 
                 Section("Language") {
                     Picker("Language", selection: $appLanguage) {
+                        Text("System default").tag("system")
                         Text("English").tag("en")
                         Text("Deutsch (de-DE)").tag("de-DE")
                         Text("Español (es-MX)").tag("es-MX")

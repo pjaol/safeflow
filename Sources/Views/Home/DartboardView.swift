@@ -92,9 +92,9 @@ struct DartboardSegment: View {
         .animation(.spring(response: 0.3, dampingFraction: 0.55), value: isActive)
         .animation(.spring(response: 0.25, dampingFraction: 0.5), value: bouncing)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(item.label)
-        .accessibilityHint(isActive ? "Logged. Tap to remove." : "Tap to log \(item.labelString).")
-        .accessibilityAddTraits(isActive ? [.isButton, .isSelected] : .isButton)
+        .accessibilityLabel(isActive ? "\(item.labelString), \(String(localized: "logged"))" : item.labelString)
+        .accessibilityHint(isActive ? String(localized: "Tap to remove") : String(localized: "Tap to log"))
+        .accessibilityAddTraits(.isButton)
     }
 
     private func handleTap() {

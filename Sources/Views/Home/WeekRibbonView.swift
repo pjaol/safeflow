@@ -213,14 +213,14 @@ struct WeekRibbonView: View {
                 Picker("Chart range", selection: $range) {
                     ForEach(ChartRange.allCases, id: \.self) { r in
                         Text(r.label).tag(r)
+                            .accessibilityLabel(r.accessibilityLabel)
                     }
                 }
                 .pickerStyle(.segmented)
                 .padding(.horizontal, 20)
                 .padding(.top, 10)
                 .padding(.bottom, 4)
-                .accessibilityLabel("Chart range")
-                .accessibilityHint("Select 1 week, 1 month, or 3 months")
+                .accessibilityHint(String(localized: "Select 1 week, 1 month, or 3 months"))
                 .onChange(of: range) { pageOffset = 0 }
 
                 // Nav bar
