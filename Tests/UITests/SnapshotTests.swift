@@ -48,8 +48,7 @@ final class SnapshotTests: XCTestCase {
         let ring = app.buttons["home.cycleRingSummaryCard"]
         XCTAssertTrue(ring.waitForExistence(timeout: 5))
         ring.tap()
-        XCTAssertTrue(app.buttons.matching(NSPredicate(format: "label == 'Done'"))
-            .firstMatch.waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["cycleDetail.doneButton"].waitForExistence(timeout: 5))
         sleep(1)
         snapshot("03_CycleDetail")
         app.swipeDown()
@@ -68,14 +67,18 @@ final class SnapshotTests: XCTestCase {
     }
 
     func testSnapshot05_LogDay() throws {
-        let editButton = app.buttons["home.editLogsButton"]
-        XCTAssertTrue(editButton.waitForExistence(timeout: 5))
-        editButton.tap()
-        XCTAssertTrue(app.buttons.matching(NSPredicate(format: "label == 'Done'"))
-            .firstMatch.waitForExistence(timeout: 5))
+        let editButtons = app.buttons.matching(identifier: "home.editLogsButton")
+        XCTAssertTrue(editButtons.firstMatch.waitForExistence(timeout: 5))
+        var tapped = false
+        for i in 0..<editButtons.count {
+            let btn = editButtons.element(boundBy: i)
+            if btn.isHittable { btn.tap(); tapped = true; break }
+        }
+        if !tapped { editButtons.firstMatch.tap() }
+        XCTAssertTrue(app.buttons["editLogs.doneButton"].waitForExistence(timeout: 5))
         sleep(1)
         snapshot("05_LogDay")
-        app.buttons.matching(NSPredicate(format: "label == 'Done'")).firstMatch.tap()
+        app.buttons["editLogs.doneButton"].tap()
     }
 
     func testSnapshot06_History() throws {

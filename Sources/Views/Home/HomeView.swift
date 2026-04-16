@@ -137,23 +137,23 @@ struct HomeView: View {
                     }
                 }
             }
-            .sheet(item: $editLogsDate) { date in
-                EditLogsSheet(cycleStore: cycleStore, initialDate: date)
-            }
-            .sheet(isPresented: $showingSupportSheet) {
-                GetSupportView(cycleStore: cycleStore)
-            }
-            .sheet(isPresented: $showingSettingsSheet) {
-                SettingsView(cycleStore: cycleStore)
-                    .environmentObject(securityService)
-            }
-            #if DEBUG || BETA
-            .sheet(isPresented: $showingDebugMenu) {
-                DebugMenu(cycleStore: cycleStore)
-            }
-            #endif
         }
         .navigationViewStyle(.stack)
+        .sheet(item: $editLogsDate) { date in
+            EditLogsSheet(cycleStore: cycleStore, initialDate: date)
+        }
+        .sheet(isPresented: $showingSupportSheet) {
+            GetSupportView(cycleStore: cycleStore)
+        }
+        .sheet(isPresented: $showingSettingsSheet) {
+            SettingsView(cycleStore: cycleStore)
+                .environmentObject(securityService)
+        }
+        #if DEBUG || BETA
+        .sheet(isPresented: $showingDebugMenu) {
+            DebugMenu(cycleStore: cycleStore)
+        }
+        #endif
     }
 }
 
@@ -241,6 +241,7 @@ private struct EditLogsSheet: View {
                     Button("Done") { dismiss() }
                         .font(.system(.body, design: .rounded, weight: .semibold))
                         .foregroundColor(AppTheme.Colors.accentBlue)
+                        .accessibilityIdentifier("editLogs.doneButton")
                 }
             }
         }
@@ -507,11 +508,13 @@ private struct LogDayFormView: View {
             HStack(spacing: 10) {
                 FlowChip(label: "None", sfSymbol: "xmark", isSelected: selectedFlow == nil,
                          color: AppTheme.Colors.neutralGray) { selectedFlow = nil }
+                    .accessibilityIdentifier("editLogs.flow.none")
                 ForEach(FlowIntensity.allCases, id: \.self) { flow in
                     FlowChip(label: flow.localizedName, sfSymbol: flow.sfSymbol,
                              isSelected: selectedFlow == flow, color: AppTheme.Colors.secondaryPink) {
                         selectedFlow = flow
                     }
+                    .accessibilityIdentifier("editLogs.flow.\(flow.rawValue)")
                 }
             }
         }
@@ -542,6 +545,7 @@ private struct LogDayFormView: View {
                         if selectedSymptoms.contains(symptom) { selectedSymptoms.remove(symptom) }
                         else { selectedSymptoms.insert(symptom) }
                     }
+                    .accessibilityIdentifier("editLogs.symptom.\(symptom.rawValue)")
                 }
             }
             if !selectedSymptoms.isEmpty {

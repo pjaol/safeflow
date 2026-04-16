@@ -68,7 +68,7 @@ final class DynamicTypeUITests: XCTestCase {
     func testEditLogsSheetButtonsHittableAtCurrentDynamicType() {
         XCTAssertTrue(app.buttons["home.editLogsButton"].waitForExistence(timeout: 5))
         app.buttons["home.editLogsButton"].tap()
-        let doneButton = app.buttons.matching(NSPredicate(format: "label == 'Done'")).firstMatch
+        let doneButton = app.buttons["editLogs.doneButton"]
         XCTAssertTrue(doneButton.waitForExistence(timeout: 5))
         XCTAssertTrue(doneButton.isHittable,
             "Done button not hittable in Edit Logs sheet. Current size category: \(currentSizeCategory())")
@@ -78,15 +78,14 @@ final class DynamicTypeUITests: XCTestCase {
     func testEditLogsFlowOptionsHittableAtCurrentDynamicType() {
         XCTAssertTrue(app.buttons["home.editLogsButton"].waitForExistence(timeout: 5))
         app.buttons["home.editLogsButton"].tap()
-        XCTAssertTrue(app.buttons.matching(NSPredicate(format: "label == 'Done'")).firstMatch.waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["editLogs.doneButton"].waitForExistence(timeout: 5))
 
         // Flow chips — scroll down if needed, then assert at least one is reachable
-        let lightChip = app.buttons.matching(NSPredicate(format: "label CONTAINS 'Light'")).firstMatch
-        if !lightChip.isHittable { app.swipeUp() }
-        XCTAssertTrue(lightChip.exists,
-            "Light flow chip not found in Edit Logs sheet at current Dynamic Type size")
+        if !app.buttons["editLogs.flow.none"].isHittable { app.swipeUp() }
+        XCTAssertTrue(app.buttons["editLogs.flow.none"].exists,
+            "Flow chips not found in Edit Logs sheet at current Dynamic Type size")
 
-        app.buttons.matching(NSPredicate(format: "label == 'Done'")).firstMatch.tap()
+        app.buttons["editLogs.doneButton"].tap()
     }
 
     // MARK: - Onboarding
@@ -119,7 +118,7 @@ final class DynamicTypeUITests: XCTestCase {
         XCTAssertTrue(app.switches["settings.requireAuthToggle"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.switches["settings.requireAuthToggle"].isHittable,
             "Auth toggle not hittable in Settings at current Dynamic Type size")
-        app.buttons.matching(NSPredicate(format: "label == 'Done'")).firstMatch.tap()
+        app.buttons["settings.doneButton"].tap()
     }
 
     // MARK: - Helpers

@@ -113,6 +113,7 @@ struct SettingsView: View {
                         dismiss()
                     }
                     .foregroundColor(AppTheme.Colors.mediumGrayText)
+                    .accessibilityIdentifier("settings.doneButton")
                 }
             }
             // Show alert to set up biometrics

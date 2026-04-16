@@ -294,6 +294,7 @@ struct CycleDetailSheet: View {
                     Button("Done") { dismiss() }
                         .font(.system(.body, design: .rounded, weight: .semibold))
                         .foregroundColor(AppTheme.Colors.accentBlue)
+                        .accessibilityIdentifier("cycleDetail.doneButton")
                 }
             }
             .sheet(isPresented: $showingSupport) {
