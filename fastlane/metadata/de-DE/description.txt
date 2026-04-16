@@ -1,0 +1,29 @@
+Deine Zyklus­daten gehören dir. Das meinen wir wörtlich.
+
+Die meisten Periodentracking-Apps sind kostenlos, weil sie Geld mit deinen Daten verdienen. Diese Daten werden an Werbetreibende verkauft, an Datenhändler weitergegeben und in einigen Ländern sogar von Behörden angefordert. Das fanden wir nicht akzeptabel. Deshalb haben wir Clio Daye gebaut.
+
+Alles, was du in Clio Daye einträgst, bleibt ausschließlich auf deinem Gerät. Es gibt kein Konto, keinen Server, kein Cloud-Backup, kein Abo, keine Werbung. Wir haben keinen Zugriff auf deine Daten. Niemand außer dir.
+
+Das war der Grund, warum wir diese App gebaut haben.
+
+So funktioniert es
+
+Clio Daye deckt alles ab, was im Alltag beim Zyklustracking wichtig ist. Du kannst Blutungsintensität, 15 verschiedene Symptome, Stimmung und Notizen erfassen. Die App zeigt dir deine aktuelle Zyklusphase und sagt voraus, wann deine nächste Periode wahrscheinlich beginnt — mit einer ehrlichen Spannbreite statt einer falschen Präzision.
+
+Die meisten Apps sagen dir nur, wann die nächste Periode kommt. Clio Daye zeigt dir ein rollendes Sechs-Monats-Bild deines Zyklus, damit du vorausplanen kannst — für Reisen, Veranstaltungen oder einfach um zu wissen, was für eine Woche vor dir liegt.
+
+Alles wird durch Face ID, Touch ID oder eine PIN geschützt. Wer dein Handy aufhebt, kommt ohne deine Erlaubnis nicht rein.
+
+Für wen es gemacht ist
+
+Für alle, die einen Menstruationszyklus haben. Clio Daye verwendet körperneutrale Sprache und setzt keine Geschlechtsidentität voraus. Die App ist für Menschen in allen Lebensphasen ausgelegt — vom ersten Zyklus bis in die Perimenopause.
+
+Open Source und kostenlos, für immer
+
+Clio Daye ist kostenlos, ohne Abo, ohne Premium-Stufe und ohne Werbung. Der Quellcode ist öffentlich einsehbar unter github.com/pjaol/safeflow. Wir sind kein venture-gefördertes Startup. Wir sind ein kleines Team, das dieses Werkzeug für notwendig hielt und es gebaut hat.
+
+Ein Hinweis zu dem, was dies nicht ist
+
+Clio Daye ist kein Verhütungsmittel und sollte nicht als solches verwendet werden. Vorhersagen sind Schätzungen auf Basis deiner erfassten Daten. Für Verhütung oder medizinische Fragen zum Zyklus wende dich bitte an eine medizinische Fachkraft.
+
+Erfordert iOS 17.5 oder neuer.

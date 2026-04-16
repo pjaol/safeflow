@@ -1,0 +1,8 @@
+Cette mise à jour apporte une prise en charge complète de l'accessibilité et des améliorations multilingues.
+
+— Prise en charge de VoiceOver dans toute l'application — chaque écran est entièrement navigable avec les technologies d'assistance
+— Les libellés, les phases du cycle et les résumés de données sont tous lisibles par VoiceOver
+— Amélioration du contraste et de la prise en charge des grandes tailles de texte dans toutes les vues
+— L'application prend désormais entièrement en charge l'allemand, le français et l'espagnol
+
+Vos données restent sur votre appareil. Rien n'a changé de ce côté-là.
