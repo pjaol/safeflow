@@ -8,11 +8,17 @@ final class SnapshotTests: XCTestCase {
         continueAfterFailure = false
         app = XCUIApplication()
         // Clear data, load rich test data, skip onboarding, bypass lock
-        app.launchArguments = ["RESET_DATA", "SKIP_ONBOARDING", "LOAD_SYMPTOM_RICH"]
+        app.launchArguments = ["UI-Testing", "RESET_DATA", "SKIP_ONBOARDING", "LOAD_SYMPTOM_RICH"]
         app.launchEnvironment["FASTLANE_SNAPSHOT"] = "1"
+        addUIInterruptionMonitor(withDescription: "System alert") { alert in
+            if alert.buttons["Don't Allow"].exists { alert.buttons["Don't Allow"].tap(); return true }
+            if alert.buttons["Allow"].exists { alert.buttons["Allow"].tap(); return true }
+            return false
+        }
         app.launch()
+        app.tap()
         // Security service init + data load is slow — wait generously
-        _ = app.otherElements["home.cycleRingSummaryCard"].waitForExistence(timeout: 40)
+        XCTAssertTrue(app.buttons["home.cycleRingSummaryCard"].waitForExistence(timeout: 30))
     }
 
     // MARK: - Diagnostic
@@ -27,52 +33,49 @@ final class SnapshotTests: XCTestCase {
     // MARK: - Snapshots
 
     func testSnapshot01_Home() throws {
-        // Wait for home to settle with data loaded
-        // Security service initialises async so we need a generous timeout
-        let ring = app.otherElements["home.cycleRingSummaryCard"]
-        XCTAssertTrue(ring.waitForExistence(timeout: 15))
-        sleep(2) // let data and animations settle
+        // setUp already confirmed home.cycleRingSummaryCard — just let data settle
+        sleep(2)
         snapshot("01_Home")
     }
 
     func testSnapshot02_PulseView() throws {
-        // PulseView is the top of the home scroll — scroll back up to it
-        let ring = app.otherElements["home.cycleRingSummaryCard"]
-        XCTAssertTrue(ring.waitForExistence(timeout: 5))
-        app.swipeDown() // scroll to top
+        app.swipeDown() // scroll to top so PulseView is visible
         sleep(1)
         snapshot("02_Pulse")
     }
 
     func testSnapshot03_CycleRingDetail() throws {
-        // Tap the ring card to open the detail sheet
-        let ring = app.otherElements["home.cycleRingSummaryCard"]
+        let ring = app.buttons["home.cycleRingSummaryCard"]
         XCTAssertTrue(ring.waitForExistence(timeout: 5))
         ring.tap()
+        XCTAssertTrue(app.buttons.matching(NSPredicate(format: "label == 'Done'"))
+            .firstMatch.waitForExistence(timeout: 5))
         sleep(1)
         snapshot("03_CycleDetail")
-        // Dismiss
         app.swipeDown()
     }
 
     func testSnapshot04_ForecastView() throws {
-        let forecast = app.otherElements["home.forecastView"]
-        XCTAssertTrue(forecast.waitForExistence(timeout: 5))
-        forecast.scrollToElement(in: app)
+        // Forecast is off-screen — scroll until visible in the a11y tree
+        var attempts = 0
+        while !app.staticTexts["Cycle Forecast"].exists && attempts < 10 {
+            app.swipeUp()
+            attempts += 1
+        }
+        XCTAssertTrue(app.staticTexts["Cycle Forecast"].exists)
         sleep(1)
         snapshot("04_Forecast")
     }
 
     func testSnapshot05_LogDay() throws {
-        // Open the log day view
         let editButton = app.buttons["home.editLogsButton"]
         XCTAssertTrue(editButton.waitForExistence(timeout: 5))
         editButton.tap()
+        XCTAssertTrue(app.buttons.matching(NSPredicate(format: "label == 'Done'"))
+            .firstMatch.waitForExistence(timeout: 5))
         sleep(1)
         snapshot("05_LogDay")
-        // Dismiss
-        let cancel = app.buttons["logDay.cancelButton"]
-        if cancel.exists { cancel.tap() }
+        app.buttons.matching(NSPredicate(format: "label == 'Done'")).firstMatch.tap()
     }
 
     func testSnapshot06_History() throws {
