@@ -8,8 +8,15 @@ final class SnapshotTests: XCTestCase {
         continueAfterFailure = false
         app = XCUIApplication()
         // Clear data, load rich test data, skip onboarding, bypass lock
+        // Read language from the same cache file SnapshotHelper uses, and pass it to
+        // the app so SafeFlowApp can set the SwiftUI locale before first render.
+        let simulatorHostHome = ProcessInfo.processInfo.environment["SIMULATOR_HOST_HOME"] ?? NSHomeDirectory()
+        let cacheDir = simulatorHostHome + "/Library/Caches/tools.fastlane"
+        let snapshotLang = (try? String(contentsOfFile: cacheDir + "/language.txt", encoding: .utf8))?
+            .trimmingCharacters(in: .whitespacesAndNewlines) ?? "en-US"
         app.launchArguments = ["UI-Testing", "RESET_DATA", "SKIP_ONBOARDING", "LOAD_SYMPTOM_RICH"]
         app.launchEnvironment["FASTLANE_SNAPSHOT"] = "1"
+        app.launchEnvironment["SNAPSHOT_LANGUAGE"] = snapshotLang
         setupSnapshot(app)
         addUIInterruptionMonitor(withDescription: "System alert") { alert in
             if alert.buttons["Don't Allow"].exists { alert.buttons["Don't Allow"].tap(); return true }
@@ -56,18 +63,19 @@ final class SnapshotTests: XCTestCase {
     }
 
     func testSnapshot04_ForecastView() throws {
-        // Scroll back to top first, then swipe down to where Forecast lives
-        app.swipeDown()
-        app.swipeDown()
-        sleep(1)
-        // Now scroll down until forecast.header is visible (up to 15 swipes)
+        // Tap the forecast toolbar button — it scrolls the ScrollView to ForecastView
+        let forecastButton = app.buttons["home.forecastButton"]
+        XCTAssertTrue(forecastButton.waitForExistence(timeout: 5))
+        forecastButton.tap()
+        sleep(2)
+        // forecast.header may already be in the a11y tree but off-screen;
+        // keep swiping until it's hittable
         var attempts = 0
-        while !app.staticTexts["forecast.header"].exists && attempts < 15 {
+        while !app.staticTexts["forecast.header"].isHittable && attempts < 10 {
             app.swipeUp()
             sleep(1)
             attempts += 1
         }
-        // Take the shot wherever we are — forecast should be visible
         sleep(1)
         snapshot("04_Forecast")
     }
@@ -85,11 +93,19 @@ final class SnapshotTests: XCTestCase {
         sleep(1)
         snapshot("05_LogDay")
         app.buttons["editLogs.doneButton"].tap()
+        sleep(1)
     }
 
     func testSnapshot06_History() throws {
-        // Scroll down past forecast to the calendar heat map
-        for _ in 0..<3 { app.swipeUp() }
+        // Scroll past ForecastView to the CycleCalendarView (History)
+        // Start from forecast position and keep scrolling until history.header is visible
+        var attempts = 0
+        while !app.staticTexts["history.header"].exists && attempts < 15 {
+            app.swipeUp()
+            sleep(1)
+            attempts += 1
+        }
+        XCTAssertTrue(app.staticTexts["history.header"].waitForExistence(timeout: 5))
         sleep(1)
         snapshot("06_History")
     }

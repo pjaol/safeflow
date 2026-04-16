@@ -28,6 +28,14 @@ struct SafeFlowApp: App {
         if args.contains("UI-Testing") {
             UserDefaults.standard.set(false, forKey: "isAuthenticationRequired")
         }
+        // SNAPSHOT_LANGUAGE env var (set by the test via app.launchEnvironment) controls
+        // the SwiftUI locale for snapshots. This must be applied before the first render.
+        if let lang = ProcessInfo.processInfo.environment["SNAPSHOT_LANGUAGE"], !lang.isEmpty {
+            UserDefaults.standard.set(lang, forKey: "appLanguage")
+        } else if args.contains("UI-Testing") {
+            // No explicit language: clear persisted value so .current locale takes effect.
+            UserDefaults.standard.removeObject(forKey: "appLanguage")
+        }
         // SKIP_ONBOARDING must be applied before the first render so the home
         // screen is shown immediately — onAppear fires too late for UI tests.
         if args.contains("SKIP_ONBOARDING") {

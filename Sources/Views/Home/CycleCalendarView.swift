@@ -86,6 +86,7 @@ struct CycleCalendarView: View {
                 .font(AppTheme.Typography.headlineFont)
                 .foregroundColor(AppTheme.Colors.deepGrayText)
                 .accessibilityAddTraits(.isHeader)
+                .accessibilityIdentifier("history.header")
             Spacer()
             Picker("History range", selection: $monthCount) {
                 Text("3 mo").tag(3)

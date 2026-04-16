@@ -98,6 +98,18 @@ platform :ios do
     screenshots_cache = "#{cache_dir}/screenshots"
     sh("mkdir -p '#{screenshots_cache}'")
 
+    # Boot both simulators once and set status bar
+    devices.each do |device|
+      UI.message "Booting #{device[:name]}..."
+      sh("xcrun simctl boot #{device[:udid]} 2>/dev/null || true")
+      sh("xcrun simctl bootstatus #{device[:udid]} -b 2>/dev/null || true")
+      sh(
+        "xcrun simctl status_bar #{device[:udid]} override " \
+        "--time 09:41 --dataNetwork wifi --wifiMode active --wifiBars 3 " \
+        "--cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100"
+      )
+    end
+
     languages.each do |language|
       lang_tag = language[:tag]
       lang     = language[:lang]
@@ -107,59 +119,34 @@ platform :ios do
 
       UI.message "=== Capturing #{lang_tag} ==="
 
-      # Set the simulator system language before booting — must be done while shut down
-      devices.each do |device|
-        UI.message "Setting system language #{lang} on #{device[:name]}..."
-        sh("xcrun simctl shutdown #{device[:udid]} 2>/dev/null || true")
-        sleep(3)
-        # Write system-level language prefs directly to the simulator plist on disk
-        # The plist lives at ~/Library/Developer/CoreSimulator/Devices/<UDID>/data/Library/Preferences/.GlobalPreferences.plist
-        sim_prefs = File.expand_path(
-          "~/Library/Developer/CoreSimulator/Devices/#{device[:udid]}/data/Library/Preferences/.GlobalPreferences.plist"
-        )
-        if File.exist?(sim_prefs)
-          sh("plutil -replace AppleLanguages -json '[\"#{lang}\"]' '#{sim_prefs}'")
-          sh("plutil -replace AppleLocale -string '#{locale}' '#{sim_prefs}'")
-          UI.success "Set #{lang} on #{device[:name]}"
-        else
-          UI.error "Could not find simulator prefs at #{sim_prefs}"
-        end
-        sh("xcrun simctl boot #{device[:udid]} 2>/dev/null || true")
-        sh("xcrun simctl bootstatus #{device[:udid]} -b 2>/dev/null || true")
-        sh(
-          "xcrun simctl status_bar #{device[:udid]} override " \
-          "--time 09:41 --dataNetwork wifi --wifiMode active --wifiBars 3 " \
-          "--cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100"
-        )
-      end
-
       # Write language + locale files for SnapshotHelper to read
       File.write("#{cache_dir}/language.txt", lang)
       File.write("#{cache_dir}/locale.txt", locale)
 
-      # Clear previous screenshots from cache
-      sh("rm -f '#{screenshots_cache}'/*.png")
+      devices.each do |device|
+        UI.message "  Device: #{device[:name]}"
 
-      # Build destination string using both UDIDs
-      destinations = devices.map { |d| "-destination 'platform=iOS Simulator,id=#{d[:udid]}'" }.join(" ")
+        # Clear previous screenshots from cache before each device run
+        sh("rm -f '#{screenshots_cache}'/*.png")
 
-      sh(
-        "set -o pipefail && " \
-        "xcodebuild " \
-        "-project ../safeflow.xcodeproj " \
-        "-scheme safeflow " \
-        "-configuration Debug " \
-        "#{destinations} " \
-        "-only-testing:safeflowUITests/SnapshotTests " \
-        "-derivedDataPath /tmp/safeflow-snap-#{lang_tag} " \
-        "FASTLANE_SNAPSHOT=YES " \
-        "FASTLANE_LANGUAGE=#{lang} " \
-        "SIMULATOR_HOST_HOME=#{File.expand_path('~')} " \
-        "test 2>&1 | xcpretty --color --test || true"
-      )
+        sh(
+          "set -o pipefail && " \
+          "xcodebuild " \
+          "-project ../safeflow.xcodeproj " \
+          "-scheme safeflow " \
+          "-configuration Debug " \
+          "-destination 'platform=iOS Simulator,id=#{device[:udid]}' " \
+          "-only-testing:safeflowUITests/SnapshotTests " \
+          "-skip-testing:safeflowUITests/SnapshotTests/testDiagnostic_WhatIsOnScreen " \
+          "FASTLANE_SNAPSHOT=YES " \
+          "SIMULATOR_HOST_HOME=#{File.expand_path('~')} " \
+          "test 2>&1 | tail -5 || true"
+        )
 
-      # Move screenshots from cache to output dir (SnapshotHelper writes DeviceName-SnapName.png)
-      sh("mv '#{screenshots_cache}'/*.png '#{out_dir}'/ 2>/dev/null || true")
+        # Move screenshots from cache to output dir, prefixed by device name
+        sh("mv '#{screenshots_cache}'/*.png '#{out_dir}'/ 2>/dev/null || true")
+      end
+
       UI.success "Screenshots for #{lang_tag} saved to #{out_dir}"
     end
 
