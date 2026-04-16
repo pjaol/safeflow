@@ -158,7 +158,7 @@ struct CycleRingSummaryCard: View {
         ZStack {
             if totalItemCount > 0 {
                 Text("\(totalItemCount)")
-                    .font(.system(size: 22, weight: .bold, design: .rounded))
+                    .font(.system(.title3, design: .rounded, weight: .bold))
                     .foregroundColor(phaseColor)
             } else {
                 EmptyView()

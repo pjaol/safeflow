@@ -11,9 +11,11 @@ final class SafeflowUITestsLaunchTests: XCTestCase {
 
     func testLaunch() throws {
         let app = XCUIApplication()
+        app.launchArguments = ["UI-Testing", "SKIP_ONBOARDING"]
         app.launch()
-
-        // Verify initial launch screen
-        XCTAssertTrue(app.otherElements["LaunchScreen"].exists)
+        // App must reach a navigable state — either home screen or lock screen
+        let launched = app.buttons["home.settingsButton"].waitForExistence(timeout: 10) ||
+                       app.staticTexts["SafeFlow is Locked"].waitForExistence(timeout: 10)
+        XCTAssertTrue(launched, "App did not reach a navigable state after launch")
     }
-} 
+}

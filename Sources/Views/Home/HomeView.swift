@@ -80,7 +80,9 @@ struct HomeView: View {
                     } label: {
                         Image(systemName: "ladybug.fill")
                             .foregroundColor(AppTheme.Colors.secondaryPink)
+                            .accessibilityHidden(true)
                     }
+                    .accessibilityLabel("Debug menu")
                     .accessibilityIdentifier("home.debugButton")
                 }
                 #endif

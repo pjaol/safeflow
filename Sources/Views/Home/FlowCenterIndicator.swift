@@ -93,7 +93,7 @@ struct FlowStepSlider: View {
                 ForEach(Array(levels.enumerated()), id: \.element) { idx, level in
                     let isSelected = viewModel.committedFlow == level
                     Text(level.localizedName)
-                        .font(.system(size: 11, weight: isSelected ? .black : .bold, design: .rounded))
+                        .font(.system(.caption2, design: .rounded, weight: isSelected ? .black : .bold))
                         .foregroundStyle(isSelected
                                          ? AppTheme.Colors.secondaryPink
                                          : Color(.label).opacity(0.55))
