@@ -79,11 +79,18 @@ platform :ios do
     )
   end
 
-  desc "Capture App Store screenshots by running the app in the simulator"
+  desc "Capture App Store screenshots for all languages by running the app in the simulator"
   lane :screenshots do
     devices = {
-      "iPhone 17 Pro Max" => "64F7738E-C360-45FB-A8AF-CBB2FB1BB4C2",
-      "iPhone 17"         => "6E2ECA2D-23B3-44BF-9646-6392755BD9A9",
+      "iPhone 17 Pro Max" => "65EC9EE1-D802-4FDA-AC13-4FEC110C0AB4",
+      "iPhone 17"         => "B45E0B27-CACF-4857-9405-3B0678587292",
+    }
+
+    languages = {
+      "en-US" => "en_US",
+      "de-DE" => "de_DE",
+      "fr-FR" => "fr_FR",
+      "es-MX" => "es_MX",
     }
 
     # Build the app for simulator (no signing needed)
@@ -104,59 +111,80 @@ platform :ios do
     raise "Could not find built app" unless app_path
     UI.message "App built at: #{app_path}"
 
+    # Screens: name, scroll steps (number of swipe-ups), wait seconds
     screens = [
-      { name: "01_Home",     scroll: 0,   wait: 4 },
-      { name: "02_Pulse",    scroll: 0,   wait: 2 },
-      { name: "03_Forecast", scroll: 600, wait: 2 },
-      { name: "04_History",  scroll: 1400, wait: 2 },
+      { name: "01_Home",     swipes: 0, wait: 4 },
+      { name: "02_Pulse",    swipes: 0, wait: 2 },
+      { name: "03_Forecast", swipes: 3, wait: 2 },
+      { name: "04_History",  swipes: 6, wait: 2 },
     ]
 
-    devices.each do |device_name, udid|
-      out = "fastlane/screenshots/en-US"
-      sh("mkdir -p '#{out}'")
-      safe_name = device_name.gsub(" ", "_")
+    languages.each do |lang_tag, locale|
+      devices.each do |device_name, udid|
+        out = "../fastlane/screenshots/#{lang_tag}"
+        sh("mkdir -p '#{out}'")
+        safe_name = device_name.gsub(/\s+/, "_")
 
-      UI.message "Booting #{device_name}..."
-      sh("xcrun simctl boot #{udid} 2>/dev/null || true")
-      sh("xcrun simctl bootstatus #{udid} -b")
+        UI.message "=== #{lang_tag} / #{device_name} ==="
 
-      # Clean status bar
-      sh(
-        "xcrun simctl status_bar #{udid} override " \
-        "--time 09:41 --dataNetwork wifi --wifiMode active --wifiBars 3 " \
-        "--cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100"
-      )
+        # Set simulator locale before launching — write AppleLanguages and AppleLocale
+        # into the app's UserDefaults domain via simctl
+        sh("xcrun simctl boot #{udid} 2>/dev/null || true")
+        sh("xcrun simctl bootstatus #{udid} -b 2>/dev/null || true")
 
-      # Install app with test data launch args baked in via env
-      sh("xcrun simctl install #{udid} '#{app_path}'")
+        # Override simulator locale for this app
+        sh(
+          "xcrun simctl spawn #{udid} defaults write com.thevgergroup.safeflow " \
+          "AppleLanguages \"(#{locale.sub('_', '-')})\" 2>/dev/null || true"
+        )
+        sh(
+          "xcrun simctl spawn #{udid} defaults write com.thevgergroup.safeflow " \
+          "AppleLocale #{locale} 2>/dev/null || true"
+        )
 
-      # Launch with args to load symptom-rich data and skip onboarding
-      sh("xcrun simctl launch #{udid} com.thevgergroup.safeflow RESET_DATA SKIP_ONBOARDING LOAD_SYMPTOM_RICH")
+        # Clean status bar
+        sh(
+          "xcrun simctl status_bar #{udid} override " \
+          "--time 09:41 --dataNetwork wifi --wifiMode active --wifiBars 3 " \
+          "--cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100"
+        )
 
-      UI.message "Waiting for app to load data..."
-      sleep(8)
+        sh("xcrun simctl install #{udid} '#{app_path}'")
+        sh("xcrun simctl terminate #{udid} com.thevgergroup.safeflow 2>/dev/null || true")
+        sh("xcrun simctl launch #{udid} com.thevgergroup.safeflow RESET_DATA SKIP_ONBOARDING LOAD_SYMPTOM_RICH")
 
-      screens.each do |screen|
-        if screen[:scroll] > 0
-          # Use simctl io to send a scroll via touch events
-          sh("xcrun simctl io #{udid} sendkey 'scroll' 2>/dev/null || true")
-          # Fallback: use osascript to scroll in the simulator
+        UI.message "Waiting for app to settle..."
+        sleep(8)
+
+        screens.each_with_index do |screen, idx|
+          # Scroll back to top before each screen
           sh(
-            "osascript -e 'tell application \"Simulator\" to activate' " \
-            "-e 'tell application \"System Events\" to key code 125' 2>/dev/null || true"
+            "xcrun simctl io #{udid} sendkey home 2>/dev/null || " \
+            "osascript -e 'tell application \"Simulator\" to activate' 2>/dev/null || true"
           )
-          sleep(1)
-        end
-        sleep(screen[:wait])
-        out_file = "#{out}/#{safe_name}-#{screen[:name]}.png"
-        sh("xcrun simctl io #{udid} screenshot '#{out_file}'")
-        UI.success "Captured: #{out_file}"
-      end
 
-      sh("xcrun simctl terminate #{udid} com.thevgergroup.safeflow 2>/dev/null || true")
+          # Scroll down the required number of swipes from top
+          screen[:swipes].times do
+            sh(
+              "osascript " \
+              "-e 'tell application \"Simulator\" to activate' " \
+              "-e 'delay 0.3' " \
+              "-e 'tell application \"System Events\" to key code 125' 2>/dev/null || true"
+            )
+            sleep(0.5)
+          end
+
+          sleep(screen[:wait])
+          out_file = "#{out}/#{safe_name}-#{screen[:name]}.png"
+          sh("xcrun simctl io #{udid} screenshot '#{out_file}'")
+          UI.success "Captured: #{out_file}"
+        end
+
+        sh("xcrun simctl terminate #{udid} com.thevgergroup.safeflow 2>/dev/null || true")
+      end
     end
 
-    UI.success "Screenshots saved to fastlane/screenshots/en-US/"
+    UI.success "All screenshots saved to fastlane/screenshots/"
   end
 
   desc "Distribute a build to an external TestFlight group. Pass group:\"Group Name\" and optionally build_number:\"123\""
