@@ -89,8 +89,8 @@ struct DartboardSegment: View {
         .scaleEffect(bouncing ? 1.08 : 1.0, anchor: .center)
         .contentShape(shape)
         .onTapGesture { handleTap() }
-        .animation(.spring(response: 0.3, dampingFraction: 0.55), value: isActive)
-        .animation(.spring(response: 0.25, dampingFraction: 0.5), value: bouncing)
+        .animation(reduceMotion ? .none : .spring(response: 0.3, dampingFraction: 0.55), value: isActive)
+        .animation(reduceMotion ? .none : .spring(response: 0.25, dampingFraction: 0.5), value: bouncing)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(isActive ? "\(item.labelString), \(String(localized: "logged"))" : item.labelString)
         .accessibilityHint(isActive ? String(localized: "Tap to remove") : String(localized: "Tap to log"))
@@ -125,7 +125,7 @@ struct DartboardSegment: View {
 
         VStack(spacing: 3) {
             Image(systemName: item.sfSymbol)
-                .font(.system(size: 15, weight: .semibold))
+                .font(.system(.subheadline, design: .default).weight(.semibold))
                 .foregroundStyle(contentColor)
                 .accessibilityHidden(true)
             Text(item.label)
@@ -145,6 +145,7 @@ struct DartboardSegment: View {
 
 struct NotesBullseye: View {
     @ObservedObject var viewModel: DartboardViewModel
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var showingNotes = false
     @State private var pressing = false
 
@@ -167,10 +168,10 @@ struct NotesBullseye: View {
                 .shadow(color: .black.opacity(0.22), radius: 8, x: 0, y: 3)
                 .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 1)
                 .scaleEffect(pressing ? 1.12 : 1.0)
-                .animation(.spring(response: 0.25, dampingFraction: 0.6), value: pressing)
+                .animation(reduceMotion ? .none : .spring(response: 0.25, dampingFraction: 0.6), value: pressing)
 
             Image(systemName: hasNotes ? "note.text" : "pencil")
-                .font(.system(size: 16, weight: .black))
+                .font(.system(.body, design: .default).weight(.black))
                 .foregroundStyle(hasNotes
                                  ? .white
                                  : AppTheme.Colors.primaryBlue)

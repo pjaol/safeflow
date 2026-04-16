@@ -142,6 +142,7 @@ struct ForecastView: View {
             Text("Cycle Forecast")
                 .font(AppTheme.Typography.headlineFont)
                 .foregroundColor(AppTheme.Colors.deepGrayText)
+                .accessibilityAddTraits(.isHeader)
             Spacer()
             Picker("Forecast range", selection: $monthCount) {
                 Text("3 mo").tag(3)
@@ -194,7 +195,7 @@ struct ForecastView: View {
             ZStack(alignment: .leading) {
                 ForEach([7, 14, 21], id: \.self) { day in
                     Text("\(day)")
-                        .font(.system(size: 9, weight: .medium, design: .rounded))
+                        .font(.system(.caption2, design: .rounded).weight(.medium))
                         .foregroundColor(AppTheme.Colors.mediumGrayText)
                         .frame(width: colWidth * 2, alignment: .center)
                         .offset(x: colWidth * CGFloat(day) - colWidth)
@@ -494,14 +495,14 @@ private struct ForecastListSheet: View {
             List {
                 ForEach(Array(forecasts.enumerated()), id: \.offset) { i, f in
                     Section(header: Text(i == 0 ? "Next cycle" : "Cycle \(i + 1)")) {
-                        row(label: "Period window",
+                        row(label: String(localized: "Period window"),
                             value: "\(df.string(from: f.periodEarliest)) – \(df.string(from: f.periodLatest))")
-                        row(label: "Most likely start", value: df.string(from: f.periodCenter))
+                        row(label: String(localized: "Most likely start"), value: df.string(from: f.periodCenter))
                         if let fs = f.fertileWindowStart, let fe = f.fertileWindowEnd {
-                            row(label: "Fertile window",
+                            row(label: String(localized: "Fertile window"),
                                 value: "\(df.string(from: fs)) – \(df.string(from: fe))")
                         }
-                        row(label: "Confidence", value: "\(Int(f.confidence * 100))%")
+                        row(label: String(localized: "Confidence"), value: "\(Int(f.confidence * 100))%")
                     }
                 }
             }

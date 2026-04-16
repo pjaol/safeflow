@@ -35,13 +35,13 @@ struct CategoryStripView: View {
         } label: {
             VStack(spacing: 5) {
                 Image(systemName: category.sfSymbol)
-                    .font(.system(size: isSelected ? 20 : 16, weight: isSelected ? .semibold : .regular))
+                    .font(.system(isSelected ? .title3 : .body, design: .default).weight(isSelected ? .semibold : .regular))
                     .foregroundStyle(isSelected ? .white : category.color.opacity(0.8))
                     .accessibilityHidden(true)
 
                 if isSelected {
                     Text(category.label)
-                        .font(.system(size: 11, weight: .semibold, design: .rounded))
+                        .font(.system(.caption2, design: .rounded).weight(.semibold))
                         .foregroundStyle(.white)
                         .fixedSize()
                         .transition(.opacity.combined(with: .scale(scale: 0.85)))

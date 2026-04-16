@@ -85,6 +85,7 @@ struct CycleCalendarView: View {
             Text("History")
                 .font(AppTheme.Typography.headlineFont)
                 .foregroundColor(AppTheme.Colors.deepGrayText)
+                .accessibilityAddTraits(.isHeader)
             Spacer()
             Picker("History range", selection: $monthCount) {
                 Text("3 mo").tag(3)
@@ -154,7 +155,7 @@ struct CycleCalendarView: View {
             ZStack(alignment: .leading) {
                 ForEach([7, 14, 21], id: \.self) { day in
                     Text("\(day)")
-                        .font(.system(size: 9, weight: .medium, design: .rounded))
+                        .font(.system(.caption2, design: .rounded).weight(.medium))
                         .foregroundColor(AppTheme.Colors.mediumGrayText)
                         .frame(width: colWidth * 2, alignment: .center)
                         .offset(x: colWidth * CGFloat(day) - colWidth)
@@ -538,7 +539,7 @@ struct MonthSummaryView: View {
                 if weekGroups.isEmpty {
                     VStack(spacing: 12) {
                         Spacer()
-                        Text("Nothing logged in \(monthLabel)")
+                        Text("Nothing logged in \(monthLabel)", comment: "Empty state for a month with no logged days")
                             .font(AppTheme.Typography.bodyFont)
                             .foregroundColor(AppTheme.Colors.mediumGrayText)
                         Spacer()
@@ -593,10 +594,10 @@ private struct WeekDayRow: View {
         HStack(alignment: .top, spacing: 12) {
             VStack(alignment: .center, spacing: 2) {
                 Text(dayOfWeek)
-                    .font(.system(size: 10, weight: .medium, design: .rounded))
+                    .font(.system(.caption2, design: .rounded).weight(.medium))
                     .foregroundColor(AppTheme.Colors.mediumGrayText)
                 Text(dayNumber)
-                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+                    .font(.system(.title3, design: .rounded).weight(.semibold))
                     .foregroundColor(AppTheme.Colors.deepGrayText)
             }
             .frame(width: 36)
@@ -654,7 +655,7 @@ private struct SymptomChips: View {
         HStack(spacing: 4) {
             ForEach(symptoms.prefix(3), id: \.self) { symptom in
                 Text(symptom.localizedName)
-                    .font(.system(size: 10, design: .rounded))
+                    .font(.system(.caption2, design: .rounded))
                     .foregroundColor(AppTheme.Colors.forecastSymptom)
                     .padding(.horizontal, 6)
                     .padding(.vertical, 2)
@@ -663,7 +664,7 @@ private struct SymptomChips: View {
             }
             if symptoms.count > 3 {
                 Text("+\(symptoms.count - 3)")
-                    .font(.system(size: 10, design: .rounded))
+                    .font(.system(.caption2, design: .rounded))
                     .foregroundColor(AppTheme.Colors.mediumGrayText)
             }
         }
