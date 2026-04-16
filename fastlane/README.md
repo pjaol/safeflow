@@ -29,7 +29,7 @@ Build and upload to TestFlight
 [bundle exec] fastlane ios screenshots
 ```
 
-Capture App Store screenshots by running the app in the simulator
+Capture App Store screenshots for all languages using SnapshotHelper + xcodebuild
 
 ### ios distribute
 
