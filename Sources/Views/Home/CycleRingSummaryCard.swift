@@ -220,7 +220,8 @@ struct CycleRingSummaryCard: View {
         if alertCount > 0 { parts.append("\(alertCount) alert\(alertCount == 1 ? "" : "s")") }
         if insightCount > 0 { parts.append("1 insight") }
         if tipCount > 0 { parts.append("1 tip") }
-        return parts.joined(separator: ", ")
+        let label = parts.joined(separator: ", ")
+        return label.isEmpty ? "Cycle summary" : label
     }
 }
 

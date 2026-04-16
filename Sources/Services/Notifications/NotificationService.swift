@@ -25,12 +25,16 @@ final class NotificationService: ObservableObject {
         static let supplyReminder = "safeflow.supplyReminder"
     }
 
+    /// True when running under XCTest — suppresses all permission requests and scheduling.
+    private static let isUITesting = ProcessInfo.processInfo.arguments.contains("UI-Testing")
+
     private init() {}
 
     // MARK: - Permission
 
     /// Requests notification permission. Safe to call multiple times — no-ops if already granted/denied.
     func requestAuthorization() async {
+        guard !Self.isUITesting else { return }
         do {
             let granted = try await center.requestAuthorization(options: [.alert, .sound, .badge])
             logger.info("Notification authorization granted: \(granted)")
@@ -50,6 +54,7 @@ final class NotificationService: ObservableObject {
     /// Schedules a single "check your supplies" notification 2 days before `periodEarliest`.
     /// Replaces any previously scheduled reminder.
     func scheduleSupplyReminder(periodEarliest: Date) async {
+        guard !Self.isUITesting else { return }
         await cancelSupplyReminder()
 
         let settings = await center.notificationSettings()

@@ -24,8 +24,16 @@ struct SafeFlowApp: App {
 
     init() {
         #if DEBUG
-        if ProcessInfo.processInfo.arguments.contains("UI-Testing") {
+        let args = ProcessInfo.processInfo.arguments
+        if args.contains("UI-Testing") {
             UserDefaults.standard.set(false, forKey: "isAuthenticationRequired")
+        }
+        // SKIP_ONBOARDING must be applied before the first render so the home
+        // screen is shown immediately — onAppear fires too late for UI tests.
+        if args.contains("SKIP_ONBOARDING") {
+            UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
+        } else if args.contains("UI-Testing") || args.contains("RESET_ONBOARDING") {
+            UserDefaults.standard.set(false, forKey: "hasCompletedOnboarding")
         }
         #endif
     }
@@ -105,14 +113,6 @@ struct SafeFlowApp: App {
 
         if args.contains("UI-Testing") || args.contains("RESET_DATA") {
             cycleStore.clearAllData()
-        }
-
-        if args.contains("RESET_ONBOARDING") || args.contains("UI-Testing") {
-            hasCompletedOnboarding = false
-        }
-
-        if args.contains("SKIP_ONBOARDING") {
-            hasCompletedOnboarding = true
         }
 
         if args.contains("LOAD_SYMPTOM_RICH") {

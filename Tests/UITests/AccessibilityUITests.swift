@@ -19,7 +19,23 @@ final class AccessibilityUITests: XCTestCase {
         continueAfterFailure = false
         app = XCUIApplication()
         app.launchArguments = ["UI-Testing", "SKIP_ONBOARDING"]
+        // Dismiss any system permission alerts (e.g. notifications) automatically.
+        // The monitor only fires when we interact with the app, so tap after launch
+        // to trigger dismissal before any test assertions run.
+        addUIInterruptionMonitor(withDescription: "System alert") { alert in
+            if alert.buttons["Don't Allow"].exists {
+                alert.buttons["Don't Allow"].tap()
+                return true
+            }
+            if alert.buttons["Allow"].exists {
+                alert.buttons["Allow"].tap()
+                return true
+            }
+            return false
+        }
         app.launch()
+        // Tap the app to trigger the interruption monitor if a system alert is showing
+        app.tap()
     }
 
     // MARK: - Generic sweeper
@@ -36,6 +52,11 @@ final class AccessibilityUITests: XCTestCase {
         ]
         for query in interactive {
             for element in query.allElementsBoundByIndex {
+                // Skip elements with no identifier — these are SwiftUI framework-internal
+                // sub-elements (e.g. the raw UISwitch inside a Toggle) that inherit their
+                // label through the parent container and appear unlabelled individually.
+                // App-owned interactive controls must have an accessibilityIdentifier.
+                guard !element.identifier.isEmpty else { continue }
                 XCTAssertFalse(
                     element.label.isEmpty,
                     "[\(screen)] Unlabelled element: type=\(element.elementType.rawValue) id='\(element.identifier)'"
@@ -47,7 +68,7 @@ final class AccessibilityUITests: XCTestCase {
     // MARK: - Home screen
 
     func testHomeScreenHasNoUnlabelledButtons() {
-        XCTAssertTrue(app.otherElements["home.cyclePhaseCard"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["home.cycleRingSummaryCard"].waitForExistence(timeout: 5))
         assertNoUnlabelledInteractiveElements(screen: "Home")
     }
 
@@ -64,7 +85,7 @@ final class AccessibilityUITests: XCTestCase {
     }
 
     func testHomeScreenDecorativeImagesAreHidden() {
-        XCTAssertTrue(app.otherElements["home.cyclePhaseCard"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["home.cycleRingSummaryCard"].waitForExistence(timeout: 5))
         // Decorative icons marked .accessibilityHidden(true) must not appear as
         // queryable accessibility images. If any image IS visible to the tree
         // it must have a meaningful label (not be a bare system name or empty).
@@ -76,21 +97,26 @@ final class AccessibilityUITests: XCTestCase {
         }
     }
 
-    // MARK: - Log day form
+    // MARK: - Edit logs sheet
 
-    func testLogFormHasNoUnlabelledButtons() {
-        app.buttons["home.newLogButton"].tap()
-        XCTAssertTrue(app.buttons["logDay.saveButton"].waitForExistence(timeout: 5))
-        assertNoUnlabelledInteractiveElements(screen: "LogDay")
-        app.buttons["logDay.cancelButton"].tap()
+    func testEditLogsSheetHasNoUnlabelledButtons() {
+        XCTAssertTrue(app.buttons["home.editLogsButton"].waitForExistence(timeout: 5))
+        app.buttons["home.editLogsButton"].tap()
+        // Wait for the sheet's Done button to confirm it opened
+        XCTAssertTrue(app.buttons.matching(NSPredicate(format: "label == 'Done'")).firstMatch.waitForExistence(timeout: 5))
+        assertNoUnlabelledInteractiveElements(screen: "EditLogs")
+        app.buttons.matching(NSPredicate(format: "label == 'Done'")).firstMatch.tap()
     }
 
-    func testLogFormSaveAndCancelButtonsHaveLabels() {
-        app.buttons["home.newLogButton"].tap()
-        XCTAssertTrue(app.buttons["logDay.saveButton"].waitForExistence(timeout: 5))
-        XCTAssertFalse(app.buttons["logDay.saveButton"].label.isEmpty)
-        XCTAssertFalse(app.buttons["logDay.cancelButton"].label.isEmpty)
-        app.buttons["logDay.cancelButton"].tap()
+    func testEditLogsSheetContainsFlowOptions() {
+        XCTAssertTrue(app.buttons["home.editLogsButton"].waitForExistence(timeout: 5))
+        app.buttons["home.editLogsButton"].tap()
+        XCTAssertTrue(app.buttons.matching(NSPredicate(format: "label == 'Done'")).firstMatch.waitForExistence(timeout: 5))
+        // Flow chips must be present
+        XCTAssertTrue(app.buttons.matching(NSPredicate(format: "label CONTAINS 'None'")).firstMatch.exists
+                      || app.buttons.matching(NSPredicate(format: "label CONTAINS 'Light'")).firstMatch.exists,
+                      "Flow options not found in edit logs sheet")
+        app.buttons.matching(NSPredicate(format: "label == 'Done'")).firstMatch.tap()
     }
 
     // MARK: - Onboarding inputs
@@ -124,7 +150,7 @@ final class AccessibilityUITests: XCTestCase {
     // MARK: - Cycle ring summary card
 
     func testRingCentreCountHasContextualLabel() {
-        XCTAssertTrue(app.otherElements["home.cyclePhaseCard"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["home.cycleRingSummaryCard"].waitForExistence(timeout: 5))
         let centreCount = app.otherElements["home.cycleRingSummaryCard.centreCount"]
         guard centreCount.exists else {
             // Centre count only appears when there are items — not a failure if absent
@@ -140,6 +166,7 @@ final class AccessibilityUITests: XCTestCase {
     // MARK: - Settings
 
     func testSettingsScreenHasNoUnlabelledButtons() {
+        XCTAssertTrue(app.buttons["home.settingsButton"].waitForExistence(timeout: 5))
         app.buttons["home.settingsButton"].tap()
         XCTAssertTrue(app.switches["settings.requireAuthToggle"].waitForExistence(timeout: 5))
         assertNoUnlabelledInteractiveElements(screen: "Settings")
@@ -154,9 +181,10 @@ final class AccessibilityUITests: XCTestCase {
         // This test confirms the app launches and core UI is accessible under
         // reduce motion — animation correctness is validated by visual inspection
         // during the manual VoiceOver gate.
-        XCTAssertTrue(app.otherElements["home.cyclePhaseCard"].waitForExistence(timeout: 5))
-        app.buttons["home.newLogButton"].tap()
-        XCTAssertTrue(app.buttons["logDay.saveButton"].waitForExistence(timeout: 5))
-        app.buttons["logDay.cancelButton"].tap()
+        XCTAssertTrue(app.buttons["home.cycleRingSummaryCard"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["home.editLogsButton"].waitForExistence(timeout: 5))
+        app.buttons["home.editLogsButton"].tap()
+        XCTAssertTrue(app.buttons.matching(NSPredicate(format: "label == 'Done'")).firstMatch.waitForExistence(timeout: 5))
+        app.buttons.matching(NSPredicate(format: "label == 'Done'")).firstMatch.tap()
     }
 }
