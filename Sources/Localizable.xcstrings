@@ -7351,6 +7351,238 @@
           }
         }
       }
+    },
+    "Menstrual": {
+      "comment": "Cycle phase name",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menstruation"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menstrual"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menstruelle"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menstrual"
+          }
+        }
+      }
+    },
+    "Follicular": {
+      "comment": "Cycle phase name",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Follikelphase"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Folicular"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Folliculaire"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Follicular"
+          }
+        }
+      }
+    },
+    "Ovulation Window": {
+      "comment": "Cycle phase name",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eisprungfenster"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ventana de ovulación"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fenêtre d'ovulation"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ovulation Window"
+          }
+        }
+      }
+    },
+    "Luteal": {
+      "comment": "Cycle phase name",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lutealphase"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lútea"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lutéale"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Luteal"
+          }
+        }
+      }
+    },
+    "Rest if you can. Your body is doing real work.": {
+      "comment": "Menstrual phase description on cycle card",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruh dich aus, wenn du kannst. Dein Körper leistet gerade echte Arbeit."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descansa si puedes. Tu cuerpo está haciendo un trabajo real."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repose-toi si tu peux. Ton corps fait un vrai travail."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rest if you can. Your body is doing real work."
+          }
+        }
+      }
+    },
+    "Energy typically builds. Good time for new projects.": {
+      "comment": "Follicular phase description on cycle card",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Energie baut sich typischerweise auf. Gute Zeit für neue Projekte."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La energía suele aumentar. Buen momento para nuevos proyectos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'énergie monte généralement. Bon moment pour de nouveaux projets."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Energy typically builds. Good time for new projects."
+          }
+        }
+      }
+    },
+    "Often the highest-energy point of your cycle.": {
+      "comment": "Ovulatory phase description on cycle card",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oft der energiereichste Punkt deines Zyklus."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suele ser el punto de mayor energía de tu ciclo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Souvent le point le plus énergique de ton cycle."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Often the highest-energy point of your cycle."
+          }
+        }
+      }
+    },
+    "Energy may dip toward the end of this phase.": {
+      "comment": "Luteal phase description on cycle card",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Energie kann gegen Ende dieser Phase nachlassen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La energía puede bajar hacia el final de esta fase."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'énergie peut baisser vers la fin de cette phase."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Energy may dip toward the end of this phase."
+          }
+        }
+      }
     }
   },
   "version": "1.0"
