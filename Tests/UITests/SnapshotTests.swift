@@ -57,11 +57,11 @@ final class SnapshotTests: XCTestCase {
     func testSnapshot04_ForecastView() throws {
         // Forecast is off-screen — scroll until visible in the a11y tree
         var attempts = 0
-        while !app.staticTexts["Cycle Forecast"].exists && attempts < 10 {
+        while !app.staticTexts["forecast.header"].exists && attempts < 10 {
             app.swipeUp()
             attempts += 1
         }
-        XCTAssertTrue(app.staticTexts["Cycle Forecast"].exists)
+        XCTAssertTrue(app.staticTexts["forecast.header"].exists)
         sleep(1)
         snapshot("04_Forecast")
     }

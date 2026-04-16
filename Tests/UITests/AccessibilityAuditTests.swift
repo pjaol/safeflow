@@ -87,11 +87,11 @@ final class AccessibilityAuditTests: XCTestCase {
     func testForecastViewAccessibility() throws {
         // Scroll down until the forecast header text is visible in the screen
         var attempts = 0
-        while !app.staticTexts["Cycle Forecast"].exists && attempts < 10 {
+        while !app.staticTexts["forecast.header"].exists && attempts < 10 {
             app.swipeUp()
             attempts += 1
         }
-        XCTAssertTrue(app.staticTexts["Cycle Forecast"].exists,
+        XCTAssertTrue(app.staticTexts["forecast.header"].exists,
             "Forecast section not reachable after scrolling")
 
         try app.performAccessibilityAudit(for: [
