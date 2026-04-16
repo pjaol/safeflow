@@ -98,18 +98,6 @@ platform :ios do
     screenshots_cache = "#{cache_dir}/screenshots"
     sh("mkdir -p '#{screenshots_cache}'")
 
-    # Boot both simulators upfront and clean their status bars
-    devices.each do |device|
-      UI.message "Booting #{device[:name]}..."
-      sh("xcrun simctl boot #{device[:udid]} 2>/dev/null || true")
-      sh("xcrun simctl bootstatus #{device[:udid]} -b 2>/dev/null || true")
-      sh(
-        "xcrun simctl status_bar #{device[:udid]} override " \
-        "--time 09:41 --dataNetwork wifi --wifiMode active --wifiBars 3 " \
-        "--cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100"
-      )
-    end
-
     languages.each do |language|
       lang_tag = language[:tag]
       lang     = language[:lang]
@@ -118,6 +106,32 @@ platform :ios do
       sh("mkdir -p '#{out_dir}'")
 
       UI.message "=== Capturing #{lang_tag} ==="
+
+      # Set the simulator system language before booting — must be done while shut down
+      devices.each do |device|
+        UI.message "Setting system language #{lang} on #{device[:name]}..."
+        sh("xcrun simctl shutdown #{device[:udid]} 2>/dev/null || true")
+        sleep(3)
+        # Write system-level language prefs directly to the simulator plist on disk
+        # The plist lives at ~/Library/Developer/CoreSimulator/Devices/<UDID>/data/Library/Preferences/.GlobalPreferences.plist
+        sim_prefs = File.expand_path(
+          "~/Library/Developer/CoreSimulator/Devices/#{device[:udid]}/data/Library/Preferences/.GlobalPreferences.plist"
+        )
+        if File.exist?(sim_prefs)
+          sh("plutil -replace AppleLanguages -json '[\"#{lang}\"]' '#{sim_prefs}'")
+          sh("plutil -replace AppleLocale -string '#{locale}' '#{sim_prefs}'")
+          UI.success "Set #{lang} on #{device[:name]}"
+        else
+          UI.error "Could not find simulator prefs at #{sim_prefs}"
+        end
+        sh("xcrun simctl boot #{device[:udid]} 2>/dev/null || true")
+        sh("xcrun simctl bootstatus #{device[:udid]} -b 2>/dev/null || true")
+        sh(
+          "xcrun simctl status_bar #{device[:udid]} override " \
+          "--time 09:41 --dataNetwork wifi --wifiMode active --wifiBars 3 " \
+          "--cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100"
+        )
+      end
 
       # Write language + locale files for SnapshotHelper to read
       File.write("#{cache_dir}/language.txt", lang)
