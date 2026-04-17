@@ -88,21 +88,21 @@ struct LogDayView: View {
             sectionHeader("Daily Wellbeing", systemImage: "heart.circle", color: AppTheme.Colors.accentBlue)
 
             WellbeingRow(
-                title: "Sleep",
+                title: String(localized: "Sleep"),
                 sfSymbol: "moon.stars.fill",
                 labelFor: { $0.sleepLabelString },
                 selected: $sleepQuality,
                 identifier: "logDay.wellbeing.sleep"
             )
             WellbeingRow(
-                title: "Energy",
+                title: String(localized: "Energy"),
                 sfSymbol: "bolt.fill",
                 labelFor: { $0.energyLabelString },
                 selected: $energyLevel,
                 identifier: "logDay.wellbeing.energy"
             )
             WellbeingRow(
-                title: "Stress",
+                title: String(localized: "Stress"),
                 sfSymbol: "waveform.path.ecg",
                 labelFor: { $0.stressLabelString },
                 selected: $stressLevel,
@@ -291,7 +291,7 @@ struct LogDayView: View {
 /// A labelled 5-segment selector for one wellbeing dimension (sleep / energy / stress).
 /// `labelFor` maps a WellbeingLevel to the context-appropriate string (sleep/energy/stress label).
 struct WellbeingRow: View {
-    let title: LocalizedStringKey
+    let title: String
     let sfSymbol: String
     let labelFor: (WellbeingLevel) -> String
     @Binding var selected: WellbeingLevel?
@@ -306,7 +306,7 @@ struct WellbeingRow: View {
                     .font(.system(.caption, weight: .medium))
                     .foregroundStyle(AppTheme.Colors.mediumGrayText)
                     .accessibilityHidden(true)
-                Text(title)
+                Text(verbatim: title)
                     .font(.system(.caption, design: .rounded, weight: .semibold))
                     .foregroundStyle(AppTheme.Colors.deepGrayText)
                 Spacer()
@@ -331,7 +331,7 @@ struct WellbeingRow: View {
                         .onTapGesture {
                             selected = (selected == level) ? nil : level
                         }
-                        .accessibilityLabel("\(title): \(labelFor(level))")
+                        .accessibilityLabel("\(title): \(labelFor(level))" as String)
                         .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
                         .accessibilityIdentifier("\(identifier).\(level.rawValue)")
                 }

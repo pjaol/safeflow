@@ -5,6 +5,7 @@ struct HomeView: View {
     @ObservedObject var cycleStore: CycleStore
     @EnvironmentObject private var securityService: SecurityService
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @AppStorage(LifeStage.defaultsKey) private var lifeStage: LifeStage = .regular
 
     @State private var showingSettingsSheet = false
     @State private var showingSupportSheet = false
@@ -31,34 +32,64 @@ struct HomeView: View {
                         PulseView(cycleStore: cycleStore)
                             .frame(minHeight: 360)
 
-                        // ── Zone 2: Cycle ring summary (phase + alerts + insights + tips) ──
-                        CycleRingSummaryCard(
-                            cycleStore: cycleStore,
-                            phase: cycleStore.currentPhase(),
-                            cycleDay: cycleStore.currentCycleDayNumber(),
-                            predictionRange: cycleStore.predictNextPeriodRange(),
-                            averageCycleLength: cycleStore.calculateAverageCycleLength(),
-                            activeSignals: activeSignals,
-                            activeNudge: { () -> CycleNudge? in
-                                guard let nudge = cycleStore.currentNudge(),
-                                      !dismissedNudgeIDs.contains(nudge.id) else { return nil }
-                                return nudge
-                            }(),
-                            onDismissSignal: { id in
-                                DismissedNudges.dismiss(id)
-                                dismissedSignalIDs = DismissedNudges.load()
-                            },
-                            onDismissNudge: {
-                                if let nudge = cycleStore.currentNudge() {
-                                    DismissedNudges.dismiss(nudge.id)
-                                    dismissedNudgeIDs = DismissedNudges.load()
-                                }
+                        // ── Zone 1b: Life-stage adaptive cards ───────────────
+
+                        // Unexpected bleeding nudge (menopause / paused)
+                        if cycleStore.unexpectedBleedingDetected {
+                            UnexpectedBleedingCard {
+                                cycleStore.clearUnexpectedBleedingSignal()
                             }
-                        )
+                        }
+
+                        // Paused stage: simplified summary replaces cycle ring
+                        if lifeStage == .paused {
+                            PausedSummaryCard(cycleStore: cycleStore)
+                        }
+
+                        // Perimenopause: bleed history card (visible when no regular predictions)
+                        if lifeStage.showsBleedHistory {
+                            BleedHistoryCard(cycleStore: cycleStore)
+                        }
+
+                        // Perimenopause + menopause: symptom snapshot
+                        if lifeStage == .perimenopause || lifeStage == .menopause {
+                            SymptomSnapshotCard(cycleStore: cycleStore)
+                        }
+
+                        // ── Zone 2: Cycle ring summary (phase + alerts + insights + tips) ──
+                        // Hidden for paused (no cycle ring) and menopause (no predictions shown)
+                        if lifeStage != .paused && lifeStage != .menopause {
+                            CycleRingSummaryCard(
+                                cycleStore: cycleStore,
+                                phase: cycleStore.currentPhase(),
+                                cycleDay: cycleStore.currentCycleDayNumber(),
+                                predictionRange: cycleStore.predictNextPeriodRange(),
+                                averageCycleLength: cycleStore.calculateAverageCycleLength(),
+                                activeSignals: activeSignals,
+                                activeNudge: { () -> CycleNudge? in
+                                    guard let nudge = cycleStore.currentNudge(),
+                                          !dismissedNudgeIDs.contains(nudge.id) else { return nil }
+                                    return nudge
+                                }(),
+                                onDismissSignal: { id in
+                                    DismissedNudges.dismiss(id)
+                                    dismissedSignalIDs = DismissedNudges.load()
+                                },
+                                onDismissNudge: {
+                                    if let nudge = cycleStore.currentNudge() {
+                                        DismissedNudges.dismiss(nudge.id)
+                                        dismissedNudgeIDs = DismissedNudges.load()
+                                    }
+                                }
+                            )
+                        }
 
                         // ── Zone 6: Data views ───────────────────────────────
-                        ForecastView(cycleStore: cycleStore)
-                            .id("forecast")
+                        // Forecast only shown for stages that predict future periods
+                        if lifeStage.showsCyclePrediction {
+                            ForecastView(cycleStore: cycleStore)
+                                .id("forecast")
+                        }
 
                         CycleCalendarView(cycleStore: cycleStore)
                             .id("history")

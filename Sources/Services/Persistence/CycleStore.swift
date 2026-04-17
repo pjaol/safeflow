@@ -6,6 +6,9 @@ import SwiftUI
 class CycleStore: ObservableObject {
     @Published private(set) var cycleDays: [CycleDay] = []
     @Published private(set) var seedData: CycleSeedData?
+    /// Emits when a flow event is logged for a life stage where flow is unexpected
+    /// (menopause, paused). Consumers can use this to surface a reminder card.
+    @Published private(set) var unexpectedBleedingDetected: Bool = false
 
     private let store: PersistenceService
     private let dateProvider: () -> Date
@@ -67,11 +70,23 @@ class CycleStore: ObservableObject {
         }
         objectWillChange.send()
         Task { await saveData() }
-        // Cancel reminder if a period was just logged (user beat the prediction)
+
         if cycleDay.flow != nil {
+            // Cancel reminder if a period was just logged (user beat the prediction)
             Task { await NotificationService.shared.cancelSupplyReminder() }
+            // Signal unexpected bleeding for life stages where flow is not routine
+            let lifeStage = LifeStage(rawValue: UserDefaults.standard.string(forKey: LifeStage.defaultsKey) ?? "") ?? .regular
+            if lifeStage.flowSliderIsSecondary {
+                unexpectedBleedingDetected = true
+            }
         }
+
         rescheduleSupplyReminder()
+    }
+
+    /// Clears the unexpected bleeding signal — call after the user has seen the nudge.
+    func clearUnexpectedBleedingSignal() {
+        unexpectedBleedingDetected = false
     }
 
     func deleteDay(id: UUID) {
