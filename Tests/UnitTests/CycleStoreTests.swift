@@ -9,6 +9,7 @@ private func makeDate(_ string: String) -> Date {
     return f.date(from: string)!
 }
 
+@MainActor
 private func makeStore(
     referenceDate: Date = makeDate("2025-03-15"),
     suiteName: String = #file
@@ -19,19 +20,31 @@ private func makeStore(
     return CycleStore(store: persistence, dateProvider: { referenceDate })
 }
 
-/// Waits long enough for the internal async save Task to complete.
+/// Create a store and wait for its initial async loadData() to complete.
+@MainActor
+private func makeStoreReady(
+    referenceDate: Date = makeDate("2025-03-15"),
+    suiteName: String = #function
+) async -> CycleStore {
+    let store = makeStore(referenceDate: referenceDate, suiteName: suiteName)
+    await drain()
+    return store
+}
+
+/// Waits long enough for the internal async save/load Task to complete.
 private func drain() async {
-    try? await Task.sleep(nanoseconds: 50_000_000) // 50 ms
+    try? await Task.sleep(nanoseconds: 100_000_000) // 100 ms
 }
 
 // MARK: - CycleStoreTests
 
+@MainActor
 final class CycleStoreTests: XCTestCase {
 
     // MARK: - CRUD
 
     func testAddDay() async {
-        let sut = makeStore()
+        let sut = await makeStoreReady()
         let day = CycleDay(date: makeDate("2025-03-15"), flow: .medium, symptoms: [.cramps], mood: .happy)
 
         sut.addOrUpdateDay(day)
@@ -43,7 +56,7 @@ final class CycleStoreTests: XCTestCase {
     }
 
     func testUpdateDay() async {
-        let sut = makeStore()
+        let sut = await makeStoreReady()
         let id = UUID()
         let date = makeDate("2025-03-15")
 
@@ -56,7 +69,7 @@ final class CycleStoreTests: XCTestCase {
     }
 
     func testDeleteDay() async {
-        let sut = makeStore()
+        let sut = await makeStoreReady()
         let day = CycleDay(date: makeDate("2025-03-15"), flow: .medium)
 
         sut.addOrUpdateDay(day)
@@ -68,7 +81,7 @@ final class CycleStoreTests: XCTestCase {
     }
 
     func testGetDaysInRange() async {
-        let sut = makeStore()
+        let sut = await makeStoreReady()
         let days = [
             CycleDay(date: makeDate("2025-03-15"), flow: .medium),
             CycleDay(date: makeDate("2025-03-14"), flow: .light),
@@ -85,7 +98,7 @@ final class CycleStoreTests: XCTestCase {
     // MARK: - Seed Data
 
     func testSaveSeedData() async {
-        let sut = makeStore()
+        let sut = await makeStoreReady()
         let seed = CycleSeedData(
             lastPeriodStartDate: makeDate("2025-03-01"),
             typicalPeriodLength: 5,
@@ -146,7 +159,9 @@ final class CycleStoreTests: XCTestCase {
         let engine = CyclePredictionEngine()
         let lengths = [26, 28, 30, 27, 29, 31]
         // weights [1,2,3,4,5,6], sum=21
-        let expected = (26.0*1 + 28.0*2 + 30.0*3 + 27.0*4 + 29.0*5 + 31.0*6) / 21.0
+        let n1: Double = 26.0 * 1 + 28.0 * 2 + 30.0 * 3
+        let n2: Double = 27.0 * 4 + 29.0 * 5 + 31.0 * 6
+        let expected: Double = (n1 + n2) / 21.0
         XCTAssertEqual(engine.weightedAverageCycleLength(from: lengths), expected, accuracy: 0.01)
     }
 
@@ -349,7 +364,7 @@ final class CycleStoreTests: XCTestCase {
 
     func testPredictNextPeriodWithThirtyDayCycle() async {
         let today = makeDate("2025-03-15")
-        let sut = makeStore(referenceDate: today)
+        let sut = await makeStoreReady(referenceDate: today)
 
         // Two complete 30-day periods ending before today
         let days = [
@@ -366,7 +381,7 @@ final class CycleStoreTests: XCTestCase {
     }
 
     func testPredictNextPeriodWithInsufficientData() async {
-        let sut = makeStore()
+        let sut = await makeStoreReady()
         sut.addOrUpdateDay(CycleDay(date: makeDate("2025-03-15"), flow: .medium))
         await drain()
 
@@ -375,7 +390,7 @@ final class CycleStoreTests: XCTestCase {
 
     func testCurrentPhaseFromStore() async {
         let today = makeDate("2025-03-15")
-        let sut = makeStore(referenceDate: today)
+        let sut = await makeStoreReady(referenceDate: today)
 
         let seed = CycleSeedData(
             lastPeriodStartDate: makeDate("2025-03-14"),
@@ -390,5 +405,129 @@ final class CycleStoreTests: XCTestCase {
         await drain()
 
         XCTAssertEqual(sut.currentPhase(), .menstrual)
+    }
+
+    // MARK: - Wellbeing fields
+
+    func testWellbeingFieldsPersistedOnCycleDay() async {
+        let sut = await makeStoreReady()
+        let day = CycleDay(
+            date: makeDate("2025-03-15"),
+            sleepQuality: .high,
+            energyLevel: .low,
+            stressLevel: .medium
+        )
+        sut.addOrUpdateDay(day)
+        await drain()
+
+        let stored = sut.cycleDays.first
+        XCTAssertEqual(stored?.sleepQuality, .high)
+        XCTAssertEqual(stored?.energyLevel, .low)
+        XCTAssertEqual(stored?.stressLevel, .medium)
+    }
+
+    func testWellbeingFieldsDefaultToNil() {
+        let day = CycleDay(date: makeDate("2025-03-15"))
+        XCTAssertNil(day.sleepQuality)
+        XCTAssertNil(day.energyLevel)
+        XCTAssertNil(day.stressLevel)
+    }
+
+    func testWellbeingFieldsUpdatedOnExistingDay() async {
+        let sut = await makeStoreReady()
+        let id = UUID()
+        let date = makeDate("2025-03-15")
+
+        sut.addOrUpdateDay(CycleDay(id: id, date: date, sleepQuality: .low))
+        await drain()
+        sut.addOrUpdateDay(CycleDay(id: id, date: date, sleepQuality: .veryHigh))
+        await drain()
+
+        XCTAssertEqual(sut.cycleDays.count, 1)
+        XCTAssertEqual(sut.cycleDays.first?.sleepQuality, .veryHigh)
+    }
+
+    func testGetDayForDateReturnsWellbeingValues() async {
+        let date = makeDate("2025-03-15")
+        let sut = await makeStoreReady(referenceDate: date)
+        let day = CycleDay(date: date, energyLevel: .high, stressLevel: .veryLow)
+        sut.addOrUpdateDay(day)
+        await drain()
+
+        let fetched = sut.getDay(for: date)
+        XCTAssertEqual(fetched?.energyLevel, .high)
+        XCTAssertEqual(fetched?.stressLevel, .veryLow)
+    }
+
+    // MARK: - Unexpected bleeding signal
+
+    func testUnexpectedBleedingSignalSetForMenopause() async {
+        let sut = await makeStoreReady()
+        UserDefaults.standard.set(LifeStage.menopause.rawValue, forKey: LifeStage.defaultsKey)
+        defer { UserDefaults.standard.removeObject(forKey: LifeStage.defaultsKey) }
+
+        XCTAssertFalse(sut.unexpectedBleedingDetected)
+        sut.addOrUpdateDay(CycleDay(date: makeDate("2025-03-15"), flow: .spotting))
+        await drain()
+
+        XCTAssertTrue(sut.unexpectedBleedingDetected)
+    }
+
+    func testUnexpectedBleedingSignalSetForPaused() async {
+        let sut = await makeStoreReady()
+        UserDefaults.standard.set(LifeStage.paused.rawValue, forKey: LifeStage.defaultsKey)
+        defer { UserDefaults.standard.removeObject(forKey: LifeStage.defaultsKey) }
+
+        sut.addOrUpdateDay(CycleDay(date: makeDate("2025-03-15"), flow: .light))
+        await drain()
+
+        XCTAssertTrue(sut.unexpectedBleedingDetected)
+    }
+
+    func testUnexpectedBleedingSignalNotSetForRegular() async {
+        let sut = await makeStoreReady()
+        UserDefaults.standard.set(LifeStage.regular.rawValue, forKey: LifeStage.defaultsKey)
+        defer { UserDefaults.standard.removeObject(forKey: LifeStage.defaultsKey) }
+
+        sut.addOrUpdateDay(CycleDay(date: makeDate("2025-03-15"), flow: .heavy))
+        await drain()
+
+        XCTAssertFalse(sut.unexpectedBleedingDetected)
+    }
+
+    func testUnexpectedBleedingSignalNotSetForPerimenopause() async {
+        let sut = await makeStoreReady()
+        UserDefaults.standard.set(LifeStage.perimenopause.rawValue, forKey: LifeStage.defaultsKey)
+        defer { UserDefaults.standard.removeObject(forKey: LifeStage.defaultsKey) }
+
+        sut.addOrUpdateDay(CycleDay(date: makeDate("2025-03-15"), flow: .medium))
+        await drain()
+
+        XCTAssertFalse(sut.unexpectedBleedingDetected)
+    }
+
+    func testUnexpectedBleedingSignalNotSetWhenNoFlow() async {
+        let sut = await makeStoreReady()
+        UserDefaults.standard.set(LifeStage.menopause.rawValue, forKey: LifeStage.defaultsKey)
+        defer { UserDefaults.standard.removeObject(forKey: LifeStage.defaultsKey) }
+
+        // Log a day with symptoms but no flow
+        sut.addOrUpdateDay(CycleDay(date: makeDate("2025-03-15"), symptoms: [.hotFlashes]))
+        await drain()
+
+        XCTAssertFalse(sut.unexpectedBleedingDetected)
+    }
+
+    func testClearUnexpectedBleedingSignal() async {
+        let sut = await makeStoreReady()
+        UserDefaults.standard.set(LifeStage.menopause.rawValue, forKey: LifeStage.defaultsKey)
+        defer { UserDefaults.standard.removeObject(forKey: LifeStage.defaultsKey) }
+
+        sut.addOrUpdateDay(CycleDay(date: makeDate("2025-03-15"), flow: .spotting))
+        await drain()
+        XCTAssertTrue(sut.unexpectedBleedingDetected)
+
+        sut.clearUnexpectedBleedingSignal()
+        XCTAssertFalse(sut.unexpectedBleedingDetected)
     }
 }

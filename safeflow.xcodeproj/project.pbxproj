@@ -18,6 +18,7 @@
 		V2LS0009000000000000AABB /* LifeStageAdaptiveCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2LS000A000000000000AABB /* LifeStageAdaptiveCards.swift */; };
 		V2LS000B000000000000AABB /* MonthlySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2LS000C000000000000AABB /* MonthlySummaryView.swift */; };
 		V2LS0003000000000000AABB /* LifeStageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2LS0002000000000000AABB /* LifeStageTests.swift */; };
+		V2CS0001000000000000AABB /* CycleStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2CS0000000000000000AABB /* CycleStoreTests.swift */; };
 		AA11223344556677889900DD /* CycleSeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900CC /* CycleSeedData.swift */; };
 		AA11223344556677889900FF /* CyclePredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900EE /* CyclePredictionEngine.swift */; };
 		AD98F4C4C596FA35562B2178 /* signals.json in Resources */ = {isa = PBXBuildFile; fileRef = 2CECA96FDA217ECAD0E3B085 /* signals.json */; };
@@ -156,6 +157,7 @@
 		V2LS000C000000000000AABB /* MonthlySummaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlySummaryView.swift; sourceTree = "<group>"; };
 		V2LS0008000000000000AABB /* LifeStageViews */ = {isa = PBXGroup; children = (V2LS0006000000000000AABB /* LifeStageGuideView.swift */,); name = LifeStage; path = Sources/Views/LifeStage; sourceTree = SOURCE_ROOT; };
 		V2LS0002000000000000AABB /* LifeStageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LifeStageTests.swift; path = Tests/UnitTests/LifeStageTests.swift; sourceTree = SOURCE_ROOT; };
+		V2CS0000000000000000AABB /* CycleStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CycleStoreTests.swift; path = Tests/UnitTests/CycleStoreTests.swift; sourceTree = SOURCE_ROOT; };
 		AA11223344556677889900CC /* CycleSeedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleSeedData.swift; sourceTree = "<group>"; };
 		AA11223344556677889900EE /* CyclePredictionEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePredictionEngine.swift; sourceTree = "<group>"; };
 		BB001122334455667788991A /* scenario_new_user.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_new_user.csv; sourceTree = "<group>"; };
@@ -628,6 +630,7 @@
 				CD218E962D41A086009B5198 /* SecurityTests.swift */,
 				BB112233445566778899AA00 /* CyclePredictionEngineTests.swift */,
 				V2LS0002000000000000AABB /* LifeStageTests.swift */,
+				V2CS0000000000000000AABB /* CycleStoreTests.swift */,
 				CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */,
 			);
 			path = safeflowTests;
@@ -904,6 +907,7 @@
 				CD218E972D41A086009B5198 /* SecurityTests.swift in Sources */,
 				BB112233445566778899AA01 /* CyclePredictionEngineTests.swift in Sources */,
 				V2LS0003000000000000AABB /* LifeStageTests.swift in Sources */,
+				V2CS0001000000000000AABB /* CycleStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -93,3 +93,162 @@ final class LifeStageTests: XCTestCase {
         XCTAssertEqual(PausedContext(rawValue: raw2 ?? ""), .notTracking)
     }
 }
+
+// MARK: - DartboardCategory life-stage gating
+
+final class DartboardCategoryGatingTests: XCTestCase {
+
+    // MARK: - isVisible
+
+    func testCoreCategorigesVisibleForAllStages() {
+        let coreCategories: [DartboardCategory] = [.pain, .energy, .mood, .gut]
+        for stage in LifeStage.allCases {
+            for category in coreCategories {
+                XCTAssertTrue(
+                    category.isVisible(for: stage),
+                    "\(category) should be visible for \(stage)"
+                )
+            }
+        }
+    }
+
+    func testVasomotorVisibleOnlyForPerimenopauseAndMenopause() {
+        XCTAssertFalse(DartboardCategory.vasomotor.isVisible(for: .regular))
+        XCTAssertFalse(DartboardCategory.vasomotor.isVisible(for: .irregular))
+        XCTAssertTrue(DartboardCategory.vasomotor.isVisible(for: .perimenopause))
+        XCTAssertTrue(DartboardCategory.vasomotor.isVisible(for: .menopause))
+        XCTAssertFalse(DartboardCategory.vasomotor.isVisible(for: .paused))
+    }
+
+    func testMusculoskeletalVisibleOnlyForPerimenopauseAndMenopause() {
+        XCTAssertFalse(DartboardCategory.musculoskeletal.isVisible(for: .regular))
+        XCTAssertFalse(DartboardCategory.musculoskeletal.isVisible(for: .irregular))
+        XCTAssertTrue(DartboardCategory.musculoskeletal.isVisible(for: .perimenopause))
+        XCTAssertTrue(DartboardCategory.musculoskeletal.isVisible(for: .menopause))
+        XCTAssertFalse(DartboardCategory.musculoskeletal.isVisible(for: .paused))
+    }
+
+    // MARK: - visibleCategories counts
+
+    func testRegularHasFourVisibleCategories() {
+        let visible = DartboardCategory.allCases.filter { $0.isVisible(for: .regular) }
+        XCTAssertEqual(visible.count, 4)
+    }
+
+    func testPerimenopauseHasSixVisibleCategories() {
+        let visible = DartboardCategory.allCases.filter { $0.isVisible(for: .perimenopause) }
+        XCTAssertEqual(visible.count, 6)
+    }
+
+    func testMenopauseHasSixVisibleCategories() {
+        let visible = DartboardCategory.allCases.filter { $0.isVisible(for: .menopause) }
+        XCTAssertEqual(visible.count, 6)
+    }
+
+    func testPausedHasFourVisibleCategories() {
+        let visible = DartboardCategory.allCases.filter { $0.isVisible(for: .paused) }
+        XCTAssertEqual(visible.count, 4)
+    }
+
+    // MARK: - symptomCategory mapping
+
+    func testSymptomCategoryMappingIsComplete() {
+        // Every non-mood category must map to a SymptomCategory
+        for category in DartboardCategory.allCases where category != .mood {
+            XCTAssertNotNil(
+                category.symptomCategory,
+                "\(category).symptomCategory should not be nil"
+            )
+        }
+        XCTAssertNil(DartboardCategory.mood.symptomCategory)
+    }
+
+    func testVasomotorMapsToVasomotorSymptomCategory() {
+        XCTAssertEqual(DartboardCategory.vasomotor.symptomCategory, .vasomotor)
+    }
+
+    func testMusculoskeletalMapsToMusculoskeletalSymptomCategory() {
+        XCTAssertEqual(DartboardCategory.musculoskeletal.symptomCategory, .musculoskeletal)
+    }
+}
+
+// MARK: - SymptomCategory life-stage visibility
+
+final class SymptomCategoryVisibilityTests: XCTestCase {
+
+    func testVasomotorVisibleForPerimenopauseAndMenopause() {
+        XCTAssertFalse(SymptomCategory.vasomotor.visibleForStages.contains(.regular))
+        XCTAssertFalse(SymptomCategory.vasomotor.visibleForStages.contains(.irregular))
+        XCTAssertTrue(SymptomCategory.vasomotor.visibleForStages.contains(.perimenopause))
+        XCTAssertTrue(SymptomCategory.vasomotor.visibleForStages.contains(.menopause))
+        XCTAssertFalse(SymptomCategory.vasomotor.visibleForStages.contains(.paused))
+    }
+
+    func testMusculoskeletalVisibleForPerimenopauseAndMenopause() {
+        XCTAssertTrue(SymptomCategory.musculoskeletal.visibleForStages.contains(.perimenopause))
+        XCTAssertTrue(SymptomCategory.musculoskeletal.visibleForStages.contains(.menopause))
+        XCTAssertFalse(SymptomCategory.musculoskeletal.visibleForStages.contains(.regular))
+    }
+
+    func testIntimateHealthVisibleForMenopauseOnly() {
+        XCTAssertTrue(SymptomCategory.intimateHealth.visibleForStages.contains(.menopause))
+        XCTAssertFalse(SymptomCategory.intimateHealth.visibleForStages.contains(.perimenopause))
+        XCTAssertFalse(SymptomCategory.intimateHealth.visibleForStages.contains(.regular))
+        XCTAssertFalse(SymptomCategory.intimateHealth.visibleForStages.contains(.paused))
+    }
+
+    func testCoreCategoriesVisibleForAllStages() {
+        let coreCategories: [SymptomCategory] = [.pain, .energy, .digestive]
+        for category in coreCategories {
+            XCTAssertEqual(
+                category.visibleForStages,
+                Set(LifeStage.allCases),
+                "\(category) should be visible for all life stages"
+            )
+        }
+    }
+}
+
+// MARK: - WellbeingLevel labels
+
+final class WellbeingLevelTests: XCTestCase {
+
+    func testSleepLabelStringsAreNonEmpty() {
+        for level in WellbeingLevel.allCases {
+            XCTAssertFalse(level.sleepLabelString.isEmpty, "sleepLabelString empty for \(level)")
+        }
+    }
+
+    func testEnergyLabelStringsAreNonEmpty() {
+        for level in WellbeingLevel.allCases {
+            XCTAssertFalse(level.energyLabelString.isEmpty, "energyLabelString empty for \(level)")
+        }
+    }
+
+    func testStressLabelStringsAreNonEmpty() {
+        for level in WellbeingLevel.allCases {
+            XCTAssertFalse(level.stressLabelString.isEmpty, "stressLabelString empty for \(level)")
+        }
+    }
+
+    func testWellbeingLevelRawValuesAreContiguous() {
+        // veryLow=0 through veryHigh=4 — ensure no gaps for average arithmetic
+        let expected = [0, 1, 2, 3, 4]
+        XCTAssertEqual(WellbeingLevel.allCases.map(\.rawValue), expected)
+    }
+
+    func testWellbeingLevelAverageArithmetic() {
+        // Averaging rawValues 0 and 4 → 2 → .medium
+        let values: [WellbeingLevel] = [.veryLow, .veryHigh]
+        let sum = values.reduce(0) { $0 + $1.rawValue }
+        let avg = sum / values.count
+        XCTAssertEqual(WellbeingLevel(rawValue: avg), .medium)
+    }
+
+    func testWellbeingLevelAverageWithSingleValue() {
+        let values: [WellbeingLevel] = [.high]
+        let sum = values.reduce(0) { $0 + $1.rawValue }
+        let avg = sum / values.count
+        XCTAssertEqual(WellbeingLevel(rawValue: avg), .high)
+    }
+}
