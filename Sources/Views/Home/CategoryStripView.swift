@@ -2,9 +2,10 @@ import SwiftUI
 
 // MARK: - CategoryStripView
 //
-// A vertical strip of 4 category cells on the left side of the dartboard.
+// A vertical strip of category cells on the left side of the dartboard.
 // Swipe up/down (or tap) to select a category. The selected cell shows
 // the label; others show only the icon at reduced opacity.
+// Only categories visible for the current life stage are shown.
 // Snap behaviour uses spring animation for a physical feel.
 
 struct CategoryStripView: View {
@@ -14,9 +15,11 @@ struct CategoryStripView: View {
     private let cellHeight: CGFloat = 60
     private let stripWidth: CGFloat = 48
 
+    private var categories: [DartboardCategory] { viewModel.visibleCategories }
+
     var body: some View {
         VStack(spacing: 0) {
-            ForEach(DartboardCategory.allCases, id: \.rawValue) { category in
+            ForEach(categories, id: \.rawValue) { category in
                 categoryCell(category)
             }
         }
@@ -74,24 +77,19 @@ struct CategoryStripView: View {
             .onEnded { value in
                 let dy = value.translation.height
                 let predicted = value.predictedEndTranslation.height
-                // Use predicted translation for flick detection
                 let effective = abs(predicted) > abs(dy) ? predicted : dy
                 let threshold: CGFloat = cellHeight * 0.4
-                let current = viewModel.selectedCategory.rawValue
-                let count   = DartboardCategory.allCases.count
+                let cats = categories
+                guard let currentIdx = cats.firstIndex(of: viewModel.selectedCategory) else { return }
 
                 if effective < -threshold {
                     // swipe up → previous category
-                    let next = max(0, current - 1)
-                    if let cat = DartboardCategory(rawValue: next) {
-                        viewModel.categoryStripSnapped(to: cat)
-                    }
+                    let nextIdx = max(0, currentIdx - 1)
+                    viewModel.categoryStripSnapped(to: cats[nextIdx])
                 } else if effective > threshold {
                     // swipe down → next category
-                    let next = min(count - 1, current + 1)
-                    if let cat = DartboardCategory(rawValue: next) {
-                        viewModel.categoryStripSnapped(to: cat)
-                    }
+                    let nextIdx = min(cats.count - 1, currentIdx + 1)
+                    viewModel.categoryStripSnapped(to: cats[nextIdx])
                 }
             }
     }

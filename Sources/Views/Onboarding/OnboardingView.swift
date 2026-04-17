@@ -5,14 +5,35 @@ struct OnboardingView: View {
     @ObservedObject var cycleStore: CycleStore
     @Binding var hasCompletedOnboarding: Bool
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @AppStorage(LifeStage.defaultsKey) private var persistedLifeStage: LifeStage = .regular
+    @AppStorage(PausedContext.defaultsKey) private var persistedPausedContext: PausedContext = .notTracking
 
     @State private var showingPinSetup = false
     @State private var currentPage = 0
+
+    // Page 1 state: life stage selection
+    @State private var selectedLifeStage: LifeStage = .regular
+    // Page 1b state: paused sub-context (shown only when selectedLifeStage == .paused)
+    @State private var showingPausedContext = false
+    @State private var selectedPausedContext: PausedContext = .notTracking
 
     // Cycle setup state (page 3)
     @State private var lastPeriodDate = Calendar.current.date(byAdding: .day, value: -14, to: Date()) ?? Date()
     @State private var periodLength = 5
     @State private var cycleLength = 28
+
+    /// Total pages varies by life stage: regular/irregular/perimenopause = 4, menopause = 3, paused = 3
+    private var totalPages: Int {
+        switch selectedLifeStage {
+        case .regular, .irregular, .perimenopause: return 4
+        case .menopause, .paused: return 3
+        }
+    }
+
+    /// True when page 3 (cycle setup) should be shown — not for menopause or paused.
+    private var showsCycleSetupPage: Bool {
+        selectedLifeStage != .menopause && selectedLifeStage != .paused
+    }
 
     var body: some View {
         ZStack {
@@ -21,9 +42,13 @@ struct OnboardingView: View {
 
             TabView(selection: $currentPage) {
                 privacyPage.tag(0)
-                trackingPage.tag(1)
+                lifeStagePickerPage.tag(1)
                 securityPage.tag(2)
-                cycleSetupPage.tag(3)
+                if showsCycleSetupPage {
+                    cycleSetupPage.tag(3)
+                } else {
+                    allSetPage.tag(3)
+                }
             }
             .tabViewStyle(.page)
             .indexViewStyle(.page(backgroundDisplayMode: .always))
@@ -40,11 +65,21 @@ struct OnboardingView: View {
                 .onDisappear {
                     Task {
                         if await securityService.hasFallbackPin {
-                            withAnimation(reduceMotion ? nil : .default) { currentPage = 3 }
+                            advanceFromSecurity()
                         }
                     }
                 }
         }
+        .sheet(isPresented: $showingPausedContext) {
+            PausedContextSheet(selected: $selectedPausedContext) {
+                showingPausedContext = false
+            }
+            .presentationDetents([.medium])
+        }
+    }
+
+    private func advanceFromSecurity() {
+        withAnimation(reduceMotion ? nil : .default) { currentPage = 3 }
     }
 
     // MARK: - Page 0: Privacy
@@ -70,25 +105,43 @@ struct OnboardingView: View {
         .tag(0)
     }
 
-    // MARK: - Page 1: Tracking
+    // MARK: - Page 1: What brings you here?
 
-    private var trackingPage: some View {
+    private var lifeStagePickerPage: some View {
         onboardingCard {
-            Image(systemName: "calendar.badge.plus")
+            Image(systemName: "person.fill.questionmark")
                 .font(.system(size: 60))
                 .foregroundColor(AppTheme.Colors.secondaryPink)
                 .iconCircle()
                 .accessibilityHidden(true)
 
-            Text("Know Your Cycle")
+            Text("What brings you here?")
                 .font(AppTheme.Typography.headlineFont)
                 .foregroundColor(AppTheme.Colors.deepGrayText)
 
-            Text("Log your period, symptoms, and mood. Clio Daye learns your pattern and shows you where you are in your cycle every day.")
+            Text("Choose what best describes you — Clio Daye adapts to what matters most.")
                 .font(AppTheme.Typography.bodyFont)
                 .foregroundColor(AppTheme.Colors.mediumGrayText)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
+
+            VStack(spacing: 8) {
+                ForEach(LifeStage.allCases, id: \.self) { stage in
+                    OnboardingStageCard(stage: stage, isSelected: selectedLifeStage == stage) {
+                        selectedLifeStage = stage
+                        if stage == .paused {
+                            showingPausedContext = true
+                        }
+                    }
+                }
+            }
+            .padding(.horizontal, 8)
+            .padding(.top, 4)
+
+            Text("You can change this any time in Settings.")
+                .font(.system(.caption2, design: .rounded))
+                .foregroundColor(AppTheme.Colors.mediumGrayText)
+                .multilineTextAlignment(.center)
         }
         .tag(1)
     }
@@ -152,7 +205,7 @@ struct OnboardingView: View {
 
                 Button("Skip for Now") {
                     securityService.skipSecurity()
-                    withAnimation(reduceMotion ? nil : .default) { currentPage = 3 }
+                    advanceFromSecurity()
                 }
                 .font(AppTheme.Typography.bodyFont)
                 .foregroundColor(AppTheme.Colors.deepGrayText)
@@ -265,6 +318,8 @@ struct OnboardingView: View {
             .padding(.top, AppTheme.Metrics.standardSpacing)
 
             Button("Get Started") {
+                persistedLifeStage = selectedLifeStage
+                persistedPausedContext = selectedPausedContext
                 let seed = CycleSeedData(
                     lastPeriodStartDate: lastPeriodDate,
                     typicalPeriodLength: periodLength,
@@ -283,6 +338,8 @@ struct OnboardingView: View {
             .accessibilityIdentifier("onboarding.getStartedButton")
 
             Button("Skip setup") {
+                persistedLifeStage = selectedLifeStage
+                persistedPausedContext = selectedPausedContext
                 hasCompletedOnboarding = true
             }
             .font(AppTheme.Typography.captionFont)
@@ -291,14 +348,53 @@ struct OnboardingView: View {
         .tag(3)
     }
 
+    // MARK: - Page 3b: All Set (menopause / paused — no cycle setup needed)
+
+    private var allSetPage: some View {
+        onboardingCard {
+            Image(systemName: "checkmark.seal.fill")
+                .font(.system(size: 60))
+                .foregroundColor(AppTheme.Colors.accentBlue)
+                .iconCircle()
+                .accessibilityHidden(true)
+
+            Text("You're all set")
+                .font(AppTheme.Typography.headlineFont)
+                .foregroundColor(AppTheme.Colors.deepGrayText)
+
+            Text("Clio Daye is ready. Log how you feel each day and track what matters to you.")
+                .font(AppTheme.Typography.bodyFont)
+                .foregroundColor(AppTheme.Colors.mediumGrayText)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+
+            Button("Let's Go") {
+                persistedLifeStage = selectedLifeStage
+                persistedPausedContext = selectedPausedContext
+                hasCompletedOnboarding = true
+            }
+            .buttonStyle(PrimaryButtonStyle())
+            .padding(.horizontal, 40)
+            .padding(.top, 8)
+            .accessibilityIdentifier("onboarding.letsGoButton")
+        }
+        .tag(3)
+    }
+
     // MARK: - Accessibility helpers
 
     private func pageTitle(for page: Int) -> String {
+        let total = totalPages
         switch page {
-        case 0: return "Your Privacy First, page 1 of 4"
-        case 1: return "Know Your Cycle, page 2 of 4"
-        case 2: return "Secure Your Data, page 3 of 4"
-        case 3: return "Set Up Your Cycle, page 4 of 4"
+        case 0: return String(localized: "Your Privacy First, page 1 of \(total)")
+        case 1: return String(localized: "What brings you here, page 2 of \(total)")
+        case 2: return String(localized: "Secure Your Data, page 3 of \(total)")
+        case 3:
+            if showsCycleSetupPage {
+                return String(localized: "Set Up Your Cycle, page 4 of \(total)")
+            } else {
+                return String(localized: "You're all set, page 4 of \(total)")
+            }
         default: return "Onboarding"
         }
     }
@@ -320,6 +416,140 @@ struct OnboardingView: View {
             )
             .padding()
         }
+    }
+}
+
+// MARK: - OnboardingStageCard
+
+private struct OnboardingStageCard: View {
+    let stage: LifeStage
+    let isSelected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 12) {
+                ZStack {
+                    Circle()
+                        .strokeBorder(
+                            isSelected ? AppTheme.Colors.secondaryPink : AppTheme.Colors.mediumGrayText.opacity(0.3),
+                            lineWidth: isSelected ? 2 : 1.5)
+                        .frame(width: 22, height: 22)
+                    if isSelected {
+                        Circle()
+                            .fill(AppTheme.Colors.secondaryPink)
+                            .frame(width: 12, height: 12)
+                    }
+                }
+                .accessibilityHidden(true)
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(stage.localizedName)
+                        .font(.system(.callout, design: .rounded, weight: .semibold))
+                        .foregroundStyle(AppTheme.Colors.deepGrayText)
+                    Text(stage.settingsDescription)
+                        .font(.system(.caption, design: .rounded))
+                        .foregroundStyle(AppTheme.Colors.mediumGrayText)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                Spacer()
+            }
+            .padding(12)
+            .background(
+                RoundedRectangle(cornerRadius: AppTheme.Metrics.cornerRadius)
+                    .fill(isSelected
+                          ? AppTheme.Colors.secondaryPink.opacity(0.08)
+                          : AppTheme.Colors.secondaryBackground)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: AppTheme.Metrics.cornerRadius)
+                            .strokeBorder(isSelected ? AppTheme.Colors.secondaryPink.opacity(0.4) : Color.clear, lineWidth: 1.5)
+                    )
+            )
+        }
+        .buttonStyle(.plain)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(stage.localizedNameString): \(stage.settingsDescriptionString)")
+        .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
+        .accessibilityIdentifier("onboarding.lifeStageCard.\(stage.rawValue)")
+    }
+}
+
+// MARK: - PausedContextSheet
+
+private struct PausedContextSheet: View {
+    @Binding var selected: PausedContext
+    let onDone: () -> Void
+
+    var body: some View {
+        NavigationStack {
+            VStack(alignment: .leading, spacing: 16) {
+                Text("A little more detail helps us set the right tone.")
+                    .font(.system(.callout, design: .rounded))
+                    .foregroundStyle(AppTheme.Colors.mediumGrayText)
+                    .padding(.horizontal)
+                    .padding(.top, 4)
+
+                VStack(spacing: 8) {
+                    PausedContextRow(context: .recovering, isSelected: selected == .recovering) {
+                        selected = .recovering
+                    }
+                    PausedContextRow(context: .notTracking, isSelected: selected == .notTracking) {
+                        selected = .notTracking
+                    }
+                }
+                .padding(.horizontal)
+
+                Spacer()
+            }
+            .navigationTitle("Why are you pausing?")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done", action: onDone)
+                        .foregroundStyle(AppTheme.Colors.primaryBlue)
+                }
+            }
+        }
+    }
+}
+
+private struct PausedContextRow: View {
+    let context: PausedContext
+    let isSelected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 12) {
+                ZStack {
+                    Circle()
+                        .strokeBorder(
+                            isSelected ? AppTheme.Colors.primaryBlue : AppTheme.Colors.mediumGrayText.opacity(0.3),
+                            lineWidth: isSelected ? 2 : 1.5)
+                        .frame(width: 22, height: 22)
+                    if isSelected {
+                        Circle().fill(AppTheme.Colors.primaryBlue).frame(width: 12, height: 12)
+                    }
+                }
+                .accessibilityHidden(true)
+
+                Text(context.localizedName)
+                    .font(.system(.callout, design: .rounded, weight: .medium))
+                    .foregroundStyle(AppTheme.Colors.deepGrayText)
+                Spacer()
+            }
+            .padding(12)
+            .background(
+                RoundedRectangle(cornerRadius: AppTheme.Metrics.cornerRadius)
+                    .fill(isSelected
+                          ? AppTheme.Colors.primaryBlue.opacity(0.08)
+                          : AppTheme.Colors.secondaryBackground)
+            )
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(context.localizedNameString)
+        .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
+        .accessibilityIdentifier("onboarding.pausedContext.\(context.rawValue)")
     }
 }
 

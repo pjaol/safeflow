@@ -49,6 +49,16 @@ enum LifeStage: String, Codable, CaseIterable {
         }
     }
 
+    var settingsDescriptionString: String {
+        switch self {
+        case .regular:       return String(localized: "Periods come roughly on schedule")
+        case .irregular:     return String(localized: "Periods vary — predictions show a wider range")
+        case .perimenopause: return String(localized: "Cycles are changing — history and symptoms take priority")
+        case .menopause:     return String(localized: "Periods have stopped — symptoms and summaries are the main view")
+        case .paused:        return String(localized: "Post-partum, breastfeeding, or taking a break")
+        }
+    }
+
     /// Two-sentence card description shown in LifeStageGuideView picker.
     /// Kept to two sentences so the card holds at XXL Dynamic Type.
     var cardDescription: LocalizedStringKey {
@@ -99,4 +109,18 @@ enum PausedContext: String, Codable {
     case notTracking
 
     static let defaultsKey = "pausedContext"
+
+    var localizedName: LocalizedStringKey {
+        switch self {
+        case .recovering:  return "Recovering or post-partum"
+        case .notTracking: return "Just taking a break"
+        }
+    }
+
+    var localizedNameString: String {
+        switch self {
+        case .recovering:  return String(localized: "Recovering or post-partum")
+        case .notTracking: return String(localized: "Just taking a break")
+        }
+    }
 }

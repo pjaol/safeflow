@@ -4739,6 +4739,186 @@
         }
       }
     },
+    "Daily Wellbeing": {
+      "comment": "LogDayView: wellbeing section header",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Daily Wellbeing" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Tägliches Wohlbefinden" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Bienestar diario" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Bien-être quotidien" } }
+      }
+    },
+    "Sleep": {
+      "comment": "LogDayView: wellbeing row label",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Sleep" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Schlaf" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Sueño" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Sommeil" } }
+      }
+    },
+    "Stress": {
+      "comment": "LogDayView: wellbeing row label",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Stress" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Stress" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Estrés" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Stress" } }
+      }
+    },
+    "Log unexpected bleeding": {
+      "comment": "FlowStepSlider: secondary context label for menopause/paused",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Log unexpected bleeding" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Unerwartete Blutung erfassen" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Registrar sangrado inesperado" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Signaler un saignement inattendu" } }
+      }
+    },
+    "Unexpected bleeding": {
+      "comment": "FlowStepSlider: accessibility label in secondary context",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Unexpected bleeding" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Unerwartete Blutung" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Sangrado inesperado" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Saignement inattendu" } }
+      }
+    },
+    "What brings you here?": {
+      "comment": "Onboarding page 1: life stage picker heading",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "What brings you here?" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Was bringt dich hierher?" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "¿Qué te trae aquí?" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Qu'est-ce qui vous amène ici ?" } }
+      }
+    },
+    "Choose what best describes you — Clio Daye adapts to what matters most.": {
+      "comment": "Onboarding page 1: life stage picker body",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Choose what best describes you — Clio Daye adapts to what matters most." } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Wähle, was dich am besten beschreibt — Clio Daye passt sich an." } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Elige lo que mejor te describe — Clio Daye se adapta a lo que más importa." } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Choisissez ce qui vous décrit le mieux — Clio Daye s'adapte à ce qui compte." } }
+      }
+    },
+    "You can change this any time in Settings.": {
+      "comment": "Onboarding page 1: life stage picker footer",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "You can change this any time in Settings." } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Du kannst das jederzeit in den Einstellungen ändern." } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Puedes cambiar esto en cualquier momento en Ajustes." } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Vous pouvez modifier cela à tout moment dans Réglages." } }
+      }
+    },
+    "You're all set": {
+      "comment": "Onboarding final page heading for menopause/paused (no cycle setup)",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "You're all set" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Alles bereit" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Todo listo" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Vous êtes prêt" } }
+      }
+    },
+    "Clio Daye is ready. Log how you feel each day and track what matters to you.": {
+      "comment": "Onboarding all set page body",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Clio Daye is ready. Log how you feel each day and track what matters to you." } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Clio Daye ist bereit. Erfasse täglich, wie du dich fühlst." } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Clio Daye está lista. Registra cómo te sientes cada día." } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Clio Daye est prête. Notez comment vous vous sentez chaque jour." } }
+      }
+    },
+    "Let's Go": {
+      "comment": "Onboarding all set page CTA button",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Let's Go" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Los geht's" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "¡Vamos!" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "C'est parti !" } }
+      }
+    },
+    "Why are you pausing?": {
+      "comment": "Onboarding paused context sheet title",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Why are you pausing?" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Warum pausierst du?" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "¿Por qué estás pausando?" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Pourquoi faites-vous une pause ?" } }
+      }
+    },
+    "A little more detail helps us set the right tone.": {
+      "comment": "Onboarding paused context sheet body",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "A little more detail helps us set the right tone." } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Etwas mehr Detail hilft uns, den richtigen Ton zu treffen." } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Un poco más de detalle nos ayuda a ajustar el tono adecuado." } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Un peu plus de détails nous aide à adopter le bon ton." } }
+      }
+    },
+    "Recovering or post-partum": {
+      "comment": "PausedContext: recovering option",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Recovering or post-partum" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "In Genesung oder nach der Geburt" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Recuperándome o posparto" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "En convalescence ou post-partum" } }
+      }
+    },
+    "Just taking a break": {
+      "comment": "PausedContext: not tracking option",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Just taking a break" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Ich mache eine Pause" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Solo tomando un descanso" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Juste une pause" } }
+      }
+    },
+    "Periods come roughly on schedule": {
+      "comment": "LifeStage.regular: settings description",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Periods come roughly on schedule" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Perioden kommen ungefähr planmäßig" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Los períodos vienen más o menos puntualmente" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Les règles arrivent grosso modo à l'heure" } }
+      }
+    },
+    "Periods vary — predictions show a wider range": {
+      "comment": "LifeStage.irregular: settings description",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Periods vary — predictions show a wider range" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Perioden variieren — Vorhersagen zeigen einen breiteren Bereich" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Los períodos varían — las predicciones muestran un rango más amplio" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Les règles varient — les prédictions montrent une plage plus large" } }
+      }
+    },
+    "Cycles are changing — history and symptoms take priority": {
+      "comment": "LifeStage.perimenopause: settings description",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Cycles are changing — history and symptoms take priority" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Zyklen verändern sich — Verlauf und Symptome haben Vorrang" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Los ciclos están cambiando — el historial y los síntomas son prioritarios" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Les cycles changent — l'historique et les symptômes sont prioritaires" } }
+      }
+    },
+    "Periods have stopped — symptoms and summaries are the main view": {
+      "comment": "LifeStage.menopause: settings description",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Periods have stopped — symptoms and summaries are the main view" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Perioden sind ausgeblieben — Symptome und Zusammenfassungen im Vordergrund" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Los períodos se han detenido — síntomas y resúmenes son la vista principal" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Les règles se sont arrêtées — symptômes et résumés au premier plan" } }
+      }
+    },
+    "Post-partum, breastfeeding, or taking a break": {
+      "comment": "LifeStage.paused: settings description",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Post-partum, breastfeeding, or taking a break" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Postpartal, Stillen oder Pause" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Posparto, lactancia o tomando un descanso" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Post-partum, allaitement ou pause" } }
+      }
+    },
     "Previous month": {
       "localizations": {
         "en": {
