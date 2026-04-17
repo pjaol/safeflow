@@ -13,6 +13,8 @@
 		732DBD33F96FDB7565E9203E /* nudges.json in Resources */ = {isa = PBXBuildFile; fileRef = C857E6F10A3503075969CDDF /* nudges.json */; };
 		8FDC1DF9FB94376469C80938 /* symptom_rich_cycles.csv in Resources */ = {isa = PBXBuildFile; fileRef = EE453D4CD80C0EF166203A9C /* symptom_rich_cycles.csv */; };
 		AA11223344556677889900BB /* CyclePhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900AA /* CyclePhase.swift */; };
+		V2LS0001000000000000AABB /* LifeStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2LS0000000000000000AABB /* LifeStage.swift */; };
+		V2LS0003000000000000AABB /* LifeStageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2LS0002000000000000AABB /* LifeStageTests.swift */; };
 		AA11223344556677889900DD /* CycleSeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900CC /* CycleSeedData.swift */; };
 		AA11223344556677889900FF /* CyclePredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900EE /* CyclePredictionEngine.swift */; };
 		AD98F4C4C596FA35562B2178 /* signals.json in Resources */ = {isa = PBXBuildFile; fileRef = 2CECA96FDA217ECAD0E3B085 /* signals.json */; };
@@ -145,6 +147,8 @@
 		3E954215BF114795B8EDFF2F /* SymptomPatternEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomPatternEngine.swift; sourceTree = "<group>"; };
 		504469625D50C14C530203D9 /* GetSupportView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GetSupportView.swift; sourceTree = "<group>"; };
 		AA11223344556677889900AA /* CyclePhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePhase.swift; sourceTree = "<group>"; };
+		V2LS0000000000000000AABB /* LifeStage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeStage.swift; sourceTree = "<group>"; };
+		V2LS0002000000000000AABB /* LifeStageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LifeStageTests.swift; path = Tests/UnitTests/LifeStageTests.swift; sourceTree = SOURCE_ROOT; };
 		AA11223344556677889900CC /* CycleSeedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleSeedData.swift; sourceTree = "<group>"; };
 		AA11223344556677889900EE /* CyclePredictionEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePredictionEngine.swift; sourceTree = "<group>"; };
 		BB001122334455667788991A /* scenario_new_user.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_new_user.csv; sourceTree = "<group>"; };
@@ -327,6 +331,7 @@
 			children = (
 				CD27092B2D4449EF003994F9 /* TestData */,
 				CD218E562D4021EB009B5198 /* CycleDay.swift */,
+				V2LS0000000000000000AABB /* LifeStage.swift */,
 				AA11223344556677889900AA /* CyclePhase.swift */,
 				AA11223344556677889900CC /* CycleSeedData.swift */,
 			);
@@ -612,6 +617,7 @@
 			children = (
 				CD218E962D41A086009B5198 /* SecurityTests.swift */,
 				BB112233445566778899AA00 /* CyclePredictionEngineTests.swift */,
+				V2LS0002000000000000AABB /* LifeStageTests.swift */,
 				CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */,
 			);
 			path = safeflowTests;
@@ -842,6 +848,7 @@
 				CD2709292D4449C2003994F9 /* TestCaseRunner.swift in Sources */,
 				CD218EAB2D43CD99009B5198 /* PersistenceService.swift in Sources */,
 				CD218E662D4021EB009B5198 /* CycleDay.swift in Sources */,
+				V2LS0001000000000000AABB /* LifeStage.swift in Sources */,
 				CD218E692D4021EB009B5198 /* HomeView.swift in Sources */,
 				CD218E742D4169C5009B5198 /* SecurityService.swift in Sources */,
 				CD218E9F2D4303F1009B5198 /* AppTheme.swift in Sources */,
@@ -883,6 +890,7 @@
 				CDBECD6D2D4010D2006A37C9 /* safeflowTests.swift in Sources */,
 				CD218E972D41A086009B5198 /* SecurityTests.swift in Sources */,
 				BB112233445566778899AA01 /* CyclePredictionEngineTests.swift in Sources */,
+				V2LS0003000000000000AABB /* LifeStageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,6 +1,6 @@
 # Clio Daye v2 — Feature Narrative & Roadmap
 
-**Status:** Ready for UI/UX review — development pending  
+**Status:** UX review complete — ready for development  
 **Last updated:** 2026-04-17  
 **Builds on:** PRD-v2.md, roadmap-menopause-v2.md, feedback-v2.md
 
@@ -120,11 +120,77 @@ Four tappable cards. Each sets life stage and routes to the appropriate page 3:
 | Selection | Sets | Routes to |
 |---|---|---|
 | Track my cycle | `stage = regular` | Existing cycle setup — unchanged |
-| My cycles are changing | `stage = perimenopause` | Abbreviated cycle setup: last period date only, no length steppers; note that history matters more than predictions here |
-| I'm in menopause | `stage = menopause` | Symptom priority setup: "What would you like to track?" multi-select (hot flashes / sleep / mood / joint pain / brain fog) |
-| Taking a break | `stage = paused` | Single-question: "What's going on?" — two options: "Recovering" or "Not tracking right now." Sets paused context for copy tone. Confirmation: *"We'll skip period tracking and log how you feel each day. Switch back anytime in Settings."* |
+| My cycles are shifting | `stage = perimenopause` | Abbreviated cycle setup: last period date only, no length steppers |
+| I'm in menopause | `stage = menopause` | Symptom priority setup (see below) |
+| Taking a break | `stage = paused` | Paused sub-context question (see below) |
+
+**"My cycles are shifting" — perimenopause abbreviated setup (page 3):**
+
+One field only: last period date picker. Contextual note below the picker:  
+*"We'll use your period history to spot patterns. Predictions aren't reliable when cycles are variable, so we focus on what's actually happened."*  
+Button: "Continue"  
+Skip: "I don't remember" — skips date entirely and goes to page 4 (Security)
+
+**"I'm in menopause" — symptom priority setup (page 3):**
+
+Heading: *"What would you like to track?"*  
+Instruction: *"Choose what matters most to you. You can change this anytime."*
+
+Six checkbox options (multi-select, any combination valid):
+- Hot flashes
+- Sleep quality
+- Mood
+- Joint pain
+- Brain fog
+- Energy
+
+Button: "Continue" (always enabled — zero selection is valid, defaults to all categories visible)  
+Skip link: "Skip for now" — skips to page 4 with all categories visible
+
+**Symptom label → data model mapping:**
+
+| Onboarding UI label | Maps to | Data layer |
+|---|---|---|
+| Hot flashes | `DartboardCategory.vasomotor` → `Symptom.hotFlashes` | `CycleDay.symptoms` |
+| Sleep quality | `WellbeingLevel` field | `CycleDay.sleepQuality` |
+| Mood | `DartboardCategory.mood` | `CycleDay.mood` |
+| Joint pain | `DartboardCategory.musculoskeletal` → `Symptom.jointPain` | `CycleDay.symptoms` |
+| Brain fog | `DartboardCategory.energy` → `Symptom.brainFog` | `CycleDay.symptoms` |
+| Energy | `WellbeingLevel` field | `CycleDay.energyLevel` |
+
+Selection on this page stores nothing to CycleDay. It only affects which `DartboardCategory` entries are shown in the CategoryStrip on first launch — stored as `UserDefaults` key `"menopauseSymptomPriority": [String]`. If the user skips, all categories are shown.
+
+**"Taking a break" — paused sub-context (page 1b, before page 2 Security):**
+
+Single question, two large buttons:  
+*"What's going on?"*  
+- **"Recovering"** (postpartum / breastfeeding)  
+- **"Not tracking right now"**
+
+Stores to `UserDefaults` key `"pausedContext"`: `"recovering"` or `"not_tracking"`.  
+No skip — both options are always valid. Tapping either goes directly to page 2 (Security).
+
+**Paused context usage — copy that changes based on `pausedContext`:**
+
+| Surface | `recovering` | `not_tracking` |
+|---|---|---|
+| Page 1b confirmation (below buttons) | *"We'll skip period tracking while you recover. Log how you feel when you can."* | *"We'll skip period tracking for now. Log how you feel whenever you like."* |
+| First-run home card | *"Cycle tracking paused. Log how you feel when you can. Switch back anytime."* | *"Cycle tracking paused. Just log how you feel. Switch back anytime."* |
+| Paused tip pool | Draws from `life_stage = paused, context = recovering` tips | Draws from `life_stage = paused` tips (all) |
+
+**"Taking a break" onboarding page 3:**
+
+Full-screen confirmation.  
+Heading: *"Here's what to expect"*  
+Body: *(uses `pausedContext` variant — see above)*  
+- *"Period tracking and predictions are paused."*
+- *"Log your mood, energy, and symptoms when you want to."*
+- *"Switch back to cycle tracking anytime in Settings."*  
+Button: "Get started"
 
 "Skip for now" remains available on all paths, defaulting to `stage = regular`.
+
+**Existing users (v1.1.1 → v2.0 upgrade):** Never see the new onboarding. Life stage defaults to `regular` silently on first v2.0 launch. A one-time hint card appears in Settings above the "Your Experience" section: *"New in v2: Life Stage lets you personalise Clio Daye to where you are. Tap to learn more."* Dismissed with a single tap, never shown again. Stored in `UserDefaults` key `"lifeStageHintDismissed"`.
 
 **VoiceOver:** Page count announced dynamically — "page 3 of 3" when cycle setup is skipped, "page 4 of 4" when it is shown.
 
@@ -288,19 +354,26 @@ The user could verify every statement by looking at their own logs. That's the t
 
 **Structure of a full month view:**
 
+Each section uses a `.subheadline` header so users can scan the structure before reading detail. Prose is broken into single-sentence lines with whitespace between them — not paragraph blocks. This matters at large Dynamic Type sizes where dense prose loses its hierarchy.
+
 *What happened* — frequency counts for the top logged symptoms and wellbeing fields. Always present regardless of data density.
-> "Hot flashes on 18 of 30 days. Sleep rated poor or very poor on 14 days. Mood was mostly calm or neutral."
+> "Hot flashes on 18 of 30 days."  
+> "Sleep was poor or very poor on 14 days."  
+> "Mood was mostly calm or neutral."
 
 *What we noticed* — co-occurrence and temporal patterns, only surfaced when sufficient data exists. Always observational, never causal.
-> "Sleep was poor on most days with high stress. Hot flashes were more frequent in weeks 2 and 3."
-> "Your bleeds came 32 and 28 days apart this month — closer together than the previous two months."
+> "Sleep was poor on most days with high stress."  
+> "Hot flashes were more frequent in weeks 2 and 3."
 
 *Your cycles* (regular / irregular / perimenopause only)
-> "2 cycles this month. Average length: 30 days. Your last 3 cycles ranged from 28 to 33 days."
+> "2 cycles this month."  
+> "Average length: 30 days. Your last 3 ranged from 28 to 33 days."
 
 *Temporary stabilisation notice* (perimenopause only, when detected — see §5.5)
 
 *Worth mentioning to your doctor* — red flags only, when applicable. Non-alarming, non-diagnostic.
+
+> **Implementation note:** Use `.subheadline` for section headers. Line spacing: `1.5×` at default text size, `1.2×` at Accessibility sizes (XXL+). Single-sentence lines separated by `.padding(.bottom, 2)` — not paragraph blocks. Verify full view at XXL Dynamic Type before merging Task #20.
 
 **Language rules:**
 - Always observational: "we noticed," "tended to," "on most days" — never "caused by," "means," "suggests a condition"
@@ -376,16 +449,18 @@ Each stage is a tappable card, not a list row. Each card carries a brief, plain-
 > *"Periods come roughly on schedule. The app predicts your next period and tracks where you are in your cycle each day."*
 
 **Irregular cycles**
-> *"Your cycle varies and predictions aren't always right. The app shows a wider range and tracks patterns over time rather than a fixed schedule."*
+> *"Your cycle varies and predictions aren't always reliable. The app shows a wider range and tracks patterns over time."*
 
 **Perimenopause**
-> *"Cycles are changing and predictions have stopped being reliable. The app tracks what's actually happened instead of guessing what's next — and adds hot flashes, sleep, brain fog, and joint pain to your symptom tracker."*
+> *"Your cycles are shifting. We track what's actually happened instead of guessing what's next, and add hot flashes, brain fog, and joint pain to your tracker."*
 
 **Menopause**
-> *"Periods have stopped. There's nothing to predict, so the app focuses on how you feel each day and what patterns emerge over time."*
+> *"Periods have stopped. The app focuses on how you feel each day and what patterns emerge over time."*
 
 **Cycle paused**
 > *"Post-partum, breastfeeding, or taking a break. The app skips period tracking and logs how you feel. Switch back anytime."*
+
+> **Dynamic Type note (implementation):** Cards stack vertically. At XXL body size the entire list must be scrollable and each description must fit in 2 sentences max. Verify layout at XXL before merging Task #9.
 
 #### Part 2 — Confirmation sheet with specific change list
 
@@ -393,35 +468,42 @@ When a user selects a stage different from their current one, a sheet slides up 
 
 **Switching to Perimenopause:**
 > **Here's what changes:**
-> - Period predictions are replaced with your bleed history — because predictions aren't honest when cycles are variable
-> - Hot flashes, night sweats, brain fog, and joint pain are added to your symptom tracker
+> - Predictions → your bleed history *(more honest when cycles vary)*
+> - New symptom categories: hot flashes, night sweats, brain fog, joint pain
+> - Your phase card is removed *(phase framing doesn't apply when cycles are irregular)*
 > - Your logged data stays exactly as it is
 >
 > *You can switch back anytime.*
 
 **Switching to Menopause:**
 > **Here's what changes:**
-> - Cycle tracking and predictions are removed from the home screen — there's nothing useful to show without active cycles
+> - Cycle tracking and predictions are removed from your home screen
 > - Your home screen shows how you've been feeling this week
+> - Your calendar switches to a symptom view *(logged bleeds are still there)*
+> - The flow tracker stays, labelled differently — tap it if you notice any bleeding
 > - "Your Month" summarises your patterns in plain language each month
-> - If you log any bleeding the app will let you know it's worth mentioning to your doctor
+> - If you log any bleeding, the app will prompt you to mention it to your doctor
 > - Your logged data stays exactly as it is
 >
 > *You can switch back anytime.*
 
 **Switching to Paused:**
 > **Here's what changes:**
-> - Period predictions and cycle tracking are paused
+> - Period tracking and predictions are paused
+> - Your calendar is hidden while tracking is paused
 > - The app logs mood, energy, and how you're feeling each day
+> - The flow tracker is still available if you need it
 > - Your logged data stays exactly as it is
 >
 > *Resume cycle tracking anytime from here or from Settings.*
 
 **Switching to Regular (from any non-regular stage):**
 > **Here's what changes:**
-> - Cycle tracking and period predictions are turned back on
-> - The app will use any bleed data you've logged to rebuild its picture of your cycle
+> - Cycle tracking and predictions are turned back on
+> - The app will use any bleed data you've logged to start rebuilding your cycle picture
 > - Hot flash and joint pain categories stay available in your log
+
+> **Dynamic Type note (implementation):** Confirm/Cancel buttons must remain visible without scrolling at XXL body size. If bullet count causes overflow at XXL, use `.footnote` for the parenthetical notes rather than inline body text.
 
 #### Part 3 — First-run home card after switching
 

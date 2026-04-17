@@ -7583,6 +7583,96 @@
           }
         }
       }
+    },
+    "Regular cycles": {
+      "comment": "LifeStage display name",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Regular cycles" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Regelmäßige Zyklen" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Ciclos regulares" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Cycles réguliers" } }
+      }
+    },
+    "Irregular cycles": {
+      "comment": "LifeStage display name",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Irregular cycles" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Unregelmäßige Zyklen" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Ciclos irregulares" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Cycles irréguliers" } }
+      }
+    },
+    "Perimenopause": {
+      "comment": "LifeStage display name",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Perimenopause" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Perimenopause" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Perimenopausia" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Périménopause" } }
+      }
+    },
+    "Menopause": {
+      "comment": "LifeStage display name",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Menopause" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Menopause" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Menopausia" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Ménopause" } }
+      }
+    },
+    "Cycle paused": {
+      "comment": "LifeStage display name — post-partum, breastfeeding, or taking a break",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Cycle paused" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Zyklus pausiert" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Ciclo en pausa" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Cycle en pause" } }
+      }
+    },
+    "Periods come roughly on schedule": {
+      "comment": "LifeStage.regular settings description",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Periods come roughly on schedule" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Periode kommt etwa planmäßig" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Los períodos llegan más o menos a tiempo" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Les règles arrivent à peu près à l'heure" } }
+      }
+    },
+    "Periods vary — predictions show a wider range": {
+      "comment": "LifeStage.irregular settings description",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Periods vary — predictions show a wider range" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Periode variiert – Vorhersagen zeigen eine breitere Spanne" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Los períodos varían — las predicciones muestran un rango más amplio" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Les règles varient — les prédictions montrent une plage plus large" } }
+      }
+    },
+    "Cycles are changing — history and symptoms take priority": {
+      "comment": "LifeStage.perimenopause settings description",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Cycles are changing — history and symptoms take priority" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Zyklen verändern sich – Verlauf und Symptome haben Priorität" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Los ciclos están cambiando — el historial y los síntomas son prioritarios" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Les cycles changent — l'historique et les symptômes sont prioritaires" } }
+      }
+    },
+    "Periods have stopped — symptoms and summaries are the main view": {
+      "comment": "LifeStage.menopause settings description",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Periods have stopped — symptoms and summaries are the main view" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Periode hat aufgehört – Symptome und Zusammenfassungen sind die Hauptansicht" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Los períodos se han detenido — los síntomas y resúmenes son la vista principal" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Les règles se sont arrêtées — les symptômes et résumés sont la vue principale" } }
+      }
+    },
+    "Post-partum, breastfeeding, or taking a break": {
+      "comment": "LifeStage.paused settings description",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Post-partum, breastfeeding, or taking a break" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Nach der Geburt, beim Stillen oder in einer Pause" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Posparto, lactancia o tomando un descanso" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Post-partum, allaitement ou pause" } }
+      }
     }
   },
   "version": "1.0"
