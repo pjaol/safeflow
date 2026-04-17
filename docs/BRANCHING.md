@@ -1,6 +1,6 @@
 # Branching Strategy
 
-**Last updated:** 2026-04-10
+**Last updated:** 2026-04-17
 
 ---
 
@@ -17,9 +17,9 @@ We use a lightweight trunk-based strategy optimised for a small team (1–2 engi
 
 ```
 main                         ← production; always App Store releasable
-├── release/1.x              ← patch/hotfix holding branch for v1
+├── release/1.x              ← patch/hotfix holding branch for v1 (archived)
 │   └── fix/...              ← individual bug fixes against v1
-├── release/1.1              ← v1.1 accessibility & i18n (Track A)
+├── release/1.1              ← v1.1 accessibility & i18n (archived — merged 2026-04-17)
 │   └── fix/...              ← fixes found during v1.1 development
 └── feature/v2/...           ← v2 feature branches off main
 ```
@@ -35,12 +35,12 @@ main                         ← production; always App Store releasable
 - `release/1.x` is merged forward into `main` and into `release/1.1` after each patch ships
 - Archived (not deleted) when v1.1 ships
 
-### `release/1.1`
+### `release/1.1` (archived)
 - Branched from `main` (after absorbing any outstanding `release/1.x` patches)
 - All v1.1 Track A work: accessibility, i18n string extraction, locale-aware formatting
 - Individual pieces of work branch off `release/1.1` as `fix/a11y-*` or `fix/i18n-*` branches and PR back in
-- When complete, `release/1.1` → `main` via PR and is tagged `v1.1.0`
-- `release/1.1` is then merged into any in-flight `feature/v2/*` branches to keep them current
+- Merged into `main` via PR #4 on 2026-04-17, tagged `v1.1.1`
+- Archived — do not branch from this
 
 ### `fix/<description>`
 - Short-lived; branched from the appropriate release branch
@@ -96,15 +96,16 @@ git push origin fix/a11y-toolbar-labels
 # PR → release/1.1
 ```
 
-### Shipping v1.1
+### Shipping a release
 
-When all v1.1 checklist items are complete and TestFlight is signed off:
+When all checklist items are complete and TestFlight is signed off:
 
 ```bash
-# PR release/1.1 → main
-# tag on main after submission
-git tag v1.1.0
-git push origin v1.1.0
+# PR release/x.x → main
+# tag on main — CI builds and uploads automatically
+git checkout main && git pull
+git tag v1.1.1
+git push origin v1.1.1
 # merge main into any open feature/v2/* branches
 git checkout feature/v2/my-feature
 git rebase origin/main
@@ -142,20 +143,27 @@ git rebase origin/main
 
 ## Tag convention
 
-App Store submissions are tagged on `main`:
+App Store submissions are tagged on `main`. The tag push triggers the GitHub Actions build pipeline automatically — see `docs/RELEASE-PIPELINE.md`.
 
 ```
 v1.0.0    ← initial App Store release
 v1.0.1    ← first patch (from release/1.x)
-v1.1.0    ← accessibility & i18n (from release/1.1)
+v1.1.1    ← accessibility & i18n (from release/1.1, shipped 2026-04-17)
 v2.0.0    ← life-stage expansion launch
 ```
 
-Tag immediately after the build is submitted to App Store Connect:
+Tag format determines which workflow runs:
+- `vX.Y.Z` (clean semver) → `release.yml` → Release build → App Store Connect
+- `vX.Y.Z-suffix` (pre-release) → `beta.yml` → Beta build → TestFlight
 
-```
-git tag v1.0.1
-git push origin v1.0.1
+```bash
+# App Store release
+git tag v1.1.1
+git push origin v1.1.1
+
+# TestFlight beta
+git tag v1.2.0-beta.1
+git push origin v1.2.0-beta.1
 ```
 
 ---
