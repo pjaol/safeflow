@@ -480,6 +480,8 @@ private struct PausedContextSheet: View {
     @Binding var selected: PausedContext
     let onDone: () -> Void
 
+    @State private var hasChosen = false
+
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 16) {
@@ -490,11 +492,13 @@ private struct PausedContextSheet: View {
                     .padding(.top, 4)
 
                 VStack(spacing: 8) {
-                    PausedContextRow(context: .recovering, isSelected: selected == .recovering) {
+                    PausedContextRow(context: .recovering, isSelected: selected == .recovering && hasChosen) {
                         selected = .recovering
+                        hasChosen = true
                     }
-                    PausedContextRow(context: .notTracking, isSelected: selected == .notTracking) {
+                    PausedContextRow(context: .notTracking, isSelected: selected == .notTracking && hasChosen) {
                         selected = .notTracking
+                        hasChosen = true
                     }
                 }
                 .padding(.horizontal)
@@ -505,7 +509,7 @@ private struct PausedContextSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Done", action: onDone)
+                    Button(hasChosen ? "Done" : "Skip", action: onDone)
                         .foregroundStyle(AppTheme.Colors.primaryBlue)
                 }
             }

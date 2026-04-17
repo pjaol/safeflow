@@ -36,7 +36,7 @@ struct HomeView: View {
 
                         // Unexpected bleeding nudge (menopause / paused)
                         if cycleStore.unexpectedBleedingDetected {
-                            UnexpectedBleedingCard {
+                            UnexpectedBleedingCard(lifeStage: lifeStage) {
                                 cycleStore.clearUnexpectedBleedingSignal()
                             }
                         }
@@ -51,7 +51,7 @@ struct HomeView: View {
                             BleedHistoryCard(cycleStore: cycleStore)
                         }
 
-                        // Perimenopause + menopause: symptom snapshot
+                        // Perimenopause + menopause: symptom snapshot (only when there is data to show)
                         if lifeStage == .perimenopause || lifeStage == .menopause {
                             SymptomSnapshotCard(cycleStore: cycleStore)
                         }

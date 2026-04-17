@@ -95,6 +95,12 @@ struct MonthlySummaryView: View {
                 }
 
                 // Top symptoms — only shown when enough data (5+ days)
+                if loggedDaysCount > 0 && loggedDaysCount < 5 {
+                    Divider()
+                    Text("Log 5+ days to see top symptoms.")
+                        .font(.system(.caption2, design: .rounded))
+                        .foregroundStyle(AppTheme.Colors.mediumGrayText)
+                }
                 if loggedDaysCount >= 5 && !topSymptoms.isEmpty {
                     Divider()
                     VStack(alignment: .leading, spacing: 6) {

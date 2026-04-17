@@ -9018,6 +9018,118 @@
           }
         }
       }
+    },
+    "We've noted this. You can log more detail in your diary.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "We've noted this. You can log more detail in your diary."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das haben wir vermerkt. Du kannst weitere Details in deinem Tagebuch erfassen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo hemos anotado. Puedes registrar más detalles en tu diario."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nous l'avons noté. Tu peux ajouter des détails dans ton journal."
+          }
+        }
+      }
+    },
+    "Worth noting for your next appointment.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Worth noting for your next appointment."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gut zu merken für deinen nächsten Termin."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vale la pena mencionarlo en tu próxima cita."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À noter pour ton prochain rendez-vous."
+          }
+        }
+      }
+    },
+    "Start by logging how you feel today.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start by logging how you feel today."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beginne damit, dein heutiges Befinden zu erfassen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empieza registrando cómo te sientes hoy."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commence par noter comment tu te sens aujourd'hui."
+          }
+        }
+      }
+    },
+    "Log 5+ days to see top symptoms.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log 5+ days to see top symptoms."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erfasse 5+ Tage, um die häufigsten Symptome zu sehen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registra 5+ días para ver los síntomas más frecuentes."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Note 5+ jours pour voir les symptômes les plus fréquents."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

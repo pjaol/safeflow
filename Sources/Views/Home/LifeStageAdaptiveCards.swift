@@ -5,7 +5,20 @@ import SwiftUI
 /// Shown on the home screen when a flow event is logged in menopause or paused stage.
 /// Provides a gentle acknowledgement and a dismiss action.
 struct UnexpectedBleedingCard: View {
+    let lifeStage: LifeStage
     let onDismiss: () -> Void
+
+    private var subtitle: LocalizedStringKey {
+        lifeStage == .paused
+            ? "We've noted this. You can log more detail in your diary."
+            : "Worth noting for your next appointment."
+    }
+
+    private var subtitleString: String {
+        lifeStage == .paused
+            ? String(localized: "We've noted this. You can log more detail in your diary.")
+            : String(localized: "Worth noting for your next appointment.")
+    }
 
     var body: some View {
         HStack(spacing: 12) {
@@ -18,7 +31,7 @@ struct UnexpectedBleedingCard: View {
                 Text("Unexpected bleeding logged")
                     .font(.system(.callout, design: .rounded, weight: .semibold))
                     .foregroundStyle(AppTheme.Colors.deepGrayText)
-                Text("Worth noting for your next appointment.")
+                Text(subtitle)
                     .font(.system(.caption, design: .rounded))
                     .foregroundStyle(AppTheme.Colors.mediumGrayText)
             }
@@ -39,7 +52,7 @@ struct UnexpectedBleedingCard: View {
         .background(AppTheme.Colors.secondaryPink.opacity(0.1))
         .cornerRadius(AppTheme.Metrics.cornerRadius)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("Unexpected bleeding logged. Worth noting for your next appointment.")
+        .accessibilityLabel("Unexpected bleeding logged. \(subtitleString)")
         .accessibilityIdentifier("home.unexpectedBleedingCard")
     }
 }
@@ -62,40 +75,46 @@ struct SymptomSnapshotCard: View {
         }.count
     }
 
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack(spacing: 6) {
-                Image(systemName: "chart.bar.fill")
-                    .foregroundStyle(AppTheme.Colors.dartEnergy)
-                    .font(.system(.callout, weight: .semibold))
-                    .accessibilityHidden(true)
-                Text("Last 30 days")
-                    .font(.system(.callout, design: .rounded, weight: .semibold))
-                    .foregroundStyle(AppTheme.Colors.deepGrayText)
-            }
+    private var hasData: Bool {
+        count(for: .vasomotor) > 0 || count(for: .musculoskeletal) > 0
+    }
 
-            HStack(spacing: 16) {
-                SymptomCountRow(
-                    label: "Hot Flashes",
-                    sfSymbol: "thermometer.sun.fill",
-                    count: count(for: .vasomotor),
-                    color: AppTheme.Colors.dartPain
-                )
-                Divider().frame(height: 36)
-                SymptomCountRow(
-                    label: "Joint Pain",
-                    sfSymbol: "figure.strengthtraining.traditional",
-                    count: count(for: .musculoskeletal),
-                    color: AppTheme.Colors.dartEnergy
-                )
+    var body: some View {
+        if hasData {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack(spacing: 6) {
+                    Image(systemName: "chart.bar.fill")
+                        .foregroundStyle(AppTheme.Colors.dartEnergy)
+                        .font(.system(.callout, weight: .semibold))
+                        .accessibilityHidden(true)
+                    Text("Last 30 days")
+                        .font(.system(.callout, design: .rounded, weight: .semibold))
+                        .foregroundStyle(AppTheme.Colors.deepGrayText)
+                }
+
+                HStack(spacing: 16) {
+                    SymptomCountRow(
+                        label: "Hot Flashes",
+                        sfSymbol: "thermometer.sun.fill",
+                        count: count(for: .vasomotor),
+                        color: AppTheme.Colors.dartPain
+                    )
+                    Divider().frame(height: 36)
+                    SymptomCountRow(
+                        label: "Joint Pain",
+                        sfSymbol: "figure.strengthtraining.traditional",
+                        count: count(for: .musculoskeletal),
+                        color: AppTheme.Colors.dartEnergy
+                    )
+                }
             }
+            .padding(AppTheme.Metrics.cardPadding)
+            .background(AppTheme.Colors.secondaryBackground)
+            .cornerRadius(AppTheme.Metrics.cornerRadius)
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("Symptom snapshot, last 30 days. Hot flashes: \(count(for: .vasomotor)) days. Joint pain: \(count(for: .musculoskeletal)) days.")
+            .accessibilityIdentifier("home.symptomSnapshotCard")
         }
-        .padding(AppTheme.Metrics.cardPadding)
-        .background(AppTheme.Colors.secondaryBackground)
-        .cornerRadius(AppTheme.Metrics.cornerRadius)
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("Symptom snapshot, last 30 days. Hot flashes: \(count(for: .vasomotor)) days. Joint pain: \(count(for: .musculoskeletal)) days.")
-        .accessibilityIdentifier("home.symptomSnapshotCard")
     }
 }
 
@@ -237,7 +256,7 @@ struct PausedSummaryCard: View {
                     )
                 }
             } else {
-                Text("Log how you feel using the tracker above.")
+                Text("Start by logging how you feel today.")
                     .font(.system(.caption, design: .rounded))
                     .foregroundStyle(AppTheme.Colors.mediumGrayText)
             }
@@ -252,7 +271,7 @@ struct PausedSummaryCard: View {
 
     private var pausedAccessibilityLabel: String {
         guard let day = today else {
-            return String(localized: "Tracking paused. Log how you feel using the tracker above.")
+            return String(localized: "Tracking paused. Start by logging how you feel today.")
         }
         let sleep = day.sleepQuality.map { "Sleep: \($0.sleepLabelString)" } ?? "Sleep: not logged"
         let energy = day.energyLevel.map { "Energy: \($0.energyLabelString)" } ?? "Energy: not logged"
