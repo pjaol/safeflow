@@ -16,6 +16,7 @@
 		V2LS0001000000000000AABB /* LifeStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2LS0000000000000000AABB /* LifeStage.swift */; };
 		V2LS0007000000000000AABB /* LifeStageGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2LS0006000000000000AABB /* LifeStageGuideView.swift */; };
 		V2LS0009000000000000AABB /* LifeStageAdaptiveCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2LS000A000000000000AABB /* LifeStageAdaptiveCards.swift */; };
+		V2LS000B000000000000AABB /* MonthlySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2LS000C000000000000AABB /* MonthlySummaryView.swift */; };
 		V2LS0003000000000000AABB /* LifeStageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2LS0002000000000000AABB /* LifeStageTests.swift */; };
 		AA11223344556677889900DD /* CycleSeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900CC /* CycleSeedData.swift */; };
 		AA11223344556677889900FF /* CyclePredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900EE /* CyclePredictionEngine.swift */; };
@@ -152,6 +153,7 @@
 		V2LS0000000000000000AABB /* LifeStage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeStage.swift; sourceTree = "<group>"; };
 		V2LS0006000000000000AABB /* LifeStageGuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeStageGuideView.swift; sourceTree = "<group>"; };
 		V2LS000A000000000000AABB /* LifeStageAdaptiveCards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeStageAdaptiveCards.swift; sourceTree = "<group>"; };
+		V2LS000C000000000000AABB /* MonthlySummaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlySummaryView.swift; sourceTree = "<group>"; };
 		V2LS0008000000000000AABB /* LifeStageViews */ = {isa = PBXGroup; children = (V2LS0006000000000000AABB /* LifeStageGuideView.swift */,); name = LifeStage; path = Sources/Views/LifeStage; sourceTree = SOURCE_ROOT; };
 		V2LS0002000000000000AABB /* LifeStageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LifeStageTests.swift; path = Tests/UnitTests/LifeStageTests.swift; sourceTree = SOURCE_ROOT; };
 		AA11223344556677889900CC /* CycleSeedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleSeedData.swift; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 				FE2E1432FC934814B484C260 /* InsightCard.swift */,
 				FF33445566778899AABBCCBB /* WeekRibbonView.swift */,
 				V2LS000A000000000000AABB /* LifeStageAdaptiveCards.swift */,
+				V2LS000C000000000000AABB /* MonthlySummaryView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -858,6 +861,7 @@
 				V2LS0001000000000000AABB /* LifeStage.swift in Sources */,
 				V2LS0007000000000000AABB /* LifeStageGuideView.swift in Sources */,
 				V2LS0009000000000000AABB /* LifeStageAdaptiveCards.swift in Sources */,
+				V2LS000B000000000000AABB /* MonthlySummaryView.swift in Sources */,
 				CD218E692D4021EB009B5198 /* HomeView.swift in Sources */,
 				CD218E742D4169C5009B5198 /* SecurityService.swift in Sources */,
 				CD218E9F2D4303F1009B5198 /* AppTheme.swift in Sources */,

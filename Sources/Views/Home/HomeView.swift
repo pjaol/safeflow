@@ -91,6 +91,11 @@ struct HomeView: View {
                                 .id("forecast")
                         }
 
+                        // Monthly summary for non-cycle-prediction stages
+                        if !lifeStage.showsCyclePrediction {
+                            MonthlySummaryView(cycleStore: cycleStore)
+                        }
+
                         CycleCalendarView(cycleStore: cycleStore)
                             .id("history")
                     }
