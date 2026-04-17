@@ -4,112 +4,147 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-SafeFlow is a privacy-first menstrual cycle tracking iOS app. All data is stored exclusively on-device — no server backend, no third-party APIs, no cloud sync. User data never leaves the device.
+Clio Daye (bundle: `com.thevgergroup.safeflow`) is a privacy-first menstrual cycle tracking iOS app. All data is stored exclusively on-device — no server backend, no third-party APIs, no cloud sync. User data never leaves the device.
 
-Current stage: 0.1-alpha MVP.
-
-## Project Structure
-
-```
-safeflow/                    ← repo root (this directory)
-├── safeflow.xcodeproj/
-├── Sources/                 ← All app source code
-│   ├── App/
-│   ├── Models/
-│   ├── Services/
-│   ├── Shared/
-│   ├── Utilities/
-│   └── Views/
-└── Tests/
-    ├── UnitTests/
-    └── UITests/
-```
+Current stage: v1.1.1 — accessibility, i18n, and App Store submission complete. v2 roadmap in progress.
 
 ## Building
 
-**From Xcode:** Open `safeflow.xcodeproj`. Build with Cmd+B, run with Cmd+R.
+**From Xcode:** Open `safeflow.xcodeproj`. Use the `safeflow` scheme for Release/Debug, `safeflow-Beta` for Beta builds.
 
-**From CLI (xcodebuild):**
+**From CLI:**
 ```bash
-# Build for simulator
-xcodebuild -project safeflow.xcodeproj \
-  -scheme safeflow \
-  -destination 'platform=iOS Simulator,name=iPhone 16' \
-  build
+# Build (simulator)
+xcodebuild -project safeflow.xcodeproj -scheme safeflow \
+  -destination 'platform=iOS Simulator,name=iPhone 16' build
 
-# Run unit tests
-xcodebuild -project safeflow.xcodeproj \
-  -scheme safeflow \
-  -destination 'platform=iOS Simulator,name=iPhone 16' \
-  test
+# Run all unit tests
+xcodebuild -project safeflow.xcodeproj -scheme safeflow \
+  -destination 'platform=iOS Simulator,name=iPhone 16' test
 
-# Run a single test class
-xcodebuild -project safeflow.xcodeproj \
-  -scheme safeflow \
+# Run a single test class or method
+xcodebuild -project safeflow.xcodeproj -scheme safeflow \
   -destination 'platform=iOS Simulator,name=iPhone 16' \
-  -only-testing:safeflowTests/CycleStoreTests \
-  test
+  -only-testing:safeflowTests/CycleStoreTests test
 
-# Run a single test method
-xcodebuild -project safeflow.xcodeproj \
-  -scheme safeflow \
+xcodebuild -project safeflow.xcodeproj -scheme safeflow \
   -destination 'platform=iOS Simulator,name=iPhone 16' \
-  -only-testing:safeflowTests/SecurityTests/testPINManagement \
-  test
+  -only-testing:safeflowTests/SecurityTests/testPINManagement test
 ```
 
-## Architecture
+## Build Configurations
 
-**Pattern:** SwiftUI + MVVM + Service layer
-**Concurrency:** `async/await` with `@MainActor` and `@globalActor` for thread safety
-**Min deployment:** iOS (portrait only, full screen required)
+Three configurations exist — the distinction matters for `#if` guards:
 
-### App Entry & Navigation Flow
+| Config | Swift flag | Debug menu | Test data loader | Signing | Destination |
+|---|---|---|---|---|---|
+| Debug | `DEBUG` | ✅ | ✅ | Automatic | Local development |
+| Beta | `BETA` | ✅ | ✅ | Manual / Distribution | TestFlight |
+| Release | _(none)_ | ❌ | ❌ | Manual / Distribution | App Store |
 
-`SafeFlowApp.swift` controls three exclusive states using `@AppStorage` + `@StateObject`:
-1. **Onboarding** (first launch) → `OnboardingView`
-2. **Locked** → `LockView`
-3. **Unlocked** → `HomeView`
+`#if DEBUG || BETA` guards the in-app locale switcher, test data loader, and debug menu. Production strips all of this. Never use `#if DEBUG` alone for things that should also appear in Beta.
 
-`SecurityService` is created asynchronously at startup, injected via `@EnvironmentObject`.
+## Release Pipeline
 
-### Data Layer
+Tag pushes to `main` trigger GitHub Actions automatically:
 
-- **`CycleStore`** (`Services/Persistence/CycleStore.swift`) — the primary data service. Handles all CRUD for `CycleDay` records, cycle prediction logic, and average cycle length calculation. Uses `PersistenceService` for storage.
-- **`PersistenceService`** — `@globalActor`-isolated service that serializes `[CycleDay]` as JSON into `UserDefaults` under key `"cycleDays"`.
-- **`CycleDay`** (`Models/CycleDay.swift`) — the core `Codable` struct with `UUID`, `Date`, `FlowIntensity?`, `[Symptom]`, `Mood?`, and notes.
+```bash
+# App Store release → release.yml → Release config → App Store Connect
+git tag v1.1.1 && git push origin v1.1.1
 
-There is a near-empty `Models/CycleStore.swift` (12 lines) separate from the real `Services/Persistence/CycleStore.swift` — the latter is what matters.
+# TestFlight beta → beta.yml → Beta config → TestFlight
+git tag v1.2.0-beta.1 && git push origin v1.2.0-beta.1
+```
 
-### Security Layer
+Full flow: PR `release/x.x` → `main`, then tag on `main`. See `docs/BRANCHING.md` and `docs/RELEASE-PIPELINE.md`.
 
-- **`SecurityService`** (`Services/Security/SecurityService.swift`, 239 lines) — high-level authentication orchestrator. Manages biometric (Face ID/Touch ID via LocalAuthentication) and PIN auth. Publishes `isUnlocked` state. Enforces a 10-minute inactivity timeout.
-- **`SecurityManager`** (`Services/Security/SecurityManager.swift`, 128 lines) — low-level keychain operations for PIN storage/retrieval. Listens to app lifecycle notifications. Enforces a 2-minute background timeout.
-- PIN is stored in iOS Keychain under `"com.thevgergroup.safeflow.pin"`.
-
-### Theme
-
-All visual constants live in `Shared/Theme/AppTheme.swift`:
-- **Colors:** Pastel Blue (`#A8DFF7`), Soft Pink (`#FEC8D8`), Pale Yellow (`#FFF5C3`)
-- **Typography:** SF Pro Rounded, system rounded design
-- **Metrics:** Corner radius 16, button radius 25, standard spacing 20
-
-Reusable `ViewModifier`s are in `Shared/Theme/ViewModifiers.swift`.
-
-### Debug Builds
-
-`Views/Debug/DebugMenu.swift` and `Views/Debug/TestCaseRunner.swift` are compiled only in `DEBUG` configuration. They provide data reset, onboarding reset, and test case execution.
+App Store metadata and screenshots are managed separately:
+```bash
+bundle exec fastlane metadata    # upload localised metadata + screenshots
+bundle exec fastlane screenshots # regenerate screenshots (slow — runs UI tests)
+```
 
 ## Tests
 
-Tests live in `Tests/`:
-- `UnitTests/CycleStoreTests.swift` — 5 tests covering add/update/delete, range queries, predictions. Uses an isolated `UserDefaults` suite (not the real store) for test isolation.
-- `UnitTests/SecurityTests.swift` — 4 tests covering PIN management, auth state, auth requirements, session timeout.
-- `UITests/safeflowUITests.swift` — basic launch/integration tests.
+Test plans in `Tests/`:
+- `SafeFlowDefault.xctestplan` — unit tests (CI gate)
+- `SafeFlowAccessibility.xctestplan` — VoiceOver, Dynamic Type, audit UI tests
+- `SafeFlowLocalisation.xctestplan` — locale assertion UI tests
 
-## Key Design Constraints
+Key test files:
+- `UnitTests/CycleStoreTests.swift` — CRUD, predictions, range queries (isolated `UserDefaults` suite)
+- `UnitTests/SecurityTests.swift` — PIN, auth state, session timeout
+- `UITests/AccessibilityAuditTests.swift` — automated a11y audit per screen
+- `UITests/LocalisationUITests.swift` — asserts translated strings render for each locale
+- `UITests/SnapshotTests.swift` — App Store screenshot capture (fastlane `screenshots` lane)
 
-- **No third-party dependencies** — pure Apple frameworks only (SwiftUI, LocalAuthentication, Security framework for Keychain).
-- **No network calls anywhere** — the app has no `URLSession` usage, no external APIs.
-- **Privacy-first data model** — `UserDefaults` + Keychain only. No CloudKit, no iCloud sync.
-- **Portrait only** — `UISupportedInterfaceOrientations` is portrait-only; `UIRequiresFullScreen: true`.
+UI tests that rely on content use `accessibilityIdentifier` strings (e.g. `"home.cycleRingSummaryCard"`) rather than text, so they don't break across locales.
+
+## Architecture
+
+**Pattern:** SwiftUI + MVVM + Service layer  
+**Concurrency:** `async/await` with `@MainActor` and `@globalActor`  
+**Min deployment:** iOS 26, portrait only
+
+### App Entry & Navigation
+
+`SafeFlowApp.swift` controls three exclusive states via `@AppStorage` + `@StateObject`:
+1. **Onboarding** → `OnboardingView`
+2. **Locked** → `LockView`
+3. **Unlocked** → `HomeView`
+
+`SecurityService` is initialised asynchronously; a `ProgressView` is shown until it's ready. Locale and onboarding flags are applied in `init()` — before first render — not in `onAppear`.
+
+### Data Layer
+
+- **`CycleStore`** (`Services/Persistence/CycleStore.swift`) — primary data service. CRUD for `CycleDay`, cycle prediction, average cycle length. Uses `PersistenceService`.
+- **`PersistenceService`** — `@globalActor`-isolated, serialises `[CycleDay]` as JSON into `UserDefaults` key `"cycleDays"`.
+- **`CycleDay`** (`Models/CycleDay.swift`) — core `Codable` struct: `UUID`, `Date`, `FlowIntensity?`, `[Symptom]`, `Mood?`, notes.
+
+`Models/CycleStore.swift` is a near-empty stub — the real implementation is in `Services/Persistence/CycleStore.swift`.
+
+### Security Layer
+
+- **`SecurityService`** (`Services/Security/SecurityService.swift`) — biometric + PIN auth, publishes `isUnlocked`, 10-minute inactivity timeout.
+- **`SecurityManager`** (`Services/Security/SecurityManager.swift`) — low-level Keychain ops, 2-minute background timeout. PIN stored under key `"com.thevgergroup.safeflow.pin"`.
+
+### Theme
+
+All visual constants in `Shared/Theme/AppTheme.swift`: pastel blue `#A8DFF7`, soft pink `#FEC8D8`, pale yellow `#FFF5C3`, SF Pro Rounded, corner radius 16. Reusable modifiers in `Shared/Theme/ViewModifiers.swift`.
+
+## Internationalisation (i18n)
+
+Shipped locales: **en-US, de-DE, fr-FR, es-MX**. All strings are in `Sources/Localizable.xcstrings`.
+
+**Critical rule:** Use `Text("Literal string")` for all user-visible text — `Text` auto-promotes string literals to `LocalizedStringKey` and respects `.environment(\.locale, ...)`. Never use `NSLocalizedString` or `String(localized:)` in views — these ignore the SwiftUI locale environment and break in-app locale switching and snapshot tests.
+
+For model types that need a string in non-view contexts (accessibility labels, logging), provide both:
+```swift
+var localizedName: LocalizedStringKey { "Cramps" }         // use in Text()
+var localizedNameString: String { String(localized: "Cramps") } // use in accessibility/sorting
+```
+
+In-app locale switching is `#if DEBUG || BETA` only — production uses the iOS system locale. See `docs/adr/ADR-002-i18n-l10n-architecture.md` for the full rationale.
+
+## Accessibility (a11y)
+
+All primary screens have a full VoiceOver pass as of v1.1.1. Key patterns:
+
+- Use `.accessibilityAddTraits()` — never assign `.accessibilityTraits` directly (overwrites existing traits)
+- Use `.accessibilityElement(children: .combine)` to group list rows
+- Composite labels on complex controls (e.g. dartboard, cycle ring, phase card)
+- All animations check `@Environment(\.accessibilityReduceMotion)`
+- All decorative images use `.accessibilityHidden(true)`
+- Sheet/modal dismissal returns focus to the trigger via `@AccessibilityFocusState`
+
+Automated audit: `UITests/AccessibilityAuditTests.swift` runs per-screen audits. Run these before any PR touching views.
+
+App Store accessibility declarations (published after v1.1.1 goes live): VoiceOver, Voice Control, Larger Text, Dark Interface, Differentiate Without Color Alone, Sufficient Contrast, Reduced Motion.
+
+## Key Constraints
+
+- **No third-party dependencies** — pure Apple frameworks only.
+- **No network calls** — no `URLSession`, no external APIs, ever.
+- **Privacy-first** — `UserDefaults` + Keychain only. No CloudKit, no iCloud sync.
+- **Portrait only** — `UISupportedInterfaceOrientations` is portrait-only.
+- **No medication tracking** — deferred until a clinical partner is in place. Do not spec or build.
