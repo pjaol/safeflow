@@ -7584,6 +7584,69 @@
         }
       }
     },
+    "Choose what fits where you are right now. You can change this anytime.": {
+      "comment": "LifeStageGuideView header",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Choose what fits where you are right now. You can change this anytime." } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Wähle, was gerade zu dir passt. Du kannst das jederzeit ändern." } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Elige lo que se ajusta a donde estás ahora. Puedes cambiarlo en cualquier momento." } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Choisissez ce qui correspond à là où vous en êtes. Vous pouvez changer cela à tout moment." } }
+      }
+    },
+    "This changes what Clio Daye shows you. Your stored data is never affected.": {
+      "comment": "LifeStageGuideView context note",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "This changes what Clio Daye shows you. Your stored data is never affected." } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Dies ändert, was Clio Daye dir zeigt. Deine gespeicherten Daten werden nie verändert." } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Esto cambia lo que Clio Daye te muestra. Tus datos guardados nunca se ven afectados." } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Cela change ce que Clio Daye vous montre. Vos données enregistrées ne sont jamais affectées." } }
+      }
+    },
+    "Here's what changes:": {
+      "comment": "LifeStageConfirmationSheet section heading",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Here's what changes:" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Das ändert sich:" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Esto es lo que cambia:" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Voici ce qui change :" } }
+      }
+    },
+    "You can switch back anytime.": {
+      "comment": "LifeStageConfirmationSheet closing note",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "You can switch back anytime." } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Du kannst jederzeit zurückwechseln." } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Puedes volver a cambiar en cualquier momento." } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Vous pouvez revenir à tout moment." } }
+      }
+    },
+    "Resume cycle tracking anytime from here or from Settings.": {
+      "comment": "LifeStageConfirmationSheet closing note for paused stage",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Resume cycle tracking anytime from here or from Settings." } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Setze das Zyklustracking jederzeit hier oder in den Einstellungen fort." } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Reanuda el seguimiento del ciclo en cualquier momento desde aquí o desde Ajustes." } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Reprenez le suivi du cycle à tout moment depuis ici ou depuis Réglages." } }
+      }
+    },
+    "Life Stage": {
+      "comment": "Settings row label for life stage picker",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Life Stage" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Lebensphase" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Etapa de vida" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Étape de vie" } }
+      }
+    },
+    "Your Experience": {
+      "comment": "Settings section header for life stage",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Your Experience" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Deine Erfahrung" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Tu experiencia" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Votre expérience" } }
+      }
+    },
     "Regular cycles": {
       "comment": "LifeStage display name",
       "localizations": {

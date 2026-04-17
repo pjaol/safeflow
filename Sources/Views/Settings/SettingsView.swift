@@ -3,16 +3,39 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject private var securityService: SecurityService
     @Environment(\.dismiss) private var dismiss
+    @AppStorage(LifeStage.defaultsKey) private var lifeStage: LifeStage = .regular
+    @State private var showingLifeStageGuide = false
     @State private var showingBiometricSetup = false
     @State private var showingPinSetup = false
     @State private var hasPin = false
     @State private var showingDeleteConfirmation = false
 
     var cycleStore: CycleStore? = nil
-    
+
     var body: some View {
         NavigationStack {
             Form {
+                Section("Your Experience") {
+                    Button {
+                        showingLifeStageGuide = true
+                    } label: {
+                        HStack {
+                            Text("Life Stage")
+                                .foregroundColor(AppTheme.Colors.deepGrayText)
+                            Spacer()
+                            Text(lifeStage.localizedName)
+                                .foregroundColor(AppTheme.Colors.mediumGrayText)
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 13, weight: .semibold))
+                                .foregroundColor(AppTheme.Colors.mediumGrayText.opacity(0.5))
+                                .accessibilityHidden(true)
+                        }
+                    }
+                    .accessibilityLabel("Life Stage, \(lifeStage.localizedNameString)")
+                    .accessibilityHint("Opens life stage selector")
+                    .accessibilityIdentifier("settings.lifeStageButton")
+                }
+
                 Section("Security") {
                     Toggle("Require Authentication", isOn: Binding(
                         get: { securityService.isAuthenticationRequired },
@@ -136,6 +159,9 @@ struct SettingsView: View {
             // Show sheet for PIN setup
             .sheet(isPresented: $showingPinSetup) {
                 PinSetupView()
+            }
+            .sheet(isPresented: $showingLifeStageGuide) {
+                LifeStageGuideView(currentStage: $lifeStage)
             }
             .alert("Delete All Data?", isPresented: $showingDeleteConfirmation) {
                 Button("Delete Everything", role: .destructive) {
