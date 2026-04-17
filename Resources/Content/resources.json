@@ -819,5 +819,76 @@
       "general",
       "reproductive_rights"
     ]
+  },
+  {
+    "id": "resource.menopause.society",
+    "category": "ob_gyn",
+    "name": "The Menopause Society",
+    "short_description": "Patient resources on perimenopause, menopause, and hormone therapy from the leading North American menopause authority.",
+    "url": "https://menopause.org/for-women",
+    "phone": null,
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "menopause",
+      "perimenopause",
+      "hot_flashes",
+      "hormone_therapy"
+    ]
+  },
+  {
+    "id": "resource.bms.menopause.uk",
+    "category": "ob_gyn",
+    "name": "British Menopause Society",
+    "short_description": "Evidence-based menopause information and specialist-finder for women and healthcare providers in the UK.",
+    "url": "https://thebms.org.uk/find-a-menopause-specialist/",
+    "phone": null,
+    "region": "UK",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "menopause",
+      "perimenopause",
+      "specialist"
+    ]
+  },
+  {
+    "id": "resource.jeanhailes.menopause",
+    "category": "ob_gyn",
+    "name": "Jean Hailes — Menopause",
+    "short_description": "Plain-language menopause education from Australia's leading women's health organisation.",
+    "url": "https://jeanhailes.org.au/health-a-z/menopause",
+    "phone": null,
+    "region": "AU",
+    "languages": [
+      "en"
+    ],
+    "tags": [
+      "menopause",
+      "perimenopause",
+      "hot_flashes"
+    ]
+  },
+  {
+    "id": "resource.nams.postpartum",
+    "category": "general_health",
+    "name": "Postpartum Support International",
+    "short_description": "Support, education, and resources for postpartum recovery, including mood changes and physical wellbeing.",
+    "url": "https://www.postpartum.net",
+    "phone": "1-800-944-4773",
+    "region": "US",
+    "languages": [
+      "en",
+      "es"
+    ],
+    "tags": [
+      "postpartum",
+      "paused",
+      "mood",
+      "recovery"
+    ]
   }
 ]
