@@ -29,7 +29,39 @@ Build and upload to TestFlight
 [bundle exec] fastlane ios screenshots
 ```
 
-Capture App Store screenshots by running the app in the simulator
+Capture App Store screenshots for all languages using SnapshotHelper + xcodebuild
+
+### ios distribute
+
+```sh
+[bundle exec] fastlane ios distribute
+```
+
+Distribute a build to an external TestFlight group. Pass group:"Group Name" and optionally build_number:"123"
+
+### ios monitor_and_submit
+
+```sh
+[bundle exec] fastlane ios monitor_and_submit
+```
+
+Poll TestFlight until a build for the given version is processed, then submit for review. Pass version:"1.0"
+
+### ios submit_with_age_rating
+
+```sh
+[bundle exec] fastlane ios submit_with_age_rating
+```
+
+Set age rating and submit for App Store review directly via Spaceship
+
+### ios submit
+
+```sh
+[bundle exec] fastlane ios submit
+```
+
+Submit the latest uploaded build for App Store review
 
 ### ios metadata
 

@@ -1,4 +1,4 @@
-import Foundation
+import SwiftUI
 
 struct CycleDay: Identifiable, Codable {
     let id: UUID
@@ -24,12 +24,21 @@ enum FlowIntensity: String, Codable, CaseIterable {
     case medium
     case heavy
 
-    var localizedName: String {
+    var localizedName: LocalizedStringKey {
         switch self {
-        case .spotting: return NSLocalizedString("Spotting", comment: "")
-        case .light: return NSLocalizedString("Light", comment: "")
-        case .medium: return NSLocalizedString("Medium", comment: "")
-        case .heavy: return NSLocalizedString("Heavy", comment: "")
+        case .spotting: return "Spotting"
+        case .light: return "Light"
+        case .medium: return "Medium"
+        case .heavy: return "Heavy"
+        }
+    }
+
+    var localizedNameString: String {
+        switch self {
+        case .spotting: return String(localized: "Spotting")
+        case .light: return String(localized: "Light")
+        case .medium: return String(localized: "Medium")
+        case .heavy: return String(localized: "Heavy")
         }
     }
 
@@ -50,11 +59,19 @@ enum SymptomCategory: String, CaseIterable {
     case energy
     case digestive
 
-    var localizedName: String {
+    var localizedName: LocalizedStringKey {
         switch self {
-        case .pain: return NSLocalizedString("Pain", comment: "")
-        case .energy: return NSLocalizedString("Energy", comment: "")
-        case .digestive: return NSLocalizedString("Body", comment: "")
+        case .pain: return "Pain"
+        case .energy: return "Energy"
+        case .digestive: return "Body"
+        }
+    }
+
+    var localizedNameString: String {
+        switch self {
+        case .pain: return String(localized: "Pain")
+        case .energy: return String(localized: "Energy")
+        case .digestive: return String(localized: "Body")
         }
     }
 }
@@ -87,23 +104,43 @@ enum Symptom: String, Codable, CaseIterable {
     case dischargeChanges
     case mittelschmerz
 
-    var localizedName: String {
+    var localizedName: LocalizedStringKey {
         switch self {
-        case .cramps: return NSLocalizedString("Cramps", comment: "")
-        case .headache: return NSLocalizedString("Headache", comment: "")
-        case .bloating: return NSLocalizedString("Bloating", comment: "")
-        case .breastTenderness: return NSLocalizedString("Tenderness", comment: "")
-        case .backPain: return NSLocalizedString("Back Pain", comment: "")
-        case .acne: return NSLocalizedString("Acne", comment: "")
-        case .fatigue: return NSLocalizedString("Fatigue", comment: "")
-        case .insomnia: return NSLocalizedString("Insomnia", comment: "")
-        case .highEnergy: return NSLocalizedString("High Energy", comment: "")
-        case .brainFog: return NSLocalizedString("Brain Fog", comment: "")
-        case .foodCravings: return NSLocalizedString("Cravings", comment: "")
-        case .nausea: return NSLocalizedString("Nausea", comment: "")
-        case .appetiteChanges: return NSLocalizedString("Appetite", comment: "")
-        case .dischargeChanges: return NSLocalizedString("Discharge", comment: "")
-        case .mittelschmerz: return NSLocalizedString("Ovulation", comment: "")
+        case .cramps: return "Cramps"
+        case .headache: return "Headache"
+        case .bloating: return "Bloating"
+        case .breastTenderness: return "Tenderness"
+        case .backPain: return "Back Pain"
+        case .acne: return "Acne"
+        case .fatigue: return "Fatigue"
+        case .insomnia: return "Insomnia"
+        case .highEnergy: return "High Energy"
+        case .brainFog: return "Brain Fog"
+        case .foodCravings: return "Cravings"
+        case .nausea: return "Nausea"
+        case .appetiteChanges: return "Appetite"
+        case .dischargeChanges: return "Discharge"
+        case .mittelschmerz: return "Ovulation"
+        }
+    }
+
+    var localizedNameString: String {
+        switch self {
+        case .cramps: return String(localized: "Cramps")
+        case .headache: return String(localized: "Headache")
+        case .bloating: return String(localized: "Bloating")
+        case .breastTenderness: return String(localized: "Tenderness")
+        case .backPain: return String(localized: "Back Pain")
+        case .acne: return String(localized: "Acne")
+        case .fatigue: return String(localized: "Fatigue")
+        case .insomnia: return String(localized: "Insomnia")
+        case .highEnergy: return String(localized: "High Energy")
+        case .brainFog: return String(localized: "Brain Fog")
+        case .foodCravings: return String(localized: "Cravings")
+        case .nausea: return String(localized: "Nausea")
+        case .appetiteChanges: return String(localized: "Appetite")
+        case .dischargeChanges: return String(localized: "Discharge")
+        case .mittelschmerz: return String(localized: "Ovulation")
         }
     }
 
@@ -158,20 +195,37 @@ enum Mood: String, Codable, CaseIterable {
     case irritable
     case sad
 
-    var localizedName: String {
+    var localizedName: LocalizedStringKey {
         switch self {
-        case .energized: return NSLocalizedString("Energized", comment: "")
-        case .happy: return NSLocalizedString("Happy", comment: "")
-        case .confident: return NSLocalizedString("Confident", comment: "")
-        case .calm: return NSLocalizedString("Calm", comment: "")
-        case .focused: return NSLocalizedString("Focused", comment: "")
-        case .neutral: return NSLocalizedString("Neutral", comment: "")
-        case .foggy: return NSLocalizedString("Foggy", comment: "")
-        case .tired: return NSLocalizedString("Tired", comment: "")
-        case .sensitive: return NSLocalizedString("Sensitive", comment: "")
-        case .anxious: return NSLocalizedString("Anxious", comment: "")
-        case .irritable: return NSLocalizedString("Irritable", comment: "")
-        case .sad: return NSLocalizedString("Sad", comment: "")
+        case .energized: return "Energized"
+        case .happy: return "Happy"
+        case .confident: return "Confident"
+        case .calm: return "Calm"
+        case .focused: return "Focused"
+        case .neutral: return "Neutral"
+        case .foggy: return "Foggy"
+        case .tired: return "Tired"
+        case .sensitive: return "Sensitive"
+        case .anxious: return "Anxious"
+        case .irritable: return "Irritable"
+        case .sad: return "Sad"
+        }
+    }
+
+    var localizedNameString: String {
+        switch self {
+        case .energized: return String(localized: "Energized")
+        case .happy: return String(localized: "Happy")
+        case .confident: return String(localized: "Confident")
+        case .calm: return String(localized: "Calm")
+        case .focused: return String(localized: "Focused")
+        case .neutral: return String(localized: "Neutral")
+        case .foggy: return String(localized: "Foggy")
+        case .tired: return String(localized: "Tired")
+        case .sensitive: return String(localized: "Sensitive")
+        case .anxious: return String(localized: "Anxious")
+        case .irritable: return String(localized: "Irritable")
+        case .sad: return String(localized: "Sad")
         }
     }
 

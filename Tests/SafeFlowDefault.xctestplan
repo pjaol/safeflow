@@ -1,0 +1,31 @@
+{
+  "configurations" : [
+    {
+      "id" : "d71f5a67-b1ac-4590-b0a2-3a476cc166b8",
+      "name" : "Default",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverageEnabled" : false
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:safeflow.xcodeproj",
+        "identifier" : "CDBECD672D4010D2006A37C9",
+        "name" : "safeflowTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:safeflow.xcodeproj",
+        "identifier" : "CDBECD712D4010D2006A37C9",
+        "name" : "safeflowUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

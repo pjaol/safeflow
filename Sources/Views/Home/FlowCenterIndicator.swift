@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FlowStepSlider: View {
     @ObservedObject var viewModel: DartboardViewModel
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private let levels     = FlowIntensity.allCases
     private let softImpact = UIImpactFeedbackGenerator(style: .soft)
@@ -63,7 +64,7 @@ struct FlowStepSlider: View {
                                     .foregroundStyle(isSelected ? .white : AppTheme.Colors.secondaryPink)
                             }
                             .scaleEffect(isSelected ? 1.12 : 1.0)
-                            .animation(.spring(response: 0.25, dampingFraction: 0.65), value: viewModel.committedFlow)
+                            .animation(reduceMotion ? nil : .spring(response: 0.25, dampingFraction: 0.65), value: viewModel.committedFlow)
                             .onTapGesture { selectLevel(level) }
 
                             if idx < levels.count - 1 {
@@ -92,7 +93,7 @@ struct FlowStepSlider: View {
                 ForEach(Array(levels.enumerated()), id: \.element) { idx, level in
                     let isSelected = viewModel.committedFlow == level
                     Text(level.localizedName)
-                        .font(.system(size: 11, weight: isSelected ? .black : .bold, design: .rounded))
+                        .font(.system(.caption2, design: .rounded, weight: isSelected ? .black : .bold))
                         .foregroundStyle(isSelected
                                          ? AppTheme.Colors.secondaryPink
                                          : Color(.label).opacity(0.55))
@@ -103,7 +104,7 @@ struct FlowStepSlider: View {
         .padding(.horizontal, 4)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("Flow intensity")
-        .accessibilityValue(viewModel.committedFlow?.localizedName ?? "Not logged")
+        .accessibilityValue(viewModel.committedFlow?.localizedNameString ?? "Not logged")
         .accessibilityAdjustableAction { direction in
             adjustFlow(direction)
         }

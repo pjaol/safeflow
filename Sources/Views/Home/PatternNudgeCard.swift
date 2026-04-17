@@ -19,12 +19,13 @@ struct PatternNudgeCard: View {
             Image(systemName: nudge.sfSymbol)
                 .font(.system(size: 20, weight: .semibold))
                 .foregroundColor(AppTheme.Colors.deepGrayText)
+                .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 6) {
-                Text(nudge.title)
+                Text(LocalizedStringKey(nudge.title))
                     .font(.system(.subheadline, design: .rounded, weight: .semibold))
                     .foregroundColor(AppTheme.Colors.deepGrayText)
-                Text(nudge.body)
+                Text(LocalizedStringKey(nudge.body))
                     .font(.system(.caption, design: .rounded))
                     .foregroundColor(AppTheme.Colors.mediumGrayText)
                     .fixedSize(horizontal: false, vertical: true)
@@ -38,16 +39,18 @@ struct PatternNudgeCard: View {
                         .font(.system(size: 12, weight: .medium))
                         .foregroundColor(AppTheme.Colors.mediumGrayText)
                         .padding(6)
+                        .accessibilityHidden(true)
                 }
-                .accessibilityLabel("Dismiss")
+                .accessibilityLabel("Dismiss \(nudge.title)")
             }
         }
         .padding(AppTheme.Metrics.cardPadding)
         .background(nudge.backgroundColor)
         .cornerRadius(AppTheme.Metrics.cornerRadius)
         .shadow(color: Color.black.opacity(0.07), radius: 8, x: 0, y: 2)
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: .contain)
         .accessibilityIdentifier("home.patternNudgeCard.\(nudge.id)")
+        .accessibilityLabel("\(nudge.title). \(nudge.body)")
     }
 }
 
@@ -118,7 +121,7 @@ struct CycleNudge: Identifiable, Equatable {
             id: "pattern.shortCycle",
             sfSymbol: "calendar",
             title: "Your cycles are running short",
-            body: "Your average cycle is around \(avg) days. Cycles shorter than 21 days are worth mentioning to a doctor — it's a common and treatable pattern.",
+            body: "Cycles shorter than 21 days are worth mentioning to a doctor — it's a common and treatable pattern.",
             backgroundColor: AppTheme.Colors.nudgeHealthBackground
         )
     }
@@ -129,7 +132,7 @@ struct CycleNudge: Identifiable, Equatable {
             id: "pattern.longCycle",
             sfSymbol: "calendar",
             title: "Your cycles are running long",
-            body: "Your average cycle is around \(avg) days. Cycles over 35 days can have a few different causes — a doctor can help figure out what's going on.",
+            body: "Cycles over 35 days can have a few different causes — a doctor can help figure out what's going on.",
             backgroundColor: AppTheme.Colors.nudgeHealthBackground
         )
     }

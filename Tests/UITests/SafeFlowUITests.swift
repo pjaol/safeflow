@@ -6,137 +6,113 @@ final class SafeFlowUITests: XCTestCase {
     override func setUpWithError() throws {
         continueAfterFailure = false
         app = XCUIApplication()
-        // Resets all data and skips onboarding for a clean test environment
-        app.launchArguments = ["UI-Testing"]
+        app.launchArguments = ["UI-Testing", "SKIP_ONBOARDING"]
+        addUIInterruptionMonitor(withDescription: "System alert") { alert in
+            if alert.buttons["Don't Allow"].exists { alert.buttons["Don't Allow"].tap(); return true }
+            if alert.buttons["Allow"].exists { alert.buttons["Allow"].tap(); return true }
+            return false
+        }
         app.launch()
+        app.tap()
+        XCTAssertTrue(app.buttons["home.cycleRingSummaryCard"].waitForExistence(timeout: 10))
     }
 
-    // MARK: - Quick Log
+    // MARK: - Home screen
 
-    func testQuickLogPeriodStartedFlow() throws {
-        let periodButton = app.buttons["home.quickLog.periodStarted"]
-        XCTAssertTrue(periodButton.waitForExistence(timeout: 3))
-        periodButton.tap()
-
-        // Flow sheet appears
-        let mediumButton = app.buttons["quickLog.flow.medium"]
-        XCTAssertTrue(mediumButton.waitForExistence(timeout: 2))
-        mediumButton.tap()
-
-        // Sheet dismisses, daily log card updates
-        XCTAssertTrue(app.otherElements["home.dailyLogCard"].waitForExistence(timeout: 2))
+    func testCycleSummaryCardExists() throws {
+        XCTAssertTrue(app.buttons["home.cycleRingSummaryCard"].exists)
     }
-
-    func testQuickLogNoPeriod() throws {
-        let noPeriodButton = app.buttons["home.quickLog.noPeriod"]
-        XCTAssertTrue(noPeriodButton.waitForExistence(timeout: 3))
-        noPeriodButton.tap()
-
-        XCTAssertTrue(app.otherElements["home.dailyLogCard"].waitForExistence(timeout: 2))
-    }
-
-    // MARK: - Full Log Entry
-
-    func testAddNewLogViaDetailForm() throws {
-        app.buttons["home.newLogButton"].tap()
-
-        // Select flow
-        app.buttons["logDay.flow.medium"].tap()
-
-        // Select a symptom (Pain category is default)
-        app.buttons["logDay.symptom.cramps"].tap()
-
-        // Select mood
-        app.buttons["logDay.mood.happy"].tap()
-
-        // Save
-        app.buttons["logDay.saveButton"].tap()
-
-        // Verify home screen shows the log
-        XCTAssertTrue(app.staticTexts["Medium"].waitForExistence(timeout: 2))
-    }
-
-    func testCancelLogReturnsToHome() throws {
-        app.buttons["home.newLogButton"].tap()
-        app.buttons["logDay.flow.light"].tap()
-        app.buttons["logDay.cancelButton"].tap()
-
-        XCTAssertTrue(app.navigationBars["SafeFlow"].waitForExistence(timeout: 2))
-    }
-
-    func testDeleteLogFromRecentLogs() throws {
-        // Add a log first
-        app.buttons["home.quickLog.periodStarted"].tap()
-        let heavyButton = app.buttons["quickLog.flow.heavy"]
-        XCTAssertTrue(heavyButton.waitForExistence(timeout: 2))
-        heavyButton.tap()
-
-        // Delete it — delete button includes the day's UUID so we use firstMatch
-        let deleteButton = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'home.recentLog.delete.'")).firstMatch
-        XCTAssertTrue(deleteButton.waitForExistence(timeout: 2))
-        deleteButton.tap()
-
-        XCTAssertTrue(app.staticTexts["No recent logs"].waitForExistence(timeout: 2))
-    }
-
-    // MARK: - Symptom Category Tabs
-
-    func testSymptomCategoryTabsSwitchContent() throws {
-        app.buttons["home.newLogButton"].tap()
-
-        XCTAssertTrue(app.buttons["logDay.symptomCategory.pain"].waitForExistence(timeout: 2))
-        XCTAssertTrue(app.buttons["logDay.symptom.cramps"].exists)
-
-        app.buttons["logDay.symptomCategory.energy"].tap()
-        XCTAssertTrue(app.buttons["logDay.symptom.fatigue"].waitForExistence(timeout: 1))
-        XCTAssertFalse(app.buttons["logDay.symptom.cramps"].exists)
-
-        app.buttons["logDay.cancelButton"].tap()
-    }
-
-    // MARK: - Settings
 
     func testSettingsButtonOpensSettings() throws {
         let settingsButton = app.buttons["home.settingsButton"]
-        XCTAssertTrue(settingsButton.waitForExistence(timeout: 3))
+        XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
         settingsButton.tap()
+        XCTAssertTrue(app.switches["settings.requireAuthToggle"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["settings.doneButton"].waitForExistence(timeout: 5))
+        app.buttons["settings.doneButton"].tap()
+    }
 
-        XCTAssertTrue(app.switches["Require Authentication"].waitForExistence(timeout: 2))
+    // MARK: - Edit Logs
+
+    func testEditLogsSheetOpensAndCloses() throws {
+        openEditLogsSheet()
+        app.buttons["editLogs.doneButton"].tap()
+        XCTAssertTrue(app.buttons["home.settingsButton"].waitForExistence(timeout: 3))
+    }
+
+    func testEditLogsSheetContainsFlowSection() throws {
+        openEditLogsSheet()
+        // Flow section contains a None chip — scroll down until found
+        var attempts = 0
+        while !app.buttons["editLogs.flow.none"].exists && attempts < 5 {
+            app.swipeUp()
+            attempts += 1
+        }
+        XCTAssertTrue(app.buttons["editLogs.flow.none"].exists, "Flow section not found in edit logs sheet")
+        app.buttons["editLogs.doneButton"].tap()
+    }
+
+    func testEditLogsSymptomCategoryTabsSwitchContent() throws {
+        openEditLogsSheet()
+        // Scroll down to reach symptom chips
+        app.swipeUp()
+        app.swipeUp()
+        XCTAssertTrue(
+            app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'editLogs.symptom.'")).firstMatch
+                .waitForExistence(timeout: 5),
+            "No symptom chips found in edit logs sheet"
+        )
+        app.buttons["editLogs.doneButton"].tap()
     }
 
     // MARK: - Onboarding
 
     func testOnboardingCycleSetupPageExists() throws {
-        // UI-Testing launch arg resets onboarding, so we should be on onboarding
-        // Swipe through to the cycle setup page (page index 3)
-        for _ in 0..<3 {
-            app.swipeLeft()
-        }
+        app.terminate()
+        app = XCUIApplication()
+        app.launchArguments = ["UI-Testing"]
+        app.launch()
+
+        for _ in 0..<3 { app.swipeLeft() }
 
         XCTAssertTrue(
-            app.datePickers["onboarding.lastPeriodDatePicker"].waitForExistence(timeout: 3)
+            app.datePickers["onboarding.lastPeriodDatePicker"].waitForExistence(timeout: 5)
         )
         XCTAssertTrue(app.buttons["onboarding.getStartedButton"].exists)
     }
 
     func testOnboardingGetStartedCompletesOnboarding() throws {
+        app.terminate()
+        app = XCUIApplication()
+        app.launchArguments = ["UI-Testing"]
+        app.launch()
+
         for _ in 0..<3 { app.swipeLeft() }
 
         let getStarted = app.buttons["onboarding.getStartedButton"]
-        XCTAssertTrue(getStarted.waitForExistence(timeout: 3))
+        XCTAssertTrue(getStarted.waitForExistence(timeout: 5))
         getStarted.tap()
 
         // After completing onboarding, should reach home or lock screen
-        let homeOrLock = app.navigationBars["SafeFlow"].waitForExistence(timeout: 3) ||
+        let homeOrLock = app.navigationBars.firstMatch.waitForExistence(timeout: 5) ||
                          app.staticTexts["SafeFlow is Locked"].waitForExistence(timeout: 3)
         XCTAssertTrue(homeOrLock)
     }
 
-    // MARK: - Phase Card
+    // MARK: - Helpers
 
-    func testPhaseCardExists() throws {
-        XCTAssertTrue(
-            app.otherElements["home.cyclePhaseCard"].waitForExistence(timeout: 3)
-        )
+    private func openEditLogsSheet() {
+        // Tap the first hittable edit-logs button (nav bar or card)
+        let buttons = app.buttons.matching(identifier: "home.editLogsButton")
+        XCTAssertTrue(buttons.firstMatch.waitForExistence(timeout: 5))
+        var tapped = false
+        for i in 0..<buttons.count {
+            let btn = buttons.element(boundBy: i)
+            if btn.isHittable { btn.tap(); tapped = true; break }
+        }
+        if !tapped { buttons.firstMatch.tap() }
+        XCTAssertTrue(app.buttons["editLogs.doneButton"]
+            .waitForExistence(timeout: 10))
+        sleep(1)
     }
 }

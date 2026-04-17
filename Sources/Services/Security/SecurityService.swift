@@ -14,9 +14,7 @@ class SecurityService: ObservableObject {
     
     @Published var isAuthenticationRequired: Bool {
         didSet {
-            Task { @MainActor in
-                UserDefaults.standard.set(isAuthenticationRequired, forKey: "isAuthenticationRequired")
-            }
+            UserDefaults.standard.set(isAuthenticationRequired, forKey: "isAuthenticationRequired")
         }
     }
     
@@ -30,6 +28,11 @@ class SecurityService: ObservableObject {
     private let backgroundCheckInterval: TimeInterval = 1.0
     
     init() {
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("UI-Testing") {
+            UserDefaults.standard.set(false, forKey: "isAuthenticationRequired")
+        }
+        #endif
         self.isAuthenticationRequired = UserDefaults.standard.bool(forKey: "isAuthenticationRequired")
         self.securityManager = SecurityManager.shared
         
@@ -159,7 +162,7 @@ class SecurityService: ObservableObject {
 
 // MARK: - Preview Subclass
 
-#if DEBUG
+#if DEBUG || BETA
 @MainActor
 class SecurityServicePreview: SecurityService {
     override func configure() async {

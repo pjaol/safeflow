@@ -4,6 +4,7 @@ import os
 struct HomeView: View {
     @ObservedObject var cycleStore: CycleStore
     @EnvironmentObject private var securityService: SecurityService
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @State private var showingSettingsSheet = false
     @State private var showingSupportSheet = false
@@ -11,7 +12,7 @@ struct HomeView: View {
     @State private var dismissedSignalIDs: Set<String> = DismissedNudges.load()
     @State private var editLogsDate: Date? = nil
     @State private var scrollToForecast = false
-    #if DEBUG
+    #if DEBUG || BETA
     @State private var showingDebugMenu = false
     #endif
 
@@ -21,7 +22,7 @@ struct HomeView: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollViewReader { proxy in
                 ScrollView {
                     VStack(spacing: AppTheme.Metrics.standardSpacing) {
@@ -67,19 +68,21 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(AppTheme.Colors.background)
                 .onChange(of: scrollToForecast) { _, _ in
-                    withAnimation { proxy.scrollTo("forecast", anchor: .top) }
+                    withAnimation(reduceMotion ? nil : .default) { proxy.scrollTo("forecast", anchor: .top) }
                 }
             }
             .navigationTitle("Clio Daye")
             .toolbar {
-                #if DEBUG
+                #if DEBUG || BETA
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         showingDebugMenu = true
                     } label: {
                         Image(systemName: "ladybug.fill")
                             .foregroundColor(AppTheme.Colors.secondaryPink)
+                            .accessibilityHidden(true)
                     }
+                    .accessibilityLabel("Debug menu")
                     .accessibilityIdentifier("home.debugButton")
                 }
                 #endif
@@ -90,7 +93,9 @@ struct HomeView: View {
                     } label: {
                         Image(systemName: "gear")
                             .foregroundColor(AppTheme.Colors.deepGrayText)
+                            .accessibilityHidden(true)
                     }
+                    .accessibilityLabel("Settings")
                     .accessibilityIdentifier("home.settingsButton")
                 }
 
@@ -102,6 +107,7 @@ struct HomeView: View {
                         } label: {
                             Image(systemName: "doc.text")
                                 .foregroundColor(AppTheme.Colors.deepGrayText)
+                                .accessibilityHidden(true)
                         }
                         .accessibilityLabel("Edit logs")
                         .accessibilityIdentifier("home.editLogsButton")
@@ -112,6 +118,7 @@ struct HomeView: View {
                         } label: {
                             Image(systemName: "calendar")
                                 .foregroundColor(AppTheme.Colors.deepGrayText)
+                                .accessibilityHidden(true)
                         }
                         .accessibilityLabel("View forecast")
                         .accessibilityIdentifier("home.forecastButton")
@@ -123,29 +130,30 @@ struct HomeView: View {
                             Image(systemName: "heart.circle.fill")
                                 .font(.system(size: 20))
                                 .foregroundColor(AppTheme.Colors.secondaryPink)
+                                .accessibilityHidden(true)
                         }
                         .accessibilityLabel("Get Support — resources and helplines")
                         .accessibilityIdentifier("home.getSupportButton")
                     }
                 }
             }
-            .sheet(item: $editLogsDate) { date in
-                EditLogsSheet(cycleStore: cycleStore, initialDate: date)
-            }
-            .sheet(isPresented: $showingSupportSheet) {
-                GetSupportView(cycleStore: cycleStore)
-            }
-            .sheet(isPresented: $showingSettingsSheet) {
-                SettingsView(cycleStore: cycleStore)
-                    .environmentObject(securityService)
-            }
-            #if DEBUG
-            .sheet(isPresented: $showingDebugMenu) {
-                DebugMenu(cycleStore: cycleStore)
-            }
-            #endif
         }
         .navigationViewStyle(.stack)
+        .sheet(item: $editLogsDate) { date in
+            EditLogsSheet(cycleStore: cycleStore, initialDate: date)
+        }
+        .sheet(isPresented: $showingSupportSheet) {
+            GetSupportView(cycleStore: cycleStore)
+        }
+        .sheet(isPresented: $showingSettingsSheet) {
+            SettingsView(cycleStore: cycleStore)
+                .environmentObject(securityService)
+        }
+        #if DEBUG || BETA
+        .sheet(isPresented: $showingDebugMenu) {
+            DebugMenu(cycleStore: cycleStore)
+        }
+        #endif
     }
 }
 
@@ -160,6 +168,7 @@ private struct EditLogsButton: View {
                 Image(systemName: "pencil.circle.fill")
                     .font(.system(size: 16, weight: .semibold))
                     .foregroundColor(AppTheme.Colors.accentBlue)
+                    .accessibilityHidden(true)
                 Text("Edit Logs")
                     .font(.system(.subheadline, design: .rounded, weight: .semibold))
                     .foregroundColor(AppTheme.Colors.accentBlue)
@@ -167,6 +176,7 @@ private struct EditLogsButton: View {
                 Image(systemName: "chevron.right")
                     .font(.system(size: 12, weight: .semibold))
                     .foregroundColor(AppTheme.Colors.mediumGrayText)
+                    .accessibilityHidden(true)
             }
             .padding(.horizontal, AppTheme.Metrics.cardPadding)
             .padding(.vertical, 12)
@@ -184,6 +194,7 @@ private struct EditLogsSheet: View {
     let cycleStore: CycleStore
     @State private var selectedDate: Date
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.locale) private var locale
 
     init(cycleStore: CycleStore, initialDate: Date) {
         self.cycleStore = cycleStore
@@ -197,7 +208,7 @@ private struct EditLogsSheet: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack(spacing: 0) {
                     // Custom calendar with logged-day dots
@@ -223,13 +234,14 @@ private struct EditLogsSheet: View {
                 }
             }
             .background(AppTheme.Colors.background)
-            .navigationTitle(selectedDate.formatted(.dateTime.month(.abbreviated).day().year()))
+            .navigationTitle(selectedDate.formatted(.dateTime.month(.abbreviated).day().year().locale(locale)))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") { dismiss() }
                         .font(.system(.body, design: .rounded, weight: .semibold))
                         .foregroundColor(AppTheme.Colors.accentBlue)
+                        .accessibilityIdentifier("editLogs.doneButton")
                 }
             }
         }
@@ -244,18 +256,22 @@ private struct LogCalendarView: View {
     let loggedDates: Set<String>
 
     @State private var displayedMonth: Date
+    @Environment(\.locale) private var locale
 
     private let cal = Calendar.current
     private let dayFormatter: DateFormatter = {
         let f = DateFormatter(); f.dateFormat = "yyyy-MM-dd"; return f
     }()
     private let cols = Array(repeating: GridItem(.flexible(), spacing: 0), count: 7)
-    private let weekdaySymbols: [String] = {
-        var syms = Calendar.current.veryShortWeekdaySymbols
+
+    private var weekdaySymbols: [String] {
+        var locCal = Calendar.current
+        locCal.locale = locale
+        var syms = locCal.veryShortWeekdaySymbols
         // Rotate so week starts on Monday (index 1 = Mon … 0 = Sun moves to end)
         let sun = syms.removeFirst(); syms.append(sun)
         return syms
-    }()
+    }
 
     init(selectedDate: Binding<Date>, loggedDates: Set<String>) {
         _selectedDate = selectedDate
@@ -294,11 +310,13 @@ private struct LogCalendarView: View {
                         .font(.system(size: 14, weight: .semibold))
                         .foregroundColor(AppTheme.Colors.accentBlue)
                         .frame(width: 36, height: 36)
+                        .accessibilityHidden(true)
                 }
+                .accessibilityLabel("Previous month")
 
                 Spacer()
 
-                Text(displayedMonth.formatted(.dateTime.month(.wide).year()))
+                Text(displayedMonth.formatted(.dateTime.month(.wide).year().locale(locale)))
                     .font(.system(.subheadline, design: .rounded, weight: .semibold))
                     .foregroundColor(AppTheme.Colors.deepGrayText)
 
@@ -312,7 +330,9 @@ private struct LogCalendarView: View {
                         .font(.system(size: 14, weight: .semibold))
                         .foregroundColor(isCurrentMonth ? AppTheme.Colors.mediumGrayText.opacity(0.3) : AppTheme.Colors.accentBlue)
                         .frame(width: 36, height: 36)
+                        .accessibilityHidden(true)
                 }
+                .accessibilityLabel("Next month")
                 .disabled(isCurrentMonth)
             }
 
@@ -377,15 +397,20 @@ private struct DayCell: View {
                     .frame(width: 34, height: 34)
                     .background(cellBackground)
                     .clipShape(Circle())
+                    .accessibilityHidden(true)
 
                 // Log dot
                 Circle()
                     .fill(hasLog ? logDotColor : Color.clear)
                     .frame(width: 4, height: 4)
+                    .accessibilityHidden(true)
             }
         }
         .disabled(isFuture)
         .frame(maxWidth: .infinity)
+        .accessibilityLabel(date.formatted(.dateTime.weekday(.wide).month(.wide).day()) + (hasLog ? ", logged" : ""))
+        .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
+        .accessibilityHint(isFuture ? "" : "Tap to select this date")
     }
 
     private var cellTextColor: Color {
@@ -406,13 +431,14 @@ private struct DayCell: View {
     }
 }
 
-// MARK: - Log Day Form View (inline, no NavigationView)
+// MARK: - Log Day Form View (inline, no NavigationStack)
 
-/// The log form without its own NavigationView — embedded inside EditLogsSheet's scroll view.
+/// The log form without its own NavigationStack — embedded inside EditLogsSheet's scroll view.
 private struct LogDayFormView: View {
     @ObservedObject var cycleStore: CycleStore
     let targetDate: Date
     let existingDay: CycleDay?
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @State private var selectedFlow: FlowIntensity?
     @State private var selectedSymptoms: Set<Symptom> = []
@@ -440,6 +466,7 @@ private struct LogDayFormView: View {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.system(size: 12))
                         .foregroundColor(AppTheme.Colors.accentBlue)
+                        .accessibilityHidden(true)
                     Text("Existing log — editing")
                         .font(.system(.caption2, design: .rounded))
                         .foregroundColor(AppTheme.Colors.mediumGrayText)
@@ -455,7 +482,12 @@ private struct LogDayFormView: View {
             Button(action: saveDay) {
                 HStack(spacing: 8) {
                     Image(systemName: saved ? "checkmark.circle.fill" : "square.and.arrow.down")
-                    Text(saved ? "Saved" : (existingDay != nil ? "Update Log" : "Save Log"))
+                        .accessibilityHidden(true)
+                    Group {
+                        if saved { Text("Saved") }
+                        else if existingDay != nil { Text("Update Log") }
+                        else { Text("Save Log") }
+                    }
                 }
                 .font(.system(.body, design: .rounded, weight: .semibold))
                 .foregroundColor(.white)
@@ -464,7 +496,7 @@ private struct LogDayFormView: View {
                 .background(saved ? Color.green.opacity(0.8) : AppTheme.Colors.accentBlue)
                 .cornerRadius(AppTheme.Metrics.buttonCornerRadius)
             }
-            .animation(.easeInOut(duration: 0.2), value: saved)
+            .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: saved)
         }
     }
 
@@ -476,11 +508,13 @@ private struct LogDayFormView: View {
             HStack(spacing: 10) {
                 FlowChip(label: "None", sfSymbol: "xmark", isSelected: selectedFlow == nil,
                          color: AppTheme.Colors.neutralGray) { selectedFlow = nil }
+                    .accessibilityIdentifier("editLogs.flow.none")
                 ForEach(FlowIntensity.allCases, id: \.self) { flow in
                     FlowChip(label: flow.localizedName, sfSymbol: flow.sfSymbol,
                              isSelected: selectedFlow == flow, color: AppTheme.Colors.secondaryPink) {
                         selectedFlow = flow
                     }
+                    .accessibilityIdentifier("editLogs.flow.\(flow.rawValue)")
                 }
             }
         }
@@ -511,6 +545,7 @@ private struct LogDayFormView: View {
                         if selectedSymptoms.contains(symptom) { selectedSymptoms.remove(symptom) }
                         else { selectedSymptoms.insert(symptom) }
                     }
+                    .accessibilityIdentifier("editLogs.symptom.\(symptom.rawValue)")
                 }
             }
             if !selectedSymptoms.isEmpty {
@@ -557,10 +592,11 @@ private struct LogDayFormView: View {
         .shadow(color: Color.black.opacity(0.06), radius: 6, x: 0, y: 2)
     }
 
-    private func sectionHeader(_ title: String, systemImage: String, color: Color) -> some View {
+    private func sectionHeader(_ title: LocalizedStringKey, systemImage: String, color: Color) -> some View {
         HStack(spacing: 6) {
             Image(systemName: systemImage).foregroundColor(color)
                 .font(.system(.callout, weight: .semibold))
+                .accessibilityHidden(true)
             Text(title).font(.system(.callout, design: .rounded, weight: .semibold))
                 .foregroundColor(AppTheme.Colors.deepGrayText)
         }

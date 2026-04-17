@@ -1,0 +1,8 @@
+Dieses Update bringt vollständige Bedienungshilfen und verbesserte Sprachunterstützung.
+
+— VoiceOver-Unterstützung in der gesamten App — jeder Bildschirm ist mit Bedienungshilfen vollständig navigierbar
+— Beschriftungen, Zyklusphasen und Datenzusammenfassungen werden von VoiceOver vorgelesen
+— Verbesserter Kontrast und Dynamic-Type-Unterstützung in allen Ansichten
+— Die App unterstützt jetzt vollständig Deutsch, Französisch und Spanisch
+
+Deine Daten bleiben auf deinem Gerät. Daran hat sich nichts geändert.

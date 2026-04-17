@@ -29,7 +29,7 @@ struct LogDayView: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack(spacing: AppTheme.Metrics.standardSpacing) {
                     flowSection
@@ -40,7 +40,7 @@ struct LogDayView: View {
                 .padding()
             }
             .background(AppTheme.Colors.background)
-            .navigationTitle(existingDay != nil ? "Edit Log" : "New Log")
+            .navigationTitle(existingDay != nil ? LocalizedStringKey("Edit Log") : LocalizedStringKey("New Log"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -80,6 +80,9 @@ struct LogDayView: View {
                     selectedFlow = nil
                 }
                 .accessibilityIdentifier("logDay.flow.none")
+                .accessibilityLabel("No flow")
+                .accessibilityHint("Select if you have no period today")
+                .accessibilityAddTraits(selectedFlow == nil ? [.isButton, .isSelected] : .isButton)
 
                 ForEach(FlowIntensity.allCases, id: \.self) { flow in
                     FlowChip(
@@ -91,6 +94,8 @@ struct LogDayView: View {
                         selectedFlow = flow
                     }
                     .accessibilityIdentifier("logDay.flow.\(flow.rawValue)")
+                    .accessibilityLabel("\(flow.localizedName) flow")
+                    .accessibilityAddTraits(selectedFlow == flow ? [.isButton, .isSelected] : .isButton)
                 }
             }
         }
@@ -116,6 +121,7 @@ struct LogDayView: View {
                             selectedSymptomCategory = category
                         }
                         .accessibilityIdentifier("logDay.symptomCategory.\(category.rawValue)")
+                        .accessibilityAddTraits(selectedSymptomCategory == category ? [.isButton, .isSelected] : .isButton)
                     }
                 }
                 .padding(.horizontal, 2)
@@ -136,6 +142,7 @@ struct LogDayView: View {
                         }
                     }
                     .accessibilityIdentifier("logDay.symptom.\(symptom.rawValue)")
+                    .accessibilityAddTraits(selectedSymptoms.contains(symptom) ? [.isButton, .isSelected] : .isButton)
                 }
             }
 
@@ -165,6 +172,7 @@ struct LogDayView: View {
                         selectedMood = (selectedMood == mood) ? nil : mood
                     }
                     .accessibilityIdentifier("logDay.mood.\(mood.rawValue)")
+                    .accessibilityAddTraits(selectedMood == mood ? [.isButton, .isSelected] : .isButton)
                 }
             }
         }
@@ -185,6 +193,8 @@ struct LogDayView: View {
                 .scrollContentBackground(.hidden)
                 .background(Color.clear)
                 .accessibilityIdentifier("logDay.notesEditor")
+                .accessibilityLabel("Notes")
+                .accessibilityHint("Add any additional notes about how you're feeling today")
         }
         .padding(AppTheme.Metrics.cardPadding)
         .background(AppTheme.Colors.secondaryBackground)
@@ -193,11 +203,12 @@ struct LogDayView: View {
 
     // MARK: - Helpers
 
-    private func sectionHeader(_ title: String, systemImage: String, color: Color) -> some View {
+    private func sectionHeader(_ title: LocalizedStringKey, systemImage: String, color: Color) -> some View {
         HStack(spacing: 6) {
             Image(systemName: systemImage)
                 .foregroundColor(color)
                 .font(.system(.callout, weight: .semibold))
+                .accessibilityHidden(true)
             Text(title)
                 .font(.system(.callout, design: .rounded, weight: .semibold))
                 .foregroundColor(AppTheme.Colors.deepGrayText)
@@ -224,7 +235,7 @@ struct LogDayView: View {
 // MARK: - Flow Chip
 
 struct FlowChip: View {
-    let label: String
+    let label: LocalizedStringKey
     let sfSymbol: String
     let isSelected: Bool
     let color: Color
@@ -236,6 +247,7 @@ struct FlowChip: View {
                 Image(systemName: sfSymbol)
                     .font(.system(size: 18, weight: .medium))
                     .foregroundColor(isSelected ? .white : color)
+                    .accessibilityHidden(true)
                 Text(label)
                     .font(.system(.caption2, design: .rounded, weight: .medium))
                     .foregroundColor(isSelected ? .white : AppTheme.Colors.deepGrayText)
@@ -251,7 +263,7 @@ struct FlowChip: View {
 // MARK: - Category Tab
 
 struct CategoryTab: View {
-    let label: String
+    let label: LocalizedStringKey
     let isSelected: Bool
     let action: () -> Void
 
@@ -281,6 +293,7 @@ struct SymptomChip: View {
                 Image(systemName: symptom.sfSymbol)
                     .font(.system(size: 13, weight: .medium))
                     .foregroundColor(isSelected ? .white : AppTheme.Colors.accentBlue)
+                    .accessibilityHidden(true)
                 Text(symptom.localizedName)
                     .font(.system(.caption, design: .rounded, weight: .medium))
                     .foregroundColor(isSelected ? .white : AppTheme.Colors.deepGrayText)
@@ -293,6 +306,7 @@ struct SymptomChip: View {
             .background(isSelected ? AppTheme.Colors.accentBlue : AppTheme.Colors.accentBlue.opacity(0.12))
             .cornerRadius(AppTheme.Metrics.cornerRadius)
         }
+        .accessibilityLabel(symptom.localizedName)
     }
 }
 
@@ -309,6 +323,7 @@ struct MoodCell: View {
                 Image(systemName: mood.sfSymbol)
                     .font(.system(size: 22, weight: .medium))
                     .foregroundColor(isSelected ? AppTheme.Colors.deepGrayText : AppTheme.Colors.mediumGrayText)
+                    .accessibilityHidden(true)
                 Text(mood.localizedName)
                     .font(.system(.caption2, design: .rounded, weight: .medium))
                     .foregroundColor(isSelected ? AppTheme.Colors.deepGrayText : AppTheme.Colors.mediumGrayText)
@@ -324,5 +339,6 @@ struct MoodCell: View {
                     .strokeBorder(isSelected ? AppTheme.Colors.amber : Color.clear, lineWidth: 2)
             )
         }
+        .accessibilityLabel(mood.localizedName)
     }
 }

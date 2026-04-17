@@ -1,0 +1,92 @@
+{
+  "configurations" : [
+    {
+      "id" : "2c2e85c1-21bd-4820-9af0-14959d179395",
+      "name" : "English (US)",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "AppleLanguages",
+            "value" : "(en)"
+          },
+          {
+            "key" : "AppleLocale",
+            "value" : "en_US"
+          }
+        ]
+      }
+    },
+    {
+      "id" : "abb52a26-2ed7-49f9-bb09-4fa3010886ea",
+      "name" : "Spanish (Mexico)",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "AppleLanguages",
+            "value" : "(es)"
+          },
+          {
+            "key" : "AppleLocale",
+            "value" : "es_MX"
+          }
+        ]
+      }
+    },
+    {
+      "id" : "906cc139-457a-4858-9986-efbd7e910db3",
+      "name" : "French (France)",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "AppleLanguages",
+            "value" : "(fr)"
+          },
+          {
+            "key" : "AppleLocale",
+            "value" : "fr_FR"
+          }
+        ]
+      }
+    },
+    {
+      "id" : "5579622c-bde0-4eaf-bb4b-3753bd044861",
+      "name" : "German (Germany)",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "AppleLanguages",
+            "value" : "(de)"
+          },
+          {
+            "key" : "AppleLocale",
+            "value" : "de_DE"
+          }
+        ]
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true,
+    "defaultTestExecutionTimeAllowance" : 60
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:safeflow.xcodeproj",
+        "identifier" : "CDBECD712D4010D2006A37C9",
+        "name" : "safeflowUITests"
+      },
+      "selectedTests" : [
+        "LocalisationUITests"
+      ]
+    },
+    {
+      "target" : {
+        "containerPath" : "container:safeflow.xcodeproj",
+        "identifier" : "CDBECD672D4010D2006A37C9",
+        "name" : "safeflowTests"
+      }
+    }
+  ],
+  "version" : 1
+}

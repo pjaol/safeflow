@@ -1,10 +1,12 @@
 import SwiftUI
 
-#if DEBUG
+#if DEBUG || BETA
 struct DebugMenu: View {
     @ObservedObject var cycleStore: CycleStore
     @Environment(\.dismiss) private var dismiss
     @State private var loadStatus: String?
+    @AppStorage("appLanguage") private var appLanguage: String = "system"
+
 
     // MARK: - Scenarios
 
@@ -71,7 +73,7 @@ struct DebugMenu: View {
     // MARK: - Body
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 Section("Data Management") {
                     Button("Clear All Data", role: .destructive) {
@@ -112,6 +114,18 @@ struct DebugMenu: View {
                         }
                         .padding(.vertical, 4)
                     }
+                }
+
+                Section("Language") {
+                    Picker("Language", selection: $appLanguage) {
+                        Text("System default").tag("system")
+                        Text("English").tag("en")
+                        Text("Deutsch (de-DE)").tag("de-DE")
+                        Text("Español (es-MX)").tag("es-MX")
+                        Text("Français (fr-FR)").tag("fr-FR")
+                    }
+                    .pickerStyle(.inline)
+                    .labelsHidden()
                 }
 
                 Section("Testing") {

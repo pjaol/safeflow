@@ -1,0 +1,29 @@
+Vos données de cycle vous appartiennent. Vraiment.
+
+La plupart des applications de suivi des règles sont gratuites parce qu'elles gagnent de l'argent avec vos données. Ces données sont vendues à des annonceurs, partagées avec des courtiers en données, et dans certains pays peuvent être demandées par les autorités. Nous avons trouvé cela inacceptable. C'est pourquoi nous avons créé Clio Daye.
+
+Tout ce que vous enregistrez dans Clio Daye reste uniquement sur votre appareil. Pas de compte à créer, pas de serveur qui reçoit vos données, pas de sauvegarde cloud, pas d'abonnement, pas de publicité. Nous n'avons pas accès à vos données. Personne d'autre que vous.
+
+C'était la raison principale de créer cette application.
+
+Comment ça fonctionne
+
+Clio Daye couvre ce qui compte au quotidien pour le suivi du cycle. Vous pouvez enregistrer l'intensité des règles, 15 symptômes différents, l'humeur et des notes. L'application affiche votre phase de cycle actuelle et prédit quand vos prochaines règles sont susceptibles de commencer — avec une fourchette honnête plutôt qu'une date trompeusement précise.
+
+La plupart des applications vous disent uniquement quand vos prochaines règles arrivent. Clio Daye vous montre une vue sur six mois glissants de votre cycle pour planifier à l'avance, pas seulement réagir.
+
+Tout est protégé par Face ID, Touch ID ou un code PIN. Si quelqu'un prend votre téléphone, il ne peut pas ouvrir l'application sans votre permission.
+
+Pour qui c'est fait
+
+Pour toute personne ayant un cycle menstruel. Clio Daye utilise un langage corporel neutre et ne suppose aucun genre. L'application est conçue pour les personnes à toutes les étapes de la vie, des premiers cycles jusqu'à la périménopause.
+
+Open source et gratuit, pour toujours
+
+Clio Daye est gratuit, sans abonnement, sans niveau premium et sans publicité. Le code source est public sur github.com/pjaol/safeflow pour que chacun puisse le lire et vérifier les engagements de confidentialité. Nous ne sommes pas une startup cherchant la croissance à tout prix. Nous sommes une petite équipe qui a pensé que cet outil devait exister et l'a construit.
+
+Une précision sur ce que ce n'est pas
+
+Clio Daye n'est pas un outil contraceptif et ne doit pas être utilisé comme tel. Les prédictions sont des estimations basées sur vos données enregistrées. Pour la contraception ou des questions médicales concernant votre cycle, consultez un professionnel de santé.
+
+Nécessite iOS 17.5 ou version ultérieure.

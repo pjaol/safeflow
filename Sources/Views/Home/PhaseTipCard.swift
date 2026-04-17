@@ -22,12 +22,13 @@ struct PhaseTipCard: View {
                 .frame(width: 36, height: 36)
                 .background(AppTheme.Colors.forPhase(phase.themeColorName).opacity(0.2))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
+                .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 4) {
-                Text(title)
+                Text(LocalizedStringKey(title))
                     .font(.system(.subheadline, design: .rounded, weight: .semibold))
                     .foregroundColor(AppTheme.Colors.deepGrayText)
-                Text(body_)
+                Text(LocalizedStringKey(body_))
                     .font(.system(.caption, design: .rounded))
                     .foregroundColor(AppTheme.Colors.mediumGrayText)
                     .fixedSize(horizontal: false, vertical: true)

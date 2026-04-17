@@ -6,6 +6,8 @@ final class SecurityTests: XCTestCase {
     var securityManager: SecurityManager!
     
     override func setUp() async throws {
+        UserDefaults.standard.removeObject(forKey: "isAuthenticationRequired")
+        try? clearKeychainData()
         securityService = await SecurityService()
         securityManager = SecurityManager.shared
     }

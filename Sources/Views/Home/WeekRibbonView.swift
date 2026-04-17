@@ -95,6 +95,22 @@ enum ChartRange: String, CaseIterable {
     case month = "1M"
     case threeMonth = "3M"
 
+    var label: LocalizedStringKey {
+        switch self {
+        case .week:       return "1W"
+        case .month:      return "1M"
+        case .threeMonth: return "3M"
+        }
+    }
+
+    var accessibilityLabel: String {
+        switch self {
+        case .week:       return "week"
+        case .month:      return "month"
+        case .threeMonth: return "3 months"
+        }
+    }
+
     var columnCount: Int {
         switch self {
         case .week:       return 7
@@ -114,6 +130,8 @@ struct WeekRibbonView: View {
     let initialWeek: Date   // any date within the week to show first
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.locale) private var locale
 
     @State private var range: ChartRange = .week
     /// Offset in units of `range` from the anchor date
@@ -124,6 +142,7 @@ struct WeekRibbonView: View {
     @State private var dragOffset: CGFloat = 0
     /// Width of the chart canvas (minus Y-axis strip) — set via GeometryReader
     @State private var chartCanvasWidth: CGFloat = 300
+    @State private var showingAccessibleChart = false
 
     private let cal = Calendar.current
 
@@ -162,9 +181,11 @@ struct WeekRibbonView: View {
     private var windowLabel: String {
         let dates = windowDates()
         guard let first = dates.first, let last = dates.last else { return "" }
-        let sf = DateFormatter(); sf.dateFormat = "MMM d"
-        let ef = DateFormatter()
-        ef.dateFormat = cal.isDate(first, equalTo: last, toGranularity: .month) ? "d" : "MMM d"
+        let sameMonth = cal.isDate(first, equalTo: last, toGranularity: .month)
+        let sf = DateFormatter(); sf.locale = locale
+        sf.setLocalizedDateFormatFromTemplate("MMMd")
+        let ef = DateFormatter(); ef.locale = locale
+        ef.setLocalizedDateFormatFromTemplate(sameMonth ? "d" : "MMMd")
         return "\(sf.string(from: first)) – \(ef.string(from: last))"
     }
 
@@ -186,18 +207,20 @@ struct WeekRibbonView: View {
     // MARK: - Body
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 0) {
                 // Range picker
-                Picker("Range", selection: $range) {
+                Picker("Chart range", selection: $range) {
                     ForEach(ChartRange.allCases, id: \.self) { r in
-                        Text(r.rawValue).tag(r)
+                        Text(r.label).tag(r)
+                            .accessibilityLabel(r.accessibilityLabel)
                     }
                 }
                 .pickerStyle(.segmented)
                 .padding(.horizontal, 20)
                 .padding(.top, 10)
                 .padding(.bottom, 4)
+                .accessibilityHint(String(localized: "Select 1 week, 1 month, or 3 months"))
                 .onChange(of: range) { pageOffset = 0 }
 
                 // Nav bar
@@ -206,9 +229,23 @@ struct WeekRibbonView: View {
                     .padding(.vertical, 10)
 
                 // Chart area
-                chartArea
-                    .padding(.horizontal, 16)
-                    .id("\(range)-\(pageOffset)")
+                ZStack {
+                    chartArea
+                        .accessibilityHidden(!range.supportsDayTap)
+
+                    if !range.supportsDayTap {
+                        // Invisible prose summary for VoiceOver in month/3M mode
+                        Text(chartAccessibilitySummary)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .opacity(0)
+                            .accessibilityLabel(chartAccessibilitySummary)
+                            .accessibilityAction(named: "Show chart as list") {
+                                showingAccessibleChart = true
+                            }
+                    }
+                }
+                .padding(.horizontal, 16)
+                .id("\(range)-\(pageOffset)")
 
                 // Tap hint
                 Group {
@@ -218,7 +255,7 @@ struct WeekRibbonView: View {
                         Label("Tap chart to zoom into that week", systemImage: "magnifyingglass")
                     }
                 }
-                .font(.system(size: 11, design: .rounded))
+                .font(.system(.caption2, design: .rounded))
                 .foregroundStyle(Color(.tertiaryLabel))
                 .frame(maxWidth: .infinity)
                 .padding(.top, 4)
@@ -241,6 +278,9 @@ struct WeekRibbonView: View {
             .onAppear { currentScores = buildScores() }
             .onChange(of: pageOffset) { currentScores = buildScores() }
             .onChange(of: range) { currentScores = buildScores() }
+            .sheet(isPresented: $showingAccessibleChart) {
+                RibbonSummarySheet(scores: currentScores, windowLabel: windowLabel)
+            }
             .sheet(item: $selectedDate) { date in
                 DayDetailCard(
                     date: date,
@@ -257,23 +297,24 @@ struct WeekRibbonView: View {
 
     private var chartArea: some View {
         ZStack(alignment: .bottom) {
-            // Y-axis strip
+            // Y-axis strip — decorative; semantic data is in day button labels
             HStack(alignment: .top, spacing: 0) {
                 VStack(alignment: .leading, spacing: 0) {
                     Text("+")
-                        .font(.system(size: 13, weight: .bold, design: .rounded))
+                        .font(.system(.footnote, design: .rounded).weight(.bold))
                         .foregroundStyle(RibbonDimension.mood.color)
                     Spacer()
                     Text("Neutral")
-                        .font(.system(size: 8, weight: .medium, design: .rounded))
+                        .font(.system(.caption2, design: .rounded).weight(.medium))
                         .foregroundStyle(Color(.tertiaryLabel))
                     Spacer()
                     Text("−")
-                        .font(.system(size: 13, weight: .bold, design: .rounded))
+                        .font(.system(.footnote, design: .rounded).weight(.bold))
                         .foregroundStyle(RibbonDimension.pain.color)
                 }
                 .frame(width: 36, height: 210)
                 .padding(.bottom, range.supportsDayTap ? 50 : 24)
+                .accessibilityHidden(true)
                 Spacer()
             }
 
@@ -286,7 +327,7 @@ struct WeekRibbonView: View {
             .background(
                 GeometryReader { geo in
                     Color.clear.onAppear { chartCanvasWidth = geo.size.width }
-                        .onChange(of: geo.size.width) { chartCanvasWidth = $0 }
+                        .onChange(of: geo.size.width) { _, newValue in chartCanvasWidth = newValue }
                 }
             )
             .offset(x: dragOffset)
@@ -297,7 +338,7 @@ struct WeekRibbonView: View {
                     }
                     .onEnded { v in
                         let threshold: CGFloat = 40
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                        withAnimation(reduceMotion ? nil : .spring(response: 0.3, dampingFraction: 0.8)) {
                             dragOffset = 0
                         }
                         if v.translation.width < -threshold {
@@ -342,15 +383,17 @@ struct WeekRibbonView: View {
                             VStack(spacing: 2) {
                                 Spacer()
                                 Text(dayAbbrev(date))
-                                    .font(.system(size: 10, weight: .semibold, design: .rounded))
+                                    .font(.system(.caption2, design: .rounded).weight(.semibold))
                                     .foregroundStyle(Color(.tertiaryLabel))
+                                    .accessibilityHidden(true)
                                 Text("\(cal.component(.day, from: date))")
-                                    .font(.system(size: 13, weight: .semibold, design: .rounded))
+                                    .font(.system(.footnote, design: .rounded).weight(.semibold))
                                     .foregroundStyle(
                                         cal.isDateInToday(date)
                                         ? AppTheme.Colors.primaryBlue
                                         : AppTheme.Colors.deepGrayText
                                     )
+                                    .accessibilityHidden(true)
                                 Circle()
                                     .fill(cal.isDateInToday(date)
                                           ? AppTheme.Colors.primaryBlue
@@ -361,6 +404,8 @@ struct WeekRibbonView: View {
                             .contentShape(Rectangle())
                         }
                         .buttonStyle(.plain)
+                        .accessibilityLabel(dayAccessibilityLabel(for: date, scores: currentScores))
+                        .accessibilityHint("Tap to see details for this day")
                     }
                 }
                 .padding(.leading, 36)
@@ -377,7 +422,7 @@ struct WeekRibbonView: View {
                                 Text(day == 1
                                      ? monthAbbrev(date)
                                      : "\(day)")
-                                    .font(.system(size: 8, weight: .medium, design: .rounded))
+                                    .font(.system(.caption2, design: .rounded).weight(.medium))
                                     .foregroundStyle(day == 1
                                                      ? AppTheme.Colors.deepGrayText
                                                      : Color(.tertiaryLabel))
@@ -397,22 +442,27 @@ struct WeekRibbonView: View {
         HStack {
             Button { pageOffset -= 1 } label: {
                 Image(systemName: "chevron.left")
-                    .font(.system(size: 15, weight: .semibold))
+                    .font(.system(.subheadline, design: .default).weight(.semibold))
                     .foregroundStyle(AppTheme.Colors.primaryBlue)
+                    .accessibilityHidden(true)
             }
+            .accessibilityLabel("Previous \(range.accessibilityLabel)")
             Spacer()
             Text(windowLabel)
                 .font(.system(.subheadline, design: .rounded, weight: .semibold))
                 .foregroundStyle(AppTheme.Colors.deepGrayText)
                 .id("\(range)-\(pageOffset)")
+                .accessibilityAddTraits(.isHeader)
             Spacer()
             Button { pageOffset += 1 } label: {
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 15, weight: .semibold))
+                    .font(.system(.subheadline, design: .default).weight(.semibold))
                     .foregroundStyle(isAtCurrentWindow
                                      ? Color(.tertiaryLabel)
                                      : AppTheme.Colors.primaryBlue)
+                    .accessibilityHidden(true)
             }
+            .accessibilityLabel("Next \(range.accessibilityLabel)")
             .disabled(isAtCurrentWindow)
         }
     }
@@ -423,23 +473,23 @@ struct WeekRibbonView: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text("Reading the chart")
-                    .font(.system(size: 11, weight: .semibold, design: .rounded))
+                    .font(.system(.caption2, design: .rounded).weight(.semibold))
                     .foregroundStyle(Color(.tertiaryLabel))
                 Spacer()
                 HStack(spacing: 4) {
                     Image(systemName: "arrow.up")
-                        .font(.system(size: 9, weight: .semibold))
+                        .font(.system(.caption2, design: .rounded).weight(.semibold))
                         .foregroundStyle(RibbonDimension.mood.color)
                     Text("positive")
-                        .font(.system(size: 10, design: .rounded))
+                        .font(.system(.caption2, design: .rounded))
                         .foregroundStyle(Color(.tertiaryLabel))
                     Text("·")
                         .foregroundStyle(Color(.tertiaryLabel))
                     Image(systemName: "arrow.down")
-                        .font(.system(size: 9, weight: .semibold))
+                        .font(.system(.caption2, design: .rounded).weight(.semibold))
                         .foregroundStyle(RibbonDimension.pain.color)
                     Text("negative")
-                        .font(.system(size: 10, design: .rounded))
+                        .font(.system(.caption2, design: .rounded))
                         .foregroundStyle(Color(.tertiaryLabel))
                 }
             }
@@ -449,11 +499,13 @@ struct WeekRibbonView: View {
                         RoundedRectangle(cornerRadius: 3)
                             .fill(dim.color.opacity(0.75))
                             .frame(width: 24, height: 8)
+                            .accessibilityHidden(true)
                         Text(dim.label)
-                            .font(.system(size: 11, design: .rounded))
+                            .font(.system(.caption2, design: .rounded))
                             .foregroundStyle(AppTheme.Colors.mediumGrayText)
                         Spacer()
                     }
+                    .accessibilityElement(children: .combine)
                 }
             }
             // Period marker legend
@@ -470,7 +522,7 @@ struct WeekRibbonView: View {
                         .frame(width: 6, height: 6)
                 }
                 Text("Period start · end")
-                    .font(.system(size: 11, design: .rounded))
+                    .font(.system(.caption2, design: .rounded))
                     .foregroundStyle(AppTheme.Colors.mediumGrayText)
                 Spacer()
             }
@@ -490,7 +542,7 @@ struct WeekRibbonView: View {
         let target = weekMonday(for: date)
         let weeks = cal.dateComponents([.weekOfYear], from: anchor, to: target).weekOfYear ?? 0
         // Set state first — onChange(of: pageOffset) will rebuild scores
-        withAnimation(.spring(response: 0.35, dampingFraction: 0.85)) {
+        withAnimation(reduceMotion ? nil : .spring(response: 0.35, dampingFraction: 0.85)) {
             range = .week
             pageOffset = weeks
         }
@@ -507,13 +559,61 @@ struct WeekRibbonView: View {
     }
 
     private func dayAbbrev(_ date: Date) -> String {
-        let f = DateFormatter(); f.dateFormat = "EEE"
+        let f = DateFormatter(); f.dateFormat = "EEE"; f.locale = locale
         return f.string(from: date).uppercased()
     }
 
     private func monthAbbrev(_ date: Date) -> String {
-        let f = DateFormatter(); f.dateFormat = "MMM"
+        let f = DateFormatter(); f.dateFormat = "MMM"; f.locale = locale
         return f.string(from: date)
+    }
+
+    // MARK: - Accessibility helpers
+
+    /// Enriched label for a single day button in week mode: date + key dimension highlights.
+    private func dayAccessibilityLabel(for date: Date, scores: [DimensionScore]) -> String {
+        let datePart = date.formatted(.dateTime.weekday(.wide).month(.wide).day())
+        let todayPrefix = cal.isDateInToday(date) ? String(localized: "Today, ") : ""
+        guard let score = scores.first(where: { cal.isDate($0.date, inSameDayAs: date) }),
+              score.day != nil else {
+            return todayPrefix + datePart + ", no log"
+        }
+        var parts: [String] = [todayPrefix + datePart]
+        if score.flow < -0.1 {
+            let label = score.flow <= -0.75 ? "heavy flow" : score.flow <= -0.5 ? "medium flow" : score.flow <= -0.25 ? "light flow" : "spotting"
+            parts.append(label)
+        }
+        if score.pain < -0.3 { parts.append("pain") }
+        if score.fatigue < -0.3 { parts.append("fatigue") }
+        if score.mood >= 0.5 { parts.append("positive mood") }
+        else if score.mood <= -0.5 { parts.append("low mood") }
+        return parts.joined(separator: ", ")
+    }
+
+    /// Prose summary of the current window's scores for VoiceOver in month/3M mode.
+    private var chartAccessibilitySummary: String {
+        let dates = windowDates()
+        guard !currentScores.isEmpty else {
+            return "\(windowLabel). No data logged in this period."
+        }
+        let logged = currentScores.filter { $0.day != nil }
+        guard !logged.isEmpty else {
+            return "\(windowLabel). No days logged."
+        }
+        let flowDays   = logged.filter { $0.flow < -0.1 }.count
+        let painDays   = logged.filter { $0.pain < -0.3 }.count
+        let fatigueDays = logged.filter { $0.fatigue < -0.3 }.count
+        let positiveDays = logged.filter { $0.mood >= 0.5 }.count
+        let lowMoodDays  = logged.filter { $0.mood <= -0.5 }.count
+
+        var parts: [String] = ["\(windowLabel)."]
+        parts.append("\(logged.count) of \(dates.count) days logged.")
+        if flowDays > 0 { parts.append("\(flowDays) flow day\(flowDays == 1 ? "" : "s").") }
+        if painDays > 0 { parts.append("Pain on \(painDays) day\(painDays == 1 ? "" : "s").") }
+        if fatigueDays > 0 { parts.append("Fatigue on \(fatigueDays) day\(fatigueDays == 1 ? "" : "s").") }
+        if positiveDays > 0 { parts.append("Positive mood on \(positiveDays) day\(positiveDays == 1 ? "" : "s").") }
+        if lowMoodDays > 0 { parts.append("Low mood on \(lowMoodDays) day\(lowMoodDays == 1 ? "" : "s").") }
+        return parts.joined(separator: " ")
     }
 }
 
@@ -522,7 +622,7 @@ struct WeekRibbonView: View {
 enum RibbonDimension: CaseIterable {
     case mood, energy, flow, pain, body, fatigue
 
-    var label: String {
+    var label: LocalizedStringKey {
         switch self {
         case .mood:    return "Mood"
         case .energy:  return "Energy"
@@ -648,7 +748,7 @@ struct RibbonChart: View {
 
         // Small label above
         Text(isStart ? "Start" : "End")
-            .font(.system(size: 7, weight: .semibold, design: .rounded))
+            .font(.system(.caption2, design: .rounded).weight(.semibold))
             .foregroundStyle(color.opacity(isStart ? 0.8 : 0.5))
             .position(x: x, y: isStart ? 10 : 10)
     }
@@ -726,18 +826,20 @@ struct DayDetailCard: View {
     let day: CycleDay?
     @ObservedObject var cycleStore: CycleStore
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.locale) private var locale
     @State private var showingLogSheet = false
 
     private let cal = Calendar.current
 
     private var dateLabel: String {
         let f = DateFormatter()
-        f.dateFormat = "EEEE, MMM d"
+        f.locale = locale
+        f.setLocalizedDateFormatFromTemplate("EEEEMMMd")
         return f.string(from: date)
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     if let day {
@@ -837,7 +939,7 @@ struct DayDetailCard: View {
 
     @ViewBuilder
     private func detailSection<Content: View>(
-        title: String,
+        title: LocalizedStringKey,
         color: Color,
         @ViewBuilder content: () -> Content
     ) -> some View {
@@ -881,7 +983,7 @@ struct DayDetailCard: View {
                         .frame(width: 10, height: 10)
                     if i <= idx {
                         Text(level.localizedName)
-                            .font(.system(size: 12, weight: .medium, design: .rounded))
+                            .font(.system(.caption, design: .rounded).weight(.medium))
                             .foregroundStyle(RibbonDimension.flow.color)
                     }
                 }
@@ -897,9 +999,9 @@ struct DayDetailCard: View {
             ForEach(symptoms, id: \.self) { symptom in
                 HStack(spacing: 5) {
                     Image(systemName: symptom.sfSymbol)
-                        .font(.system(size: 11, weight: .medium))
+                        .font(.system(.caption2, design: .default).weight(.medium))
                     Text(symptom.localizedName)
-                        .font(.system(size: 12, weight: .medium, design: .rounded))
+                        .font(.system(.caption, design: .rounded).weight(.medium))
                 }
                 .foregroundStyle(color)
                 .padding(.horizontal, 10)
@@ -920,7 +1022,7 @@ struct DayDetailCard: View {
                          : Color(.secondaryLabel)
         HStack(spacing: 8) {
             Image(systemName: mood.sfSymbol)
-                .font(.system(size: 16, weight: .medium))
+                .font(.system(.body, design: .default).weight(.medium))
                 .foregroundStyle(color)
             Text(mood.localizedName)
                 .font(.system(.body, design: .rounded, weight: .semibold))
@@ -1008,6 +1110,88 @@ struct FlowLayout: Layout {
             x += size.width + spacing
             rowH = max(rowH, size.height)
         }
+    }
+}
+
+// MARK: - RibbonSummarySheet
+
+/// Accessible alternative to the ribbon chart — presented via VoiceOver custom action
+/// in month and 3-month modes. Shows each logged day as a plain list row.
+private struct RibbonSummarySheet: View {
+    let scores: [DimensionScore]
+    let windowLabel: String
+    @Environment(\.dismiss) private var dismiss
+
+    private let df: DateFormatter = {
+        let f = DateFormatter()
+        f.dateStyle = .medium
+        f.timeStyle = .none
+        return f
+    }()
+
+    private var loggedScores: [DimensionScore] {
+        scores.filter { $0.day != nil }
+    }
+
+    var body: some View {
+        NavigationStack {
+            Group {
+                if loggedScores.isEmpty {
+                    VStack {
+                        Spacer()
+                        Text("No days logged in this period")
+                            .font(AppTheme.Typography.bodyFont)
+                            .foregroundColor(AppTheme.Colors.mediumGrayText)
+                        Spacer()
+                    }
+                } else {
+                    List(loggedScores, id: \.date) { score in
+                        Section(header: Text(df.string(from: score.date))) {
+                            if score.flow < -0.1 {
+                                let label = score.flow <= -0.75 ? String(localized: "Heavy") : score.flow <= -0.5 ? String(localized: "Medium") : score.flow <= -0.25 ? String(localized: "Light") : String(localized: "Spotting")
+                                labelRow(String(localized: "Flow"), value: label)
+                            }
+                            if score.pain < -0.1 {
+                                labelRow(String(localized: "Pain"), value: intensityLabel(-score.pain))
+                            }
+                            if score.fatigue < -0.1 {
+                                labelRow(String(localized: "Fatigue"), value: intensityLabel(-score.fatigue))
+                            }
+                            if score.body < -0.1 {
+                                labelRow(String(localized: "Body symptoms"), value: intensityLabel(-score.body))
+                            }
+                            if abs(score.mood) > 0.1 {
+                                labelRow(String(localized: "Mood"), value: score.mood >= 0 ? String(localized: "Positive") : String(localized: "Low"))
+                            }
+                            if abs(score.energy) > 0.1 {
+                                labelRow(String(localized: "Energy"), value: score.energy >= 0 ? String(localized: "High") : String(localized: "Low"))
+                            }
+                        }
+                    }
+                }
+            }
+            .navigationTitle(windowLabel)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") { dismiss() }
+                }
+            }
+        }
+    }
+
+    private func intensityLabel(_ value: Double) -> String {
+        value >= 0.7 ? String(localized: "High") : value >= 0.4 ? String(localized: "Moderate") : String(localized: "Mild")
+    }
+
+    private func labelRow(_ label: String, value: String) -> some View {
+        HStack {
+            Text(label).foregroundColor(AppTheme.Colors.deepGrayText)
+            Spacer()
+            Text(value).foregroundColor(AppTheme.Colors.mediumGrayText)
+        }
+        .font(AppTheme.Typography.bodyFont)
+        .accessibilityElement(children: .combine)
     }
 }
 

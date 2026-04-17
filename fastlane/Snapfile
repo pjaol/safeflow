@@ -1,0 +1,23 @@
+# Devices to capture — App Store requires 6.7" at minimum
+# Using UDIDs directly to avoid fastlane's iOS 26 version resolution bug
+devices([
+  "iPhone 17 Pro Max",
+  "iPhone 17",
+])
+languages(["en-US", "de-DE", "es-MX", "fr-FR"])
+
+scheme("safeflow")
+project("safeflow.xcodeproj")
+
+# Which tests to run (our snapshot test class only)
+only_testing("safeflowUITests/SnapshotTests")
+
+output_directory("./fastlane/screenshots")
+output_simulator_logs(false)
+clear_previous_screenshots(true)
+
+# Give the app time to settle after launch
+launch_arguments(["-FASTLANE_SNAPSHOT YES"])
+
+override_status_bar(true)
+# Clean status bar: 9:41 AM, full signal, full battery

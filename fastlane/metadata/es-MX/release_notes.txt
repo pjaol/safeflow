@@ -1,0 +1,8 @@
+Esta actualización incluye soporte completo de accesibilidad y mejoras de idioma.
+
+— Soporte para VoiceOver en toda la app — todas las pantallas son navegables con tecnologías de asistencia
+— Etiquetas, fases del ciclo y resúmenes de datos son legibles por VoiceOver
+— Mejoras de contraste y soporte de texto dinámico en todas las vistas
+— La app ahora soporta completamente alemán, francés y español
+
+Tus datos siguen en tu dispositivo. Nada ha cambiado ahí.

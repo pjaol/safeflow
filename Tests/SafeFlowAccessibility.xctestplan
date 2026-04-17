@@ -1,0 +1,82 @@
+{
+  "configurations" : [
+    {
+      "id" : "7ecaf5b2-0af9-437f-aa9b-df455cba3ac0",
+      "name" : "Large (default Dynamic Type)",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "UIContentSizeCategory",
+            "value" : "UICTContentSizeCategoryL"
+          }
+        ]
+      }
+    },
+    {
+      "id" : "2c6ca511-093a-47b1-8c1a-12d08c4c3b36",
+      "name" : "Extra Large",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "UIContentSizeCategory",
+            "value" : "UICTContentSizeCategoryXL"
+          }
+        ]
+      }
+    },
+    {
+      "id" : "4c4e960b-860f-4eb8-adfc-4045a7a555c4",
+      "name" : "AXXLarge (max Dynamic Type)",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "UIContentSizeCategory",
+            "value" : "UICTContentSizeCategoryAccessibilityExtraExtraLarge"
+          }
+        ]
+      }
+    },
+    {
+      "id" : "0894f483-e91c-4867-99fa-d263bff8176b",
+      "name" : "Reduce Motion",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "UIAccessibilityIsReduceMotionEnabled",
+            "value" : "1"
+          }
+        ]
+      }
+    },
+    {
+      "id" : "3c6d5ff6-3ba3-4e93-ac0e-f49581980004",
+      "name" : "Bold Text",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "UIAccessibilityIsBoldTextEnabled",
+            "value" : "1"
+          }
+        ]
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true,
+    "defaultTestExecutionTimeAllowance" : 60
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:safeflow.xcodeproj",
+        "identifier" : "CDBECD712D4010D2006A37C9",
+        "name" : "safeflowUITests"
+      },
+      "selectedTests" : [
+        "AccessibilityUITests",
+        "DynamicTypeUITests"
+      ]
+    }
+  ],
+  "version" : 1
+}

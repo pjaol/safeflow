@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Version tag (e.g. v1.1.1)'
+        required: false
+        default: 'v1.1.1'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-upload:
+    name: Build & Upload to App Store Connect
+    runs-on: macos-26
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up fastlane
+        run: gem install fastlane --no-document
+
+      - name: Decode certificate and profile
+        run: |
+          echo "${{ secrets.CERTIFICATES_P12 }}" | base64 --decode > "$RUNNER_TEMP/cert.p12"
+          echo "${{ secrets.PROVISIONING_PROFILE }}" | base64 --decode > "$RUNNER_TEMP/profile.mobileprovision"
+
+      - name: Run fastlane release
+        env:
+          RAW_TAG: ${{ github.event_name == 'push' && github.ref_name || github.event.inputs.tag }}
+          BUILD_NUMBER: ${{ github.run_number }}
+          CERTIFICATES_P12_PASSWORD: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_CONTENT: ${{ secrets.ASC_KEY_CONTENT }}
+        run: fastlane release

@@ -29,6 +29,7 @@ struct ForecastDayDescriptor: Identifiable {
 struct ForecastView: View {
     @ObservedObject var cycleStore: CycleStore
     @State private var monthCount = 3
+    @State private var showingAccessibleForecast = false
 
     private let cycleDayCount  = 28
     private let monthLabelWidth: CGFloat = 34
@@ -67,14 +68,28 @@ struct ForecastView: View {
                 legendRow
                     .padding(.horizontal, horizontalPad)
                     .padding(.bottom, 6)
-                GeometryReader { geo in
-                    let colWidth = columnWidth(totalWidth: geo.size.width)
-                    VStack(spacing: 0) {
-                        columnHeaderRow(colWidth: colWidth)
-                            .padding(.bottom, 4)
-                        gridRows(colWidth: colWidth)
+                    .accessibilityHidden(true)
+                ZStack {
+                    GeometryReader { geo in
+                        let colWidth = columnWidth(totalWidth: geo.size.width)
+                        VStack(spacing: 0) {
+                            columnHeaderRow(colWidth: colWidth)
+                                .padding(.bottom, 4)
+                            gridRows(colWidth: colWidth)
+                        }
+                        .padding(.horizontal, horizontalPad)
                     }
-                    .padding(.horizontal, horizontalPad)
+                    .frame(height: gridHeight)
+                    .accessibilityHidden(true)
+
+                    // Invisible element that gives VoiceOver a prose summary of the grid
+                    Text(accessibilitySummary)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .opacity(0)
+                        .accessibilityLabel(accessibilitySummary)
+                        .accessibilityAction(named: "Show forecast as list") {
+                            showingAccessibleForecast = true
+                        }
                 }
                 .frame(height: gridHeight)
                 .padding(.bottom, 14)
@@ -89,6 +104,35 @@ struct ForecastView: View {
         .background(AppTheme.Colors.secondaryBackground)
         .cornerRadius(AppTheme.Metrics.cornerRadius)
         .accessibilityIdentifier("home.forecastView")
+        .accessibilityElement(children: .contain)
+        .sheet(isPresented: $showingAccessibleForecast) {
+            ForecastListSheet(forecasts: forecasts)
+        }
+    }
+
+    // MARK: - Accessibility summary
+
+    /// Builds a prose description of upcoming forecasts for VoiceOver users
+    /// who cannot read the visual grid.
+    private var accessibilitySummary: String {
+        guard !forecasts.isEmpty else {
+            return "Cycle Forecast. Log your first period to see a forecast."
+        }
+        let df = DateFormatter()
+        df.dateFormat = "MMMM d"
+        var parts: [String] = ["Cycle Forecast."]
+        for (i, f) in forecasts.prefix(3).enumerated() {
+            let ordinal = i == 0 ? "Next period" : i == 1 ? "Following period" : "Period after that"
+            let earliest = df.string(from: f.periodEarliest)
+            let latest   = df.string(from: f.periodLatest)
+            let pct      = Int(f.confidence * 100)
+            var entry = "\(ordinal) expected \(earliest) to \(latest), \(pct)% confidence."
+            if let fs = f.fertileWindowStart, let fe = f.fertileWindowEnd, i == 0 {
+                entry += " Fertile window \(df.string(from: fs)) to \(df.string(from: fe))."
+            }
+            parts.append(entry)
+        }
+        return parts.joined(separator: " ")
     }
 
     // MARK: - Header
@@ -98,13 +142,18 @@ struct ForecastView: View {
             Text("Cycle Forecast")
                 .font(AppTheme.Typography.headlineFont)
                 .foregroundColor(AppTheme.Colors.deepGrayText)
+                .accessibilityAddTraits(.isHeader)
+                .accessibilityIdentifier("forecast.header")
             Spacer()
-            Picker("", selection: $monthCount) {
+            Picker("Forecast range", selection: $monthCount) {
                 Text("3 mo").tag(3)
+                    .accessibilityLabel(String(localized: "3 months"))
                 Text("6 mo").tag(6)
+                    .accessibilityLabel(String(localized: "6 months"))
             }
             .pickerStyle(.segmented)
             .frame(width: 110)
+            .accessibilityHint(String(localized: "Select how many months to forecast"))
         }
         .padding(.horizontal, horizontalPad)
         .padding(.vertical, 12)
@@ -123,15 +172,17 @@ struct ForecastView: View {
         }
     }
 
-    private func legendChip(color: Color, label: String) -> some View {
+    private func legendChip(color: Color, label: LocalizedStringKey) -> some View {
         HStack(spacing: 4) {
             RoundedRectangle(cornerRadius: 3)
                 .fill(color)
                 .frame(width: 14, height: 8)
+                .accessibilityHidden(true)
             Text(label)
                 .font(.system(.caption2, design: .rounded))
                 .foregroundColor(AppTheme.Colors.mediumGrayText)
         }
+        .accessibilityElement(children: .combine)
     }
 
     // MARK: - Column Headers
@@ -145,7 +196,7 @@ struct ForecastView: View {
             ZStack(alignment: .leading) {
                 ForEach([7, 14, 21], id: \.self) { day in
                     Text("\(day)")
-                        .font(.system(size: 9, weight: .medium, design: .rounded))
+                        .font(.system(.caption2, design: .rounded).weight(.medium))
                         .foregroundColor(AppTheme.Colors.mediumGrayText)
                         .frame(width: colWidth * 2, alignment: .center)
                         .offset(x: colWidth * CGFloat(day) - colWidth)
@@ -421,6 +472,60 @@ struct ForecastView: View {
         .padding(10)
         .background(AppTheme.Colors.background.opacity(0.6))
         .cornerRadius(8)
+        .accessibilityElement(children: .combine)
+    }
+}
+
+// MARK: - ForecastListSheet
+
+/// Accessible alternative to the forecast grid — shown via VoiceOver custom action.
+/// Presents each forecast cycle as a plain list row with all dates spelled out.
+private struct ForecastListSheet: View {
+    let forecasts: [CycleForecast]
+    @Environment(\.dismiss) private var dismiss
+
+    private let df: DateFormatter = {
+        let f = DateFormatter()
+        f.dateStyle = .medium
+        f.timeStyle = .none
+        return f
+    }()
+
+    var body: some View {
+        NavigationStack {
+            List {
+                ForEach(Array(forecasts.enumerated()), id: \.offset) { i, f in
+                    Section(header: Text(i == 0 ? "Next cycle" : "Cycle \(i + 1)")) {
+                        row(label: String(localized: "Period window"),
+                            value: "\(df.string(from: f.periodEarliest)) – \(df.string(from: f.periodLatest))")
+                        row(label: String(localized: "Most likely start"), value: df.string(from: f.periodCenter))
+                        if let fs = f.fertileWindowStart, let fe = f.fertileWindowEnd {
+                            row(label: String(localized: "Fertile window"),
+                                value: "\(df.string(from: fs)) – \(df.string(from: fe))")
+                        }
+                        row(label: String(localized: "Confidence"), value: "\(Int(f.confidence * 100))%")
+                    }
+                }
+            }
+            .navigationTitle("Cycle Forecast")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") { dismiss() }
+                }
+            }
+        }
+    }
+
+    private func row(label: String, value: String) -> some View {
+        HStack {
+            Text(label)
+                .foregroundColor(AppTheme.Colors.deepGrayText)
+            Spacer()
+            Text(value)
+                .foregroundColor(AppTheme.Colors.mediumGrayText)
+        }
+        .font(AppTheme.Typography.bodyFont)
         .accessibilityElement(children: .combine)
     }
 }

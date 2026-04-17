@@ -21,6 +21,7 @@ struct CycleRingSummaryCard: View {
     let onDismissNudge: () -> Void
 
     @State private var showingDetail = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private var phaseColor: Color {
         guard let phase else { return AppTheme.Colors.ringFollicular }
@@ -107,6 +108,7 @@ struct CycleRingSummaryCard: View {
                 Image(systemName: "chevron.right")
                     .font(.system(size: 12, weight: .semibold))
                     .foregroundColor(AppTheme.Colors.mediumGrayText.opacity(0.5))
+                    .accessibilityHidden(true)
             }
             .padding(AppTheme.Metrics.cardPadding)
             .background(AppTheme.Colors.secondaryBackground)
@@ -147,7 +149,7 @@ struct CycleRingSummaryCard: View {
                 style: StrokeStyle(lineWidth: 9, lineCap: .round)
             )
             .rotationEffect(.degrees(-90))
-            .animation(.easeInOut(duration: 0.6), value: cycleProgress)
+            .animation(reduceMotion ? nil : .easeInOut(duration: 0.6), value: cycleProgress)
     }
 
     private var totalItemCount: Int { alertCount + insightCount + tipCount }
@@ -156,7 +158,7 @@ struct CycleRingSummaryCard: View {
         ZStack {
             if totalItemCount > 0 {
                 Text("\(totalItemCount)")
-                    .font(.system(size: 22, weight: .bold, design: .rounded))
+                    .font(.system(.title3, design: .rounded, weight: .bold))
                     .foregroundColor(phaseColor)
             } else {
                 EmptyView()
@@ -169,10 +171,7 @@ struct CycleRingSummaryCard: View {
     private var badgeRow: some View {
         HStack(spacing: 8) {
             if alertCount > 0 {
-                badge(
-                    label: "\(alertCount) alert\(alertCount == 1 ? "" : "s")",
-                    color: AppTheme.Colors.amber
-                )
+                alertBadge(count: alertCount, color: AppTheme.Colors.amber)
             }
             if insightCount > 0 {
                 badge(label: "1 insight", color: phaseColor)
@@ -188,7 +187,17 @@ struct CycleRingSummaryCard: View {
         }
     }
 
-    private func badge(label: String, color: Color) -> some View {
+    private func alertBadge(count: Int, color: Color) -> some View {
+        Text(count == 1 ? "\(count) alert" : "\(count) alerts")
+            .font(.system(.caption2, design: .rounded, weight: .semibold))
+            .foregroundColor(color)
+            .padding(.horizontal, 7)
+            .padding(.vertical, 3)
+            .background(color.opacity(0.12))
+            .cornerRadius(6)
+    }
+
+    private func badge(label: LocalizedStringKey, color: Color) -> some View {
         Text(label)
             .font(.system(.caption2, design: .rounded, weight: .semibold))
             .foregroundColor(color)
@@ -203,7 +212,7 @@ struct CycleRingSummaryCard: View {
     private var accessibilityLabel: String {
         var parts: [String] = []
         if let phase {
-            parts.append(phase.displayName + " phase")
+            parts.append(phase.displayNameString + " phase")
         }
         if let day = cycleDay {
             parts.append("day \(day)")
@@ -211,7 +220,8 @@ struct CycleRingSummaryCard: View {
         if alertCount > 0 { parts.append("\(alertCount) alert\(alertCount == 1 ? "" : "s")") }
         if insightCount > 0 { parts.append("1 insight") }
         if tipCount > 0 { parts.append("1 tip") }
-        return parts.joined(separator: ", ")
+        let label = parts.joined(separator: ", ")
+        return label.isEmpty ? "Cycle summary" : label
     }
 }
 
@@ -231,6 +241,7 @@ struct CycleDetailSheet: View {
     let onDismissNudge: () -> Void
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var selectedTab = 0
     @State private var showingSupport = false
 
@@ -241,7 +252,7 @@ struct CycleDetailSheet: View {
     )}
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 0) {
                 // Tab selector
                 tabSelector
@@ -262,7 +273,7 @@ struct CycleDetailSheet: View {
                     }
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
-                .animation(.easeInOut(duration: 0.25), value: selectedTab)
+                .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: selectedTab)
             }
             .background(Color(UIColor.systemGroupedBackground).ignoresSafeArea())
             .navigationTitle(phase?.displayName ?? "Cycle")
@@ -275,6 +286,7 @@ struct CycleDetailSheet: View {
                         Image(systemName: "heart.circle.fill")
                             .font(.system(size: 22))
                             .foregroundColor(AppTheme.Colors.secondaryPink)
+                            .accessibilityHidden(true)
                     }
                     .accessibilityLabel("Get support")
                 }
@@ -282,6 +294,7 @@ struct CycleDetailSheet: View {
                     Button("Done") { dismiss() }
                         .font(.system(.body, design: .rounded, weight: .semibold))
                         .foregroundColor(AppTheme.Colors.accentBlue)
+                        .accessibilityIdentifier("cycleDetail.doneButton")
                 }
             }
             .sheet(isPresented: $showingSupport) {
@@ -375,6 +388,7 @@ struct CycleDetailSheet: View {
                         Image(systemName: phase.sfSymbol)
                             .font(.system(size: 22, weight: .semibold))
                             .foregroundColor(AppTheme.Colors.forPhase(phase.themeColorName))
+                            .accessibilityHidden(true)
                     }
                     VStack(alignment: .leading, spacing: 4) {
                         if let day = cycleDay {
@@ -407,6 +421,7 @@ struct CycleDetailSheet: View {
                         .frame(width: 36, height: 36)
                         .background(AppTheme.Colors.forecastPeriod.opacity(0.12))
                         .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .accessibilityHidden(true)
 
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Next period")
@@ -446,6 +461,7 @@ struct CycleDetailSheet: View {
                 .frame(width: 52, height: 52)
                 .background(AppTheme.Colors.amber.opacity(0.12))
                 .clipShape(Circle())
+                .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 6) {
                 Text("Cycle running longer than usual")
@@ -484,7 +500,7 @@ struct CycleDetailSheet: View {
 private enum DetailTab: String, Hashable, CaseIterable {
     case overview, insights, tips, alerts
 
-    var label: String {
+    var label: LocalizedStringKey {
         switch self {
         case .overview:  return "Overview"
         case .insights:  return "Insights"

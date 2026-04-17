@@ -9,12 +9,21 @@ enum DartboardCategory: Int, CaseIterable {
     case mood
     case gut
 
-    var label: String {
+    var label: LocalizedStringKey {
         switch self {
         case .pain:   return "Pain"
         case .energy: return "Energy"
         case .mood:   return "Mood"
         case .gut:    return "Body"
+        }
+    }
+
+    var labelString: String {
+        switch self {
+        case .pain:   return String(localized: "Pain")
+        case .energy: return String(localized: "Energy")
+        case .mood:   return String(localized: "Mood")
+        case .gut:    return String(localized: "Body")
         }
     }
 
@@ -83,7 +92,7 @@ enum DartboardCategory: Int, CaseIterable {
 
 struct DartboardItem: Identifiable, Equatable {
     let id: String
-    let label: String
+    let label: LocalizedStringKey
     let sfSymbol: String
     let backingSymptom: Symptom?
     let backingMood: Mood?
@@ -102,6 +111,10 @@ struct DartboardItem: Identifiable, Equatable {
         self.sfSymbol = sfSymbol
         self.backingSymptom = nil
         self.backingMood = mood
+    }
+
+    var labelString: String {
+        backingSymptom?.localizedNameString ?? backingMood?.localizedNameString ?? id
     }
 }
 

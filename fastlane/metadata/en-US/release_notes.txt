@@ -1,7 +1,8 @@
-First release of Clio Daye.
+This update brings full accessibility support and multiple language improvements.
 
-— Cycle tracking with flow, symptoms, and mood logging
-— Phase-aware predictions with honest ranges
-— Pattern insights and health signals
-— Face ID / Touch ID / PIN protection
-— Everything stored on your device, always
+— VoiceOver support throughout the app — every screen is fully navigable with assistive technologies
+— Screen labels, cycle phase descriptions, and data summaries are all readable by VoiceOver
+— Improved contrast and dynamic type support across all views
+— The app now fully supports German, French, and Spanish
+
+Your data remains on your device. Nothing has changed there.

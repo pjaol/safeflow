@@ -79,84 +79,147 @@ platform :ios do
     )
   end
 
-  desc "Capture App Store screenshots by running the app in the simulator"
-  lane :screenshots do
-    devices = {
-      "iPhone 17 Pro Max" => "64F7738E-C360-45FB-A8AF-CBB2FB1BB4C2",
-      "iPhone 17"         => "6E2ECA2D-23B3-44BF-9646-6392755BD9A9",
-    }
+  desc "Build Release IPA and upload to App Store Connect (not TestFlight)"
+  lane :release do
+    setup_ci
 
-    # Build the app for simulator (no signing needed)
-    # Fastlane runs from fastlane/ subdir, project is one level up
-    UI.message "Building app for simulator..."
-    sh(
-      "xcodebuild " \
-      "-project ../safeflow.xcodeproj " \
-      "-scheme safeflow " \
-      "-configuration Debug " \
-      "-destination 'generic/platform=iOS Simulator' " \
-      "-derivedDataPath /tmp/safeflow-screenshots-build " \
-      "CODE_SIGNING_ALLOWED=NO " \
-      "build 2>&1 | tail -5"
+    raw_tag = ENV["RAW_TAG"] || last_git_tag
+    without_v = raw_tag.sub(/^v/, "")
+    marketing_version = without_v.split("-").first
+    build_number = ENV["BUILD_NUMBER"] || number_of_commits.to_s
+
+    UI.message "Version: #{marketing_version} (#{build_number})"
+
+    set_info_plist_value(
+      path: "safeflow/Info.plist",
+      key: "CFBundleShortVersionString",
+      value: marketing_version
+    )
+    set_info_plist_value(
+      path: "safeflow/Info.plist",
+      key: "CFBundleVersion",
+      value: build_number
     )
 
-    app_path = Dir["/tmp/safeflow-screenshots-build/Build/Products/Debug-iphonesimulator/safeflow.app"].first
-    raise "Could not find built app" unless app_path
-    UI.message "App built at: #{app_path}"
+    import_certificate(
+      certificate_path: "#{ENV["RUNNER_TEMP"]}/cert.p12",
+      certificate_password: ENV["CERTIFICATES_P12_PASSWORD"],
+      keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
+      keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"]
+    )
 
-    screens = [
-      { name: "01_Home",     scroll: 0,   wait: 4 },
-      { name: "02_Pulse",    scroll: 0,   wait: 2 },
-      { name: "03_Forecast", scroll: 600, wait: 2 },
-      { name: "04_History",  scroll: 1400, wait: 2 },
+    install_provisioning_profile(
+      path: "#{ENV["RUNNER_TEMP"]}/profile.mobileprovision"
+    )
+
+    gym(
+      scheme: "safeflow",
+      configuration: "Release",
+      project: "safeflow.xcodeproj",
+      export_method: "app-store",
+      export_options: {
+        teamID: ENV["APPLE_TEAM_ID"],
+        provisioningProfiles: {
+          "com.thevgergroup.safeflow" => "b6728ec4-c939-4251-8e7b-4ab8f24be2fc"
+        },
+        uploadSymbols: true,
+        compileBitcode: false
+      },
+      output_directory: "build",
+      output_name: "safeflow",
+      clean: true
+    )
+
+    api_key = app_store_connect_api_key(
+      key_id: ENV["ASC_KEY_ID"],
+      issuer_id: ENV["ASC_ISSUER_ID"],
+      key_content: ENV["ASC_KEY_CONTENT"],
+      is_key_content_base64: false
+    )
+
+    upload_to_app_store(
+      api_key: api_key,
+      skip_metadata: true,
+      skip_screenshots: true,
+      skip_binary_upload: false,
+      submit_for_review: false,
+      force: true,
+      ipa: "build/safeflow.ipa"
+    )
+  end
+
+  desc "Capture App Store screenshots for all languages using SnapshotHelper + xcodebuild"
+  lane :screenshots do
+    devices = [
+      { name: "iPhone 17 Pro Max", udid: "65EC9EE1-D802-4FDA-AC13-4FEC110C0AB4" },
+      { name: "iPhone 17",         udid: "B45E0B27-CACF-4857-9405-3B0678587292" },
     ]
 
-    devices.each do |device_name, udid|
-      out = "fastlane/screenshots/en-US"
-      sh("mkdir -p '#{out}'")
-      safe_name = device_name.gsub(" ", "_")
+    languages = [
+      { tag: "en-US", lang: "en-US", locale: "en_US" },
+      { tag: "de-DE", lang: "de-DE", locale: "de_DE" },
+      { tag: "fr-FR", lang: "fr-FR", locale: "fr_FR" },
+      { tag: "es-MX", lang: "es-MX", locale: "es_MX" },
+    ]
 
-      UI.message "Booting #{device_name}..."
-      sh("xcrun simctl boot #{udid} 2>/dev/null || true")
-      sh("xcrun simctl bootstatus #{udid} -b")
+    # SnapshotHelper reads language/locale from this cache dir and writes PNGs here
+    cache_dir = File.expand_path("~/Library/Caches/tools.fastlane")
+    screenshots_cache = "#{cache_dir}/screenshots"
+    sh("mkdir -p '#{screenshots_cache}'")
 
-      # Clean status bar
+    # Boot both simulators once and set status bar
+    devices.each do |device|
+      UI.message "Booting #{device[:name]}..."
+      sh("xcrun simctl boot #{device[:udid]} 2>/dev/null || true")
+      sh("xcrun simctl bootstatus #{device[:udid]} -b 2>/dev/null || true")
       sh(
-        "xcrun simctl status_bar #{udid} override " \
+        "xcrun simctl status_bar #{device[:udid]} override " \
         "--time 09:41 --dataNetwork wifi --wifiMode active --wifiBars 3 " \
         "--cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100"
       )
-
-      # Install app with test data launch args baked in via env
-      sh("xcrun simctl install #{udid} '#{app_path}'")
-
-      # Launch with args to load symptom-rich data and skip onboarding
-      sh("xcrun simctl launch #{udid} com.thevgergroup.safeflow RESET_DATA SKIP_ONBOARDING LOAD_SYMPTOM_RICH")
-
-      UI.message "Waiting for app to load data..."
-      sleep(8)
-
-      screens.each do |screen|
-        if screen[:scroll] > 0
-          # Use simctl io to send a scroll via touch events
-          sh("xcrun simctl io #{udid} sendkey 'scroll' 2>/dev/null || true")
-          # Fallback: use osascript to scroll in the simulator
-          sh(
-            "osascript -e 'tell application \"Simulator\" to activate' " \
-            "-e 'tell application \"System Events\" to key code 125' 2>/dev/null || true"
-          )
-          sleep(1)
-        end
-        sleep(screen[:wait])
-        out_file = "#{out}/#{safe_name}-#{screen[:name]}.png"
-        sh("xcrun simctl io #{udid} screenshot '#{out_file}'")
-        UI.success "Captured: #{out_file}"
-      end
-
-      sh("xcrun simctl terminate #{udid} com.thevgergroup.safeflow 2>/dev/null || true")
     end
 
-    UI.success "Screenshots saved to fastlane/screenshots/en-US/"
+    languages.each do |language|
+      lang_tag = language[:tag]
+      lang     = language[:lang]
+      locale   = language[:locale]
+      out_dir  = File.expand_path("../fastlane/screenshots/#{lang_tag}", __dir__)
+      sh("mkdir -p '#{out_dir}'")
+
+      UI.message "=== Capturing #{lang_tag} ==="
+
+      # Write language + locale files for SnapshotHelper to read
+      File.write("#{cache_dir}/language.txt", lang)
+      File.write("#{cache_dir}/locale.txt", locale)
+
+      devices.each do |device|
+        UI.message "  Device: #{device[:name]}"
+
+        # Clear previous screenshots from cache before each device run
+        sh("rm -f '#{screenshots_cache}'/*.png")
+
+        sh(
+          "set -o pipefail && " \
+          "xcodebuild " \
+          "-project ../safeflow.xcodeproj " \
+          "-scheme safeflow " \
+          "-configuration Debug " \
+          "-destination 'platform=iOS Simulator,id=#{device[:udid]}' " \
+          "-only-testing:safeflowUITests/SnapshotTests " \
+          "-skip-testing:safeflowUITests/SnapshotTests/testDiagnostic_WhatIsOnScreen " \
+          "FASTLANE_SNAPSHOT=YES " \
+          "SIMULATOR_HOST_HOME=#{File.expand_path('~')} " \
+          "test 2>&1 | tail -5 || true"
+        )
+
+        # Move screenshots from cache to output dir, prefixed by device name
+        sh("mv '#{screenshots_cache}'/*.png '#{out_dir}'/ 2>/dev/null || true")
+      end
+
+      UI.success "Screenshots for #{lang_tag} saved to #{out_dir}"
+    end
+
+    UI.success "All screenshots complete. Check fastlane/screenshots/"
   end
 
   desc "Distribute a build to an external TestFlight group. Pass group:\"Group Name\" and optionally build_number:\"123\""

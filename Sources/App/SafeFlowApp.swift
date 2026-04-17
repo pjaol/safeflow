@@ -5,6 +5,7 @@ import os
 struct SafeFlowApp: App {
     @StateObject private var cycleStore = CycleStore()
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
+    @AppStorage("appLanguage") private var appLanguage: String = "system"
     private let logger = Logger(subsystem: "com.thevgergroup.safeflow", category: "SafeFlowApp")
 
     private class SecurityServiceWrapper: ObservableObject {
@@ -21,6 +22,30 @@ struct SafeFlowApp: App {
 
     @StateObject private var securityWrapper = SecurityServiceWrapper()
 
+    init() {
+        #if DEBUG
+        let args = ProcessInfo.processInfo.arguments
+        if args.contains("UI-Testing") {
+            UserDefaults.standard.set(false, forKey: "isAuthenticationRequired")
+        }
+        // SNAPSHOT_LANGUAGE env var (set by the test via app.launchEnvironment) controls
+        // the SwiftUI locale for snapshots. This must be applied before the first render.
+        if let lang = ProcessInfo.processInfo.environment["SNAPSHOT_LANGUAGE"], !lang.isEmpty {
+            UserDefaults.standard.set(lang, forKey: "appLanguage")
+        } else if args.contains("UI-Testing") {
+            // No explicit language: clear persisted value so .current locale takes effect.
+            UserDefaults.standard.removeObject(forKey: "appLanguage")
+        }
+        // SKIP_ONBOARDING must be applied before the first render so the home
+        // screen is shown immediately — onAppear fires too late for UI tests.
+        if args.contains("SKIP_ONBOARDING") {
+            UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
+        } else if args.contains("UI-Testing") || args.contains("RESET_ONBOARDING") {
+            UserDefaults.standard.set(false, forKey: "hasCompletedOnboarding")
+        }
+        #endif
+    }
+
     var body: some Scene {
         WindowGroup {
             GeometryReader { geometry in
@@ -33,9 +58,36 @@ struct SafeFlowApp: App {
                 }
             }
             .ignoresSafeArea()
+            #if DEBUG || BETA
+            .environment(\.locale, appLanguage == "system" || appLanguage.isEmpty ? .current : Locale(identifier: appLanguage))
+            #endif
             .onAppear { handleLaunchArguments() }
+            // #if DEBUG || BETA
+            // .overlay(alignment: .bottom) { localeDebugBanner }
+            // #endif
         }
     }
+
+    // #if DEBUG || BETA
+    // private var localeDebugBanner: some View {
+    //     let resolvedLocale = Locale(identifier: appLanguage.isEmpty ? "en" : appLanguage)
+    //     let osLanguages = (UserDefaults.standard.array(forKey: "AppleLanguages") as? [String])?.prefix(2).joined(separator: ", ") ?? "?"
+    //     let osLocale = UserDefaults.standard.string(forKey: "AppleLocale") ?? Locale.current.identifier
+    //
+    //     return VStack(spacing: 2) {
+    //         Text("appLanguage: \"\(appLanguage)\" → \(resolvedLocale.identifier)")
+    //         Text("OS AppleLanguages: \(osLanguages)")
+    //         Text("OS AppleLocale: \(osLocale)")
+    //         Text("Bundle locale: \(Bundle.main.preferredLocalizations.first ?? "?")")
+    //     }
+    //     .font(.system(size: 10, design: .monospaced))
+    //     .foregroundColor(.white)
+    //     .padding(.horizontal, 8)
+    //     .padding(.vertical, 4)
+    //     .background(Color.black.opacity(0.75))
+    //     .padding(.bottom, 8)
+    // }
+    // #endif
 
     @ViewBuilder
     private func mainContent(securityService: SecurityService, geometry: GeometryProxy) -> some View {
@@ -64,19 +116,11 @@ struct SafeFlowApp: App {
     }
 
     private func handleLaunchArguments() {
-        #if DEBUG
+        #if DEBUG || BETA
         let args = ProcessInfo.processInfo.arguments
 
         if args.contains("UI-Testing") || args.contains("RESET_DATA") {
             cycleStore.clearAllData()
-        }
-
-        if args.contains("RESET_ONBOARDING") || args.contains("UI-Testing") {
-            hasCompletedOnboarding = false
-        }
-
-        if args.contains("SKIP_ONBOARDING") {
-            hasCompletedOnboarding = true
         }
 
         if args.contains("LOAD_SYMPTOM_RICH") {
@@ -85,7 +129,7 @@ struct SafeFlowApp: App {
         #endif
     }
 
-    #if DEBUG
+    #if DEBUG || BETA
     private func loadTestScenario(filename: String, cycleLength: Int, periodLength: Int) {
         Task {
             guard let url = Bundle.main.url(forResource: filename, withExtension: "csv"),

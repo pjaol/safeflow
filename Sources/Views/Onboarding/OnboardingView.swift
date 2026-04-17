@@ -4,6 +4,7 @@ struct OnboardingView: View {
     @EnvironmentObject private var securityService: SecurityService
     @ObservedObject var cycleStore: CycleStore
     @Binding var hasCompletedOnboarding: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @State private var showingPinSetup = false
     @State private var currentPage = 0
@@ -26,6 +27,12 @@ struct OnboardingView: View {
             }
             .tabViewStyle(.page)
             .indexViewStyle(.page(backgroundDisplayMode: .always))
+            .onChange(of: currentPage) { _, page in
+                UIAccessibility.post(
+                    notification: .screenChanged,
+                    argument: pageTitle(for: page)
+                )
+            }
         }
         .sheet(isPresented: $showingPinSetup) {
             PinSetupView()
@@ -33,7 +40,7 @@ struct OnboardingView: View {
                 .onDisappear {
                     Task {
                         if await securityService.hasFallbackPin {
-                            withAnimation { currentPage = 3 }
+                            withAnimation(reduceMotion ? nil : .default) { currentPage = 3 }
                         }
                     }
                 }
@@ -48,6 +55,7 @@ struct OnboardingView: View {
                 .font(.system(size: 60))
                 .foregroundColor(AppTheme.Colors.accentBlue)
                 .iconCircle()
+                .accessibilityHidden(true)
 
             Text("Your Privacy First")
                 .font(AppTheme.Typography.headlineFont)
@@ -70,6 +78,7 @@ struct OnboardingView: View {
                 .font(.system(size: 60))
                 .foregroundColor(AppTheme.Colors.secondaryPink)
                 .iconCircle()
+                .accessibilityHidden(true)
 
             Text("Know Your Cycle")
                 .font(AppTheme.Typography.headlineFont)
@@ -92,6 +101,7 @@ struct OnboardingView: View {
                 .font(.system(size: 60))
                 .foregroundColor(AppTheme.Colors.secondaryPink)
                 .iconCircle()
+                .accessibilityHidden(true)
 
             Text("Secure Your Data")
                 .font(AppTheme.Typography.headlineFont)
@@ -116,11 +126,13 @@ struct OnboardingView: View {
                     } label: {
                         HStack {
                             Image(systemName: "faceid")
+                                .accessibilityHidden(true)
                             Text("Set Up Face ID / Touch ID")
                         }
                         .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(PrimaryButtonStyle())
+                    .accessibilityHint(String(localized: "Enables Face ID or Touch ID to lock the app"))
                     .accessibilityIdentifier("onboarding.biometricButton")
                 }
 
@@ -129,19 +141,22 @@ struct OnboardingView: View {
                 } label: {
                     HStack {
                         Image(systemName: "key.fill")
+                            .accessibilityHidden(true)
                         Text("Set Up PIN")
                     }
                     .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(SecondaryButtonStyle())
+                .accessibilityHint(String(localized: "Creates a numeric PIN to lock the app"))
                 .accessibilityIdentifier("onboarding.pinButton")
 
                 Button("Skip for Now") {
                     securityService.skipSecurity()
-                    withAnimation { currentPage = 3 }
+                    withAnimation(reduceMotion ? nil : .default) { currentPage = 3 }
                 }
                 .font(AppTheme.Typography.bodyFont)
                 .foregroundColor(AppTheme.Colors.deepGrayText)
+                .accessibilityHint(String(localized: "You can enable lock protection later in Settings"))
                 .accessibilityIdentifier("onboarding.skipSecurityButton")
             }
             .padding(.horizontal, 40)
@@ -158,6 +173,7 @@ struct OnboardingView: View {
                 .font(.system(size: 60))
                 .foregroundColor(AppTheme.Colors.secondaryPink)
                 .iconCircle()
+                .accessibilityHidden(true)
 
             Text("Set Up Your Cycle")
                 .font(AppTheme.Typography.headlineFont)
@@ -184,6 +200,8 @@ struct OnboardingView: View {
                     )
                     .datePickerStyle(.compact)
                     .labelsHidden()
+                    .accessibilityLabel("Last period start date")
+                    .accessibilityHint("Select the date your most recent period began")
                     .accessibilityIdentifier("onboarding.lastPeriodDatePicker")
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -204,6 +222,8 @@ struct OnboardingView: View {
                             .frame(width: 72, alignment: .leading)
                         Stepper("", value: $periodLength, in: 2...10)
                             .labelsHidden()
+                            .accessibilityLabel("Period length, \(periodLength) days")
+                            .accessibilityHint("Adjust how many days your period typically lasts")
                             .accessibilityIdentifier("onboarding.periodLengthStepper")
                     }
                 }
@@ -228,6 +248,8 @@ struct OnboardingView: View {
                             .frame(width: 72, alignment: .leading)
                         Stepper("", value: $cycleLength, in: 15...60)
                             .labelsHidden()
+                            .accessibilityLabel("Cycle length, \(cycleLength) days")
+                            .accessibilityHint("Adjust the number of days from the start of one period to the start of the next")
                             .accessibilityIdentifier("onboarding.cycleLengthStepper")
                     }
                     Text("Not sure? Leave at 28 — we'll personalise this over time.")
@@ -269,6 +291,18 @@ struct OnboardingView: View {
         .tag(3)
     }
 
+    // MARK: - Accessibility helpers
+
+    private func pageTitle(for page: Int) -> String {
+        switch page {
+        case 0: return "Your Privacy First, page 1 of 4"
+        case 1: return "Know Your Cycle, page 2 of 4"
+        case 2: return "Secure Your Data, page 3 of 4"
+        case 3: return "Set Up Your Cycle, page 4 of 4"
+        default: return "Onboarding"
+        }
+    }
+
     // MARK: - Card helper
 
     @ViewBuilder
@@ -299,7 +333,7 @@ private extension View {
     }
 }
 
-#if DEBUG
+#if DEBUG || BETA
 #Preview {
     OnboardingView(
         cycleStore: CycleStore(),

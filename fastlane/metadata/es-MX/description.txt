@@ -1,0 +1,29 @@
+Tus datos del ciclo son tuyos. Lo decimos en serio.
+
+La mayoría de las apps de seguimiento del período son gratuitas porque ganan dinero con tus datos. Esos datos se venden a anunciantes, se comparten con intermediarios de datos y en algunos países han sido solicitados por autoridades. Nos pareció inaceptable. Por eso creamos Clio Daye.
+
+Todo lo que registras en Clio Daye vive únicamente en tu dispositivo. No hay cuenta que crear, no hay servidor que reciba tus datos, no hay respaldo en la nube, no hay suscripción, no hay anuncios. No tenemos acceso a tus datos. Nadie más que tú.
+
+Esa fue la razón por la que creamos esta app.
+
+Cómo funciona
+
+Clio Daye cubre lo que importa en el seguimiento diario del ciclo. Puedes registrar la intensidad del flujo, 15 síntomas diferentes, estado de ánimo y notas. Muestra tu fase de ciclo actual y predice cuándo es probable que comience tu próxima menstruación, con un rango honesto en lugar de una fecha falsamente precisa.
+
+La mayoría de las apps solo te dicen cuándo llega tu próximo período. Clio Daye te muestra una visión de seis meses de tu ciclo para que puedas planificar con anticipación, no solo reaccionar. Útil para viajes, eventos o simplemente para saber qué tipo de semana tienes por delante.
+
+Todo está protegido con Face ID, Touch ID o un PIN. Si alguien más toma tu teléfono, no puede abrir la app sin tu permiso.
+
+Para quién está hecha
+
+Para cualquier persona que tenga un ciclo menstrual. Clio Daye usa un lenguaje corporal neutro y no asume género. Está diseñada para personas en todas las etapas de la vida, desde los primeros ciclos hasta la perimenopausia.
+
+Open source y gratuita, para siempre
+
+Clio Daye es gratuita, sin suscripción, sin nivel premium y sin publicidad. El código fuente está disponible públicamente en github.com/pjaol/safeflow para que cualquiera pueda leerlo y verificar los compromisos de privacidad. No somos una startup buscando crecer a toda costa. Somos un pequeño equipo que pensó que esta herramienta debía existir y la construyó.
+
+Una nota sobre lo que esto no es
+
+Clio Daye no es una herramienta anticonceptiva y no debe usarse como tal. Las predicciones son estimaciones basadas en tu historial registrado. Si necesitas anticoncepción o tienes preguntas médicas sobre tu ciclo, consulta a un profesional de salud.
+
+Requiere iOS 17.5 o posterior.

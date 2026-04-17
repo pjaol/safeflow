@@ -62,8 +62,9 @@
 		CD218E972D41A086009B5198 /* SecurityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E962D41A086009B5198 /* SecurityTests.swift */; };
 		CD218E9A2D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E982D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift */; };
 		CD218E9B2D41A0AF009B5198 /* safeflowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E992D41A0AF009B5198 /* safeflowUITests.swift */; };
-		SNAP00112233445566778899AA /* SnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = SNAP00112233445566778899AB /* SnapshotTests.swift */; };
-		SNAP00112233445566778899AC /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = SNAP00112233445566778899AD /* SnapshotHelper.swift */; };
+		CDA11Y012D4010D2006A37C9 /* AccessibilityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA11Y002D4010D2006A37C9 /* AccessibilityUITests.swift */; };
+		CDA11Y032D4010D2006A37C9 /* DynamicTypeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA11Y022D4010D2006A37C9 /* DynamicTypeUITests.swift */; };
+		CDL10N012D4010D2006A37C9 /* LocalisationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDL10N002D4010D2006A37C9 /* LocalisationUITests.swift */; };
 		CD218E9F2D4303F1009B5198 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E9C2D4303F1009B5198 /* AppTheme.swift */; };
 		CD218EA02D4303F1009B5198 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218E9D2D4303F1009B5198 /* ViewModifiers.swift */; };
 		CD218EA52D43CC89009B5198 /* CycleCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD218EA42D43CC89009B5198 /* CycleCalendarView.swift */; };
@@ -101,6 +102,7 @@
 		CDBECD5F2D4010D2006A37C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBECD5E2D4010D2006A37C9 /* Assets.xcassets */; };
 		CDBECD632D4010D2006A37C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBECD622D4010D2006A37C9 /* Preview Assets.xcassets */; };
 		CDBECD6D2D4010D2006A37C9 /* safeflowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */; };
+		CDDC84D82F8AA9640013BF34 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CDDC84D72F8AA9640013BF34 /* Localizable.xcstrings */; };
 		D9E1983807F2E1A042E2EDD4 /* GetSupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504469625D50C14C530203D9 /* GetSupportView.swift */; };
 		DD11223344556677889900AA /* DartboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11223344556677889900BB /* DartboardViewModel.swift */; };
 		DD11223344556677889900CC /* DartboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11223344556677889900DD /* DartboardView.swift */; };
@@ -113,6 +115,9 @@
 		FCEAA915176D4CFB4AF1D69A /* insights.json in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B26003B5E409A8EAB915 /* insights.json */; };
 		FF33445566778899AABBCCAA /* WeekRibbonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33445566778899AABBCCBB /* WeekRibbonView.swift */; };
 		FFAA112233445566778899CC /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = FFAA112233445566778899BB /* PrivacyInfo.xcprivacy */; };
+		SNAP00112233445566778899AA /* SnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = SNAP00112233445566778899AB /* SnapshotTests.swift */; };
+		SNAP00112233445566778899AC /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = SNAP00112233445566778899AD /* SnapshotHelper.swift */; };
+		A11Y00112233445566778899AA /* AccessibilityAuditTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11Y00112233445566778899AB /* AccessibilityAuditTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,8 +179,9 @@
 		CD218E962D41A086009B5198 /* SecurityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecurityTests.swift; path = Tests/UnitTests/SecurityTests.swift; sourceTree = SOURCE_ROOT; };
 		CD218E982D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = safeflowUITestsLaunchTests.swift; path = Tests/UITests/safeflowUITestsLaunchTests.swift; sourceTree = SOURCE_ROOT; };
 		CD218E992D41A0AF009B5198 /* safeflowUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = safeflowUITests.swift; path = Tests/UITests/safeflowUITests.swift; sourceTree = SOURCE_ROOT; };
-		SNAP00112233445566778899AB /* SnapshotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotTests.swift; path = Tests/UITests/SnapshotTests.swift; sourceTree = SOURCE_ROOT; };
-		SNAP00112233445566778899AD /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = Tests/UITests/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
+		CDA11Y002D4010D2006A37C9 /* AccessibilityUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccessibilityUITests.swift; path = Tests/UITests/AccessibilityUITests.swift; sourceTree = SOURCE_ROOT; };
+		CDA11Y022D4010D2006A37C9 /* DynamicTypeUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamicTypeUITests.swift; path = Tests/UITests/DynamicTypeUITests.swift; sourceTree = SOURCE_ROOT; };
+		CDL10N002D4010D2006A37C9 /* LocalisationUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalisationUITests.swift; path = Tests/UITests/LocalisationUITests.swift; sourceTree = SOURCE_ROOT; };
 		CD218E9C2D4303F1009B5198 /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		CD218E9D2D4303F1009B5198 /* ViewModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		CD218EA42D43CC89009B5198 /* CycleCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleCalendarView.swift; sourceTree = "<group>"; };
@@ -192,6 +198,7 @@
 		CD2709602D46AFCC003994F9 /* sparse_data_metadata.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparse_data_metadata.csv; sourceTree = "<group>"; };
 		CD2709612D46AFCC003994F9 /* sparse_data_predictions.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparse_data_predictions.csv; sourceTree = "<group>"; };
 		CD2709622D46AFCC003994F9 /* sparse_data.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparse_data.csv; sourceTree = "<group>"; };
+		CDBA2CD12F8AD9DA00043524 /* SafeFlowDefault.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = SafeFlowDefault.xctestplan; path = Tests/SafeFlowDefault.xctestplan; sourceTree = "<group>"; };
 		CDBECD552D4010D1006A37C9 /* safeflow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = safeflow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBECD5E2D4010D2006A37C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDBECD602D4010D2006A37C9 /* safeflow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = safeflow.entitlements; sourceTree = "<group>"; };
@@ -199,6 +206,9 @@
 		CDBECD682D4010D2006A37C9 /* safeflowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeflowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = safeflowTests.swift; sourceTree = "<group>"; };
 		CDBECD722D4010D2006A37C9 /* safeflowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = safeflowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDDC84D72F8AA9640013BF34 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = ../Sources/Localizable.xcstrings; sourceTree = "<group>"; };
+		CDDC84D92F8AD8F10013BF34 /* SafeFlowAccessibility.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = SafeFlowAccessibility.xctestplan; path = Tests/SafeFlowAccessibility.xctestplan; sourceTree = "<group>"; };
+		CDDC84DA2F8AD8F10013BF34 /* SafeFlowLocalisation.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = SafeFlowLocalisation.xctestplan; path = Tests/SafeFlowLocalisation.xctestplan; sourceTree = "<group>"; };
 		DD11223344556677889900BB /* DartboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DartboardViewModel.swift; sourceTree = "<group>"; };
 		DD11223344556677889900DD /* DartboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DartboardView.swift; sourceTree = "<group>"; };
 		DD11223344556677889900FF /* CategoryStripView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryStripView.swift; sourceTree = "<group>"; };
@@ -212,6 +222,9 @@
 		FE2E1432FC934814B484C260 /* InsightCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightCard.swift; sourceTree = "<group>"; };
 		FF33445566778899AABBCCBB /* WeekRibbonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekRibbonView.swift; sourceTree = "<group>"; };
 		FFAA112233445566778899BB /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		SNAP00112233445566778899AB /* SnapshotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotTests.swift; path = Tests/UITests/SnapshotTests.swift; sourceTree = SOURCE_ROOT; };
+		SNAP00112233445566778899AD /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = Tests/UITests/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
+		A11Y00112233445566778899AB /* AccessibilityAuditTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccessibilityAuditTests.swift; path = Tests/UITests/AccessibilityAuditTests.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -542,6 +555,9 @@
 		CDBECD4C2D4010D1006A37C9 = {
 			isa = PBXGroup;
 			children = (
+				CDBA2CD12F8AD9DA00043524 /* SafeFlowDefault.xctestplan */,
+				CDDC84DA2F8AD8F10013BF34 /* SafeFlowLocalisation.xctestplan */,
+				CDDC84D92F8AD8F10013BF34 /* SafeFlowAccessibility.xctestplan */,
 				CD2709642D46AFCC003994F9 /* Resources */,
 				CD218E702D405C85009B5198 /* Utilities */,
 				CD218E652D4021EB009B5198 /* App */,
@@ -573,6 +589,7 @@
 		CDBECD572D4010D1006A37C9 /* safeflow */ = {
 			isa = PBXGroup;
 			children = (
+				CDDC84D72F8AA9640013BF34 /* Localizable.xcstrings */,
 				CD218E852D416B8D009B5198 /* Info.plist */,
 				FFAA112233445566778899BB /* PrivacyInfo.xcprivacy */,
 				CDBECD5E2D4010D2006A37C9 /* Assets.xcassets */,
@@ -605,8 +622,12 @@
 			children = (
 				CD218E992D41A0AF009B5198 /* safeflowUITests.swift */,
 				CD218E982D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift */,
+				CDA11Y002D4010D2006A37C9 /* AccessibilityUITests.swift */,
+				CDA11Y022D4010D2006A37C9 /* DynamicTypeUITests.swift */,
+				CDL10N002D4010D2006A37C9 /* LocalisationUITests.swift */,
 				SNAP00112233445566778899AB /* SnapshotTests.swift */,
 				SNAP00112233445566778899AD /* SnapshotHelper.swift */,
+				A11Y00112233445566778899AB /* AccessibilityAuditTests.swift */,
 			);
 			path = safeflowUITests;
 			sourceTree = "<group>";
@@ -705,6 +726,9 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				es,
+				fr,
 			);
 			mainGroup = CDBECD4C2D4010D1006A37C9;
 			packageReferences = (
@@ -736,6 +760,7 @@
 				CD2709652D46AFCC003994F9 /* irregular_cycle_metadata.csv in Resources */,
 				CD2709772D46AFCC003994F9 /* sparse_data_metadata.csv in Resources */,
 				CD2709712D46AFCC003994F9 /* regular_28_day_cycle_predictions.csv in Resources */,
+				CDDC84D82F8AA9640013BF34 /* Localizable.xcstrings in Resources */,
 				C2CA3BB5227E61250FAE54DD /* symptom_rich_cycles.csv in Resources */,
 				BB001122334455667788991C /* scenario_new_user.csv in Resources */,
 				BB001122334455667788992C /* scenario_high_variability.csv in Resources */,
@@ -867,8 +892,12 @@
 			files = (
 				CD218E9B2D41A0AF009B5198 /* safeflowUITests.swift in Sources */,
 				CD218E9A2D41A0AF009B5198 /* safeflowUITestsLaunchTests.swift in Sources */,
+				CDA11Y012D4010D2006A37C9 /* AccessibilityUITests.swift in Sources */,
+				CDA11Y032D4010D2006A37C9 /* DynamicTypeUITests.swift in Sources */,
+				CDL10N012D4010D2006A37C9 /* LocalisationUITests.swift in Sources */,
 				SNAP00112233445566778899AA /* SnapshotTests.swift in Sources */,
 				SNAP00112233445566778899AC /* SnapshotHelper.swift in Sources */,
+				A11Y00112233445566778899AA /* AccessibilityAuditTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -931,7 +960,6 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -942,10 +970,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "BETA $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Beta;
@@ -958,8 +986,6 @@
 				CODE_SIGN_ENTITLEMENTS = safeflow/safeflow.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
-				PROVISIONING_PROFILE_SPECIFIER = "b6728ec4-c939-4251-8e7b-4ab8f24be2fc";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "safeflow/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8NQMHUGDM7;
@@ -969,23 +995,27 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Clio Daye";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
-								"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
-								"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
-								"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
-								INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 0.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevgergroup.safeflow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "b6728ec4-c939-4251-8e7b-4ab8f24be2fc";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Beta;
 		};
@@ -996,7 +1026,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 0.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevgergroup.safeflowTests;
@@ -1006,7 +1036,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/safeflow.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/safeflow";
 			};
 			name = Beta;
@@ -1017,7 +1047,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 0.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevgergroup.safeflowUITests;
@@ -1027,7 +1057,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = safeflow;
 			};
 			name = Beta;
@@ -1088,10 +1118,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1146,9 +1176,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};
@@ -1169,12 +1199,14 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Clio Daye";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
-								"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
-								"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
-								"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
-								INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -1187,7 +1219,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1207,12 +1239,14 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Clio Daye";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
-								"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
-								"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
-								"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
-								INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -1225,7 +1259,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1236,7 +1270,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 0.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevgergroup.safeflowTests;
@@ -1246,7 +1280,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/safeflow.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/safeflow";
 			};
 			name = Debug;
@@ -1258,7 +1292,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 0.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevgergroup.safeflowTests;
@@ -1268,7 +1302,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/safeflow.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/safeflow";
 			};
 			name = Release;
@@ -1279,7 +1313,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 0.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevgergroup.safeflowUITests;
@@ -1289,7 +1323,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = safeflow;
 			};
 			name = Debug;
@@ -1300,7 +1334,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 0.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevgergroup.safeflowUITests;
@@ -1310,7 +1344,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = safeflow;
 			};
 			name = Release;

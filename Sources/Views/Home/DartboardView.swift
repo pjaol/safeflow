@@ -89,12 +89,12 @@ struct DartboardSegment: View {
         .scaleEffect(bouncing ? 1.08 : 1.0, anchor: .center)
         .contentShape(shape)
         .onTapGesture { handleTap() }
-        .animation(.spring(response: 0.3, dampingFraction: 0.55), value: isActive)
-        .animation(.spring(response: 0.25, dampingFraction: 0.5), value: bouncing)
+        .animation(reduceMotion ? .none : .spring(response: 0.3, dampingFraction: 0.55), value: isActive)
+        .animation(reduceMotion ? .none : .spring(response: 0.25, dampingFraction: 0.5), value: bouncing)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(item.label)
-        .accessibilityHint(isActive ? "Logged. Tap to remove." : "Tap to log \(item.label).")
-        .accessibilityAddTraits(isActive ? [.isButton, .isSelected] : .isButton)
+        .accessibilityLabel(isActive ? "\(item.labelString), \(String(localized: "logged"))" : item.labelString)
+        .accessibilityHint(isActive ? String(localized: "Tap to remove") : String(localized: "Tap to log"))
+        .accessibilityAddTraits(.isButton)
     }
 
     private func handleTap() {
@@ -125,12 +125,13 @@ struct DartboardSegment: View {
 
         VStack(spacing: 3) {
             Image(systemName: item.sfSymbol)
-                .font(.system(size: 15, weight: .semibold))
+                .font(.system(.subheadline, design: .default).weight(.semibold))
                 .foregroundStyle(contentColor)
+                .accessibilityHidden(true)
             Text(item.label)
                 .font(.system(.caption2, design: .rounded, weight: .semibold))
                 .foregroundStyle(contentColor)
-                .lineLimit(1)
+                .lineLimit(2)
                 .minimumScaleFactor(0.6)
                 .frame(width: 64)
                 .multilineTextAlignment(.center)
@@ -144,6 +145,7 @@ struct DartboardSegment: View {
 
 struct NotesBullseye: View {
     @ObservedObject var viewModel: DartboardViewModel
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var showingNotes = false
     @State private var pressing = false
 
@@ -166,13 +168,14 @@ struct NotesBullseye: View {
                 .shadow(color: .black.opacity(0.22), radius: 8, x: 0, y: 3)
                 .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 1)
                 .scaleEffect(pressing ? 1.12 : 1.0)
-                .animation(.spring(response: 0.25, dampingFraction: 0.6), value: pressing)
+                .animation(reduceMotion ? .none : .spring(response: 0.25, dampingFraction: 0.6), value: pressing)
 
             Image(systemName: hasNotes ? "note.text" : "pencil")
-                .font(.system(size: 16, weight: .black))
+                .font(.system(.body, design: .default).weight(.black))
                 .foregroundStyle(hasNotes
                                  ? .white
                                  : AppTheme.Colors.primaryBlue)
+                .accessibilityHidden(true)
         }
         .frame(width: 44, height: 44)
         .contentShape(Circle())
@@ -183,7 +186,8 @@ struct NotesBullseye: View {
             showingNotes = true
         })
         .accessibilityLabel(hasNotes ? "Edit note" : "Add note")
-        .accessibilityHint("Long press to open notes")
+        .accessibilityHint("Double-tap and hold to open notes")
+        .accessibilityAction(named: "Open notes") { showingNotes = true }
         .sheet(isPresented: $showingNotes) {
             NotesSheet(viewModel: viewModel)
         }
@@ -198,7 +202,7 @@ struct NotesSheet: View {
     @State private var text: String = ""
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(alignment: .leading, spacing: 16) {
                 Text("How are you feeling today?")
                     .font(.system(.subheadline, design: .rounded, weight: .medium))

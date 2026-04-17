@@ -9,6 +9,8 @@ struct CyclePhaseCard: View {
     let averageCycleLength: Int?
     let hasEnoughData: Bool
 
+    @Environment(\.locale) private var locale
+
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             if let phase {
@@ -26,6 +28,7 @@ struct CyclePhaseCard: View {
         .shadow(color: Color.black.opacity(0.07), radius: 8, x: 0, y: 2)
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("home.cyclePhaseCard")
+        .accessibilityLabel(cardAccessibilityLabel)
     }
 
     // MARK: - Sub-views
@@ -72,6 +75,7 @@ struct CyclePhaseCard: View {
             Image(systemName: phase.sfSymbol)
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundColor(.white)
+                .accessibilityHidden(true)
         }
     }
 
@@ -87,6 +91,7 @@ struct CyclePhaseCard: View {
                     Image(systemName: "calendar")
                         .font(.caption)
                         .foregroundColor(AppTheme.Colors.mediumGrayText)
+                        .accessibilityHidden(true)
                     Text("Next period \(formattedRange(range))")
                         .font(AppTheme.Typography.captionFont)
                         .foregroundColor(AppTheme.Colors.mediumGrayText)
@@ -132,24 +137,35 @@ struct CyclePhaseCard: View {
         return AppTheme.Colors.secondaryBackground
     }
 
+    // MARK: - Accessibility
+
+    private var cardAccessibilityLabel: String {
+        guard let phase else {
+            return "Cycle Tracking. Log your first period to see your cycle phase and predictions."
+        }
+        var parts: [String] = [phase.displayNameString]
+        if let day = cycleDay { parts.append("day \(day)") }
+        if let range = predictionRange {
+            parts.append("next period \(formattedRange(range))")
+        }
+        if let length = averageCycleLength {
+            parts.append("average cycle \(length) days")
+        }
+        return parts.joined(separator: ", ")
+    }
+
     // MARK: - Date Formatting
 
     private func formattedRange(_ range: (earliest: Date, latest: Date)) -> String {
-        let formatter = DateFormatter()
         let calendar = Calendar.current
-
-        if calendar.isDate(range.earliest, equalTo: range.latest, toGranularity: .month) {
-            formatter.dateFormat = "d"
-            let endStr = formatter.string(from: range.latest)
-            formatter.dateFormat = "MMM d"
-            let startStr = formatter.string(from: range.earliest)
-            return "\(startStr)–\(endStr)"
-        } else {
-            formatter.dateFormat = "MMM d"
-            let startStr = formatter.string(from: range.earliest)
-            let endStr = formatter.string(from: range.latest)
-            return "\(startStr) – \(endStr)"
-        }
+        let sameMonth = calendar.isDate(range.earliest, equalTo: range.latest, toGranularity: .month)
+        let sf = DateFormatter(); sf.locale = locale
+        sf.setLocalizedDateFormatFromTemplate("MMMd")
+        let ef = DateFormatter(); ef.locale = locale
+        ef.setLocalizedDateFormatFromTemplate(sameMonth ? "d" : "MMMd")
+        return sameMonth
+            ? "\(sf.string(from: range.earliest))–\(ef.string(from: range.latest))"
+            : "\(sf.string(from: range.earliest)) – \(ef.string(from: range.latest))"
     }
 }
 

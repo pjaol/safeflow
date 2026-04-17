@@ -85,13 +85,18 @@ struct CycleCalendarView: View {
             Text("History")
                 .font(AppTheme.Typography.headlineFont)
                 .foregroundColor(AppTheme.Colors.deepGrayText)
+                .accessibilityAddTraits(.isHeader)
+                .accessibilityIdentifier("history.header")
             Spacer()
-            Picker("", selection: $monthCount) {
+            Picker("History range", selection: $monthCount) {
                 Text("3 mo").tag(3)
+                    .accessibilityLabel(String(localized: "3 months"))
                 Text("6 mo").tag(6)
+                    .accessibilityLabel(String(localized: "6 months"))
             }
             .pickerStyle(.segmented)
             .frame(width: 110)
+            .accessibilityHint(String(localized: "Select how many months of history to display"))
         }
         .padding(.horizontal, horizontalPad)
         .padding(.vertical, 12)
@@ -109,19 +114,22 @@ struct CycleCalendarView: View {
         }
     }
 
-    private func legendChip(color: Color, label: String, dashed: Bool = false) -> some View {
+    private func legendChip(color: Color, label: LocalizedStringKey, dashed: Bool = false) -> some View {
         HStack(spacing: 4) {
             if dashed {
                 RoundedRectangle(cornerRadius: 2)
                     .strokeBorder(color, style: StrokeStyle(lineWidth: 1, dash: [2, 2]))
                     .frame(width: 10, height: 10)
+                    .accessibilityHidden(true)
             } else {
                 RoundedRectangle(cornerRadius: 2).fill(color).frame(width: 10, height: 10)
+                    .accessibilityHidden(true)
             }
             Text(label)
                 .font(.system(.caption2, design: .rounded))
                 .foregroundColor(AppTheme.Colors.mediumGrayText)
         }
+        .accessibilityElement(children: .combine)
     }
 
     /// Mood legend: three small squares showing the three buckets side-by-side
@@ -132,10 +140,12 @@ struct CycleCalendarView: View {
                 RoundedRectangle(cornerRadius: 2).fill(moodColor(.neutral)).frame(width: 6, height: 10)
                 RoundedRectangle(cornerRadius: 2).fill(moodColor(.negative)).frame(width: 6, height: 10)
             }
+            .accessibilityHidden(true)
             Text("Mood")
                 .font(.system(.caption2, design: .rounded))
                 .foregroundColor(AppTheme.Colors.mediumGrayText)
         }
+        .accessibilityElement(children: .combine)
     }
 
     // MARK: - Column headers
@@ -146,7 +156,7 @@ struct CycleCalendarView: View {
             ZStack(alignment: .leading) {
                 ForEach([7, 14, 21], id: \.self) { day in
                     Text("\(day)")
-                        .font(.system(size: 9, weight: .medium, design: .rounded))
+                        .font(.system(.caption2, design: .rounded).weight(.medium))
                         .foregroundColor(AppTheme.Colors.mediumGrayText)
                         .frame(width: colWidth * 2, alignment: .center)
                         .offset(x: colWidth * CGFloat(day) - colWidth)
@@ -179,16 +189,23 @@ struct CycleCalendarView: View {
             return (date, cycleStore.getDay(for: date))
         }
 
+        let monthName = shortMonth(month)
         return HStack(spacing: 0) {
             Text(shortMonth(month))
                 .font(.system(.caption, design: .rounded, weight: .semibold))
                 .foregroundColor(AppTheme.Colors.deepGrayText)
                 .frame(width: monthLabelWidth, alignment: .leading)
+                .accessibilityHidden(true)
 
             dayStrip(columns: columns, daysInMonth: daysInMonth, colWidth: colWidth)
+                .accessibilityHidden(true)
         }
         .frame(height: rowHeight)
         .contentShape(Rectangle())
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(monthName) — \(logSummary(columns: columns, daysInMonth: daysInMonth))")
+        .accessibilityHint("Tap to view detailed chart for this period")
+        .accessibilityAddTraits(.isButton)
         .onTapGesture { location in
             // Convert tap X to the actual date that was tapped.
             // The month label occupies monthLabelWidth pts on the left;
@@ -425,6 +442,21 @@ struct CycleCalendarView: View {
         return runs
     }
 
+    // MARK: - Accessibility helpers
+
+    /// Builds a concise VoiceOver summary for a month row, e.g. "5 days logged, 3 with symptoms"
+    private func logSummary(columns: [(date: Date, day: CycleDay?)], daysInMonth: Int) -> String {
+        let logged = columns.prefix(daysInMonth).compactMap(\.day)
+        guard !logged.isEmpty else { return "no logs" }
+        let withFlow = logged.filter { $0.flow != nil }.count
+        let withSymptoms = logged.filter { !$0.symptoms.isEmpty }.count
+        var parts: [String] = []
+        if withFlow > 0 { parts.append("\(withFlow) flow day\(withFlow == 1 ? "" : "s")") }
+        if withSymptoms > 0 { parts.append("\(withSymptoms) with symptoms") }
+        if parts.isEmpty { parts.append("\(logged.count) logged") }
+        return parts.joined(separator: ", ")
+    }
+
     // MARK: - Layout helpers
 
     private var gridHeight: CGFloat {
@@ -503,12 +535,12 @@ struct MonthSummaryView: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Group {
                 if weekGroups.isEmpty {
                     VStack(spacing: 12) {
                         Spacer()
-                        Text("Nothing logged in \(monthLabel)")
+                        Text("Nothing logged in \(monthLabel)", comment: "Empty state for a month with no logged days")
                             .font(AppTheme.Typography.bodyFont)
                             .foregroundColor(AppTheme.Colors.mediumGrayText)
                         Spacer()
@@ -563,10 +595,10 @@ private struct WeekDayRow: View {
         HStack(alignment: .top, spacing: 12) {
             VStack(alignment: .center, spacing: 2) {
                 Text(dayOfWeek)
-                    .font(.system(size: 10, weight: .medium, design: .rounded))
+                    .font(.system(.caption2, design: .rounded).weight(.medium))
                     .foregroundColor(AppTheme.Colors.mediumGrayText)
                 Text(dayNumber)
-                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+                    .font(.system(.title3, design: .rounded).weight(.semibold))
                     .foregroundColor(AppTheme.Colors.deepGrayText)
             }
             .frame(width: 36)
@@ -624,7 +656,7 @@ private struct SymptomChips: View {
         HStack(spacing: 4) {
             ForEach(symptoms.prefix(3), id: \.self) { symptom in
                 Text(symptom.localizedName)
-                    .font(.system(size: 10, design: .rounded))
+                    .font(.system(.caption2, design: .rounded))
                     .foregroundColor(AppTheme.Colors.forecastSymptom)
                     .padding(.horizontal, 6)
                     .padding(.vertical, 2)
@@ -633,7 +665,7 @@ private struct SymptomChips: View {
             }
             if symptoms.count > 3 {
                 Text("+\(symptoms.count - 3)")
-                    .font(.system(size: 10, design: .rounded))
+                    .font(.system(.caption2, design: .rounded))
                     .foregroundColor(AppTheme.Colors.mediumGrayText)
             }
         }
@@ -650,7 +682,7 @@ struct DayDetailView: View {
     @State private var showingLogSheet = false
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Group {
                 if let day = existingDay {
                     List {
@@ -662,7 +694,7 @@ struct DayDetailView: View {
                         }
                         if !day.symptoms.isEmpty {
                             Section {
-                                ForEach(Array(day.symptoms).sorted { $0.localizedName < $1.localizedName }, id: \.self) { symptom in
+                                ForEach(Array(day.symptoms).sorted { $0.localizedNameString < $1.localizedNameString }, id: \.self) { symptom in
                                     Label(symptom.localizedName, systemImage: symptom.sfSymbol)
                                         .font(AppTheme.Typography.bodyFont)
                                 }

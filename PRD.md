@@ -214,7 +214,7 @@ Cycles becoming irregular, 40–60 day range. Existing apps constantly show erro
 
 - [ ] Cycle journal: free-form daily notes with phase tagging
 - [ ] Health report: shareable summary for OB/GYN appointments
-- [ ] Partner/support sharing (on-device generated QR code, no cloud, time-limited)
+- [x] ~~Partner/support sharing (on-device generated QR code, no cloud, time-limited)~~ — CANCELLED 2026-04-10, see PRD-v2 §6.6
 - [ ] Cycle history: multi-year visualization
 - [ ] Medication/supplement logging (birth control, vitamins)
 - [ ] Premium tier (optional, no feature gating on core tracking)
@@ -463,7 +463,11 @@ This disclaimer is non-negotiable. It protects users and keeps SafeFlow outside 
 
 ---
 
-### 7.9 Data Export (v1.0)
+### 7.9 Data Export — CANCELLED (2026-04-10)
+
+> **This feature is cancelled and must not be implemented.** Any export mechanism — PDF, CSV, or partner sharing — creates a path for intimate health data to leave the device and enter environments Clio Daye cannot control. In a post-Dobbs legal environment this is an unacceptable risk to users. The in-app appointment summary view (PRD v2 §6.6) is the on-screen alternative that delivers clinical value without creating a file. See PRD-v2.md §6.6 for full rationale.
+
+### 7.9 Data Export (v1.0) — original spec, superseded
 
 Users should be able to export their data in two formats:
 
