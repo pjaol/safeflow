@@ -64,15 +64,15 @@ We follow semantic versioning: `MAJOR.MINOR.PATCH`
 
 | Type | Version bump | Branch | Example |
 |---|---|---|---|
-| App Store hotfix | PATCH | `fix/*` → `release/1.x` → `main` | 1.0.0 → 1.0.1 |
-| v1.1 (accessibility & i18n) | MINOR | `fix/*` → `release/1.1` → `main` | 1.0.x → 1.1.0 |
-| v2 release | MAJOR | `feature/v2/*` → `main` | 1.1.x → 2.0.0 |
+| App Store hotfix | PATCH | `fix/*` → `release/1.x` → `main` | 1.1.1 → 1.1.2 |
+| Minor feature release | MINOR | `release/x.x` → `main` | 1.1.x → 1.2.0 |
+| v2 release | MAJOR | `feature/v2/*` → `main` | 1.x.x → 2.0.0 |
 
 ---
 
 ## Day-to-day workflow
 
-### Shipping a post-launch patch (v1.0.x)
+### Shipping a hotfix patch (v1.1.x)
 
 ```bash
 git checkout release/1.x
@@ -81,19 +81,6 @@ git checkout -b fix/my-fix
 git push origin fix/my-fix
 # PR → release/1.x
 # after merge: PR release/1.x → main
-# also merge release/1.x → release/1.1 to keep it current
-git checkout release/1.1
-git merge release/1.x
-```
-
-### Working on v1.1 (accessibility / i18n)
-
-```bash
-git checkout release/1.1
-git checkout -b fix/a11y-toolbar-labels
-# ... make change, add tests ...
-git push origin fix/a11y-toolbar-labels
-# PR → release/1.1
 ```
 
 ### Shipping a release
@@ -147,9 +134,8 @@ App Store submissions are tagged on `main`. The tag push triggers the GitHub Act
 
 ```
 v1.0.0    ← initial App Store release
-v1.0.1    ← first patch (from release/1.x)
 v1.1.1    ← accessibility & i18n (from release/1.1, shipped 2026-04-17)
-v2.0.0    ← life-stage expansion launch
+v2.0.0    ← life-stage expansion launch (planned)
 ```
 
 Tag format determines which workflow runs:
@@ -173,4 +159,5 @@ git push origin v1.2.0-beta.1
 - **No `develop` branch.** Unnecessary indirection for a small team.
 - **No long-lived `staging` branch.** TestFlight builds come from `main` or a release branch directly.
 - **No squash-merging feature branches.** Preserve commit history for `git blame` usefulness.
-- **No force-pushing to `main` or `release/1.x`.** Ever.
+- **No force-pushing to `main` or `release/1.x` branches.** Ever.
+- **Tags may be force-pushed** during a release cycle if the tag needs to be moved to a new fix commit before the build is submitted. Once a build is processed by Apple, the tag is permanent — do not move it.
