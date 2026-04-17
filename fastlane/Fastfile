@@ -113,7 +113,7 @@ platform :ios do
     )
 
     gym(
-      scheme: "safeflow-Beta",
+      scheme: "safeflow",
       configuration: "Release",
       project: "safeflow.xcodeproj",
       export_method: "app-store",
