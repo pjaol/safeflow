@@ -7,18 +7,6 @@ screenshots_path "./fastlane/screenshots"
 # Category
 primary_category "HEALTH_AND_FITNESS"
 
-# Territory availability — explicit opt-in list
-# English-speaking markets
-# DE/AT/CH — German
-# FR/BE — French
-# MX/AR/CO/CL/PE — Spanish (Latin America)
-territories [
-  "USA", "GBR", "IRL", "AUS", "CAN", "NZL",
-  "DEU", "AUT", "CHE",
-  "FRA", "BEL",
-  "MEX", "ARG", "COL", "CHL", "PER"
-]
-
 # Don't auto-submit — save as draft until we're ready
 submit_for_review false
 automatic_release false
