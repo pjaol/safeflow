@@ -109,6 +109,88 @@ final class SnapshotTests: XCTestCase {
         sleep(1)
         snapshot("06_History")
     }
+
+    // MARK: - Life Stage Snapshots
+
+    func testSnapshot07_PerimenopauseHome() throws {
+        let periApp = makeApp(lifeStageArg: "LIFE_STAGE_PERIMENOPAUSE")
+        periApp.launch()
+        periApp.tap()
+        XCTAssertTrue(periApp.otherElements["home.symptomSnapshotCard"].waitForExistence(timeout: 30))
+        sleep(2)
+        snapshot("07_Perimenopause_Home")
+        periApp.terminate()
+    }
+
+    func testSnapshot08_MenopauseHome() throws {
+        let menoApp = makeApp(lifeStageArg: "LIFE_STAGE_MENOPAUSE")
+        menoApp.launch()
+        menoApp.tap()
+        XCTAssertTrue(menoApp.otherElements["home.symptomSnapshotCard"].waitForExistence(timeout: 30))
+        sleep(2)
+        snapshot("08_Menopause_Home")
+        menoApp.terminate()
+    }
+
+    func testSnapshot09_PerimenopauseLogDay() throws {
+        let periApp = makeApp(lifeStageArg: "LIFE_STAGE_PERIMENOPAUSE")
+        periApp.launch()
+        periApp.tap()
+        XCTAssertTrue(periApp.otherElements["home.symptomSnapshotCard"].waitForExistence(timeout: 30))
+        let editButtons = periApp.buttons.matching(identifier: "home.editLogsButton")
+        XCTAssertTrue(editButtons.firstMatch.waitForExistence(timeout: 5))
+        var tapped = false
+        for i in 0..<editButtons.count {
+            let btn = editButtons.element(boundBy: i)
+            if btn.isHittable { btn.tap(); tapped = true; break }
+        }
+        if !tapped { editButtons.firstMatch.tap() }
+        XCTAssertTrue(periApp.buttons["editLogs.doneButton"].waitForExistence(timeout: 5))
+        sleep(1)
+        snapshot("09_Perimenopause_LogDay")
+        periApp.terminate()
+    }
+
+    func testSnapshot10_OnboardingLifeStage() throws {
+        let onboardApp = makeApp(lifeStageArg: nil, skipOnboarding: false)
+        onboardApp.launch()
+        onboardApp.tap()
+        // Swipe to the life stage picker (page 1)
+        onboardApp.swipeLeft()
+        XCTAssertTrue(onboardApp.buttons["onboarding.lifeStageCard.regular"].waitForExistence(timeout: 10))
+        sleep(1)
+        snapshot("10_Onboarding_LifeStage")
+        onboardApp.terminate()
+    }
+}
+
+// MARK: - Helpers
+
+extension SnapshotTests {
+    /// Build an app with standard snapshot env, optionally injecting a life-stage arg.
+    /// - Parameters:
+    ///   - lifeStageArg: e.g. `"LIFE_STAGE_PERIMENOPAUSE"`, or `nil` for regular
+    ///   - skipOnboarding: whether to inject `SKIP_ONBOARDING` (default true)
+    private func makeApp(lifeStageArg: String?, skipOnboarding: Bool = true) -> XCUIApplication {
+        let newApp = XCUIApplication()
+        let simulatorHostHome = ProcessInfo.processInfo.environment["SIMULATOR_HOST_HOME"] ?? NSHomeDirectory()
+        let cacheDir = simulatorHostHome + "/Library/Caches/tools.fastlane"
+        let snapshotLang = (try? String(contentsOfFile: cacheDir + "/language.txt", encoding: .utf8))?
+            .trimmingCharacters(in: .whitespacesAndNewlines) ?? "en-US"
+        var args = ["UI-Testing", "RESET_DATA", "LOAD_SYMPTOM_RICH"]
+        if skipOnboarding { args.append("SKIP_ONBOARDING") }
+        if let stage = lifeStageArg { args.append(stage) }
+        newApp.launchArguments = args
+        newApp.launchEnvironment["FASTLANE_SNAPSHOT"] = "1"
+        newApp.launchEnvironment["SNAPSHOT_LANGUAGE"] = snapshotLang
+        setupSnapshot(newApp)
+        addUIInterruptionMonitor(withDescription: "System alert") { alert in
+            if alert.buttons["Don't Allow"].exists { alert.buttons["Don't Allow"].tap(); return true }
+            if alert.buttons["Allow"].exists { alert.buttons["Allow"].tap(); return true }
+            return false
+        }
+        return newApp
+    }
 }
 
 // MARK: - Helpers
