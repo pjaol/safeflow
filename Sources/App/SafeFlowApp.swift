@@ -43,6 +43,17 @@ struct SafeFlowApp: App {
         } else if args.contains("UI-Testing") || args.contains("RESET_ONBOARDING") {
             UserDefaults.standard.set(false, forKey: "hasCompletedOnboarding")
         }
+        // Life stage overrides for UI tests — set before first render
+        if args.contains("LIFE_STAGE_PERIMENOPAUSE") {
+            UserDefaults.standard.set(LifeStage.perimenopause.rawValue, forKey: LifeStage.defaultsKey)
+        } else if args.contains("LIFE_STAGE_MENOPAUSE") {
+            UserDefaults.standard.set(LifeStage.menopause.rawValue, forKey: LifeStage.defaultsKey)
+        } else if args.contains("LIFE_STAGE_PAUSED") {
+            UserDefaults.standard.set(LifeStage.paused.rawValue, forKey: LifeStage.defaultsKey)
+        } else if args.contains("RESET_DATA") {
+            // Reset life stage to default when resetting data
+            UserDefaults.standard.set(LifeStage.regular.rawValue, forKey: LifeStage.defaultsKey)
+        }
         #endif
     }
 
