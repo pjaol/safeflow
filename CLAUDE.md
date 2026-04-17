@@ -130,14 +130,19 @@ In-app locale switching is `#if DEBUG || BETA` only — production uses the iOS 
 
 All primary screens have a full VoiceOver pass as of v1.1.1. Key patterns:
 
-- Use `.accessibilityAddTraits()` — never assign `.accessibilityTraits` directly (overwrites existing traits)
-- Use `.accessibilityElement(children: .combine)` to group list rows
-- Composite labels on complex controls (e.g. dartboard, cycle ring, phase card)
-- All animations check `@Environment(\.accessibilityReduceMotion)`
-- All decorative images use `.accessibilityHidden(true)`
-- Sheet/modal dismissal returns focus to the trigger via `@AccessibilityFocusState`
+**VoiceOver reads elements in this fixed order: Label → Value → Trait → Hint.** Design labels and hints with this in mind. Never include the element type in the label ("Settings button" reads as "Settings button, button").
 
-Automated audit: `UITests/AccessibilityAuditTests.swift` runs per-screen audits. Run these before any PR touching views.
+- Use `.accessibilityAddTraits()` — never assign `.accessibilityTraits` directly (overwrites existing traits)
+- Use `.accessibilityElement(children: .combine)` to group list rows into a single focusable element
+- Icon-only buttons MUST have `.accessibilityLabel` — without it VoiceOver reads "button" only
+- Composite labels on complex controls (dartboard, cycle ring, phase card) describe the whole, not parts
+- All animations check `@Environment(\.accessibilityReduceMotion)` — use `.opacity` transition as the fallback
+- All decorative images use `.accessibilityHidden(true)` or `Image(decorative:)`
+- Custom overlays/modals need `.accessibilityAddTraits(.isModal)` and `.accessibilityAction(.escape) { dismiss() }`
+- Sheet/modal dismissal returns focus to the trigger via `@AccessibilityFocusState` with a short async delay
+- Minimum tap target 44×44pt — use `.frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())` on small controls
+
+Automated audit: `UITests/AccessibilityAuditTests.swift` runs per-screen audits. Run these before any PR touching views. The full patterns reference is in `.claude/skills/ios-accessibility/`.
 
 App Store accessibility declarations (published after v1.1.1 goes live): VoiceOver, Voice Control, Larger Text, Dark Interface, Differentiate Without Color Alone, Sufficient Contrast, Reduced Motion.
 
