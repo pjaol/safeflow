@@ -7,14 +7,106 @@ struct CycleDay: Identifiable, Codable {
     var symptoms: Set<Symptom>
     var mood: Mood?
     var notes: String?
+    // Daily Wellbeing — nil means not logged (never auto-carry-forward)
+    var sleepQuality: WellbeingLevel?
+    var energyLevel: WellbeingLevel?
+    var stressLevel: WellbeingLevel?
 
-    init(id: UUID = UUID(), date: Date, flow: FlowIntensity? = nil, symptoms: Set<Symptom> = [], mood: Mood? = nil, notes: String? = nil) {
+    init(
+        id: UUID = UUID(),
+        date: Date,
+        flow: FlowIntensity? = nil,
+        symptoms: Set<Symptom> = [],
+        mood: Mood? = nil,
+        notes: String? = nil,
+        sleepQuality: WellbeingLevel? = nil,
+        energyLevel: WellbeingLevel? = nil,
+        stressLevel: WellbeingLevel? = nil
+    ) {
         self.id = id
         self.date = date
         self.flow = flow
         self.symptoms = symptoms
         self.mood = mood
         self.notes = notes
+        self.sleepQuality = sleepQuality
+        self.energyLevel = energyLevel
+        self.stressLevel = stressLevel
+    }
+}
+
+// MARK: - WellbeingLevel
+
+/// 0–4 scale for sleep quality, energy level, and stress level.
+/// `nil` on a CycleDay means the field was not logged that day.
+enum WellbeingLevel: Int, Codable, CaseIterable {
+    case veryLow = 0
+    case low     = 1
+    case medium  = 2
+    case high    = 3
+    case veryHigh = 4
+
+    // MARK: Sleep quality labels (veryLow = poor, veryHigh = excellent)
+    var sleepLabel: LocalizedStringKey {
+        switch self {
+        case .veryLow:  return "Poor"
+        case .low:      return "Fair"
+        case .medium:   return "Okay"
+        case .high:     return "Good"
+        case .veryHigh: return "Great"
+        }
+    }
+
+    var sleepLabelString: String {
+        switch self {
+        case .veryLow:  return String(localized: "Poor")
+        case .low:      return String(localized: "Fair")
+        case .medium:   return String(localized: "Okay")
+        case .high:     return String(localized: "Good")
+        case .veryHigh: return String(localized: "Great")
+        }
+    }
+
+    // MARK: Energy level labels (veryLow = depleted, veryHigh = high)
+    var energyLabel: LocalizedStringKey {
+        switch self {
+        case .veryLow:  return "Depleted"
+        case .low:      return "Low"
+        case .medium:   return "Okay"
+        case .high:     return "Good"
+        case .veryHigh: return "High"
+        }
+    }
+
+    var energyLabelString: String {
+        switch self {
+        case .veryLow:  return String(localized: "Depleted")
+        case .low:      return String(localized: "Low")
+        case .medium:   return String(localized: "Okay")
+        case .high:     return String(localized: "Good")
+        case .veryHigh: return String(localized: "High")
+        }
+    }
+
+    // MARK: Stress level labels (veryLow = calm, veryHigh = high)
+    var stressLabel: LocalizedStringKey {
+        switch self {
+        case .veryLow:  return "Calm"
+        case .low:      return "Mild"
+        case .medium:   return "Moderate"
+        case .high:     return "High"
+        case .veryHigh: return "Very High"
+        }
+    }
+
+    var stressLabelString: String {
+        switch self {
+        case .veryLow:  return String(localized: "Calm")
+        case .low:      return String(localized: "Mild")
+        case .medium:   return String(localized: "Moderate")
+        case .high:     return String(localized: "High")
+        case .veryHigh: return String(localized: "Very High")
+        }
     }
 }
 
@@ -58,20 +150,42 @@ enum SymptomCategory: String, CaseIterable {
     case pain
     case energy
     case digestive
+    case vasomotor      // perimenopause + menopause
+    case musculoskeletal // perimenopause + menopause
+    case intimateHealth // menopause only, opt-in
 
     var localizedName: LocalizedStringKey {
         switch self {
-        case .pain: return "Pain"
-        case .energy: return "Energy"
-        case .digestive: return "Body"
+        case .pain:           return "Pain"
+        case .energy:         return "Energy"
+        case .digestive:      return "Body"
+        case .vasomotor:      return "Hot Flashes"
+        case .musculoskeletal: return "Joints"
+        case .intimateHealth: return "Intimate Health"
         }
     }
 
     var localizedNameString: String {
         switch self {
-        case .pain: return String(localized: "Pain")
-        case .energy: return String(localized: "Energy")
-        case .digestive: return String(localized: "Body")
+        case .pain:           return String(localized: "Pain")
+        case .energy:         return String(localized: "Energy")
+        case .digestive:      return String(localized: "Body")
+        case .vasomotor:      return String(localized: "Hot Flashes")
+        case .musculoskeletal: return String(localized: "Joints")
+        case .intimateHealth: return String(localized: "Intimate Health")
+        }
+    }
+
+    /// Life stages for which this category is visible.
+    /// `.regular` and `.irregular` always see pain/energy/digestive only.
+    var visibleForStages: Set<LifeStage> {
+        switch self {
+        case .pain, .energy, .digestive:
+            return Set(LifeStage.allCases)
+        case .vasomotor, .musculoskeletal:
+            return [.perimenopause, .menopause]
+        case .intimateHealth:
+            return [.menopause]
         }
     }
 }
@@ -104,6 +218,21 @@ enum Symptom: String, Codable, CaseIterable {
     case dischargeChanges
     case mittelschmerz
 
+    // Vasomotor (perimenopause + menopause)
+    case hotFlashes
+    case nightSweats
+    case chills
+
+    // Musculoskeletal (perimenopause + menopause)
+    case jointPain
+    case muscleAches
+    case exerciseRecovery
+
+    // Intimate health (menopause, opt-in)
+    case vaginalDryness
+    case urinaryUrgency
+    case painWithSex
+
     var localizedName: LocalizedStringKey {
         switch self {
         case .cramps: return "Cramps"
@@ -121,6 +250,15 @@ enum Symptom: String, Codable, CaseIterable {
         case .appetiteChanges: return "Appetite"
         case .dischargeChanges: return "Discharge"
         case .mittelschmerz: return "Ovulation"
+        case .hotFlashes: return "Hot Flashes"
+        case .nightSweats: return "Night Sweats"
+        case .chills: return "Chills"
+        case .jointPain: return "Joint Pain"
+        case .muscleAches: return "Muscle Aches"
+        case .exerciseRecovery: return "Exercise Recovery"
+        case .vaginalDryness: return "Vaginal Dryness"
+        case .urinaryUrgency: return "Urinary Urgency"
+        case .painWithSex: return "Pain With Sex"
         }
     }
 
@@ -141,6 +279,15 @@ enum Symptom: String, Codable, CaseIterable {
         case .appetiteChanges: return String(localized: "Appetite")
         case .dischargeChanges: return String(localized: "Discharge")
         case .mittelschmerz: return String(localized: "Ovulation")
+        case .hotFlashes: return String(localized: "Hot Flashes")
+        case .nightSweats: return String(localized: "Night Sweats")
+        case .chills: return String(localized: "Chills")
+        case .jointPain: return String(localized: "Joint Pain")
+        case .muscleAches: return String(localized: "Muscle Aches")
+        case .exerciseRecovery: return String(localized: "Exercise Recovery")
+        case .vaginalDryness: return String(localized: "Vaginal Dryness")
+        case .urinaryUrgency: return String(localized: "Urinary Urgency")
+        case .painWithSex: return String(localized: "Pain With Sex")
         }
     }
 
@@ -161,6 +308,15 @@ enum Symptom: String, Codable, CaseIterable {
         case .appetiteChanges: return "minus.circle.fill"
         case .dischargeChanges: return "drop.fill"
         case .mittelschmerz: return "mappin.circle.fill"
+        case .hotFlashes: return "thermometer.sun.fill"
+        case .nightSweats: return "moon.fill"
+        case .chills: return "snowflake"
+        case .jointPain: return "figure.strengthtraining.traditional"
+        case .muscleAches: return "figure.flexibility"
+        case .exerciseRecovery: return "arrow.clockwise.heart"
+        case .vaginalDryness: return "drop.halffull"
+        case .urinaryUrgency: return "exclamationmark.circle.fill"
+        case .painWithSex: return "heart.slash.fill"
         }
     }
 
@@ -172,6 +328,12 @@ enum Symptom: String, Codable, CaseIterable {
             return .energy
         case .foodCravings, .nausea, .appetiteChanges, .acne, .dischargeChanges:
             return .digestive
+        case .hotFlashes, .nightSweats, .chills:
+            return .vasomotor
+        case .jointPain, .muscleAches, .exerciseRecovery:
+            return .musculoskeletal
+        case .vaginalDryness, .urinaryUrgency, .painWithSex:
+            return .intimateHealth
         }
     }
 }

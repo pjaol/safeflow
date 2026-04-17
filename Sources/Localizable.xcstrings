@@ -7647,6 +7647,177 @@
         "fr": { "stringUnit": { "state": "needs_review", "value": "Votre expérience" } }
       }
     },
+    "Poor": {
+      "comment": "WellbeingLevel sleep label — very low",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Poor" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Schlecht" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Malo" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Mauvais" } }
+      }
+    },
+    "Fair": {
+      "comment": "WellbeingLevel sleep label — low",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Fair" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Mäßig" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Regular" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Passable" } }
+      }
+    },
+    "Okay": {
+      "comment": "WellbeingLevel label — medium",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Okay" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Okay" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Bien" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Correct" } }
+      }
+    },
+    "Depleted": {
+      "comment": "WellbeingLevel energy label — very low",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Depleted" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Erschöpft" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Agotada" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Épuisée" } }
+      }
+    },
+    "Calm": {
+      "comment": "WellbeingLevel stress label — very low",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Calm" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Ruhig" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Tranquila" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Calme" } }
+      }
+    },
+    "Mild": {
+      "comment": "WellbeingLevel stress label — low",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Mild" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Leicht" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Leve" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Léger" } }
+      }
+    },
+    "Moderate": {
+      "comment": "WellbeingLevel stress label — medium",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Moderate" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Mittel" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Moderado" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Modéré" } }
+      }
+    },
+    "Very High": {
+      "comment": "WellbeingLevel stress label — very high",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Very High" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Sehr hoch" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Muy alto" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Très élevé" } }
+      }
+    },
+    "Hot Flashes": {
+      "comment": "Symptom name — vasomotor category",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Hot Flashes" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Hitzewallungen" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Sofocos" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Bouffées de chaleur" } }
+      }
+    },
+    "Night Sweats": {
+      "comment": "Symptom name — vasomotor category",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Night Sweats" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Nachtschweiß" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Sudores nocturnos" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Sueurs nocturnes" } }
+      }
+    },
+    "Chills": {
+      "comment": "Symptom name — vasomotor category",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Chills" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Schüttelfrost" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Escalofríos" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Frissons" } }
+      }
+    },
+    "Joint Pain": {
+      "comment": "Symptom name — musculoskeletal category",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Joint Pain" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Gelenkschmerzen" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Dolor articular" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Douleurs articulaires" } }
+      }
+    },
+    "Muscle Aches": {
+      "comment": "Symptom name — musculoskeletal category",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Muscle Aches" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Muskelschmerzen" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Dolores musculares" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Douleurs musculaires" } }
+      }
+    },
+    "Exercise Recovery": {
+      "comment": "Symptom name — musculoskeletal category",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Exercise Recovery" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Erholung nach Sport" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Recuperación tras ejercicio" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Récupération après exercice" } }
+      }
+    },
+    "Vaginal Dryness": {
+      "comment": "Symptom name — intimate health category (menopause, opt-in)",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Vaginal Dryness" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Vaginale Trockenheit" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Sequedad vaginal" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Sécheresse vaginale" } }
+      }
+    },
+    "Urinary Urgency": {
+      "comment": "Symptom name — intimate health category (menopause, opt-in)",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Urinary Urgency" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Harndrang" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Urgencia urinaria" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Urgences urinaires" } }
+      }
+    },
+    "Pain With Sex": {
+      "comment": "Symptom name — intimate health category (menopause, opt-in)",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Pain With Sex" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Schmerzen beim Sex" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Dolor durante el sexo" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Douleur lors des rapports" } }
+      }
+    },
+    "Joints": {
+      "comment": "SymptomCategory display name — musculoskeletal",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Joints" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Gelenke" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Articulaciones" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Articulations" } }
+      }
+    },
+    "Intimate Health": {
+      "comment": "SymptomCategory display name — intimate health (opt-in)",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Intimate Health" } },
+        "de": { "stringUnit": { "state": "needs_review", "value": "Intime Gesundheit" } },
+        "es": { "stringUnit": { "state": "needs_review", "value": "Salud íntima" } },
+        "fr": { "stringUnit": { "state": "needs_review", "value": "Santé intime" } }
+      }
+    },
     "Regular cycles": {
       "comment": "LifeStage display name",
       "localizations": {
