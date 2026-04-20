@@ -31,9 +31,10 @@ private func makeStoreReady(
     return store
 }
 
-/// Waits long enough for the internal async save/load Task to complete.
+/// Drains pending async tasks on the main actor (save/load) without a time-based sleep.
+/// Yields repeatedly so unstructured Tasks spawned by CycleStore get a chance to run.
 private func drain() async {
-    try? await Task.sleep(nanoseconds: 100_000_000) // 100 ms
+    for _ in 0..<10 { await Task.yield() }
 }
 
 // MARK: - CycleStoreTests
@@ -529,5 +530,75 @@ final class CycleStoreTests: XCTestCase {
 
         sut.clearUnexpectedBleedingSignal()
         XCTAssertFalse(sut.unexpectedBleedingDetected)
+    }
+
+    // MARK: - recentCycles
+
+    func testRecentCyclesReturnsNewestFirst() async {
+        let sut = await makeStoreReady()
+        let cal = Calendar.current
+        // Three distinct cycles separated by gaps > 3 days
+        for d in ["2025-01-01", "2025-01-02", "2025-01-03"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+        for d in ["2025-02-05", "2025-02-06", "2025-02-07"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+        for d in ["2025-03-10", "2025-03-11", "2025-03-12"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+
+        let cycles = sut.recentCycles(limit: 3)
+        XCTAssertEqual(cycles.count, 3)
+        XCTAssertEqual(cycles[0].start, cal.startOfDay(for: makeDate("2025-03-10"))) // newest first
+        XCTAssertEqual(cycles[1].start, cal.startOfDay(for: makeDate("2025-02-05")))
+        XCTAssertEqual(cycles[2].start, cal.startOfDay(for: makeDate("2025-01-01")))
+    }
+
+    func testRecentCyclesRespectsLimit() async {
+        let sut = await makeStoreReady()
+        let cal = Calendar.current
+        for d in ["2025-01-01", "2025-01-02"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+        for d in ["2025-02-05", "2025-02-06"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+        for d in ["2025-03-10", "2025-03-11"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+        for d in ["2025-04-15", "2025-04-16"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+
+        let cycles = sut.recentCycles(limit: 3)
+        XCTAssertEqual(cycles.count, 3)
+        XCTAssertEqual(cycles[0].start, cal.startOfDay(for: makeDate("2025-04-15")))
+    }
+
+    func testRecentCyclesExcludesSingleDayRuns() async {
+        let sut = await makeStoreReady()
+        let cal = Calendar.current
+        // A real 3-day cycle
+        for d in ["2025-01-01", "2025-01-02", "2025-01-03"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+        // A single-day entry — should NOT count (only 1 non-spotting day, threshold is 2)
+        sut.addOrUpdateDay(CycleDay(date: makeDate("2025-02-15"), flow: .medium))
+
+        let cycles = sut.recentCycles(limit: 3)
+        XCTAssertEqual(cycles.count, 1)
+        XCTAssertEqual(cycles[0].start, cal.startOfDay(for: makeDate("2025-01-01")))
+    }
+
+    func testRecentCyclesExcludesSpottingOnlyRuns() async {
+        let sut = await makeStoreReady()
+        let cal = Calendar.current
+        // A real cycle
+        for d in ["2025-01-01", "2025-01-02", "2025-01-03"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+        // Spotting-only run — should not count
+        for d in ["2025-02-10", "2025-02-11"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .spotting)) }
+
+        let cycles = sut.recentCycles(limit: 3)
+        XCTAssertEqual(cycles.count, 1)
+        XCTAssertEqual(cycles[0].start, cal.startOfDay(for: makeDate("2025-01-01")))
+    }
+
+    func testRecentCyclesDurationIsInclusiveSpan() async {
+        let sut = await makeStoreReady()
+        // Flow on Jan 1, 2, 3 = 3 days
+        for d in ["2025-01-01", "2025-01-02", "2025-01-03"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+
+        let cycles = sut.recentCycles(limit: 1)
+        XCTAssertEqual(cycles.first?.days, 3)
+    }
+
+    func testRecentCyclesEmptyWhenNoData() async {
+        let sut = await makeStoreReady()
+        XCTAssertTrue(sut.recentCycles().isEmpty)
     }
 }

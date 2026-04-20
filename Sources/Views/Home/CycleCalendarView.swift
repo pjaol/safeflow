@@ -23,6 +23,7 @@ struct CycleCalendarView: View {
     @ObservedObject var cycleStore: CycleStore
     @State private var monthCount = 3
     @State private var ribbonWeek: Date? = nil
+    @Environment(\.locale) private var locale
 
     private let cal             = Calendar.current
     private let dayColumnCount  = 31
@@ -37,9 +38,18 @@ struct CycleCalendarView: View {
     private var subRowGap: CGFloat  { monthCount == 3 ?  4 :  2 }
 
     private var displayMonths: [Date] {
-        let thisMonth = cal.date(from: cal.dateComponents([.year, .month], from: Date()))!
+        let todayMonth = cal.date(from: cal.dateComponents([.year, .month], from: Date()))!
+        // Anchor to the most recent month with logged data, capped at today.
+        // This prevents an empty calendar when there's a gap between last log and today.
+        let anchorMonth: Date = {
+            guard let lastLog = cycleStore.getAllDays().max(by: { $0.date < $1.date })?.date,
+                  let lastLogMonth = cal.date(from: cal.dateComponents([.year, .month], from: lastLog)),
+                  lastLogMonth < todayMonth
+            else { return todayMonth }
+            return lastLogMonth
+        }()
         return (0..<monthCount).compactMap {
-            cal.date(byAdding: .month, value: -$0, to: thisMonth)
+            cal.date(byAdding: .month, value: -$0, to: anchorMonth)
         }.reversed()
     }
 
@@ -468,6 +478,7 @@ struct CycleCalendarView: View {
     private func shortMonth(_ date: Date) -> String {
         let f = DateFormatter()
         f.dateFormat = "MMM"
+        f.locale = locale
         return f.string(from: date)
     }
 
@@ -491,6 +502,7 @@ struct MonthSummaryView: View {
     @ObservedObject var cycleStore: CycleStore
     let month: Date
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.locale) private var locale
     @State private var logDate: Date?
     @State private var showingLogSheet = false
 
@@ -499,6 +511,7 @@ struct MonthSummaryView: View {
     private var monthLabel: String {
         let f = DateFormatter()
         f.dateFormat = "MMMM yyyy"
+        f.locale = locale
         return f.string(from: month)
     }
 
@@ -525,7 +538,9 @@ struct MonthSummaryView: View {
 
         let startFmt = DateFormatter()
         startFmt.dateFormat = "MMM d"
+        startFmt.locale = locale
         let endFmt = DateFormatter()
+        endFmt.locale = locale
         return byWeek.map { group in
             let end = cal.date(byAdding: .day, value: 6, to: group.weekStart) ?? group.weekStart
             endFmt.dateFormat = cal.isDate(group.weekStart, equalTo: end, toGranularity: .month) ? "d" : "MMM d"
@@ -590,6 +605,7 @@ private struct WeekDayRow: View {
     let date: Date
     let day: CycleDay
     let onEdit: () -> Void
+    @Environment(\.locale) private var locale
 
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
@@ -638,7 +654,9 @@ private struct WeekDayRow: View {
     }
 
     private var dayOfWeek: String {
-        let f = DateFormatter(); f.dateFormat = "EEE"
+        let f = DateFormatter()
+        f.dateFormat = "EEE"
+        f.locale = locale
         return f.string(from: date).uppercased()
     }
 

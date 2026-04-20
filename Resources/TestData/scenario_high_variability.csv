@@ -1,36 +1,36 @@
 date,flow,symptoms,mood,notes
-2025-08-01,medium,"cramps,bloating",neutral,"Cycle 1 start — 22 days"
-2025-08-02,heavy,"cramps,fatigue",sad,
-2025-08-03,heavy,"cramps",neutral,
-2025-08-04,medium,,neutral,
-2025-08-05,light,,happy,
-2025-08-23,medium,"cramps,headache",irritable,"Cycle 2 start — 45 days"
-2025-08-24,heavy,"cramps,fatigue",sad,
-2025-08-25,heavy,"backPain,bloating",neutral,
-2025-08-26,medium,,neutral,
-2025-08-27,light,,neutral,
-2025-10-07,light,"cramps",anxious,"Cycle 3 start — 38 days"
-2025-10-08,medium,"cramps,fatigue",sad,
-2025-10-09,heavy,"cramps,backPain",neutral,
-2025-10-10,medium,"bloating",neutral,
-2025-10-11,light,,neutral,
-2025-11-18,heavy,"cramps,headache",irritable,"Cycle 4 start — 24 days"
-2025-11-19,heavy,"cramps,fatigue",sad,
-2025-11-20,heavy,"backPain",neutral,
-2025-11-21,medium,,neutral,
-2025-11-22,light,,happy,
-2025-12-12,medium,"cramps",neutral,"Cycle 5 start — 42 days"
-2025-12-13,heavy,"cramps,bloating",anxious,
-2025-12-14,heavy,"fatigue,backPain",sad,
-2025-12-15,medium,"cramps",neutral,
-2025-12-16,light,,neutral,
-2026-01-27,light,"cramps",irritable,"Cycle 6 start — 26 days"
-2026-01-28,medium,"cramps,fatigue",sad,
-2026-01-29,heavy,"bloating,backPain",neutral,
-2026-01-30,medium,,neutral,
-2026-01-31,light,,happy,
-2026-03-10,medium,"cramps,headache",anxious,"Cycle 7 start — 38 days"
-2026-03-11,heavy,"cramps,fatigue",sad,
-2026-03-12,heavy,"backPain",neutral,
-2026-03-13,medium,"bloating",neutral,
-2026-03-14,light,,neutral,
+-225,medium,"cramps,bloating",neutral,Cycle 1 start — 22 days
+-224,heavy,"cramps,fatigue",sad,
+-223,heavy,cramps,neutral,
+-222,medium,,neutral,
+-221,light,,happy,
+-203,medium,"cramps,headache",irritable,Cycle 2 start — 45 days
+-202,heavy,"cramps,fatigue",sad,
+-201,heavy,"backPain,bloating",neutral,
+-200,medium,,neutral,
+-199,light,,neutral,
+-158,light,cramps,anxious,Cycle 3 start — 38 days
+-157,medium,"cramps,fatigue",sad,
+-156,heavy,"cramps,backPain",neutral,
+-155,medium,bloating,neutral,
+-154,light,,neutral,
+-116,heavy,"cramps,headache",irritable,Cycle 4 start — 24 days
+-115,heavy,"cramps,fatigue",sad,
+-114,heavy,backPain,neutral,
+-113,medium,,neutral,
+-112,light,,happy,
+-92,medium,cramps,neutral,Cycle 5 start — 42 days
+-91,heavy,"cramps,bloating",anxious,
+-90,heavy,"fatigue,backPain",sad,
+-89,medium,cramps,neutral,
+-88,light,,neutral,
+-46,light,cramps,irritable,Cycle 6 start — 26 days
+-45,medium,"cramps,fatigue",sad,
+-44,heavy,"bloating,backPain",neutral,
+-43,medium,,neutral,
+-42,light,,happy,
+-4,medium,"cramps,headache",anxious,Cycle 7 start — 38 days
+-3,heavy,"cramps,fatigue",sad,
+-2,heavy,backPain,neutral,
+-1,medium,bloating,neutral,
+0,light,,neutral,

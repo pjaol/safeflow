@@ -109,9 +109,16 @@ class TestDataLoader {
             throw TestDataError.invalidFormat("Invalid line format: \(line)")
         }
         
-        // Parse date (required)
-        guard let date = dateFormatter.date(from: components[0].trimmingCharacters(in: .whitespaces)) else {
-            throw TestDataError.invalidDate("Invalid date format: \(components[0])")
+        // Parse date (required) — accepts either "yyyy-MM-dd" or an integer day offset from today (0 = today, -7 = 7 days ago)
+        let dateString = components[0].trimmingCharacters(in: .whitespaces)
+        let date: Date
+        if let offset = Int(dateString) {
+            let cal = Calendar.current
+            date = cal.startOfDay(for: cal.date(byAdding: .day, value: offset, to: Date()) ?? Date())
+        } else if let parsed = dateFormatter.date(from: dateString) {
+            date = parsed
+        } else {
+            throw TestDataError.invalidDate("Invalid date format: \(dateString)")
         }
         
         // Parse flow (optional)
@@ -154,14 +161,32 @@ class TestDataLoader {
             mood = nil
         }
         
-        // Parse notes (optional)
-        let notes = components.count > 4 ? components[4].trimmingCharacters(in: .whitespaces) : nil
-        
+        // Parse sleep quality (optional, column 4)
+        let sleepQuality: WellbeingLevel? = components.count > 4
+            ? WellbeingLevel(rawString: components[4].trimmingCharacters(in: .whitespaces))
+            : nil
+
+        // Parse energy level (optional, column 5)
+        let energyLevel: WellbeingLevel? = components.count > 5
+            ? WellbeingLevel(rawString: components[5].trimmingCharacters(in: .whitespaces))
+            : nil
+
+        // Parse stress level (optional, column 6)
+        let stressLevel: WellbeingLevel? = components.count > 6
+            ? WellbeingLevel(rawString: components[6].trimmingCharacters(in: .whitespaces))
+            : nil
+
+        // Parse notes (optional, column 7)
+        let notes = components.count > 7 ? components[7].trimmingCharacters(in: .whitespaces) : nil
+
         return CycleDayTestEntry(
             date: date,
             flow: flow,
             symptoms: symptoms,
             mood: mood,
+            sleepQuality: sleepQuality,
+            energyLevel: energyLevel,
+            stressLevel: stressLevel,
             notes: notes
         )
     }

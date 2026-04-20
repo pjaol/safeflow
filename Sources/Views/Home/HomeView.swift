@@ -22,6 +22,25 @@ struct HomeView: View {
         cycleStore.severitySignals().filter { !dismissedSignalIDs.contains($0.id) }
     }
 
+    // MARK: - Signal computation
+
+    /// Resolved window — sentinel (cycle-boundary) or rolling (30/60-day), depending
+    /// on whether a period start exists within the last 90 days.
+    private var signalWindow: SignalWindow {
+        SignalWindowResolver.resolve(allDays: cycleStore.getAllDays())
+    }
+
+    private var signalReadiness: SignalReadiness {
+        let w = signalWindow
+        return SignalEngine.compute(
+            current:      w.current,
+            previous:     [],          // engine uses previous for trend direction; baseline covers this in sentinel mode
+            baseline:     w.baseline,
+            stage:        lifeStage,
+            cycleLengths: cycleStore.detectedCycleLengths()
+        )
+    }
+
     var body: some View {
         NavigationStack {
             ScrollViewReader { proxy in
@@ -51,14 +70,12 @@ struct HomeView: View {
                             BleedHistoryCard(cycleStore: cycleStore)
                         }
 
-                        // Perimenopause + menopause: symptom snapshot (only when there is data to show)
-                        if lifeStage == .perimenopause || lifeStage == .menopause {
-                            SymptomSnapshotCard(cycleStore: cycleStore)
-                        }
+                        // Peri/meno: monthly summary with embedded signal narrative
+                        // (replaces SymptomSnapshotCard + SignalCard — both folded in here)
 
                         // ── Zone 2: Cycle ring summary (phase + alerts + insights + tips) ──
                         // Hidden for paused (no cycle ring) and menopause (no predictions shown)
-                        if lifeStage != .paused && lifeStage != .menopause {
+                        if lifeStage == .regular || lifeStage == .irregular {
                             CycleRingSummaryCard(
                                 cycleStore: cycleStore,
                                 phase: cycleStore.currentPhase(),
@@ -92,8 +109,16 @@ struct HomeView: View {
                         }
 
                         // Monthly summary for non-cycle-prediction stages
+                        // Peri/meno: passes signal + window label for narrative + correct header
+                        // Paused: no signal — plain averages and top symptoms
                         if !lifeStage.showsCyclePrediction {
-                            MonthlySummaryView(cycleStore: cycleStore)
+                            let isPeriMeno = lifeStage == .perimenopause || lifeStage == .menopause
+                            MonthlySummaryView(
+                                cycleStore:  cycleStore,
+                                signal:      isPeriMeno ? signalReadiness : nil,
+                                windowLabel: isPeriMeno ? signalWindow.label : nil
+                            )
+                            .withTrendSheet()
                         }
 
                         CycleCalendarView(cycleStore: cycleStore)

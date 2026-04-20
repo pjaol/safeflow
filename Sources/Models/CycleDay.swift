@@ -99,6 +99,18 @@ enum WellbeingLevel: Int, Codable, CaseIterable {
         }
     }
 
+    /// Parses the string labels used in CSV test data (e.g. "veryLow", "high").
+    init?(rawString: String) {
+        switch rawString.trimmingCharacters(in: .whitespaces) {
+        case "veryLow":  self = .veryLow
+        case "low":      self = .low
+        case "medium":   self = .medium
+        case "high":     self = .high
+        case "veryHigh": self = .veryHigh
+        default:         return nil
+        }
+    }
+
     var stressLabelString: String {
         switch self {
         case .veryLow:  return String(localized: "Calm")

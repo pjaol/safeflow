@@ -128,7 +128,10 @@ class TestRunner: ObservableObject {
                 flow: entry.flow,
                 symptoms: entry.symptoms,
                 mood: entry.mood,
-                notes: entry.notes
+                notes: entry.notes,
+                sleepQuality: entry.sleepQuality,
+                energyLevel: entry.energyLevel,
+                stressLevel: entry.stressLevel
             )
             await cycleStore.addOrUpdateDay(cycleDay)
             logger.debug("Added entry for date: \(entry.date), flow: \(String(describing: entry.flow))")

@@ -6,6 +6,7 @@ struct DebugMenu: View {
     @Environment(\.dismiss) private var dismiss
     @State private var loadStatus: String?
     @AppStorage("appLanguage") private var appLanguage: String = "system"
+    @AppStorage(LifeStage.defaultsKey) private var lifeStage: LifeStage = .regular
 
 
     // MARK: - Scenarios
@@ -68,6 +69,35 @@ struct DebugMenu: View {
             seedCycleLength: 28,
             seedPeriodLength: 5
         ),
+        // Signal scenarios — perimenopause + menopause
+        Scenario(
+            name: "Signal: Early Perimenopause",
+            description: "Jan–Apr 2025. Cycles arriving but getting variable (28→42 day gaps). Hot flashes absent in Jan, escalating to 10+ days by Apr. Sleep declining. Use with Life Stage → Perimenopause.",
+            filename: "scenario_early_perimenopause",
+            seedCycleLength: 32,
+            seedPeriodLength: 5
+        ),
+        Scenario(
+            name: "Signal: Late Perimenopause",
+            description: "Jan–Apr 2025. No flow at all. 16–22 hot flash days/month escalating. Consistently poor sleep and energy. Use with Life Stage → Perimenopause.",
+            filename: "scenario_late_perimenopause",
+            seedCycleLength: 28,
+            seedPeriodLength: 5
+        ),
+        Scenario(
+            name: "Signal: Menopause Stable",
+            description: "Jan–Apr 2025. Improving arc — 16 hot flash days in Jan down to 8 in Apr. Sleep trending better. Use with Life Stage → Menopause.",
+            filename: "scenario_menopause_stable",
+            seedCycleLength: 28,
+            seedPeriodLength: 5
+        ),
+        Scenario(
+            name: "Signal: Symptoms Returning",
+            description: "Jan–Apr 2025. Quiet Jan/Feb (possible HRT), regression from Mar — 16 hot flash days in Apr. Sleep worsening. Use with Life Stage → Menopause.",
+            filename: "scenario_menopause_symptoms_returning",
+            seedCycleLength: 28,
+            seedPeriodLength: 5
+        ),
     ]
 
     // MARK: - Body
@@ -114,6 +144,18 @@ struct DebugMenu: View {
                         }
                         .padding(.vertical, 4)
                     }
+                }
+
+                Section("Life Stage") {
+                    Picker("Life Stage", selection: $lifeStage) {
+                        Text("Regular").tag(LifeStage.regular)
+                        Text("Irregular").tag(LifeStage.irregular)
+                        Text("Perimenopause").tag(LifeStage.perimenopause)
+                        Text("Menopause").tag(LifeStage.menopause)
+                        Text("Paused").tag(LifeStage.paused)
+                    }
+                    .pickerStyle(.inline)
+                    .labelsHidden()
                 }
 
                 Section("Language") {
@@ -174,7 +216,10 @@ struct DebugMenu: View {
                         flow: entry.flow,
                         symptoms: entry.symptoms,
                         mood: entry.mood,
-                        notes: entry.notes
+                        notes: entry.notes,
+                        sleepQuality: entry.sleepQuality,
+                        energyLevel: entry.energyLevel,
+                        stressLevel: entry.stressLevel
                     )
                     cycleStore.addOrUpdateDay(day)
                 }

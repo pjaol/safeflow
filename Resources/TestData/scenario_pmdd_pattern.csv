@@ -1,90 +1,90 @@
 date,flow,symptoms,mood,notes
-2025-10-01,medium,"cramps,bloating",neutral,"Cycle 1 menstrual"
-2025-10-02,heavy,"cramps,fatigue",sad,
-2025-10-03,medium,,neutral,
-2025-10-04,light,,neutral,
-2025-10-05,spotting,,happy,
-2025-10-10,,,"energized","Follicular — good energy"
-2025-10-14,,,"happy","Ovulatory window"
-2025-10-15,,,"confident",
-2025-10-19,,,"irritable","Luteal starts — mood shifting"
-2025-10-20,,,"anxious",
-2025-10-21,,,"sad","Late luteal — PMDD window"
-2025-10-22,,,"anxious,irritable","Severe mood symptoms"
-2025-10-23,,,"sad",
-2025-10-24,,,"irritable",
-2025-10-25,,,"anxious",
-2025-10-26,,,"sad",
-2025-10-27,,,"irritable",
-2025-10-29,medium,"cramps,bloating",neutral,"Cycle 2 menstrual"
-2025-10-30,heavy,"cramps,fatigue",sad,
-2025-10-31,medium,,neutral,
-2025-11-01,light,,neutral,
-2025-11-02,spotting,,happy,
-2025-11-08,,,"energized","Follicular"
-2025-11-13,,,"happy","Ovulatory"
-2025-11-17,,,"irritable","Luteal"
-2025-11-18,,,"anxious",
-2025-11-19,,,"sad","Late luteal PMDD window"
-2025-11-20,,,"irritable",
-2025-11-21,,,"anxious",
-2025-11-22,,,"sad",
-2025-11-23,,,"irritable",
-2025-11-24,,,"anxious",
-2025-11-25,,,"sad",
-2025-11-26,medium,"cramps",neutral,"Cycle 3 menstrual"
-2025-11-27,heavy,"cramps,fatigue",sad,
-2025-11-28,medium,,neutral,
-2025-11-29,light,,neutral,
-2025-11-30,spotting,,happy,
-2025-12-06,,,"energized","Follicular"
-2025-12-11,,,"happy","Ovulatory"
-2025-12-15,,,"irritable","Luteal"
-2025-12-16,,,"anxious",
-2025-12-17,,,"sad","Late luteal PMDD window"
-2025-12-18,,,"irritable",
-2025-12-19,,,"anxious",
-2025-12-20,,,"sad",
-2025-12-21,,,"sensitive",
-2025-12-22,,,"anxious",
-2025-12-23,,,"sad",
-2025-12-24,medium,"cramps,bloating",neutral,"Cycle 4 menstrual"
-2025-12-25,heavy,"cramps,fatigue",sad,
-2025-12-26,medium,,neutral,
-2025-12-27,light,,neutral,
-2025-12-28,spotting,,happy,
-2026-01-05,,,"energized","Follicular"
-2026-01-10,,,"happy","Ovulatory"
-2026-01-14,,,"irritable","Luteal"
-2026-01-16,,,"anxious",
-2026-01-17,,,"sad","Late luteal"
-2026-01-18,,,"irritable",
-2026-01-19,,,"anxious",
-2026-01-20,,,"sad",
-2026-01-21,medium,"cramps",neutral,"Cycle 5 menstrual"
-2026-01-22,heavy,"cramps,fatigue",sad,
-2026-01-23,medium,,neutral,
-2026-01-24,light,,neutral,
-2026-01-25,spotting,,happy,
-2026-02-02,,,"energized","Follicular"
-2026-02-07,,,"happy","Ovulatory"
-2026-02-11,,,"irritable","Luteal"
-2026-02-13,,,"anxious",
-2026-02-14,,,"sad","Late luteal"
-2026-02-15,,,"irritable",
-2026-02-16,,,"anxious",
-2026-02-17,,,"sad",
-2026-02-18,medium,"cramps,bloating",neutral,"Cycle 6 menstrual"
-2026-02-19,heavy,"cramps,fatigue",sad,
-2026-02-20,medium,,neutral,
-2026-02-21,light,,neutral,
-2026-02-22,spotting,,happy,
-2026-03-01,,,"energized","Follicular"
-2026-03-07,,,"happy","Ovulatory"
-2026-03-11,,,"irritable","Luteal starts"
-2026-03-13,,,"anxious",
-2026-03-14,,,"sad","Late luteal"
-2026-03-15,,,"irritable",
-2026-03-16,,,"anxious",
-2026-03-17,,,"sad",
-2026-03-18,,,"sensitive",
+-168,medium,"cramps,bloating",neutral,Cycle 1 menstrual
+-167,heavy,"cramps,fatigue",sad,
+-166,medium,,neutral,
+-165,light,,neutral,
+-164,spotting,,happy,
+-159,,,energized,Follicular — good energy
+-155,,,happy,Ovulatory window
+-154,,,confident,
+-150,,,irritable,Luteal starts — mood shifting
+-149,,,anxious,
+-148,,,sad,Late luteal — PMDD window
+-147,,,"anxious,irritable",Severe mood symptoms
+-146,,,sad,
+-145,,,irritable,
+-144,,,anxious,
+-143,,,sad,
+-142,,,irritable,
+-140,medium,"cramps,bloating",neutral,Cycle 2 menstrual
+-139,heavy,"cramps,fatigue",sad,
+-138,medium,,neutral,
+-137,light,,neutral,
+-136,spotting,,happy,
+-130,,,energized,Follicular
+-125,,,happy,Ovulatory
+-121,,,irritable,Luteal
+-120,,,anxious,
+-119,,,sad,Late luteal PMDD window
+-118,,,irritable,
+-117,,,anxious,
+-116,,,sad,
+-115,,,irritable,
+-114,,,anxious,
+-113,,,sad,
+-112,medium,cramps,neutral,Cycle 3 menstrual
+-111,heavy,"cramps,fatigue",sad,
+-110,medium,,neutral,
+-109,light,,neutral,
+-108,spotting,,happy,
+-102,,,energized,Follicular
+-97,,,happy,Ovulatory
+-93,,,irritable,Luteal
+-92,,,anxious,
+-91,,,sad,Late luteal PMDD window
+-90,,,irritable,
+-89,,,anxious,
+-88,,,sad,
+-87,,,sensitive,
+-86,,,anxious,
+-85,,,sad,
+-84,medium,"cramps,bloating",neutral,Cycle 4 menstrual
+-83,heavy,"cramps,fatigue",sad,
+-82,medium,,neutral,
+-81,light,,neutral,
+-80,spotting,,happy,
+-72,,,energized,Follicular
+-67,,,happy,Ovulatory
+-63,,,irritable,Luteal
+-61,,,anxious,
+-60,,,sad,Late luteal
+-59,,,irritable,
+-58,,,anxious,
+-57,,,sad,
+-56,medium,cramps,neutral,Cycle 5 menstrual
+-55,heavy,"cramps,fatigue",sad,
+-54,medium,,neutral,
+-53,light,,neutral,
+-52,spotting,,happy,
+-44,,,energized,Follicular
+-39,,,happy,Ovulatory
+-35,,,irritable,Luteal
+-33,,,anxious,
+-32,,,sad,Late luteal
+-31,,,irritable,
+-30,,,anxious,
+-29,,,sad,
+-28,medium,"cramps,bloating",neutral,Cycle 6 menstrual
+-27,heavy,"cramps,fatigue",sad,
+-26,medium,,neutral,
+-25,light,,neutral,
+-24,spotting,,happy,
+-17,,,energized,Follicular
+-11,,,happy,Ovulatory
+-7,,,irritable,Luteal starts
+-5,,,anxious,
+-4,,,sad,Late luteal
+-3,,,irritable,
+-2,,,anxious,
+-1,,,sad,
+0,,,sensitive,

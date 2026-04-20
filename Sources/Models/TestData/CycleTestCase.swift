@@ -23,21 +23,36 @@ struct CycleDayTestEntry {
     let flow: FlowIntensity?
     let symptoms: Set<Symptom>
     let mood: Mood?
+    let sleepQuality: WellbeingLevel?
+    let energyLevel: WellbeingLevel?
+    let stressLevel: WellbeingLevel?
     let notes: String?
-    
-    init(date: Date, flow: FlowIntensity? = nil, symptoms: Set<Symptom> = [], mood: Mood? = nil, notes: String? = nil) {
+
+    init(
+        date: Date,
+        flow: FlowIntensity? = nil,
+        symptoms: Set<Symptom> = [],
+        mood: Mood? = nil,
+        sleepQuality: WellbeingLevel? = nil,
+        energyLevel: WellbeingLevel? = nil,
+        stressLevel: WellbeingLevel? = nil,
+        notes: String? = nil
+    ) {
         self.date = date
         self.flow = flow
         self.symptoms = symptoms
         self.mood = mood
+        self.sleepQuality = sleepQuality
+        self.energyLevel = energyLevel
+        self.stressLevel = stressLevel
         self.notes = notes
     }
 }
 
 /// CSV format:
-/// date,flow,symptoms,mood,notes
-/// 2024-01-01,light,"cramps,headache",happy,"First day of period"
-/// 2024-01-02,medium,,neutral,
+/// date,flow,symptoms,mood,sleep,energy,stress,notes
+/// 2024-01-01,light,"cramps,headache",happy,high,medium,low,"First day of period"
+/// 2024-01-02,medium,,neutral,,,,
 /// 
 /// Expected predictions (separate file with same base name + "_predictions.csv"):
 /// date

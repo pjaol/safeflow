@@ -16,9 +16,15 @@
 		V2LS0001000000000000AABB /* LifeStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2LS0000000000000000AABB /* LifeStage.swift */; };
 		V2LS0007000000000000AABB /* LifeStageGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2LS0006000000000000AABB /* LifeStageGuideView.swift */; };
 		V2LS0009000000000000AABB /* LifeStageAdaptiveCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2LS000A000000000000AABB /* LifeStageAdaptiveCards.swift */; };
+		SC001100000000000000AABB /* SignalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = SC001000000000000000AABB /* SignalCard.swift */; };
 		V2LS000B000000000000AABB /* MonthlySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2LS000C000000000000AABB /* MonthlySummaryView.swift */; };
+		V2TH000D000000000000AABB /* TrendHistorySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2TH000E000000000000AABB /* TrendHistorySheet.swift */; };
 		V2LS0003000000000000AABB /* LifeStageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2LS0002000000000000AABB /* LifeStageTests.swift */; };
 		V2CS0001000000000000AABB /* CycleStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2CS0000000000000000AABB /* CycleStoreTests.swift */; };
+		V2SE0001000000000000AABB /* SignalEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2SE0000000000000000AABB /* SignalEngine.swift */; };
+		V2SWR001000000000000AABB /* SignalWindowResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2SWR000000000000000AABB /* SignalWindowResolver.swift */; };
+		V2SE0003000000000000AABB /* SignalEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2SE0002000000000000AABB /* SignalEngineTests.swift */; };
+		V2SS0001000000000000AABB /* SignalScenarioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2SS0000000000000000AABB /* SignalScenarioTests.swift */; };
 		AA11223344556677889900DD /* CycleSeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900CC /* CycleSeedData.swift */; };
 		AA11223344556677889900FF /* CyclePredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900EE /* CyclePredictionEngine.swift */; };
 		AD98F4C4C596FA35562B2178 /* signals.json in Resources */ = {isa = PBXBuildFile; fileRef = 2CECA96FDA217ECAD0E3B085 /* signals.json */; };
@@ -41,6 +47,14 @@
 		BB001122334455667788996C /* scenario_pmdd_pattern.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788996A /* scenario_pmdd_pattern.csv */; };
 		BB001122334455667788996D /* scenario_pmdd_pattern.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788996A /* scenario_pmdd_pattern.csv */; };
 		BB001122334455667788996E /* scenario_pmdd_pattern.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB001122334455667788996A /* scenario_pmdd_pattern.csv */; };
+		V2SC0001000000000000AABB /* scenario_early_perimenopause.csv in Resources */ = {isa = PBXBuildFile; fileRef = V2SC0000000000000000AABB /* scenario_early_perimenopause.csv */; };
+		V2SC0003000000000000AABB /* scenario_late_perimenopause.csv in Resources */ = {isa = PBXBuildFile; fileRef = V2SC0002000000000000AABB /* scenario_late_perimenopause.csv */; };
+		V2SC0005000000000000AABB /* scenario_menopause_stable.csv in Resources */ = {isa = PBXBuildFile; fileRef = V2SC0004000000000000AABB /* scenario_menopause_stable.csv */; };
+		V2SC0007000000000000AABB /* scenario_menopause_symptoms_returning.csv in Resources */ = {isa = PBXBuildFile; fileRef = V2SC0006000000000000AABB /* scenario_menopause_symptoms_returning.csv */; };
+		V2SC0009000000000000AABB /* scenario_early_perimenopause.csv in Resources */ = {isa = PBXBuildFile; fileRef = V2SC0000000000000000AABB /* scenario_early_perimenopause.csv */; };
+		V2SC000B000000000000AABB /* scenario_late_perimenopause.csv in Resources */ = {isa = PBXBuildFile; fileRef = V2SC0002000000000000AABB /* scenario_late_perimenopause.csv */; };
+		V2SC000D000000000000AABB /* scenario_menopause_stable.csv in Resources */ = {isa = PBXBuildFile; fileRef = V2SC0004000000000000AABB /* scenario_menopause_stable.csv */; };
+		V2SC000F000000000000AABB /* scenario_menopause_symptoms_returning.csv in Resources */ = {isa = PBXBuildFile; fileRef = V2SC0006000000000000AABB /* scenario_menopause_symptoms_returning.csv */; };
 		BB11223344556677889900BB /* CyclePhaseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11223344556677889900AA /* CyclePhaseCard.swift */; };
 		BB11223344556677889900DD /* QuickLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11223344556677889900CC /* QuickLogView.swift */; };
 		BB112233445566778899AA01 /* CyclePredictionEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB112233445566778899AA00 /* CyclePredictionEngineTests.swift */; };
@@ -154,10 +168,16 @@
 		V2LS0000000000000000AABB /* LifeStage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeStage.swift; sourceTree = "<group>"; };
 		V2LS0006000000000000AABB /* LifeStageGuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeStageGuideView.swift; sourceTree = "<group>"; };
 		V2LS000A000000000000AABB /* LifeStageAdaptiveCards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeStageAdaptiveCards.swift; sourceTree = "<group>"; };
+		SC001000000000000000AABB /* SignalCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalCard.swift; sourceTree = "<group>"; };
 		V2LS000C000000000000AABB /* MonthlySummaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthlySummaryView.swift; sourceTree = "<group>"; };
+		V2TH000E000000000000AABB /* TrendHistorySheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendHistorySheet.swift; sourceTree = "<group>"; };
 		V2LS0008000000000000AABB /* LifeStageViews */ = {isa = PBXGroup; children = (V2LS0006000000000000AABB /* LifeStageGuideView.swift */,); name = LifeStage; path = Sources/Views/LifeStage; sourceTree = SOURCE_ROOT; };
 		V2LS0002000000000000AABB /* LifeStageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LifeStageTests.swift; path = Tests/UnitTests/LifeStageTests.swift; sourceTree = SOURCE_ROOT; };
 		V2CS0000000000000000AABB /* CycleStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CycleStoreTests.swift; path = Tests/UnitTests/CycleStoreTests.swift; sourceTree = SOURCE_ROOT; };
+		V2SE0000000000000000AABB /* SignalEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalEngine.swift; sourceTree = "<group>"; };
+		V2SWR000000000000000AABB /* SignalWindowResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalWindowResolver.swift; sourceTree = "<group>"; };
+		V2SE0002000000000000AABB /* SignalEngineTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignalEngineTests.swift; path = Tests/UnitTests/SignalEngineTests.swift; sourceTree = SOURCE_ROOT; };
+		V2SS0000000000000000AABB /* SignalScenarioTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignalScenarioTests.swift; path = Tests/UnitTests/SignalScenarioTests.swift; sourceTree = SOURCE_ROOT; };
 		AA11223344556677889900CC /* CycleSeedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleSeedData.swift; sourceTree = "<group>"; };
 		AA11223344556677889900EE /* CyclePredictionEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePredictionEngine.swift; sourceTree = "<group>"; };
 		BB001122334455667788991A /* scenario_new_user.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_new_user.csv; sourceTree = "<group>"; };
@@ -166,6 +186,10 @@
 		BB001122334455667788994A /* scenario_escalating_cramps.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_escalating_cramps.csv; sourceTree = "<group>"; };
 		BB001122334455667788995A /* scenario_overdue_cycle.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_overdue_cycle.csv; sourceTree = "<group>"; };
 		BB001122334455667788996A /* scenario_pmdd_pattern.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_pmdd_pattern.csv; sourceTree = "<group>"; };
+		V2SC0000000000000000AABB /* scenario_early_perimenopause.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_early_perimenopause.csv; sourceTree = "<group>"; };
+		V2SC0002000000000000AABB /* scenario_late_perimenopause.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_late_perimenopause.csv; sourceTree = "<group>"; };
+		V2SC0004000000000000AABB /* scenario_menopause_stable.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_menopause_stable.csv; sourceTree = "<group>"; };
+		V2SC0006000000000000AABB /* scenario_menopause_symptoms_returning.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scenario_menopause_symptoms_returning.csv; sourceTree = "<group>"; };
 		BB11223344556677889900AA /* CyclePhaseCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePhaseCard.swift; sourceTree = "<group>"; };
 		BB11223344556677889900CC /* QuickLogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickLogView.swift; sourceTree = "<group>"; };
 		BB112233445566778899AA00 /* CyclePredictionEngineTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CyclePredictionEngineTests.swift; path = Tests/UnitTests/CyclePredictionEngineTests.swift; sourceTree = SOURCE_ROOT; };
@@ -375,6 +399,15 @@
 			path = Persistence;
 			sourceTree = "<group>";
 		};
+		V2SE0004000000000000AABB /* Signal */ = {
+			isa = PBXGroup;
+			children = (
+				V2SE0000000000000000AABB /* SignalEngine.swift */,
+				V2SWR000000000000000AABB /* SignalWindowResolver.swift */,
+			);
+			path = Signal;
+			sourceTree = "<group>";
+		};
 		CD218E5C2D4021EB009B5198 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,6 +415,7 @@
 				CD218E732D4169C5009B5198 /* Security */,
 				CD218E592D4021EB009B5198 /* Network */,
 				CD218E5B2D4021EB009B5198 /* Persistence */,
+				V2SE0004000000000000AABB /* Signal */,
 				EE4A5B6C7D8E9F0A1B2C3D4E /* Notifications */,
 			);
 			name = Services;
@@ -417,7 +451,9 @@
 				FE2E1432FC934814B484C260 /* InsightCard.swift */,
 				FF33445566778899AABBCCBB /* WeekRibbonView.swift */,
 				V2LS000A000000000000AABB /* LifeStageAdaptiveCards.swift */,
+				SC001000000000000000AABB /* SignalCard.swift */,
 				V2LS000C000000000000AABB /* MonthlySummaryView.swift */,
+				V2TH000E000000000000AABB /* TrendHistorySheet.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -556,6 +592,10 @@
 				BB001122334455667788994A /* scenario_escalating_cramps.csv */,
 				BB001122334455667788995A /* scenario_overdue_cycle.csv */,
 				BB001122334455667788996A /* scenario_pmdd_pattern.csv */,
+				V2SC0000000000000000AABB /* scenario_early_perimenopause.csv */,
+				V2SC0002000000000000AABB /* scenario_late_perimenopause.csv */,
+				V2SC0004000000000000AABB /* scenario_menopause_stable.csv */,
+				V2SC0006000000000000AABB /* scenario_menopause_symptoms_returning.csv */,
 			);
 			path = TestData;
 			sourceTree = "<group>";
@@ -631,6 +671,8 @@
 				BB112233445566778899AA00 /* CyclePredictionEngineTests.swift */,
 				V2LS0002000000000000AABB /* LifeStageTests.swift */,
 				V2CS0000000000000000AABB /* CycleStoreTests.swift */,
+				V2SE0002000000000000AABB /* SignalEngineTests.swift */,
+				V2SS0000000000000000AABB /* SignalScenarioTests.swift */,
 				CDBECD6C2D4010D2006A37C9 /* safeflowTests.swift */,
 			);
 			path = safeflowTests;
@@ -787,6 +829,10 @@
 				BB001122334455667788994C /* scenario_escalating_cramps.csv in Resources */,
 				BB001122334455667788995C /* scenario_overdue_cycle.csv in Resources */,
 				BB001122334455667788996C /* scenario_pmdd_pattern.csv in Resources */,
+				V2SC0009000000000000AABB /* scenario_early_perimenopause.csv in Resources */,
+				V2SC000B000000000000AABB /* scenario_late_perimenopause.csv in Resources */,
+				V2SC000D000000000000AABB /* scenario_menopause_stable.csv in Resources */,
+				V2SC000F000000000000AABB /* scenario_menopause_symptoms_returning.csv in Resources */,
 				732DBD33F96FDB7565E9203E /* nudges.json in Resources */,
 				C36ABC27D2DEEF3058EDD7B7 /* resources.json in Resources */,
 				AD98F4C4C596FA35562B2178 /* signals.json in Resources */,
@@ -816,6 +862,10 @@
 				BB001122334455667788994D /* scenario_escalating_cramps.csv in Resources */,
 				BB001122334455667788995D /* scenario_overdue_cycle.csv in Resources */,
 				BB001122334455667788996D /* scenario_pmdd_pattern.csv in Resources */,
+				V2SC0001000000000000AABB /* scenario_early_perimenopause.csv in Resources */,
+				V2SC0003000000000000AABB /* scenario_late_perimenopause.csv in Resources */,
+				V2SC0005000000000000AABB /* scenario_menopause_stable.csv in Resources */,
+				V2SC0007000000000000AABB /* scenario_menopause_symptoms_returning.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -839,6 +889,10 @@
 				BB001122334455667788994E /* scenario_escalating_cramps.csv in Resources */,
 				BB001122334455667788995E /* scenario_overdue_cycle.csv in Resources */,
 				BB001122334455667788996E /* scenario_pmdd_pattern.csv in Resources */,
+					V2SC0009000000000000AABB /* scenario_early_perimenopause.csv in Resources */,
+					V2SC000B000000000000AABB /* scenario_late_perimenopause.csv in Resources */,
+					V2SC000D000000000000AABB /* scenario_menopause_stable.csv in Resources */,
+					V2SC000F000000000000AABB /* scenario_menopause_symptoms_returning.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -864,7 +918,9 @@
 				V2LS0001000000000000AABB /* LifeStage.swift in Sources */,
 				V2LS0007000000000000AABB /* LifeStageGuideView.swift in Sources */,
 				V2LS0009000000000000AABB /* LifeStageAdaptiveCards.swift in Sources */,
+				SC001100000000000000AABB /* SignalCard.swift in Sources */,
 				V2LS000B000000000000AABB /* MonthlySummaryView.swift in Sources */,
+				V2TH000D000000000000AABB /* TrendHistorySheet.swift in Sources */,
 				CD218E692D4021EB009B5198 /* HomeView.swift in Sources */,
 				CD218E742D4169C5009B5198 /* SecurityService.swift in Sources */,
 				CD218E9F2D4303F1009B5198 /* AppTheme.swift in Sources */,
@@ -877,6 +933,8 @@
 				AA11223344556677889900BB /* CyclePhase.swift in Sources */,
 				AA11223344556677889900DD /* CycleSeedData.swift in Sources */,
 				AA11223344556677889900FF /* CyclePredictionEngine.swift in Sources */,
+				V2SE0001000000000000AABB /* SignalEngine.swift in Sources */,
+				V2SWR001000000000000AABB /* SignalWindowResolver.swift in Sources */,
 				BB11223344556677889900BB /* CyclePhaseCard.swift in Sources */,
 				CC99887766554433221100FF /* CycleRingSummaryCard.swift in Sources */,
 				BB11223344556677889900DD /* QuickLogView.swift in Sources */,
@@ -908,6 +966,8 @@
 				BB112233445566778899AA01 /* CyclePredictionEngineTests.swift in Sources */,
 				V2LS0003000000000000AABB /* LifeStageTests.swift in Sources */,
 				V2CS0001000000000000AABB /* CycleStoreTests.swift in Sources */,
+				V2SE0003000000000000AABB /* SignalEngineTests.swift in Sources */,
+				V2SS0001000000000000AABB /* SignalScenarioTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -144,53 +144,47 @@ private struct SymptomCountRow: View {
 
 // MARK: - BleedHistoryCard
 
-/// For perimenopause users: shows the dates of the last few logged bleeds instead of cycle predictions.
+/// For perimenopause users: shows the last few cycles as (start date, duration) rows.
+/// One row per cycle — not per day — so the dashboard shows pattern, not granular log detail.
+/// Hidden entirely when no cycles have been logged yet.
 struct BleedHistoryCard: View {
     let cycleStore: CycleStore
+    @Environment(\.locale) private var locale
 
-    private var recentBleeds: [CycleDay] {
-        cycleStore.getAllDays()
-            .filter { $0.flow != nil }
-            .sorted { $0.date > $1.date }
-            .prefix(4)
-            .map { $0 }
+    private var cycles: [(start: Date, days: Int)] {
+        cycleStore.recentCycles(limit: 3)
     }
 
     var body: some View {
+        if cycles.isEmpty { return AnyView(EmptyView()) }
+        return AnyView(cardBody)
+    }
+
+    private var cardBody: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 6) {
                 Image(systemName: "calendar.badge.clock")
                     .foregroundStyle(AppTheme.Colors.secondaryPink)
                     .font(.system(.callout, weight: .semibold))
                     .accessibilityHidden(true)
-                Text("Recent bleeds")
+                Text("Cycle history")
                     .font(.system(.callout, design: .rounded, weight: .semibold))
                     .foregroundStyle(AppTheme.Colors.deepGrayText)
             }
 
-            if recentBleeds.isEmpty {
-                Text("No bleeds logged yet.")
-                    .font(.system(.caption, design: .rounded))
-                    .foregroundStyle(AppTheme.Colors.mediumGrayText)
-            } else {
-                VStack(alignment: .leading, spacing: 6) {
-                    ForEach(recentBleeds) { day in
-                        HStack(spacing: 8) {
-                            Image(systemName: day.flow?.sfSymbol ?? "drop.fill")
-                                .font(.system(.caption, weight: .medium))
-                                .foregroundStyle(AppTheme.Colors.secondaryPink)
-                                .frame(width: 16)
-                                .accessibilityHidden(true)
-                            Text(day.date.formatted(.dateTime.month(.abbreviated).day().year()))
-                                .font(.system(.callout, design: .rounded))
-                                .foregroundStyle(AppTheme.Colors.deepGrayText)
-                            Spacer()
-                            if let flow = day.flow {
-                                Text(flow.localizedName)
-                                    .font(.system(.caption, design: .rounded))
-                                    .foregroundStyle(AppTheme.Colors.mediumGrayText)
-                            }
-                        }
+            VStack(alignment: .leading, spacing: 8) {
+                ForEach(Array(cycles.enumerated()), id: \.offset) { index, cycle in
+                    HStack(spacing: 0) {
+                        Text(cycle.start.formatted(.dateTime.month(.abbreviated).year().locale(locale)))
+                            .font(.system(.callout, design: .rounded))
+                            .foregroundStyle(index == 0 ? AppTheme.Colors.deepGrayText : AppTheme.Colors.mediumGrayText)
+                        Spacer()
+                        Text("\(cycle.days) \(cycle.days == 1 ? "day" : "days")")
+                            .font(.system(.callout, design: .rounded))
+                            .foregroundStyle(AppTheme.Colors.mediumGrayText)
+                    }
+                    if index < cycles.count - 1 {
+                        Divider()
                     }
                 }
             }
@@ -199,18 +193,15 @@ struct BleedHistoryCard: View {
         .background(AppTheme.Colors.secondaryBackground)
         .cornerRadius(AppTheme.Metrics.cornerRadius)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(bleedHistoryAccessibilityLabel)
+        .accessibilityLabel(cycleHistoryAccessibilityLabel)
         .accessibilityIdentifier("home.bleedHistoryCard")
     }
 
-    private var bleedHistoryAccessibilityLabel: String {
-        if recentBleeds.isEmpty {
-            return String(localized: "Recent bleeds. No bleeds logged yet.")
-        }
-        let dates = recentBleeds.map { day in
-            day.date.formatted(.dateTime.month(.wide).day().year())
-        }.joined(separator: ", ")
-        return String(localized: "Recent bleeds: \(dates)")
+    private var cycleHistoryAccessibilityLabel: String {
+        let rows = cycles.map { cycle in
+            "\(cycle.start.formatted(.dateTime.month(.wide).year())), \(cycle.days) \(cycle.days == 1 ? "day" : "days")"
+        }.joined(separator: ". ")
+        return "Cycle history. \(rows)"
     }
 }
 

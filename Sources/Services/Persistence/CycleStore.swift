@@ -148,6 +148,52 @@ class CycleStore: ObservableObject {
         return engine.cycleVariability(from: lengths)
     }
 
+    func detectedCycleLengths() -> [Int] {
+        let starts = engine.extractPeriodStarts(from: cycleDays)
+        return engine.cycleLengths(from: starts)
+    }
+
+    /// Returns the most recent `limit` cycles as (start date, duration in days) pairs,
+    /// newest first. A cycle's duration is the span from first to last logged flow day
+    /// in that run (inclusive), so a single day = 1.
+    func recentCycles(limit: Int = 3) -> [(start: Date, days: Int)] {
+        let cal = Calendar.current
+        let flowDays = cycleDays
+            .filter { $0.flow != nil }
+            .sorted { $0.date < $1.date }
+        guard !flowDays.isEmpty else { return [] }
+
+        // Group into runs using the same gap threshold as the prediction engine
+        let gapDays = 3
+        var runs: [[CycleDay]] = []
+        var currentRun: [CycleDay] = [flowDays[0]]
+        for i in 1..<flowDays.count {
+            let gap = cal.dateComponents([.day], from: flowDays[i - 1].date, to: flowDays[i].date).day ?? 0
+            if gap <= gapDays {
+                currentRun.append(flowDays[i])
+            } else {
+                runs.append(currentRun)
+                currentRun = [flowDays[i]]
+            }
+        }
+        runs.append(currentRun)
+
+        // Only count runs with at least 2 non-spotting days (mirrors SignalWindowResolver threshold)
+        let qualifiedRuns = runs.filter { run in
+            run.filter { $0.flow != .spotting }.count >= 2
+        }
+
+        return qualifiedRuns
+            .suffix(limit)
+            .reversed()
+            .map { run in
+                let start = cal.startOfDay(for: run.first!.date)
+                let end   = cal.startOfDay(for: run.last!.date)
+                let days  = (cal.dateComponents([.day], from: start, to: end).day ?? 0) + 1
+                return (start: start, days: days)
+            }
+    }
+
     func currentPhase() -> CyclePhase? {
         engine.currentPhase(days: cycleDays, seedData: seedData, today: dateProvider())
     }

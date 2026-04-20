@@ -46,7 +46,9 @@ struct CategoryStripView: View {
                     Text(category.label)
                         .font(.system(.caption2, design: .rounded).weight(.semibold))
                         .foregroundStyle(.white)
-                        .fixedSize()
+                        .multilineTextAlignment(.center)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.8)
                         .transition(.opacity.combined(with: .scale(scale: 0.85)))
                         .accessibilityHidden(true)
                 }
