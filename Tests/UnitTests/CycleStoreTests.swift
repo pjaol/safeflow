@@ -408,58 +408,6 @@ final class CycleStoreTests: XCTestCase {
         XCTAssertEqual(sut.currentPhase(), .menstrual)
     }
 
-    // MARK: - Wellbeing fields
-
-    func testWellbeingFieldsPersistedOnCycleDay() async {
-        let sut = await makeStoreReady()
-        let day = CycleDay(
-            date: makeDate("2025-03-15"),
-            sleepQuality: .high,
-            energyLevel: .low,
-            stressLevel: .medium
-        )
-        sut.addOrUpdateDay(day)
-        await drain()
-
-        let stored = sut.cycleDays.first
-        XCTAssertEqual(stored?.sleepQuality, .high)
-        XCTAssertEqual(stored?.energyLevel, .low)
-        XCTAssertEqual(stored?.stressLevel, .medium)
-    }
-
-    func testWellbeingFieldsDefaultToNil() {
-        let day = CycleDay(date: makeDate("2025-03-15"))
-        XCTAssertNil(day.sleepQuality)
-        XCTAssertNil(day.energyLevel)
-        XCTAssertNil(day.stressLevel)
-    }
-
-    func testWellbeingFieldsUpdatedOnExistingDay() async {
-        let sut = await makeStoreReady()
-        let id = UUID()
-        let date = makeDate("2025-03-15")
-
-        sut.addOrUpdateDay(CycleDay(id: id, date: date, sleepQuality: .low))
-        await drain()
-        sut.addOrUpdateDay(CycleDay(id: id, date: date, sleepQuality: .veryHigh))
-        await drain()
-
-        XCTAssertEqual(sut.cycleDays.count, 1)
-        XCTAssertEqual(sut.cycleDays.first?.sleepQuality, .veryHigh)
-    }
-
-    func testGetDayForDateReturnsWellbeingValues() async {
-        let date = makeDate("2025-03-15")
-        let sut = await makeStoreReady(referenceDate: date)
-        let day = CycleDay(date: date, energyLevel: .high, stressLevel: .veryLow)
-        sut.addOrUpdateDay(day)
-        await drain()
-
-        let fetched = sut.getDay(for: date)
-        XCTAssertEqual(fetched?.energyLevel, .high)
-        XCTAssertEqual(fetched?.stressLevel, .veryLow)
-    }
-
     // MARK: - Unexpected bleeding signal
 
     func testUnexpectedBleedingSignalSetForMenopause() async {

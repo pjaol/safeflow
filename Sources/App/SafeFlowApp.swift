@@ -161,10 +161,7 @@ struct SafeFlowApp: App {
                     flow: entry.flow,
                     symptoms: entry.symptoms,
                     mood: entry.mood,
-                    notes: entry.notes,
-                    sleepQuality: entry.sleepQuality,
-                    energyLevel: entry.energyLevel,
-                    stressLevel: entry.stressLevel
+                    notes: entry.notes
                 ))
             }
         }

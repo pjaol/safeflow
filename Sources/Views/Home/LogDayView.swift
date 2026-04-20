@@ -16,11 +16,6 @@ struct LogDayView: View {
     @State private var notes: String = ""
     @State private var selectedSymptomCategory: SymptomCategory = .pain
 
-    // Daily Wellbeing
-    @State private var sleepQuality: WellbeingLevel?
-    @State private var energyLevel: WellbeingLevel?
-    @State private var stressLevel: WellbeingLevel?
-
     init(cycleStore: CycleStore, existingDay: CycleDay?, targetDate: Date = Date()) {
         self.cycleStore = cycleStore
         self.existingDay = existingDay
@@ -31,17 +26,6 @@ struct LogDayView: View {
             _selectedSymptoms = State(initialValue: day.symptoms)
             _selectedMood = State(initialValue: day.mood)
             _notes = State(initialValue: day.notes ?? "")
-            _sleepQuality = State(initialValue: day.sleepQuality)
-            _energyLevel = State(initialValue: day.energyLevel)
-            _stressLevel = State(initialValue: day.stressLevel)
-        } else {
-            // Progressive fill: pre-select yesterday's wellbeing values as a starting point
-            let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: targetDate) ?? targetDate
-            if let prior = cycleStore.getDay(for: yesterday) {
-                _sleepQuality = State(initialValue: prior.sleepQuality)
-                _energyLevel = State(initialValue: prior.energyLevel)
-                _stressLevel = State(initialValue: prior.stressLevel)
-            }
         }
     }
 
@@ -49,7 +33,6 @@ struct LogDayView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: AppTheme.Metrics.standardSpacing) {
-                    wellbeingSection
                     flowSection
                     symptomsSection
                     moodSection
@@ -79,39 +62,6 @@ struct LogDayView: View {
                 }
             }
         }
-    }
-
-    // MARK: - Wellbeing Section
-
-    private var wellbeingSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            sectionHeader("Daily Wellbeing", systemImage: "heart.circle", color: AppTheme.Colors.accentBlue)
-
-            WellbeingRow(
-                title: String(localized: "Sleep"),
-                sfSymbol: "moon.stars.fill",
-                labelFor: { $0.sleepLabelString },
-                selected: $sleepQuality,
-                identifier: "logDay.wellbeing.sleep"
-            )
-            WellbeingRow(
-                title: String(localized: "Energy"),
-                sfSymbol: "bolt.fill",
-                labelFor: { $0.energyLabelString },
-                selected: $energyLevel,
-                identifier: "logDay.wellbeing.energy"
-            )
-            WellbeingRow(
-                title: String(localized: "Stress"),
-                sfSymbol: "waveform.path.ecg",
-                labelFor: { $0.stressLabelString },
-                selected: $stressLevel,
-                identifier: "logDay.wellbeing.stress"
-            )
-        }
-        .padding(AppTheme.Metrics.cardPadding)
-        .background(AppTheme.Colors.secondaryBackground)
-        .cornerRadius(AppTheme.Metrics.cornerRadius)
     }
 
     // MARK: - Flow Section
@@ -275,70 +225,11 @@ struct LogDayView: View {
             flow: selectedFlow,
             symptoms: selectedSymptoms,
             mood: selectedMood,
-            notes: notes.isEmpty ? nil : notes,
-            sleepQuality: sleepQuality,
-            energyLevel: energyLevel,
-            stressLevel: stressLevel
+            notes: notes.isEmpty ? nil : notes
         )
         logger.debug("Saving day id:\(day.id.uuidString) flow:\(String(describing: day.flow)) symptoms:\(day.symptoms.count)")
         cycleStore.addOrUpdateDay(day)
         dismiss()
-    }
-}
-
-// MARK: - Wellbeing Row
-
-/// A labelled 5-segment selector for one wellbeing dimension (sleep / energy / stress).
-/// `labelFor` maps a WellbeingLevel to the context-appropriate string (sleep/energy/stress label).
-struct WellbeingRow: View {
-    let title: String
-    let sfSymbol: String
-    let labelFor: (WellbeingLevel) -> String
-    @Binding var selected: WellbeingLevel?
-    let identifier: String
-
-    private let levels = WellbeingLevel.allCases
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            HStack(spacing: 5) {
-                Image(systemName: sfSymbol)
-                    .font(.system(.caption, weight: .medium))
-                    .foregroundStyle(AppTheme.Colors.mediumGrayText)
-                    .accessibilityHidden(true)
-                Text(verbatim: title)
-                    .font(.system(.caption, design: .rounded, weight: .semibold))
-                    .foregroundStyle(AppTheme.Colors.deepGrayText)
-                Spacer()
-                if let sel = selected {
-                    Text(labelFor(sel))
-                        .font(.system(.caption2, design: .rounded))
-                        .foregroundStyle(AppTheme.Colors.mediumGrayText)
-                        .transition(.opacity)
-                }
-            }
-
-            HStack(spacing: 4) {
-                ForEach(levels, id: \.rawValue) { level in
-                    let isSelected = selected == level
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(isSelected
-                              ? AppTheme.Colors.accentBlue
-                              : AppTheme.Colors.accentBlue.opacity(0.18))
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 28)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            selected = (selected == level) ? nil : level
-                        }
-                        .accessibilityLabel("\(title): \(labelFor(level))" as String)
-                        .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
-                        .accessibilityIdentifier("\(identifier).\(level.rawValue)")
-                }
-            }
-        }
-        .accessibilityElement(children: .contain)
-        .accessibilityIdentifier(identifier)
     }
 }
 

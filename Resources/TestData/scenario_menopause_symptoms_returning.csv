@@ -1,81 +1,81 @@
-date,flow,symptoms,mood,sleep,energy,stress,notes
--118,,,calm,high,high,low,Confirmed menopause 18 months ago. Symptoms well-controlled
--116,,,happy,high,high,veryLow,
--115,,,calm,high,high,low,
--114,,hotFlashes,neutral,high,medium,low,One mild flash — barely noticed
--113,,,calm,high,high,veryLow,
--111,,,calm,high,high,low,Good stretch — sleep solid
--109,,,happy,high,high,veryLow,
--108,,,calm,high,high,veryLow,
--107,,hotFlashes,neutral,high,medium,low,Single brief flash
--105,,,calm,high,high,veryLow,
--104,,,happy,high,high,veryLow,
--102,,,happy,high,high,veryLow,Feeling great — energy very good
--100,,hotFlashes,neutral,high,medium,low,
--99,,,calm,high,high,low,
--98,,,calm,high,high,veryLow,
--96,,,happy,high,high,veryLow,4 hot flash days this month — life feeling normal
--95,,,calm,high,high,veryLow,
--93,,,calm,high,high,veryLow,
--91,,hotFlashes,neutral,high,medium,low,
--89,,,calm,high,high,low,Ended January feeling stable
--88,,,calm,high,high,low,Feb — still doing well
--87,,,happy,high,high,veryLow,
--86,,,calm,high,high,low,
--84,,hotFlashes,neutral,high,medium,low,One brief flash
--83,,,calm,high,high,veryLow,
--82,,,happy,high,high,veryLow,
--80,,,calm,high,high,veryLow,
--79,,,happy,high,high,veryLow,Sleep consistently good
--77,,hotFlashes,neutral,high,medium,low,One flash — very manageable
--76,,,calm,high,high,veryLow,
--75,,,happy,high,high,veryLow,Valentine's — good mood
--73,,,calm,high,high,low,
--72,,,calm,high,high,low,
--70,,hotFlashes,neutral,high,medium,low,
--69,,,calm,high,high,veryLow,
--68,,,happy,high,high,veryLow,5 flash days this month — still well-controlled
--66,,,calm,high,high,veryLow,
--65,,,happy,high,high,veryLow,
--63,,hotFlashes,neutral,high,medium,low,
--61,,,calm,high,high,low,Next HRT refill due — critical to pick up on time
--59,,,calm,high,high,low,Mar — all still fine early in month
--58,,hotFlashes,neutral,high,medium,low,Something feels different — flash was stronger
--57,,"hotFlashes,nightSweats",tired,medium,medium,medium,Night sweat — first in months
--56,,,neutral,medium,medium,medium,
--55,,hotFlashes,neutral,medium,medium,medium,Two flashes today
--54,,"nightSweats,hotFlashes",tired,medium,medium,medium,Woke once with sweats
--52,,hotFlashes,neutral,medium,medium,medium,Three flashes — noticeably more frequent
--51,,"nightSweats,hotFlashes",tired,medium,low,medium,
--50,,"hotFlashes,fatigue",tired,medium,low,medium,Sleep getting worse again
--48,,"nightSweats,hotFlashes,headache",neutral,medium,low,medium,HRT dose may have lapsed — missed a day
--47,,hotFlashes,irritable,medium,medium,medium,
--45,,"nightSweats,hotFlashes,fatigue",tired,low,low,medium,
--43,,"hotFlashes,brainFog",foggy,medium,low,medium,10 flash days this month — brain fog back
--41,,"nightSweats,hotFlashes",anxious,low,low,medium,
--39,,"hotFlashes,headache",irritable,medium,low,medium,
--37,,"nightSweats,hotFlashes,fatigue",tired,low,low,high,12 hot flash days — clear regression
--35,,"hotFlashes,brainFog",foggy,medium,low,high,
--34,,"nightSweats,hotFlashes",anxious,low,low,high,Contacted GP — dose adjustment needed
--32,,"hotFlashes,brainFog",foggy,medium,low,medium,
--29,,"nightSweats,hotFlashes",anxious,low,low,high,Apr — symptoms escalating further
--28,,"hotFlashes,fatigue",tired,low,low,high,
--27,,"nightSweats,hotFlashes,headache",irritable,low,low,high,Headache and sweats — difficult night
--25,,"hotFlashes,brainFog",foggy,low,low,high,
--24,,"nightSweats,hotFlashes",anxious,low,low,high,Two sweat episodes overnight
--23,,"hotFlashes,fatigue",tired,low,veryLow,high,
--21,,"nightSweats,hotFlashes,muscleAches",tired,low,veryLow,high,Energy really depleted
--20,,"hotFlashes,brainFog",foggy,low,veryLow,high,
--19,,"nightSweats,hotFlashes",irritable,low,veryLow,high,
--17,,"hotFlashes,headache",anxious,low,veryLow,high,
--16,,"nightSweats,hotFlashes,fatigue",sad,low,veryLow,high,Mood deteriorating — back to pre-treatment levels
--14,,"hotFlashes,brainFog",foggy,low,veryLow,high,
--13,,"nightSweats,hotFlashes,muscleAches",anxious,low,veryLow,high,Awaiting GP appointment
--11,,"hotFlashes,fatigue",irritable,low,low,high,
--9,,"nightSweats,hotFlashes",anxious,low,veryLow,high,14 flash days and counting
--8,,"hotFlashes,brainFog",foggy,low,veryLow,high,
--7,,"nightSweats,hotFlashes,fatigue",sad,low,veryLow,high,
--5,,"hotFlashes,headache",irritable,low,veryLow,high,
--3,,"nightSweats,hotFlashes",anxious,low,veryLow,high,16 flash days this month
--1,,"hotFlashes,fatigue,muscleAches",sad,low,veryLow,high,Need HRT dose review urgently
-0,,"nightSweats,hotFlashes,brainFog",irritable,low,veryLow,high,Symptom return confirmed — adjusting treatment plan
+date,flow,symptoms,mood,notes
+-118,,,calm,Confirmed menopause 18 months ago. Symptoms well-controlled
+-116,,,happy,
+-115,,,calm,
+-114,,hotFlashes,neutral,One mild flash — barely noticed
+-113,,,calm,
+-111,,,calm,Good stretch — sleep solid
+-109,,,happy,
+-108,,,calm,
+-107,,hotFlashes,neutral,Single brief flash
+-105,,,calm,
+-104,,,happy,
+-102,,,happy,Feeling great — energy very good
+-100,,hotFlashes,neutral,
+-99,,,calm,
+-98,,,calm,
+-96,,,happy,4 hot flash days this month — life feeling normal
+-95,,,calm,
+-93,,,calm,
+-91,,hotFlashes,neutral,
+-89,,,calm,Ended January feeling stable
+-88,,,calm,Feb — still doing well
+-87,,,happy,
+-86,,,calm,
+-84,,hotFlashes,neutral,One brief flash
+-83,,,calm,
+-82,,,happy,
+-80,,,calm,
+-79,,,happy,Sleep consistently good
+-77,,hotFlashes,neutral,One flash — very manageable
+-76,,,calm,
+-75,,,happy,Valentine's — good mood
+-73,,,calm,
+-72,,,calm,
+-70,,hotFlashes,neutral,
+-69,,,calm,
+-68,,,happy,5 flash days this month — still well-controlled
+-66,,,calm,
+-65,,,happy,
+-63,,hotFlashes,neutral,
+-61,,,calm,Next HRT refill due — critical to pick up on time
+-59,,,calm,Mar — all still fine early in month
+-58,,hotFlashes,neutral,Something feels different — flash was stronger
+-57,,"hotFlashes,nightSweats",tired,Night sweat — first in months
+-56,,,neutral,
+-55,,hotFlashes,neutral,Two flashes today
+-54,,"nightSweats,hotFlashes",tired,Woke once with sweats
+-52,,hotFlashes,neutral,Three flashes — noticeably more frequent
+-51,,"nightSweats,hotFlashes",tired,
+-50,,"hotFlashes,fatigue",tired,Sleep getting worse again
+-48,,"nightSweats,hotFlashes,headache",neutral,HRT dose may have lapsed — missed a day
+-47,,hotFlashes,irritable,
+-45,,"nightSweats,hotFlashes,fatigue",tired,
+-43,,"hotFlashes,brainFog",foggy,10 flash days this month — brain fog back
+-41,,"nightSweats,hotFlashes",anxious,
+-39,,"hotFlashes,headache",irritable,
+-37,,"nightSweats,hotFlashes,fatigue",tired,12 hot flash days — clear regression
+-35,,"hotFlashes,brainFog",foggy,
+-34,,"nightSweats,hotFlashes",anxious,Contacted GP — dose adjustment needed
+-32,,"hotFlashes,brainFog",foggy,
+-29,,"nightSweats,hotFlashes",anxious,Apr — symptoms escalating further
+-28,,"hotFlashes,fatigue",tired,
+-27,,"nightSweats,hotFlashes,headache",irritable,Headache and sweats — difficult night
+-25,,"hotFlashes,brainFog",foggy,
+-24,,"nightSweats,hotFlashes",anxious,Two sweat episodes overnight
+-23,,"hotFlashes,fatigue",tired,
+-21,,"nightSweats,hotFlashes,muscleAches",tired,Energy really depleted
+-20,,"hotFlashes,brainFog",foggy,
+-19,,"nightSweats,hotFlashes",irritable,
+-17,,"hotFlashes,headache",anxious,
+-16,,"nightSweats,hotFlashes,fatigue",sad,Mood deteriorating — back to pre-treatment levels
+-14,,"hotFlashes,brainFog",foggy,
+-13,,"nightSweats,hotFlashes,muscleAches",anxious,Awaiting GP appointment
+-11,,"hotFlashes,fatigue",irritable,
+-9,,"nightSweats,hotFlashes",anxious,14 flash days and counting
+-8,,"hotFlashes,brainFog",foggy,
+-7,,"nightSweats,hotFlashes,fatigue",sad,
+-5,,"hotFlashes,headache",irritable,
+-3,,"nightSweats,hotFlashes",anxious,16 flash days this month
+-1,,"hotFlashes,fatigue,muscleAches",sad,Need HRT dose review urgently
+0,,"nightSweats,hotFlashes,brainFog",irritable,Symptom return confirmed — adjusting treatment plan

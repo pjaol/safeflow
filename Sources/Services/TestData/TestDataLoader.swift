@@ -161,32 +161,14 @@ class TestDataLoader {
             mood = nil
         }
         
-        // Parse sleep quality (optional, column 4)
-        let sleepQuality: WellbeingLevel? = components.count > 4
-            ? WellbeingLevel(rawString: components[4].trimmingCharacters(in: .whitespaces))
-            : nil
-
-        // Parse energy level (optional, column 5)
-        let energyLevel: WellbeingLevel? = components.count > 5
-            ? WellbeingLevel(rawString: components[5].trimmingCharacters(in: .whitespaces))
-            : nil
-
-        // Parse stress level (optional, column 6)
-        let stressLevel: WellbeingLevel? = components.count > 6
-            ? WellbeingLevel(rawString: components[6].trimmingCharacters(in: .whitespaces))
-            : nil
-
-        // Parse notes (optional, column 7)
-        let notes = components.count > 7 ? components[7].trimmingCharacters(in: .whitespaces) : nil
+        // Parse notes (optional, column 4)
+        let notes = components.count > 4 ? components[4].trimmingCharacters(in: .whitespaces) : nil
 
         return CycleDayTestEntry(
             date: date,
             flow: flow,
             symptoms: symptoms,
             mood: mood,
-            sleepQuality: sleepQuality,
-            energyLevel: energyLevel,
-            stressLevel: stressLevel,
             notes: notes
         )
     }

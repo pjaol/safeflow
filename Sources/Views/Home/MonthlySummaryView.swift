@@ -65,16 +65,6 @@ struct MonthlySummaryView: View {
         }
     }
 
-    // MARK: Wellbeing averages
-
-    private func average(keyPath: KeyPath<CycleDay, WellbeingLevel?>) -> WellbeingLevel? {
-        let values = windowDays.compactMap { $0[keyPath: keyPath] }
-        guard !values.isEmpty else { return nil }
-        let sum = values.reduce(0) { $0 + $1.rawValue }
-        let avg = sum / values.count
-        return WellbeingLevel(rawValue: avg)
-    }
-
     // MARK: Top symptoms
 
     private var topSymptoms: [(Symptom, Int)] {
@@ -128,32 +118,6 @@ struct MonthlySummaryView: View {
                     .font(.system(.caption, design: .rounded))
                     .foregroundStyle(AppTheme.Colors.mediumGrayText)
             } else {
-                // Wellbeing row — pips gain trend arrows when signal is available
-                HStack(spacing: 0) {
-                    WellbeingAveragePip(
-                        label: String(localized: "Sleep"),
-                        sfSymbol: "moon.stars.fill",
-                        level: average(keyPath: \.sleepQuality),
-                        labelText: average(keyPath: \.sleepQuality)?.sleepLabelString,
-                        trend: signalResult?.wellbeing.sleepTrend
-                    )
-                    WellbeingAveragePip(
-                        label: String(localized: "Energy"),
-                        sfSymbol: "bolt.fill",
-                        level: average(keyPath: \.energyLevel),
-                        labelText: average(keyPath: \.energyLevel)?.energyLabelString,
-                        trend: signalResult?.wellbeing.energyTrend
-                    )
-                    WellbeingAveragePip(
-                        label: String(localized: "Stress"),
-                        sfSymbol: "waveform.path.ecg",
-                        level: average(keyPath: \.stressLevel),
-                        labelText: average(keyPath: \.stressLevel)?.stressLabelString,
-                        // Stress polarity is inverted — worsening stress = higher rawValue
-                        trend: signalResult.map { invertedTrend($0.wellbeing.stressTrend) }
-                    )
-                }
-
                 // Symptom section — only when enough data (5+ days)
                 if loggedDaysCount > 0 && loggedDaysCount < 5 {
                     Divider()
@@ -207,73 +171,11 @@ struct MonthlySummaryView: View {
         if let sentence = narrativeSentence {
             parts.append(sentence)
         }
-        if let sl = average(keyPath: \.sleepQuality) {
-            parts.append("Average sleep: \(sl.sleepLabelString)")
-        }
-        if let el = average(keyPath: \.energyLevel) {
-            parts.append("Average energy: \(el.energyLabelString)")
-        }
-        if let st = average(keyPath: \.stressLevel) {
-            parts.append("Average stress: \(st.stressLabelString)")
-        }
         if !topSymptoms.isEmpty {
             let names = topSymptoms.map { $0.0.localizedNameString }.joined(separator: ", ")
             parts.append("Most frequent symptoms: \(names)")
         }
         return parts.joined(separator: ". ")
-    }
-
-    // Stress polarity: the wellbeing trend reports worsening when stress rawValue rises.
-    // For the pip arrow we want to show ↑ when stress is worsening (visually bad),
-    // so we don't invert — but the label colour should use .worse not .better.
-    // This helper is used so the pip renders the arrow direction correctly regardless.
-    private func invertedTrend(_ trend: WellbeingTrend) -> WellbeingTrend { trend }
-}
-
-// MARK: - WellbeingAveragePip
-
-private struct WellbeingAveragePip: View {
-    let label: String
-    let sfSymbol: String
-    let level: WellbeingLevel?
-    let labelText: String?
-    var trend: WellbeingTrend? = nil
-
-    var body: some View {
-        VStack(spacing: 3) {
-            Image(systemName: sfSymbol)
-                .foregroundStyle(level != nil ? AppTheme.Colors.accentBlue : AppTheme.Colors.mediumGrayText.opacity(0.35))
-                .font(.system(.body))
-                .accessibilityHidden(true)
-
-            // Value + optional trend arrow on the same line
-            HStack(spacing: 2) {
-                Text(verbatim: labelText ?? "—")
-                    .font(.system(.caption2, design: .rounded, weight: level != nil ? .semibold : .regular))
-                    .foregroundStyle(level != nil ? AppTheme.Colors.deepGrayText : AppTheme.Colors.mediumGrayText.opacity(0.5))
-                if let trend, let arrow = trendArrow(trend) {
-                    Text(arrow.symbol)
-                        .font(.system(.caption2, design: .rounded, weight: .semibold))
-                        .foregroundStyle(arrow.color)
-                        .accessibilityHidden(true)
-                }
-            }
-
-            Text(verbatim: label)
-                .font(.system(.caption2, design: .rounded))
-                .foregroundStyle(AppTheme.Colors.mediumGrayText)
-        }
-        .frame(maxWidth: .infinity)
-    }
-
-    private struct Arrow { let symbol: String; let color: Color }
-
-    private func trendArrow(_ trend: WellbeingTrend) -> Arrow? {
-        switch trend {
-        case .improving: return Arrow(symbol: "↑", color: AppTheme.Colors.accentBlue)
-        case .worsening: return Arrow(symbol: "↓", color: AppTheme.Colors.dartPain)
-        case .stable, .unknown: return nil
-        }
     }
 }
 
@@ -348,10 +250,6 @@ private struct MonthlySymptomChip: View {
             SymptomSignal(symptom: .nightSweats, thisMonth: 8, baselineAvg: 2, trend: .escalating),
             SymptomSignal(symptom: .brainFog, thisMonth: 5, baselineAvg: 1, trend: .new)
         ],
-        wellbeing: WellbeingSignal(
-            sleepAvg: 1.2, energyAvg: 1.5, stressAvg: 3.0,
-            sleepTrend: .worsening, energyTrend: .stable, stressTrend: .worsening
-        ),
         hasBaseline: true
     )
     return MonthlySummaryView(cycleStore: store, signal: .ready(result))

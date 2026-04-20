@@ -207,11 +207,9 @@ struct BleedHistoryCard: View {
 
 // MARK: - PausedSummaryCard
 
-/// For paused-stage users: shows a simple daily wellbeing summary instead of cycle ring/predictions.
+/// For paused-stage users: shows a simple card with a prompt to log how they feel.
 struct PausedSummaryCard: View {
     let cycleStore: CycleStore
-
-    private var today: CycleDay? { cycleStore.getCurrentDay() }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -225,71 +223,15 @@ struct PausedSummaryCard: View {
                     .foregroundStyle(AppTheme.Colors.deepGrayText)
             }
 
-            if let day = today {
-                HStack(spacing: 16) {
-                    WellbeingSummaryPip(
-                        label: "Sleep",
-                        sfSymbol: "moon.stars.fill",
-                        level: day.sleepQuality,
-                        labelText: day.sleepQuality?.sleepLabelString
-                    )
-                    WellbeingSummaryPip(
-                        label: "Energy",
-                        sfSymbol: "bolt.fill",
-                        level: day.energyLevel,
-                        labelText: day.energyLevel?.energyLabelString
-                    )
-                    WellbeingSummaryPip(
-                        label: "Stress",
-                        sfSymbol: "waveform.path.ecg",
-                        level: day.stressLevel,
-                        labelText: day.stressLevel?.stressLabelString
-                    )
-                }
-            } else {
-                Text("Start by logging how you feel today.")
-                    .font(.system(.caption, design: .rounded))
-                    .foregroundStyle(AppTheme.Colors.mediumGrayText)
-            }
+            Text("Log how you feel using the daily tracker.")
+                .font(.system(.caption, design: .rounded))
+                .foregroundStyle(AppTheme.Colors.mediumGrayText)
         }
         .padding(AppTheme.Metrics.cardPadding)
         .background(AppTheme.Colors.secondaryBackground)
         .cornerRadius(AppTheme.Metrics.cornerRadius)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(pausedAccessibilityLabel)
+        .accessibilityLabel("Tracking paused. Log how you feel using the daily tracker.")
         .accessibilityIdentifier("home.pausedSummaryCard")
-    }
-
-    private var pausedAccessibilityLabel: String {
-        guard let day = today else {
-            return String(localized: "Tracking paused. Start by logging how you feel today.")
-        }
-        let sleep = day.sleepQuality.map { "Sleep: \($0.sleepLabelString)" } ?? "Sleep: not logged"
-        let energy = day.energyLevel.map { "Energy: \($0.energyLabelString)" } ?? "Energy: not logged"
-        let stress = day.stressLevel.map { "Stress: \($0.stressLabelString)" } ?? "Stress: not logged"
-        return "Tracking paused. Today — \(sleep), \(energy), \(stress)."
-    }
-}
-
-private struct WellbeingSummaryPip: View {
-    let label: LocalizedStringKey
-    let sfSymbol: String
-    let level: WellbeingLevel?
-    let labelText: String?
-
-    var body: some View {
-        VStack(spacing: 4) {
-            Image(systemName: sfSymbol)
-                .foregroundStyle(level != nil ? AppTheme.Colors.accentBlue : AppTheme.Colors.mediumGrayText.opacity(0.4))
-                .font(.system(.callout))
-                .accessibilityHidden(true)
-            Text(labelText ?? "—")
-                .font(.system(.caption2, design: .rounded, weight: level != nil ? .semibold : .regular))
-                .foregroundStyle(level != nil ? AppTheme.Colors.deepGrayText : AppTheme.Colors.mediumGrayText.opacity(0.5))
-            Text(label)
-                .font(.system(.caption2, design: .rounded))
-                .foregroundStyle(AppTheme.Colors.mediumGrayText)
-        }
-        .frame(maxWidth: .infinity)
     }
 }

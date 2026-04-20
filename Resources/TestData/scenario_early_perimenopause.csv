@@ -1,81 +1,81 @@
-date,flow,symptoms,mood,sleep,energy,stress,notes
--118,medium,"cramps,bloating",neutral,high,medium,low,"Cycle start — arrived day 28, fairly normal"
--117,heavy,"cramps,fatigue",tired,high,low,low,
--116,heavy,"cramps,backPain",neutral,high,low,low,
--115,medium,fatigue,neutral,high,medium,low,
--114,light,,neutral,high,medium,low,
--113,spotting,,neutral,high,medium,low,
--111,,breastTenderness,happy,high,high,veryLow,Follicular — breast tender but mood good
--109,,,energized,high,high,veryLow,
--107,,,happy,high,high,veryLow,
--105,,,confident,high,high,veryLow,Ovulatory window — good mood
--104,,mittelschmerz,happy,high,high,veryLow,
--102,,,energized,high,high,veryLow,
--100,,breastTenderness,neutral,high,medium,low,Luteal — breast tenderness starting
--98,,breastTenderness,sensitive,high,medium,medium,
--96,,"breastTenderness,foodCravings",irritable,high,low,medium,Mood dipping
--95,,bloating,sensitive,high,low,medium,
--94,,"bloating,foodCravings",anxious,high,low,medium,
--93,,"cramps,headache",irritable,high,low,medium,Late luteal
--91,,bloating,sensitive,high,low,medium,
--90,,,anxious,high,low,medium,
--88,medium,"cramps,bloating",neutral,medium,medium,medium,"Cycle start — day 30, slightly later than usual"
--87,heavy,"cramps,fatigue",tired,medium,low,medium,
--86,medium,"cramps,backPain",neutral,medium,low,medium,
--85,medium,"fatigue,bloating",neutral,medium,medium,medium,
--84,light,,neutral,medium,medium,medium,
--83,spotting,,neutral,medium,medium,low,
--81,,breastTenderness,neutral,medium,medium,low,Follicular
--79,,,happy,medium,high,low,
--77,,,energized,medium,high,low,
--75,,mittelschmerz,energized,medium,high,low,Ovulatory — a bit later this month
--74,,,happy,medium,high,low,
--72,,"breastTenderness,hotFlashes",neutral,medium,medium,medium,First hot flash — noticeable but brief
--71,,breastTenderness,sensitive,medium,medium,medium,
--70,,"hotFlashes,breastTenderness",sensitive,medium,medium,medium,Two hot flashes today
--68,,"hotFlashes,nightSweats",irritable,medium,low,medium,Night sweats woke me up
--67,,"nightSweats,breastTenderness",anxious,medium,low,medium,
--65,,"hotFlashes,bloating,foodCravings",irritable,medium,low,high,Mood worse this luteal
--64,,"nightSweats,headache",anxious,medium,low,high,
--62,,"breastTenderness,hotFlashes",irritable,medium,low,high,
--57,medium,"cramps,bloating",neutral,low,medium,medium,Cycle start — arrived day 31
--56,heavy,"cramps,fatigue",tired,low,low,medium,
--55,medium,"cramps,backPain",neutral,low,low,medium,
--54,medium,fatigue,neutral,low,medium,medium,
--53,light,,neutral,low,medium,medium,
--52,spotting,,neutral,low,medium,medium,
--50,,,neutral,low,medium,low,Follicular — energy still sluggish
--48,,breastTenderness,neutral,low,medium,low,
--46,,,neutral,low,medium,low,
--45,,mittelschmerz,happy,low,medium,low,Ovulatory — later this cycle
--44,,,happy,low,medium,low,
--43,,"hotFlashes,breastTenderness",neutral,low,medium,medium,Hot flashes most days now
--42,,"nightSweats,hotFlashes",tired,low,low,medium,Bad night — sweats twice
--40,,"hotFlashes,brainFog",foggy,low,low,high,Brain fog appearing — hard to focus
--39,,"nightSweats,breastTenderness",anxious,low,low,high,
--37,,"hotFlashes,brainFog,bloating",irritable,low,low,high,Irritable all day
--36,,"nightSweats,headache",anxious,low,low,high,Woke 3am with sweats
--34,,"hotFlashes,brainFog,foodCravings",irritable,low,veryLow,high,
--33,,"nightSweats,breastTenderness",sensitive,low,veryLow,high,
--31,,"hotFlashes,bloating",anxious,low,veryLow,high,Late luteal — cycle very overdue
--29,,hotFlashes,neutral,low,low,medium,Waiting for cycle — now very overdue (day 38)
--27,,"hotFlashes,nightSweats",anxious,low,low,high,Sweats overnight — no sign of period
--24,,"hotFlashes,brainFog",foggy,low,veryLow,high,
--22,,"nightSweats,hotFlashes,headache",irritable,low,veryLow,high,
--20,,"hotFlashes,breastTenderness",anxious,low,veryLow,high,Day 42 — calling doctor
--16,light,"cramps,bloating",neutral,low,low,medium,"Cycle finally arrived — day 42, very delayed"
--15,medium,"cramps,fatigue",tired,low,low,medium,
--14,medium,"cramps,backPain",neutral,low,low,medium,
--13,light,fatigue,neutral,low,medium,medium,
--12,spotting,,neutral,low,medium,medium,
--10,,"hotFlashes,breastTenderness",neutral,low,medium,medium,Hot flashes even in follicular now
--9,,"nightSweats,hotFlashes",tired,low,low,high,Night sweats most nights
--8,,"hotFlashes,brainFog",foggy,low,low,high,
--7,,"nightSweats,hotFlashes,breastTenderness",sensitive,low,low,high,Three hot flashes today
--6,,"hotFlashes,brainFog,jointPain",foggy,low,veryLow,high,Joint pain starting
--5,,"nightSweats,hotFlashes",anxious,low,veryLow,high,Woke twice with sweats
--4,,"hotFlashes,nightSweats,brainFog",irritable,low,veryLow,high,
--3,,"hotFlashes,breastTenderness,bloating",anxious,low,veryLow,veryHigh,10+ hot flash days this month
--2,,"nightSweats,hotFlashes,headache",irritable,low,veryLow,veryHigh,
--1,,"hotFlashes,brainFog,foodCravings",anxious,low,veryLow,veryHigh,Mood very difficult
-0,,"nightSweats,hotFlashes,breastTenderness",irritable,low,veryLow,veryHigh,Escalating pattern — discussing with doctor
+date,flow,symptoms,mood,notes
+-118,medium,"cramps,bloating",neutral,"Cycle start — arrived day 28, fairly normal"
+-117,heavy,"cramps,fatigue",tired,
+-116,heavy,"cramps,backPain",neutral,
+-115,medium,fatigue,neutral,
+-114,light,,neutral,
+-113,spotting,,neutral,
+-111,,breastTenderness,happy,Follicular — breast tender but mood good
+-109,,,energized,
+-107,,,happy,
+-105,,,confident,Ovulatory window — good mood
+-104,,mittelschmerz,happy,
+-102,,,energized,
+-100,,breastTenderness,neutral,Luteal — breast tenderness starting
+-98,,breastTenderness,sensitive,
+-96,,"breastTenderness,foodCravings",irritable,Mood dipping
+-95,,bloating,sensitive,
+-94,,"bloating,foodCravings",anxious,
+-93,,"cramps,headache",irritable,Late luteal
+-91,,bloating,sensitive,
+-90,,,anxious,
+-88,medium,"cramps,bloating",neutral,"Cycle start — day 30, slightly later than usual"
+-87,heavy,"cramps,fatigue",tired,
+-86,medium,"cramps,backPain",neutral,
+-85,medium,"fatigue,bloating",neutral,
+-84,light,,neutral,
+-83,spotting,,neutral,
+-81,,breastTenderness,neutral,Follicular
+-79,,,happy,
+-77,,,energized,
+-75,,mittelschmerz,energized,Ovulatory — a bit later this month
+-74,,,happy,
+-72,,"breastTenderness,hotFlashes",neutral,First hot flash — noticeable but brief
+-71,,breastTenderness,sensitive,
+-70,,"hotFlashes,breastTenderness",sensitive,Two hot flashes today
+-68,,"hotFlashes,nightSweats",irritable,Night sweats woke me up
+-67,,"nightSweats,breastTenderness",anxious,
+-65,,"hotFlashes,bloating,foodCravings",irritable,Mood worse this luteal
+-64,,"nightSweats,headache",anxious,
+-62,,"breastTenderness,hotFlashes",irritable,
+-57,medium,"cramps,bloating",neutral,Cycle start — arrived day 31
+-56,heavy,"cramps,fatigue",tired,
+-55,medium,"cramps,backPain",neutral,
+-54,medium,fatigue,neutral,
+-53,light,,neutral,
+-52,spotting,,neutral,
+-50,,,neutral,Follicular — energy still sluggish
+-48,,breastTenderness,neutral,
+-46,,,neutral,
+-45,,mittelschmerz,happy,Ovulatory — later this cycle
+-44,,,happy,
+-43,,"hotFlashes,breastTenderness",neutral,Hot flashes most days now
+-42,,"nightSweats,hotFlashes",tired,Bad night — sweats twice
+-40,,"hotFlashes,brainFog",foggy,Brain fog appearing — hard to focus
+-39,,"nightSweats,breastTenderness",anxious,
+-37,,"hotFlashes,brainFog,bloating",irritable,Irritable all day
+-36,,"nightSweats,headache",anxious,Woke 3am with sweats
+-34,,"hotFlashes,brainFog,foodCravings",irritable,
+-33,,"nightSweats,breastTenderness",sensitive,
+-31,,"hotFlashes,bloating",anxious,Late luteal — cycle very overdue
+-29,,hotFlashes,neutral,Waiting for cycle — now very overdue (day 38)
+-27,,"hotFlashes,nightSweats",anxious,Sweats overnight — no sign of period
+-24,,"hotFlashes,brainFog",foggy,
+-22,,"nightSweats,hotFlashes,headache",irritable,
+-20,,"hotFlashes,breastTenderness",anxious,Day 42 — calling doctor
+-16,light,"cramps,bloating",neutral,"Cycle finally arrived — day 42, very delayed"
+-15,medium,"cramps,fatigue",tired,
+-14,medium,"cramps,backPain",neutral,
+-13,light,fatigue,neutral,
+-12,spotting,,neutral,
+-10,,"hotFlashes,breastTenderness",neutral,Hot flashes even in follicular now
+-9,,"nightSweats,hotFlashes",tired,Night sweats most nights
+-8,,"hotFlashes,brainFog",foggy,
+-7,,"nightSweats,hotFlashes,breastTenderness",sensitive,Three hot flashes today
+-6,,"hotFlashes,brainFog,jointPain",foggy,Joint pain starting
+-5,,"nightSweats,hotFlashes",anxious,Woke twice with sweats
+-4,,"hotFlashes,nightSweats,brainFog",irritable,
+-3,,"hotFlashes,breastTenderness,bloating",anxious,10+ hot flash days this month
+-2,,"nightSweats,hotFlashes,headache",irritable,
+-1,,"hotFlashes,brainFog,foodCravings",anxious,Mood very difficult
+0,,"nightSweats,hotFlashes,breastTenderness",irritable,Escalating pattern — discussing with doctor

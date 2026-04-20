@@ -1,77 +1,77 @@
-date,flow,symptoms,mood,sleep,energy,stress,notes
--118,,"hotFlashes,nightSweats",anxious,veryLow,veryLow,veryHigh,No period — last was ~75 days ago
--117,,"nightSweats,hotFlashes",sad,veryLow,veryLow,veryHigh,Woke twice with soaking night sweats
--116,,"hotFlashes,fatigue",irritable,veryLow,veryLow,high,
--115,,"nightSweats,hotFlashes,brainFog",foggy,veryLow,veryLow,veryHigh,
--114,,hotFlashes,anxious,veryLow,low,high,
--113,,"nightSweats,hotFlashes,headache",irritable,veryLow,veryLow,veryHigh,Headache all day
--111,,"hotFlashes,brainFog,jointPain",foggy,veryLow,veryLow,high,Joint pain in knees
--110,,"nightSweats,hotFlashes",sad,veryLow,veryLow,veryHigh,
--109,,"hotFlashes,muscleAches",tired,veryLow,low,high,
--108,,"nightSweats,hotFlashes,brainFog",anxious,veryLow,veryLow,veryHigh,
--106,,"hotFlashes,jointPain",irritable,low,veryLow,high,
--105,,"nightSweats,hotFlashes,fatigue",sad,veryLow,veryLow,veryHigh,Exhausted. Night sweats every night this week
--103,,"hotFlashes,brainFog,muscleAches",foggy,veryLow,veryLow,high,
--101,,"nightSweats,hotFlashes,headache",irritable,veryLow,veryLow,veryHigh,
--99,,"hotFlashes,jointPain,brainFog",anxious,veryLow,veryLow,veryHigh,~16 hot flash days so far this month
--97,,"nightSweats,hotFlashes",sad,veryLow,veryLow,veryHigh,
--95,,"hotFlashes,muscleAches,fatigue",tired,veryLow,veryLow,high,
--93,,"nightSweats,hotFlashes,brainFog",irritable,veryLow,veryLow,veryHigh,
--91,,"hotFlashes,jointPain",anxious,veryLow,veryLow,veryHigh,
--89,,"nightSweats,hotFlashes,headache",sad,veryLow,veryLow,veryHigh,Ended month exhausted and emotional
--88,,"hotFlashes,fatigue",tired,veryLow,veryLow,veryHigh,Feb starts — no improvement
--87,,"nightSweats,hotFlashes,brainFog",foggy,veryLow,veryLow,veryHigh,
--86,,"hotFlashes,muscleAches",tired,veryLow,veryLow,veryHigh,
--85,,"nightSweats,hotFlashes",anxious,veryLow,veryLow,veryHigh,Night sweats every single night
--83,,"hotFlashes,jointPain,fatigue",sad,veryLow,veryLow,high,
--82,,"nightSweats,hotFlashes,brainFog",irritable,veryLow,veryLow,veryHigh,
--81,,"hotFlashes,muscleAches",tired,veryLow,low,high,
--79,,"nightSweats,hotFlashes,headache",anxious,veryLow,veryLow,veryHigh,
--78,,"hotFlashes,jointPain,brainFog",foggy,veryLow,veryLow,veryHigh,Joints really painful in the morning
--77,,"nightSweats,hotFlashes",sad,veryLow,veryLow,veryHigh,
--75,,"hotFlashes,fatigue,muscleAches",irritable,veryLow,veryLow,high,
--73,,"nightSweats,hotFlashes,brainFog",anxious,veryLow,veryLow,veryHigh,Counting flash days — already 15 this month
--71,,"hotFlashes,jointPain",sad,veryLow,veryLow,veryHigh,
--69,,"nightSweats,hotFlashes,headache",irritable,veryLow,veryLow,veryHigh,
--67,,"hotFlashes,brainFog",foggy,veryLow,veryLow,high,
--65,,"nightSweats,hotFlashes,muscleAches",anxious,veryLow,veryLow,veryHigh,
--63,,"hotFlashes,jointPain,fatigue",sad,veryLow,veryLow,veryHigh,17 hot flash days this month
--61,,"nightSweats,hotFlashes,brainFog",irritable,veryLow,veryLow,veryHigh,Ended Feb without a single good day
--60,,"nightSweats,hotFlashes,brainFog",anxious,veryLow,veryLow,veryHigh,Mar: symptoms escalating further
--59,,"hotFlashes,muscleAches,jointPain",sad,veryLow,veryLow,veryHigh,
--58,,"nightSweats,hotFlashes",irritable,veryLow,veryLow,veryHigh,
--57,,"hotFlashes,headache,fatigue",foggy,veryLow,veryLow,high,
--56,,"nightSweats,hotFlashes,brainFog",anxious,veryLow,veryLow,veryHigh,
--55,,"hotFlashes,vaginalDryness",tired,veryLow,veryLow,high,Vaginal dryness starting
--53,,"nightSweats,hotFlashes,jointPain",sad,veryLow,veryLow,veryHigh,
--52,,"hotFlashes,muscleAches",irritable,veryLow,veryLow,veryHigh,
--50,,"nightSweats,hotFlashes,brainFog",foggy,veryLow,veryLow,veryHigh,
--49,,"hotFlashes,vaginalDryness,headache",anxious,veryLow,veryLow,veryHigh,
--47,,"nightSweats,hotFlashes,fatigue",sad,veryLow,veryLow,veryHigh,
--46,,"hotFlashes,jointPain,brainFog",foggy,veryLow,veryLow,veryHigh,
--45,,"nightSweats,hotFlashes,muscleAches",irritable,veryLow,veryLow,veryHigh,"Every night sweats, every day multiple flashes"
--43,,"hotFlashes,brainFog,vaginalDryness",foggy,veryLow,veryLow,veryHigh,18 hot flash days so far this month
--41,,"nightSweats,hotFlashes,jointPain",anxious,veryLow,veryLow,veryHigh,
--39,,"hotFlashes,muscleAches,headache",sad,veryLow,veryLow,veryHigh,
--37,,"nightSweats,hotFlashes,brainFog",irritable,veryLow,veryLow,veryHigh,
--35,,"hotFlashes,vaginalDryness,fatigue",sad,veryLow,veryLow,veryHigh,
--33,,"nightSweats,hotFlashes,jointPain",anxious,veryLow,veryLow,veryHigh,
--31,,"hotFlashes,brainFog,muscleAches",irritable,veryLow,veryLow,veryHigh,20 flash days this month
--29,,"nightSweats,hotFlashes,brainFog",anxious,veryLow,veryLow,veryHigh,Apr — no sign of any improvement
--28,,"hotFlashes,jointPain,muscleAches",sad,veryLow,veryLow,veryHigh,
--27,,"nightSweats,hotFlashes,headache",irritable,veryLow,veryLow,veryHigh,
--25,,"hotFlashes,brainFog,vaginalDryness",foggy,veryLow,veryLow,high,
--24,,"nightSweats,hotFlashes,fatigue",anxious,veryLow,veryLow,veryHigh,
--22,,"hotFlashes,jointPain,vaginalDryness",sad,veryLow,veryLow,veryHigh,Dryness getting worse — using lubricant
--21,,"nightSweats,hotFlashes,muscleAches",irritable,veryLow,veryLow,veryHigh,
--19,,"hotFlashes,brainFog,headache",foggy,veryLow,veryLow,veryHigh,
--18,,"nightSweats,hotFlashes,vaginalDryness",anxious,veryLow,veryLow,veryHigh,
--16,,"hotFlashes,jointPain,fatigue",sad,veryLow,veryLow,veryHigh,Knees and hips aching daily
--14,,"nightSweats,hotFlashes,brainFog",irritable,veryLow,veryLow,veryHigh,21 flash days on track this month
--12,,"hotFlashes,muscleAches,vaginalDryness",sad,veryLow,veryLow,veryHigh,
--10,,"nightSweats,hotFlashes,headache",anxious,veryLow,veryLow,veryHigh,
--8,,"hotFlashes,brainFog,jointPain",foggy,veryLow,veryLow,veryHigh,
--6,,"nightSweats,hotFlashes,vaginalDryness",sad,veryLow,veryLow,veryHigh,Urgently need to discuss treatment options
--4,,"hotFlashes,fatigue,muscleAches",irritable,veryLow,veryLow,veryHigh,
--2,,"nightSweats,hotFlashes,brainFog",anxious,veryLow,veryLow,veryHigh,
-0,,"hotFlashes,jointPain,vaginalDryness",sad,veryLow,veryLow,veryHigh,22 flash days this month — worst yet
+date,flow,symptoms,mood,notes
+-118,,"hotFlashes,nightSweats",anxious,No period — last was ~75 days ago
+-117,,"nightSweats,hotFlashes",sad,Woke twice with soaking night sweats
+-116,,"hotFlashes,fatigue",irritable,
+-115,,"nightSweats,hotFlashes,brainFog",foggy,
+-114,,hotFlashes,anxious,
+-113,,"nightSweats,hotFlashes,headache",irritable,Headache all day
+-111,,"hotFlashes,brainFog,jointPain",foggy,Joint pain in knees
+-110,,"nightSweats,hotFlashes",sad,
+-109,,"hotFlashes,muscleAches",tired,
+-108,,"nightSweats,hotFlashes,brainFog",anxious,
+-106,,"hotFlashes,jointPain",irritable,
+-105,,"nightSweats,hotFlashes,fatigue",sad,Exhausted. Night sweats every night this week
+-103,,"hotFlashes,brainFog,muscleAches",foggy,
+-101,,"nightSweats,hotFlashes,headache",irritable,
+-99,,"hotFlashes,jointPain,brainFog",anxious,~16 hot flash days so far this month
+-97,,"nightSweats,hotFlashes",sad,
+-95,,"hotFlashes,muscleAches,fatigue",tired,
+-93,,"nightSweats,hotFlashes,brainFog",irritable,
+-91,,"hotFlashes,jointPain",anxious,
+-89,,"nightSweats,hotFlashes,headache",sad,Ended month exhausted and emotional
+-88,,"hotFlashes,fatigue",tired,Feb starts — no improvement
+-87,,"nightSweats,hotFlashes,brainFog",foggy,
+-86,,"hotFlashes,muscleAches",tired,
+-85,,"nightSweats,hotFlashes",anxious,Night sweats every single night
+-83,,"hotFlashes,jointPain,fatigue",sad,
+-82,,"nightSweats,hotFlashes,brainFog",irritable,
+-81,,"hotFlashes,muscleAches",tired,
+-79,,"nightSweats,hotFlashes,headache",anxious,
+-78,,"hotFlashes,jointPain,brainFog",foggy,Joints really painful in the morning
+-77,,"nightSweats,hotFlashes",sad,
+-75,,"hotFlashes,fatigue,muscleAches",irritable,
+-73,,"nightSweats,hotFlashes,brainFog",anxious,Counting flash days — already 15 this month
+-71,,"hotFlashes,jointPain",sad,
+-69,,"nightSweats,hotFlashes,headache",irritable,
+-67,,"hotFlashes,brainFog",foggy,
+-65,,"nightSweats,hotFlashes,muscleAches",anxious,
+-63,,"hotFlashes,jointPain,fatigue",sad,17 hot flash days this month
+-61,,"nightSweats,hotFlashes,brainFog",irritable,Ended Feb without a single good day
+-60,,"nightSweats,hotFlashes,brainFog",anxious,Mar: symptoms escalating further
+-59,,"hotFlashes,muscleAches,jointPain",sad,
+-58,,"nightSweats,hotFlashes",irritable,
+-57,,"hotFlashes,headache,fatigue",foggy,
+-56,,"nightSweats,hotFlashes,brainFog",anxious,
+-55,,"hotFlashes,vaginalDryness",tired,Vaginal dryness starting
+-53,,"nightSweats,hotFlashes,jointPain",sad,
+-52,,"hotFlashes,muscleAches",irritable,
+-50,,"nightSweats,hotFlashes,brainFog",foggy,
+-49,,"hotFlashes,vaginalDryness,headache",anxious,
+-47,,"nightSweats,hotFlashes,fatigue",sad,
+-46,,"hotFlashes,jointPain,brainFog",foggy,
+-45,,"nightSweats,hotFlashes,muscleAches",irritable,"Every night sweats, every day multiple flashes"
+-43,,"hotFlashes,brainFog,vaginalDryness",foggy,18 hot flash days so far this month
+-41,,"nightSweats,hotFlashes,jointPain",anxious,
+-39,,"hotFlashes,muscleAches,headache",sad,
+-37,,"nightSweats,hotFlashes,brainFog",irritable,
+-35,,"hotFlashes,vaginalDryness,fatigue",sad,
+-33,,"nightSweats,hotFlashes,jointPain",anxious,
+-31,,"hotFlashes,brainFog,muscleAches",irritable,20 flash days this month
+-29,,"nightSweats,hotFlashes,brainFog",anxious,Apr — no sign of any improvement
+-28,,"hotFlashes,jointPain,muscleAches",sad,
+-27,,"nightSweats,hotFlashes,headache",irritable,
+-25,,"hotFlashes,brainFog,vaginalDryness",foggy,
+-24,,"nightSweats,hotFlashes,fatigue",anxious,
+-22,,"hotFlashes,jointPain,vaginalDryness",sad,Dryness getting worse — using lubricant
+-21,,"nightSweats,hotFlashes,muscleAches",irritable,
+-19,,"hotFlashes,brainFog,headache",foggy,
+-18,,"nightSweats,hotFlashes,vaginalDryness",anxious,
+-16,,"hotFlashes,jointPain,fatigue",sad,Knees and hips aching daily
+-14,,"nightSweats,hotFlashes,brainFog",irritable,21 flash days on track this month
+-12,,"hotFlashes,muscleAches,vaginalDryness",sad,
+-10,,"nightSweats,hotFlashes,headache",anxious,
+-8,,"hotFlashes,brainFog,jointPain",foggy,
+-6,,"nightSweats,hotFlashes,vaginalDryness",sad,Urgently need to discuss treatment options
+-4,,"hotFlashes,fatigue,muscleAches",irritable,
+-2,,"nightSweats,hotFlashes,brainFog",anxious,
+0,,"hotFlashes,jointPain,vaginalDryness",sad,22 flash days this month — worst yet

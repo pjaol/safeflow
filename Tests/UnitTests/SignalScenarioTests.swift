@@ -32,9 +32,7 @@ final class SignalScenarioTests: XCTestCase {
                 flow: entry.flow,
                 symptoms: entry.symptoms,
                 mood: entry.mood,
-                sleepQuality: entry.sleepQuality,
-                energyLevel: entry.energyLevel,
-                stressLevel: entry.stressLevel
+                notes: entry.notes
             )
         }
     }
@@ -127,14 +125,6 @@ final class SignalScenarioTests: XCTestCase {
         )
     }
 
-    func testEarlyPeri_sleepWorsening() throws {
-        let days = try loadScenario(named: "scenario_early_perimenopause")
-        guard case .ready(let signal) = compute(days: days, stage: .perimenopause, cycleLengths: [28, 30, 31, 42]) else {
-            return XCTFail()
-        }
-        XCTAssertEqual(signal.wellbeing.sleepTrend, .worsening, "Sleep should worsen — high in Jan → low in Apr")
-    }
-
     // MARK: - Late perimenopause: heavy sustained burden
 
     func testLatePeri_stageIsLate() throws {
@@ -169,22 +159,6 @@ final class SignalScenarioTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(hf?.thisMonth ?? 0, 15, "Should see 15+ hot flash days in April")
     }
 
-    func testLatePeri_sleepConsistentlyPoor() throws {
-        let days = try loadScenario(named: "scenario_late_perimenopause")
-        guard case .ready(let signal) = compute(days: days, stage: .perimenopause, cycleLengths: []) else {
-            return XCTFail()
-        }
-        // Sleep is veryLow throughout — both current and baseline poor, so stable (not improving)
-        XCTAssertTrue(
-            signal.wellbeing.sleepTrend == .stable || signal.wellbeing.sleepTrend == .worsening,
-            "Sleep should be stable (consistently poor) or worsening, got \(signal.wellbeing.sleepTrend)"
-        )
-        // Average should be very low — veryLow rawValue is 0
-        if let avg = signal.wellbeing.sleepAvg {
-            XCTAssertLessThan(avg, 1.0, "Sleep average should be near veryLow (0)")
-        }
-    }
-
     // MARK: - Menopause stable: improvement arc
 
     func testMenoStable_stageIsMenopause() throws {
@@ -216,14 +190,6 @@ final class SignalScenarioTests: XCTestCase {
         )
     }
 
-    func testMenoStable_sleepImproving() throws {
-        let days = try loadScenario(named: "scenario_menopause_stable")
-        guard case .ready(let signal) = compute(days: days, stage: .menopause, cycleLengths: []) else {
-            return XCTFail()
-        }
-        XCTAssertEqual(signal.wellbeing.sleepTrend, .improving, "Sleep should improve — veryLow in Jan → medium in Apr")
-    }
-
     // MARK: - Menopause symptoms returning
 
     func testMenoReturning_hotFlashesEscalating() throws {
@@ -245,14 +211,6 @@ final class SignalScenarioTests: XCTestCase {
             signal.monthCharacter == .notablyHarder || signal.monthCharacter == .slightlyHarder,
             "April is much worse than quiet Jan/Feb baseline, got \(signal.monthCharacter)"
         )
-    }
-
-    func testMenoReturning_sleepWorsening() throws {
-        let days = try loadScenario(named: "scenario_menopause_symptoms_returning")
-        guard case .ready(let signal) = compute(days: days, stage: .menopause, cycleLengths: []) else {
-            return XCTFail()
-        }
-        XCTAssertEqual(signal.wellbeing.sleepTrend, .worsening, "Sleep should worsen — high in Jan/Feb, low in Apr")
     }
 
     func testMenoReturning_hasBaseline() throws {

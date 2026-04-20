@@ -86,7 +86,7 @@ struct SignalCardFormatter {
 
     // MARK: - Pills
     //
-    // Up to 2 pills: the top symptom trend (if noteworthy) + the most notable wellbeing trend.
+    // Up to 2 pills: top symptom trends (if noteworthy).
     // Stable trends produce no pill — stable is the baseline, not news.
 
     private static func buildPills(_ result: SignalResult) -> [TrendPill] {
@@ -96,9 +96,6 @@ struct SignalCardFormatter {
         if let sym = result.dominantSymptoms.first(where: { notable($0.trend) }) {
             if let pill = symptomPill(sym) { pills.append(pill) }
         }
-
-        // Wellbeing pill — most notable of sleep / energy / stress
-        if let pill = wellbeingPill(result.wellbeing) { pills.append(pill) }
 
         return Array(pills.prefix(2))
     }
@@ -124,29 +121,6 @@ struct SignalCardFormatter {
         }
     }
 
-    private static func wellbeingPill(_ wellbeing: WellbeingSignal) -> TrendPill? {
-        // Priority: sleep first (most clinically significant), then energy, then stress
-        if wellbeing.sleepTrend == .worsening {
-            return TrendPill(label: "↓ Sleep getting worse", trend: .worse)
-        }
-        if wellbeing.sleepTrend == .improving {
-            return TrendPill(label: "↑ Sleep improving", trend: .better)
-        }
-        if wellbeing.energyTrend == .worsening {
-            return TrendPill(label: "↓ Energy lower", trend: .worse)
-        }
-        if wellbeing.energyTrend == .improving {
-            return TrendPill(label: "↑ Energy better", trend: .better)
-        }
-        // Stress polarity: escalating stress = worse
-        if wellbeing.stressTrend == .worsening {
-            return TrendPill(label: "↑ Stress high", trend: .worse)
-        }
-        if wellbeing.stressTrend == .improving {
-            return TrendPill(label: "↓ Stress lower", trend: .better)
-        }
-        return nil
-    }
 }
 
 // MARK: - Symptom display name
@@ -350,10 +324,6 @@ private struct LearningStateCard: View {
             SymptomSignal(symptom: .hotFlashes, thisMonth: 18, baselineAvg: 8, trend: .escalating),
             SymptomSignal(symptom: .nightSweats, thisMonth: 10, baselineAvg: 4, trend: .escalating)
         ],
-        wellbeing: WellbeingSignal(
-            sleepAvg: 1.2, energyAvg: 1.5, stressAvg: 3.0,
-            sleepTrend: .worsening, energyTrend: .stable, stressTrend: .stable
-        ),
         hasBaseline: true
     )
     return SignalCard(readiness: .ready(result))
@@ -368,10 +338,6 @@ private struct LearningStateCard: View {
         dominantSymptoms: [
             SymptomSignal(symptom: .hotFlashes, thisMonth: 8, baselineAvg: 16, trend: .improving)
         ],
-        wellbeing: WellbeingSignal(
-            sleepAvg: 2.8, energyAvg: 2.5, stressAvg: 1.5,
-            sleepTrend: .improving, energyTrend: .stable, stressTrend: .stable
-        ),
         hasBaseline: true
     )
     return SignalCard(readiness: .ready(result))
@@ -386,10 +352,6 @@ private struct LearningStateCard: View {
         dominantSymptoms: [
             SymptomSignal(symptom: .hotFlashes, thisMonth: 9, baselineAvg: 0, trend: .unknown)
         ],
-        wellbeing: WellbeingSignal(
-            sleepAvg: nil, energyAvg: nil, stressAvg: nil,
-            sleepTrend: .unknown, energyTrend: .unknown, stressTrend: .unknown
-        ),
         hasBaseline: false
     )
     return SignalCard(readiness: .ready(result))

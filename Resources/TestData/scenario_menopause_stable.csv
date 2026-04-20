@@ -1,76 +1,76 @@
-date,flow,symptoms,mood,sleep,energy,stress,notes
--117,,"hotFlashes,nightSweats",anxious,veryLow,veryLow,high,Confirmed menopause 14 months ago. Still struggling
--116,,"nightSweats,hotFlashes,fatigue",tired,veryLow,veryLow,high,Woke twice — drenched
--115,,"hotFlashes,headache",irritable,veryLow,veryLow,high,
--114,,"hotFlashes,brainFog",foggy,veryLow,low,high,
--113,,"nightSweats,hotFlashes,jointPain",sad,veryLow,veryLow,high,
--111,,"hotFlashes,muscleAches",tired,low,low,medium,
--110,,"nightSweats,hotFlashes,headache",anxious,veryLow,veryLow,high,
--108,,"hotFlashes,brainFog",foggy,low,low,medium,~5 flashes today
--107,,"nightSweats,hotFlashes,fatigue",tired,veryLow,veryLow,high,
--106,,"hotFlashes,jointPain",sad,low,low,medium,
--105,,"nightSweats,hotFlashes",anxious,veryLow,veryLow,high,
--103,,"nightSweats,hotFlashes,brainFog",anxious,veryLow,low,high,
--101,,"hotFlashes,muscleAches,headache",tired,low,low,medium,
--99,,"nightSweats,hotFlashes",irritable,veryLow,veryLow,high,16 hot flash days — starting lifestyle changes
--97,,"hotFlashes,brainFog",foggy,low,low,medium,
--95,,"nightSweats,hotFlashes,fatigue",tired,veryLow,veryLow,high,
--93,,"hotFlashes,jointPain",sad,low,low,medium,
--91,,"nightSweats,hotFlashes",anxious,veryLow,low,medium,
--89,,"hotFlashes,brainFog",foggy,low,low,medium,Started HRT / lifestyle protocol this week
--87,,"nightSweats,hotFlashes,fatigue",tired,low,low,medium,First week on new routine
--86,,"hotFlashes,headache",tired,low,low,medium,
--85,,"hotFlashes,jointPain",neutral,low,low,medium,Slightly fewer today — hopeful
--83,,"nightSweats,hotFlashes,headache",tired,low,low,medium,
--81,,"hotFlashes,brainFog",foggy,low,medium,medium,Energy a little better
--80,,"nightSweats,hotFlashes",tired,low,low,medium,
--79,,"hotFlashes,muscleAches",neutral,low,medium,low,
--77,,"nightSweats,hotFlashes,fatigue",tired,low,low,medium,Muscle pain easing slightly
--76,,"hotFlashes,jointPain",neutral,low,medium,low,
--75,,"nightSweats,hotFlashes",tired,low,low,medium,13 flash days so far — down from Jan pace
--73,,"hotFlashes,brainFog",neutral,low,medium,low,Brain fog improving
--71,,"nightSweats,hotFlashes",tired,low,low,medium,
--70,,"hotFlashes,jointPain",neutral,low,medium,low,
--69,,hotFlashes,neutral,medium,medium,low,Energy a little better
--67,,"nightSweats,hotFlashes",tired,low,low,medium,
--66,,hotFlashes,neutral,medium,medium,low,Only 1-2 flashes today
--64,,"nightSweats,hotFlashes",tired,low,low,medium,
--62,,"hotFlashes,jointPain",neutral,medium,medium,low,12 flash days this month — modest improvement
--59,,hotFlashes,neutral,medium,medium,low,Mar — noticeably fewer flashes
--57,,"nightSweats,hotFlashes",tired,low,medium,low,Nights still rough but better
--55,,"hotFlashes,brainFog",neutral,medium,medium,low,
--53,,hotFlashes,calm,medium,medium,low,Some calm days appearing
--52,,,calm,medium,medium,veryLow,Good day — no flashes
--50,,"nightSweats,hotFlashes,jointPain",tired,low,low,medium,
--48,,hotFlashes,neutral,medium,medium,low,Only 2 flashes today
--47,,,calm,medium,medium,low,Clear day
--45,,"hotFlashes,muscleAches",neutral,medium,medium,low,Sleep improving — only woke once
--43,,"nightSweats,hotFlashes",tired,medium,medium,low,
--42,,hotFlashes,neutral,medium,medium,low,
--41,,,calm,medium,medium,veryLow,Good day — minimal symptoms
--39,,"hotFlashes,jointPain",neutral,medium,medium,low,
--37,,,calm,medium,medium,low,
--36,,hotFlashes,calm,medium,medium,low,~9 flash days this month — steady improvement
--34,,"nightSweats,hotFlashes",neutral,medium,medium,low,Nights still have occasional sweats
--32,,hotFlashes,calm,medium,medium,veryLow,
--30,,hotFlashes,neutral,medium,high,low,Energy coming back — exercised today
--28,,hotFlashes,calm,medium,medium,low,Apr — feeling meaningfully better
--27,,,calm,medium,high,veryLow,No flashes — clear day
--26,,,calm,medium,medium,veryLow,
--24,,hotFlashes,neutral,medium,medium,low,Just one flash — brief
--23,,,calm,medium,high,veryLow,
--22,,,calm,medium,high,veryLow,Two clear days in a row
--20,,hotFlashes,neutral,medium,medium,low,
--19,,,calm,medium,high,veryLow,
--18,,nightSweats,tired,medium,medium,low,Night sweat but no daytime flashes
--16,,,calm,medium,high,veryLow,Really good day
--14,,hotFlashes,neutral,medium,medium,low,One flash mid-afternoon
--13,,,calm,medium,high,veryLow,
--12,,,calm,medium,high,veryLow,
--10,,hotFlashes,neutral,medium,medium,low,
--9,,,calm,medium,high,veryLow,
--8,,,calm,medium,high,veryLow,Two consecutive clear days
--6,,hotFlashes,neutral,medium,medium,low,
--4,,,calm,medium,high,veryLow,Noticeably more good days than bad now
--2,,,calm,medium,high,veryLow,8 hot flash days this month — best yet
-0,,hotFlashes,neutral,medium,medium,low,Trajectory is positive — continuing treatment
+date,flow,symptoms,mood,notes
+-117,,"hotFlashes,nightSweats",anxious,Confirmed menopause 14 months ago. Still struggling
+-116,,"nightSweats,hotFlashes,fatigue",tired,Woke twice — drenched
+-115,,"hotFlashes,headache",irritable,
+-114,,"hotFlashes,brainFog",foggy,
+-113,,"nightSweats,hotFlashes,jointPain",sad,
+-111,,"hotFlashes,muscleAches",tired,
+-110,,"nightSweats,hotFlashes,headache",anxious,
+-108,,"hotFlashes,brainFog",foggy,~5 flashes today
+-107,,"nightSweats,hotFlashes,fatigue",tired,
+-106,,"hotFlashes,jointPain",sad,
+-105,,"nightSweats,hotFlashes",anxious,
+-103,,"nightSweats,hotFlashes,brainFog",anxious,
+-101,,"hotFlashes,muscleAches,headache",tired,
+-99,,"nightSweats,hotFlashes",irritable,16 hot flash days — starting lifestyle changes
+-97,,"hotFlashes,brainFog",foggy,
+-95,,"nightSweats,hotFlashes,fatigue",tired,
+-93,,"hotFlashes,jointPain",sad,
+-91,,"nightSweats,hotFlashes",anxious,
+-89,,"hotFlashes,brainFog",foggy,Started HRT / lifestyle protocol this week
+-87,,"nightSweats,hotFlashes,fatigue",tired,First week on new routine
+-86,,"hotFlashes,headache",tired,
+-85,,"hotFlashes,jointPain",neutral,Slightly fewer today — hopeful
+-83,,"nightSweats,hotFlashes,headache",tired,
+-81,,"hotFlashes,brainFog",foggy,Energy a little better
+-80,,"nightSweats,hotFlashes",tired,
+-79,,"hotFlashes,muscleAches",neutral,
+-77,,"nightSweats,hotFlashes,fatigue",tired,Muscle pain easing slightly
+-76,,"hotFlashes,jointPain",neutral,
+-75,,"nightSweats,hotFlashes",tired,13 flash days so far — down from Jan pace
+-73,,"hotFlashes,brainFog",neutral,Brain fog improving
+-71,,"nightSweats,hotFlashes",tired,
+-70,,"hotFlashes,jointPain",neutral,
+-69,,hotFlashes,neutral,Energy a little better
+-67,,"nightSweats,hotFlashes",tired,
+-66,,hotFlashes,neutral,Only 1-2 flashes today
+-64,,"nightSweats,hotFlashes",tired,
+-62,,"hotFlashes,jointPain",neutral,12 flash days this month — modest improvement
+-59,,hotFlashes,neutral,Mar — noticeably fewer flashes
+-57,,"nightSweats,hotFlashes",tired,Nights still rough but better
+-55,,"hotFlashes,brainFog",neutral,
+-53,,hotFlashes,calm,Some calm days appearing
+-52,,,calm,Good day — no flashes
+-50,,"nightSweats,hotFlashes,jointPain",tired,
+-48,,hotFlashes,neutral,Only 2 flashes today
+-47,,,calm,Clear day
+-45,,"hotFlashes,muscleAches",neutral,Sleep improving — only woke once
+-43,,"nightSweats,hotFlashes",tired,
+-42,,hotFlashes,neutral,
+-41,,,calm,Good day — minimal symptoms
+-39,,"hotFlashes,jointPain",neutral,
+-37,,,calm,
+-36,,hotFlashes,calm,~9 flash days this month — steady improvement
+-34,,"nightSweats,hotFlashes",neutral,Nights still have occasional sweats
+-32,,hotFlashes,calm,
+-30,,hotFlashes,neutral,Energy coming back — exercised today
+-28,,hotFlashes,calm,Apr — feeling meaningfully better
+-27,,,calm,No flashes — clear day
+-26,,,calm,
+-24,,hotFlashes,neutral,Just one flash — brief
+-23,,,calm,
+-22,,,calm,Two clear days in a row
+-20,,hotFlashes,neutral,
+-19,,,calm,
+-18,,nightSweats,tired,Night sweat but no daytime flashes
+-16,,,calm,Really good day
+-14,,hotFlashes,neutral,One flash mid-afternoon
+-13,,,calm,
+-12,,,calm,
+-10,,hotFlashes,neutral,
+-9,,,calm,
+-8,,,calm,Two consecutive clear days
+-6,,hotFlashes,neutral,
+-4,,,calm,Noticeably more good days than bad now
+-2,,,calm,8 hot flash days this month — best yet
+0,,hotFlashes,neutral,Trajectory is positive — continuing treatment

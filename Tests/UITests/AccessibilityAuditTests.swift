@@ -208,15 +208,12 @@ final class AccessibilityAuditTests: XCTestCase {
         app.buttons["settings.doneButton"].tap()
     }
 
-    // MARK: - Wellbeing Log Section
+    // MARK: - Log Day Sheet
 
-    func testWellbeingLogSectionAccessibility() throws {
+    func testLogDaySheetAccessibility() throws {
         XCTAssertTrue(app.buttons["home.editLogsButton"].waitForExistence(timeout: 5))
         app.buttons["home.editLogsButton"].tap()
         XCTAssertTrue(app.buttons["editLogs.doneButton"].waitForExistence(timeout: 5))
-
-        // Wellbeing section identifiers
-        XCTAssertTrue(app.otherElements["logDay.wellbeing.sleep"].waitForExistence(timeout: 5))
 
         try app.performAccessibilityAudit(for: [
             .sufficientElementDescription,

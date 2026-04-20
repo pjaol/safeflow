@@ -7,10 +7,6 @@ struct CycleDay: Identifiable, Codable {
     var symptoms: Set<Symptom>
     var mood: Mood?
     var notes: String?
-    // Daily Wellbeing — nil means not logged (never auto-carry-forward)
-    var sleepQuality: WellbeingLevel?
-    var energyLevel: WellbeingLevel?
-    var stressLevel: WellbeingLevel?
 
     init(
         id: UUID = UUID(),
@@ -18,10 +14,7 @@ struct CycleDay: Identifiable, Codable {
         flow: FlowIntensity? = nil,
         symptoms: Set<Symptom> = [],
         mood: Mood? = nil,
-        notes: String? = nil,
-        sleepQuality: WellbeingLevel? = nil,
-        energyLevel: WellbeingLevel? = nil,
-        stressLevel: WellbeingLevel? = nil
+        notes: String? = nil
     ) {
         self.id = id
         self.date = date
@@ -29,96 +22,6 @@ struct CycleDay: Identifiable, Codable {
         self.symptoms = symptoms
         self.mood = mood
         self.notes = notes
-        self.sleepQuality = sleepQuality
-        self.energyLevel = energyLevel
-        self.stressLevel = stressLevel
-    }
-}
-
-// MARK: - WellbeingLevel
-
-/// 0–4 scale for sleep quality, energy level, and stress level.
-/// `nil` on a CycleDay means the field was not logged that day.
-enum WellbeingLevel: Int, Codable, CaseIterable {
-    case veryLow = 0
-    case low     = 1
-    case medium  = 2
-    case high    = 3
-    case veryHigh = 4
-
-    // MARK: Sleep quality labels (veryLow = poor, veryHigh = excellent)
-    var sleepLabel: LocalizedStringKey {
-        switch self {
-        case .veryLow:  return "Poor"
-        case .low:      return "Fair"
-        case .medium:   return "Okay"
-        case .high:     return "Good"
-        case .veryHigh: return "Great"
-        }
-    }
-
-    var sleepLabelString: String {
-        switch self {
-        case .veryLow:  return String(localized: "Poor")
-        case .low:      return String(localized: "Fair")
-        case .medium:   return String(localized: "Okay")
-        case .high:     return String(localized: "Good")
-        case .veryHigh: return String(localized: "Great")
-        }
-    }
-
-    // MARK: Energy level labels (veryLow = depleted, veryHigh = high)
-    var energyLabel: LocalizedStringKey {
-        switch self {
-        case .veryLow:  return "Depleted"
-        case .low:      return "Low"
-        case .medium:   return "Okay"
-        case .high:     return "Good"
-        case .veryHigh: return "High"
-        }
-    }
-
-    var energyLabelString: String {
-        switch self {
-        case .veryLow:  return String(localized: "Depleted")
-        case .low:      return String(localized: "Low")
-        case .medium:   return String(localized: "Okay")
-        case .high:     return String(localized: "Good")
-        case .veryHigh: return String(localized: "High")
-        }
-    }
-
-    // MARK: Stress level labels (veryLow = calm, veryHigh = high)
-    var stressLabel: LocalizedStringKey {
-        switch self {
-        case .veryLow:  return "Calm"
-        case .low:      return "Mild"
-        case .medium:   return "Moderate"
-        case .high:     return "High"
-        case .veryHigh: return "Very High"
-        }
-    }
-
-    /// Parses the string labels used in CSV test data (e.g. "veryLow", "high").
-    init?(rawString: String) {
-        switch rawString.trimmingCharacters(in: .whitespaces) {
-        case "veryLow":  self = .veryLow
-        case "low":      self = .low
-        case "medium":   self = .medium
-        case "high":     self = .high
-        case "veryHigh": self = .veryHigh
-        default:         return nil
-        }
-    }
-
-    var stressLabelString: String {
-        switch self {
-        case .veryLow:  return String(localized: "Calm")
-        case .low:      return String(localized: "Mild")
-        case .medium:   return String(localized: "Moderate")
-        case .high:     return String(localized: "High")
-        case .veryHigh: return String(localized: "Very High")
-        }
     }
 }
 

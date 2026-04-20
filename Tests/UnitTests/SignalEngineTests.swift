@@ -22,19 +22,13 @@ final class SignalEngineTests: XCTestCase {
         _ dateString: String,
         symptoms: Set<Symptom> = [],
         mood: Mood? = nil,
-        flow: FlowIntensity? = nil,
-        sleep: WellbeingLevel? = nil,
-        energy: WellbeingLevel? = nil,
-        stress: WellbeingLevel? = nil
+        flow: FlowIntensity? = nil
     ) -> CycleDay {
         CycleDay(
             date: makeDate(dateString),
             flow: flow,
             symptoms: symptoms,
-            mood: mood,
-            sleepQuality: sleep,
-            energyLevel: energy,
-            stressLevel: stress
+            mood: mood
         )
     }
 
@@ -42,14 +36,11 @@ final class SignalEngineTests: XCTestCase {
     private func days(
         month: String,
         count: Int,
-        symptoms: Set<Symptom> = [],
-        sleep: WellbeingLevel? = nil,
-        energy: WellbeingLevel? = nil,
-        stress: WellbeingLevel? = nil
+        symptoms: Set<Symptom> = []
     ) -> [CycleDay] {
         (1...count).map { n in
             let dateString = String(format: "%@-%02d", month, n)
-            return day(dateString, symptoms: symptoms, sleep: sleep, energy: energy, stress: stress)
+            return day(dateString, symptoms: symptoms)
         }
     }
 
@@ -352,71 +343,6 @@ final class SignalEngineTests: XCTestCase {
         XCTAssertEqual(signal.monthCharacter, .similar)
     }
 
-    // MARK: - Wellbeing signal
-
-    func testWellbeing_sleepWorsening() {
-        // Baseline sleep avg: 3.5 (good) → current avg: 1.0 (low) → worsening
-        let current = (1...10).map { n -> CycleDay in
-            CycleDay(date: makeDate(String(format: "2025-04-%02d", n)), sleepQuality: .low)
-        }
-        let baseline = (1...10).map { n -> CycleDay in
-            CycleDay(date: makeDate(String(format: "2025-02-%02d", n)), sleepQuality: .high)
-        } + (1...10).map { n -> CycleDay in
-            CycleDay(date: makeDate(String(format: "2025-01-%02d", n)), sleepQuality: .high)
-        }
-
-        guard case .ready(let signal) = compute(current: current, baseline: baseline) else {
-            return XCTFail()
-        }
-        XCTAssertEqual(signal.wellbeing.sleepTrend, .worsening)
-    }
-
-    func testWellbeing_sleepImproving() {
-        let current = (1...10).map { n -> CycleDay in
-            CycleDay(date: makeDate(String(format: "2025-04-%02d", n)), sleepQuality: .veryHigh)
-        }
-        let baseline = (1...10).map { n -> CycleDay in
-            CycleDay(date: makeDate(String(format: "2025-02-%02d", n)), sleepQuality: .veryLow)
-        } + (1...10).map { n -> CycleDay in
-            CycleDay(date: makeDate(String(format: "2025-01-%02d", n)), sleepQuality: .veryLow)
-        }
-
-        guard case .ready(let signal) = compute(current: current, baseline: baseline) else {
-            return XCTFail()
-        }
-        XCTAssertEqual(signal.wellbeing.sleepTrend, .improving)
-    }
-
-    func testWellbeing_stressInverted_higherIsWorse() {
-        // Stress went from veryLow (0) baseline to veryHigh (4) current → worsening
-        let current = (1...10).map { n -> CycleDay in
-            CycleDay(date: makeDate(String(format: "2025-04-%02d", n)), stressLevel: .veryHigh)
-        }
-        let baseline = (1...10).map { n -> CycleDay in
-            CycleDay(date: makeDate(String(format: "2025-02-%02d", n)), stressLevel: .veryLow)
-        } + (1...10).map { n -> CycleDay in
-            CycleDay(date: makeDate(String(format: "2025-01-%02d", n)), stressLevel: .veryLow)
-        }
-
-        guard case .ready(let signal) = compute(current: current, baseline: baseline) else {
-            return XCTFail()
-        }
-        XCTAssertEqual(signal.wellbeing.stressTrend, .worsening)
-    }
-
-    func testWellbeing_noDataLogged_nilAverages() {
-        // Days logged but no wellbeing fields filled in
-        let current = days(month: "2025-04", count: 10)
-
-        guard case .ready(let signal) = compute(current: current) else {
-            return XCTFail()
-        }
-        XCTAssertNil(signal.wellbeing.sleepAvg)
-        XCTAssertNil(signal.wellbeing.energyAvg)
-        XCTAssertNil(signal.wellbeing.stressAvg)
-        XCTAssertEqual(signal.wellbeing.sleepTrend, .unknown)
-    }
-
     // MARK: - Edge cases
 
     func testEdge_allSymptoms_maxDensity() {
@@ -431,16 +357,12 @@ final class SignalEngineTests: XCTestCase {
         XCTAssertLessThanOrEqual(signal.dominantSymptoms.filter { $0.trend != .resolved }.count, 3)
     }
 
-    func testEdge_noSymptoms_onlyWellbeing() {
-        let current = (1...10).map { n -> CycleDay in
-            CycleDay(date: makeDate(String(format: "2025-04-%02d", n)),
-                     sleepQuality: .high, energyLevel: .medium, stressLevel: .low)
-        }
+    func testEdge_noSymptoms_noDominantSymptoms() {
+        let current = days(month: "2025-04", count: 10)
         guard case .ready(let signal) = compute(current: current) else {
             return XCTFail()
         }
         XCTAssertTrue(signal.dominantSymptoms.isEmpty)
-        XCTAssertNotNil(signal.wellbeing.sleepAvg)
     }
 
     func testEdge_singleSymptomOnly() {

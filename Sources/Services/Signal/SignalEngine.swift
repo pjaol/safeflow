@@ -27,7 +27,6 @@ struct SignalResult {
     let stage: SignalStage
     let monthCharacter: MonthCharacter
     let dominantSymptoms: [SymptomSignal]   // ranked by thisMonth count, max 3
-    let wellbeing: WellbeingSignal
     let hasBaseline: Bool                   // false = first/second month, no trend direction
 }
 
@@ -64,22 +63,6 @@ enum SymptomTrend: Equatable {
     case unknown                // no baseline to compare
 }
 
-struct WellbeingSignal: Equatable {
-    let sleepAvg: Double?       // nil if no sleep data logged
-    let energyAvg: Double?
-    let stressAvg: Double?
-    let sleepTrend: WellbeingTrend
-    let energyTrend: WellbeingTrend
-    let stressTrend: WellbeingTrend
-}
-
-enum WellbeingTrend: Equatable {
-    case improving
-    case stable
-    case worsening
-    case unknown                // no baseline or previous data
-}
-
 // MARK: - Engine
 
 enum SignalEngine {
@@ -112,13 +95,6 @@ enum SignalEngine {
             hasBaseline: hasBaseline
         )
 
-        let wellbeing = computeWellbeingSignal(
-            current: current,
-            previous: previous,
-            baseline: baseline,
-            hasBaseline: hasBaseline
-        )
-
         let monthCharacter = computeMonthCharacter(
             current: current,
             baseline: baseline,
@@ -129,7 +105,6 @@ enum SignalEngine {
             stage: signalStage,
             monthCharacter: monthCharacter,
             dominantSymptoms: dominantSymptoms,
-            wellbeing: wellbeing,
             hasBaseline: hasBaseline
         ))
     }
@@ -245,53 +220,6 @@ enum SignalEngine {
             }
         }
         return counts
-    }
-
-    // MARK: Wellbeing signal
-
-    private static func computeWellbeingSignal(
-        current:     [CycleDay],
-        previous:    [CycleDay],
-        baseline:    [CycleDay],
-        hasBaseline: Bool
-    ) -> WellbeingSignal {
-        let currentSleep  = average(current,  \.sleepQuality)
-        let currentEnergy = average(current,  \.energyLevel)
-        let currentStress = average(current,  \.stressLevel)
-
-        let baselineSleep  = hasBaseline ? average(baseline, \.sleepQuality)  : nil
-        let baselineEnergy = hasBaseline ? average(baseline, \.energyLevel)   : nil
-        let baselineStress = hasBaseline ? average(baseline, \.stressLevel)   : nil
-
-        return WellbeingSignal(
-            sleepAvg:    currentSleep,
-            energyAvg:   currentEnergy,
-            stressAvg:   currentStress,
-            sleepTrend:  wellbeingTrend(current: currentSleep,  baseline: baselineSleep,  higherIsBetter: true),
-            energyTrend: wellbeingTrend(current: currentEnergy, baseline: baselineEnergy, higherIsBetter: true),
-            stressTrend: wellbeingTrend(current: currentStress, baseline: baselineStress, higherIsBetter: false)
-        )
-    }
-
-    private static func average(_ days: [CycleDay], _ keyPath: KeyPath<CycleDay, WellbeingLevel?>) -> Double? {
-        let values = days.compactMap { $0[keyPath: keyPath]?.rawValue }
-        guard !values.isEmpty else { return nil }
-        return Double(values.reduce(0, +)) / Double(values.count)
-    }
-
-    /// For sleep and energy, higher rawValue = better.
-    /// For stress, higher rawValue = worse — so invert the trend direction.
-    private static func wellbeingTrend(
-        current:        Double?,
-        baseline:       Double?,
-        higherIsBetter: Bool
-    ) -> WellbeingTrend {
-        guard let c = current, let b = baseline else { return .unknown }
-        let delta = c - b
-        let threshold = 0.5  // half a level on the 0–4 scale
-        if abs(delta) < threshold { return .stable }
-        let improving = higherIsBetter ? delta > 0 : delta < 0
-        return improving ? .improving : .worsening
     }
 
     // MARK: Month character

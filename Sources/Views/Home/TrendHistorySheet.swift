@@ -3,17 +3,22 @@ import SwiftUI
 // MARK: - TrendHistorySheet
 //
 // Month-by-month trend view drilled into from MonthlySummaryView.
-// Answers: "How are my symptoms and wellbeing trending over time?"
+// Answers: "How are my symptoms trending over time?"
 //
 // Structure:
 //   - 3/6/9 month picker
-//   - 4 vertical bar charts stacked, sharing the same x-axis (month labels):
-//       Hot Flashes (days/month), Sleep avg, Energy avg, Stress avg
-//   - Tap any month bar → MonthDrillSheet: daily line chart + 7-day MA per metric
+//   - 4 vertical bar charts: Hot Flashes (days/month), Energy, Sleep, Mood
+//   - Tap any month bar → MonthDrillSheet: weekly grouped line charts
 //
 // Uses calendar-month bucketing (not cycle boundaries) — appropriate for perimenopause
 // and menopause where cycles are absent or highly irregular.
 // Months with < 5 logged days shown muted as sparse.
+//
+// Derived scores (no separate capture — computed from existing symptom/mood data):
+//   Energy:  highEnergy → +1, fatigue/brainFog → -1, else 0
+//   Sleep:   insomnia → -1, else 0
+//   Mood:    positive moods → +1, neutral → 0, negative moods → -1
+// Monthly averages are shown on a -1…+1 scale.
 
 // MARK: - Data models
 
@@ -23,9 +28,9 @@ struct MonthBucket: Identifiable {
     let fullLabel: String  // "April 2025"
     let loggedDays: Int
     let hotFlashDays: Int  // days with ≥1 vasomotor symptom
-    let sleepAvg: Double?  // 0–4
-    let energyAvg: Double? // 0–4
-    let stressAvg: Double? // 0–4
+    let avgEnergy: Double? // nil if sparse, else average of per-day energy scores (-1…+1)
+    let avgSleep: Double?  // nil if sparse, else average of per-day sleep scores (-1…0)
+    let avgMood: Double?   // nil if sparse, else average of per-day mood scores (-1…+1)
     var isSparse: Bool { loggedDays < 5 }
 }
 
@@ -59,7 +64,7 @@ struct TrendHistorySheet: View {
                     if buckets.allSatisfy({ $0.loggedDays == 0 }) {
                         emptyState
                     } else {
-                        VStack(spacing: 24) {
+                        VStack(spacing: 28) {
                             MetricBarChart(
                                 title: "Hot flashes",
                                 subtitle: "days per month",
@@ -69,35 +74,32 @@ struct TrendHistorySheet: View {
                                 barColor: AppTheme.Colors.dartPain,
                                 selectedMonth: $selectedMonth
                             )
-                            Divider()
-                            MetricBarChart(
-                                title: "Sleep",
-                                subtitle: "monthly average",
-                                buckets: buckets,
-                                value: { $0.sleepAvg },
-                                maxValue: 4,
-                                barColor: AppTheme.Colors.accentBlue,
-                                selectedMonth: $selectedMonth
-                            )
-                            Divider()
                             MetricBarChart(
                                 title: "Energy",
-                                subtitle: "monthly average",
+                                subtitle: "avg score per month",
                                 buckets: buckets,
-                                value: { $0.energyAvg },
-                                maxValue: 4,
+                                value: { $0.avgEnergy },
+                                maxValue: 1,
                                 barColor: AppTheme.Colors.dartEnergy,
                                 selectedMonth: $selectedMonth
                             )
-                            Divider()
                             MetricBarChart(
-                                title: "Stress",
-                                subtitle: "monthly average (lower is better)",
+                                title: "Sleep",
+                                subtitle: "avg score per month",
                                 buckets: buckets,
-                                value: { $0.stressAvg },
-                                maxValue: 4,
-                                barColor: AppTheme.Colors.secondaryPink,
-                                invertScale: true,
+                                value: { $0.avgSleep.map { $0 + 1 } },  // shift -1…0 → 0…1 for bar height
+                                maxValue: 1,
+                                barColor: AppTheme.Colors.primaryBlue,
+                                invertedLabel: true,  // lower raw score = worse sleep
+                                selectedMonth: $selectedMonth
+                            )
+                            MetricBarChart(
+                                title: "Mood",
+                                subtitle: "avg score per month",
+                                buckets: buckets,
+                                value: { $0.avgMood.map { ($0 + 1) / 2 } },  // shift -1…+1 → 0…1
+                                maxValue: 1,
+                                barColor: AppTheme.Colors.dartMood,
                                 selectedMonth: $selectedMonth
                             )
                         }
@@ -163,23 +165,47 @@ struct TrendHistorySheet: View {
                 return d >= monthStart && d < monthEnd
             }
 
+            let energyScores = days.map { energyScore(for: $0) }
+            let sleepScores  = days.map { sleepScore(for: $0) }
+            let moodScores   = days.compactMap { moodScore(for: $0) }
+
+            let sparse = days.count < 5
+
             return MonthBucket(
                 id:           monthStart,
                 shortLabel:   monthStart.formatted(.dateTime.month(.abbreviated).locale(locale)),
                 fullLabel:    monthStart.formatted(.dateTime.month(.wide).year().locale(locale)),
                 loggedDays:   days.count,
                 hotFlashDays: days.filter { $0.symptoms.contains { $0.category == .vasomotor } }.count,
-                sleepAvg:     wellbeingAvg(days, keyPath: \.sleepQuality),
-                energyAvg:    wellbeingAvg(days, keyPath: \.energyLevel),
-                stressAvg:    wellbeingAvg(days, keyPath: \.stressLevel)
+                avgEnergy:    sparse || energyScores.isEmpty ? nil : energyScores.reduce(0, +) / Double(energyScores.count),
+                avgSleep:     sparse || sleepScores.isEmpty  ? nil : sleepScores.reduce(0, +)  / Double(sleepScores.count),
+                avgMood:      sparse || moodScores.isEmpty   ? nil : moodScores.reduce(0, +)   / Double(moodScores.count)
             )
         }
     }
 
-    private func wellbeingAvg(_ days: [CycleDay], keyPath: KeyPath<CycleDay, WellbeingLevel?>) -> Double? {
-        let values = days.compactMap { $0[keyPath: keyPath] }
-        guard !values.isEmpty else { return nil }
-        return Double(values.reduce(0) { $0 + $1.rawValue }) / Double(values.count)
+    // MARK: - Derived score helpers
+
+    /// Energy score for a single day: highEnergy → +1, fatigue/brainFog → -1, else 0
+    private func energyScore(for day: CycleDay) -> Double {
+        if day.symptoms.contains(.highEnergy) { return 1 }
+        if day.symptoms.contains(.fatigue) || day.symptoms.contains(.brainFog) { return -1 }
+        return 0
+    }
+
+    /// Sleep score for a single day: insomnia → -1, else 0
+    private func sleepScore(for day: CycleDay) -> Double {
+        day.symptoms.contains(.insomnia) ? -1 : 0
+    }
+
+    /// Mood score for a single day — nil if no mood logged
+    private func moodScore(for day: CycleDay) -> Double? {
+        switch day.mood {
+        case .energized, .happy, .confident, .calm, .focused: return 1
+        case .neutral: return 0
+        case .foggy, .tired, .sensitive, .anxious, .irritable, .sad: return -1
+        case nil: return nil
+        }
     }
 }
 
@@ -192,7 +218,7 @@ private struct MetricBarChart: View {
     let value: (MonthBucket) -> Double?
     let maxValue: Double
     let barColor: Color
-    var invertScale: Bool = false  // for stress: visually flip so lower bar = better
+    var invertedLabel: Bool = false  // when value is shifted for display but label should show original
     @Binding var selectedMonth: MonthBucket?
 
     private let barHeight: CGFloat = 80
@@ -214,13 +240,12 @@ private struct MetricBarChart: View {
                 ForEach(buckets) { bucket in
                     let val = value(bucket)
                     let filled = val != nil && !bucket.isSparse
-                    let rawRatio = val.map { $0 / maxValue } ?? 0
-                    let ratio = invertScale ? (1.0 - rawRatio) : rawRatio
+                    let ratio = val.map { $0 / maxValue } ?? 0
 
                     VStack(spacing: 4) {
-                        // Count label above bar
+                        // Score label above bar
                         if let v = val, !bucket.isSparse {
-                            Text(verbatim: labelText(v))
+                            Text(verbatim: scoreLabel(v, bucket: bucket))
                                 .font(.system(size: 10, weight: .semibold, design: .rounded))
                                 .foregroundStyle(barColor)
                         } else {
@@ -258,28 +283,45 @@ private struct MetricBarChart: View {
         }
     }
 
-    private func labelText(_ value: Double) -> String {
-        // Hot flashes: integer days. Wellbeing: one decimal
-        maxValue == 30 ? "\(Int(value.rounded()))" : String(format: "%.1f", value)
+    /// Display label for the score value above the bar.
+    /// Hot flashes (maxValue==30): integer day count.
+    /// Shifted -1…+1 scores (maxValue==1): show original unshifted value as "+0.4" etc.
+    private func scoreLabel(_ displayValue: Double, bucket: MonthBucket) -> String {
+        if maxValue == 30 {
+            return "\(Int(displayValue.rounded()))"
+        }
+        // Recover original -1…+1 value from shifted display value
+        let original: Double
+        if invertedLabel {
+            // sleep: shifted by +1, recover by -1
+            original = displayValue - 1
+        } else if title == "Mood" {
+            // mood: shifted by (v+1)/2, recover by v*2-1
+            original = displayValue * 2 - 1
+        } else {
+            original = displayValue
+        }
+        let s = String(format: "%.1f", original)
+        return original > 0 ? "+\(s)" : s
     }
 
     private func accessibilityLabel(bucket: MonthBucket, val: Double?) -> String {
         guard let v = val, !bucket.isSparse else {
             return "\(bucket.fullLabel), \(title): insufficient data"
         }
-        return "\(bucket.fullLabel), \(title): \(labelText(v)). Tap to see daily detail."
+        return "\(bucket.fullLabel), \(title): \(scoreLabel(v, bucket: bucket)). Tap to see weekly detail."
     }
 }
 
 // MARK: - MonthDrillSheet
 
-struct DayPoint: Identifiable {
-    let id: Int        // day-of-month index 0-based
-    let date: Date
-    let hotFlash: Double?   // 1 if had vasomotor symptom, 0 if logged but none, nil if not logged
-    let sleep: Double?
-    let energy: Double?
-    let stress: Double?
+struct WeekPoint: Identifiable {
+    let id: Int          // week index 0-based
+    let label: String    // "Wk 1"
+    let hotFlash: Double?  // fraction of logged days with hot flash (0…1), nil if no logged days
+    let energy: Double?    // avg energy score (-1…+1), nil if no logged days
+    let sleep: Double?     // avg sleep score (-1…0), nil if no logged days
+    let mood: Double?      // avg mood score (-1…+1), nil if no mood logged
 }
 
 struct MonthDrillSheet: View {
@@ -288,23 +330,45 @@ struct MonthDrillSheet: View {
     let locale: Locale
     @Environment(\.dismiss) private var dismiss
 
-    private var points: [DayPoint] {
+    private var weeks: [WeekPoint] {
         let cal = Calendar.current
         guard let monthEnd = cal.date(byAdding: .month, value: 1, to: bucket.id) else { return [] }
-        let range = cal.dateComponents([.day], from: bucket.id, to: monthEnd).day ?? 30
+        let daysInMonth = cal.dateComponents([.day], from: bucket.id, to: monthEnd).day ?? 30
 
-        return (0..<range).map { i in
-            guard let date = cal.date(byAdding: .day, value: i, to: bucket.id) else {
-                return DayPoint(id: i, date: bucket.id, hotFlash: nil, sleep: nil, energy: nil, stress: nil)
+        // Bucket days into 4 weeks: wk0=days 0-6, wk1=7-13, wk2=14-20, wk3=21-end
+        return (0..<4).compactMap { wk -> WeekPoint? in
+            let startOffset = wk * 7
+            guard startOffset < daysInMonth else { return nil }
+            let endOffset = min(startOffset + 7, daysInMonth)
+
+            let days: [CycleDay] = (startOffset..<endOffset).compactMap { offset in
+                guard let date = cal.date(byAdding: .day, value: offset, to: bucket.id) else { return nil }
+                return cycleStore.getDay(for: date)
             }
-            let day = cycleStore.getDay(for: date)
-            return DayPoint(
-                id:       i,
-                date:     date,
-                hotFlash: day.map { $0.symptoms.contains { $0.category == .vasomotor } ? 1.0 : 0.0 },
-                sleep:    day?.sleepQuality.map { Double($0.rawValue) },
-                energy:   day?.energyLevel.map { Double($0.rawValue) },
-                stress:   day?.stressLevel.map { Double($0.rawValue) }
+            let loggedCount = days.count
+
+            let hotFlashFrac: Double? = loggedCount == 0 ? nil :
+                Double(days.filter { $0.symptoms.contains { $0.category == .vasomotor } }.count) / Double(loggedCount)
+
+            let energyScores = days.map { energyScore(for: $0) }
+            let avgEnergy: Double? = loggedCount == 0 ? nil :
+                energyScores.reduce(0, +) / Double(loggedCount)
+
+            let sleepScores = days.map { sleepScore(for: $0) }
+            let avgSleep: Double? = loggedCount == 0 ? nil :
+                sleepScores.reduce(0, +) / Double(loggedCount)
+
+            let moodScores = days.compactMap { moodScore(for: $0) }
+            let avgMood: Double? = moodScores.isEmpty ? nil :
+                moodScores.reduce(0, +) / Double(moodScores.count)
+
+            return WeekPoint(
+                id:       wk,
+                label:    "Wk \(wk + 1)",
+                hotFlash: hotFlashFrac,
+                energy:   avgEnergy,
+                sleep:    avgSleep,
+                mood:     avgMood
             )
         }
     }
@@ -312,39 +376,34 @@ struct MonthDrillSheet: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 24) {
-                    DailyLineChart(
+                VStack(spacing: 28) {
+                    WeeklyLineChart(
                         title: "Hot flashes",
-                        points: points,
+                        weeks: weeks,
                         value: \.hotFlash,
-                        maxValue: 1,
-                        color: AppTheme.Colors.dartPain,
-                        isBinary: true
+                        minValue: 0, maxValue: 1,
+                        color: AppTheme.Colors.dartPain
                     )
-                    Divider()
-                    DailyLineChart(
-                        title: "Sleep",
-                        points: points,
-                        value: \.sleep,
-                        maxValue: 4,
-                        color: AppTheme.Colors.accentBlue
-                    )
-                    Divider()
-                    DailyLineChart(
+                    WeeklyLineChart(
                         title: "Energy",
-                        points: points,
+                        weeks: weeks,
                         value: \.energy,
-                        maxValue: 4,
+                        minValue: -1, maxValue: 1,
                         color: AppTheme.Colors.dartEnergy
                     )
-                    Divider()
-                    DailyLineChart(
-                        title: "Stress",
-                        points: points,
-                        value: \.stress,
-                        maxValue: 4,
-                        color: AppTheme.Colors.secondaryPink,
-                        invertScale: true
+                    WeeklyLineChart(
+                        title: "Sleep",
+                        weeks: weeks,
+                        value: \.sleep,
+                        minValue: -1, maxValue: 0,
+                        color: AppTheme.Colors.primaryBlue
+                    )
+                    WeeklyLineChart(
+                        title: "Mood",
+                        weeks: weeks,
+                        value: \.mood,
+                        minValue: -1, maxValue: 1,
+                        color: AppTheme.Colors.dartMood
                     )
                 }
                 .padding(.horizontal, AppTheme.Metrics.cardPadding)
@@ -360,37 +419,45 @@ struct MonthDrillSheet: View {
             }
         }
     }
+
+    // MARK: - Derived score helpers (duplicated from TrendHistorySheet for struct isolation)
+
+    private func energyScore(for day: CycleDay) -> Double {
+        if day.symptoms.contains(.highEnergy) { return 1 }
+        if day.symptoms.contains(.fatigue) || day.symptoms.contains(.brainFog) { return -1 }
+        return 0
+    }
+
+    private func sleepScore(for day: CycleDay) -> Double {
+        day.symptoms.contains(.insomnia) ? -1 : 0
+    }
+
+    private func moodScore(for day: CycleDay) -> Double? {
+        switch day.mood {
+        case .energized, .happy, .confident, .calm, .focused: return 1
+        case .neutral: return 0
+        case .foggy, .tired, .sensitive, .anxious, .irritable, .sad: return -1
+        case nil: return nil
+        }
+    }
 }
 
-// MARK: - DailyLineChart
+// MARK: - WeeklyLineChart
 
-private struct DailyLineChart: View {
+private struct WeeklyLineChart: View {
     let title: String
-    let points: [DayPoint]
-    let value: KeyPath<DayPoint, Double?>
+    let weeks: [WeekPoint]
+    let value: KeyPath<WeekPoint, Double?>
+    let minValue: Double   // e.g. -1 for score charts, 0 for hot flash
     let maxValue: Double
     let color: Color
-    var invertScale: Bool = false
-    var isBinary: Bool = false   // hot flash: 0 or 1, render as dot presence not line
 
     private let chartHeight: CGFloat = 64
-    private let maWindow = 7
 
-    // 7-day moving average over available points
-    private var movingAverage: [(Int, Double)] {
-        let indexed = points.enumerated().compactMap { (i, p) -> (Int, Double)? in
-            guard let v = p[keyPath: value] else { return nil }
-            return (i, v)
-        }
-        guard indexed.count >= 2 else { return [] }
-
-        var result: [(Int, Double)] = []
-        for (i, pt) in indexed.enumerated() {
-            let window = indexed[max(0, i - maWindow + 1)...i]
-            let avg = window.reduce(0.0) { $0 + $1.1 } / Double(window.count)
-            result.append((pt.0, avg))
-        }
-        return result
+    /// Normalise a raw value to 0…1 for y-position
+    private func norm(_ v: Double) -> Double {
+        guard maxValue > minValue else { return 0 }
+        return (v - minValue) / (maxValue - minValue)
     }
 
     var body: some View {
@@ -402,57 +469,70 @@ private struct DailyLineChart: View {
             GeometryReader { geo in
                 let w = geo.size.width
                 let h = chartHeight
-                let count = points.count
+                let count = weeks.count
                 guard count > 0 else { return AnyView(EmptyView()) }
-
                 let xStep = w / CGFloat(max(count - 1, 1))
+
+                let available = weeks.compactMap { pt -> (Int, Double)? in
+                    guard let v = pt[keyPath: value] else { return nil }
+                    return (pt.id, v)
+                }
 
                 return AnyView(
                     ZStack(alignment: .bottomLeading) {
-                        // Raw dots
-                        ForEach(points) { pt in
+                        // Zero/midline for score charts
+                        if minValue < 0 {
+                            let zeroY = h - (h * norm(0))
+                            Path { path in
+                                path.move(to: CGPoint(x: 0, y: zeroY))
+                                path.addLine(to: CGPoint(x: w, y: zeroY))
+                            }
+                            .stroke(AppTheme.Colors.mediumGrayText.opacity(0.2),
+                                    style: StrokeStyle(lineWidth: 1, dash: [4, 4]))
+                        }
+
+                        // Dots for all available weeks
+                        ForEach(weeks) { pt in
                             if let v = pt[keyPath: value] {
                                 let x = CGFloat(pt.id) * xStep
-                                let ratio = invertScale ? (1.0 - v / maxValue) : (v / maxValue)
-                                let y = h - (h * ratio)
+                                let y = h - (h * norm(v))
                                 Circle()
-                                    .fill(color.opacity(0.25))
-                                    .frame(width: isBinary ? 8 : 5, height: isBinary ? 8 : 5)
+                                    .fill(color)
+                                    .frame(width: 8, height: 8)
                                     .position(x: x, y: y)
                             }
                         }
 
-                        // 7-day MA line
-                        if !isBinary && movingAverage.count >= 2 {
+                        // Connecting line through available weeks
+                        if available.count >= 2 {
                             Path { path in
                                 var started = false
-                                for (idx, avg) in movingAverage {
+                                for (idx, v) in available {
                                     let x = CGFloat(idx) * xStep
-                                    let ratio = invertScale ? (1.0 - avg / maxValue) : (avg / maxValue)
-                                    let y = h - (h * ratio)
+                                    let y = h - (h * norm(v))
                                     if !started { path.move(to: CGPoint(x: x, y: y)); started = true }
                                     else { path.addLine(to: CGPoint(x: x, y: y)) }
                                 }
                             }
-                            .stroke(color, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+                            .stroke(color.opacity(0.4),
+                                    style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
                         }
                     }
                 )
             }
             .frame(height: chartHeight)
 
-            // Day-of-month axis labels (1, 8, 15, 22, last)
+            // Week axis labels
             GeometryReader { geo in
                 let w = geo.size.width
-                let count = points.count
+                let count = weeks.count
                 let xStep = w / CGFloat(max(count - 1, 1))
-                let labelDays = [0, 7, 14, 21, count - 1].filter { $0 < count }
 
-                ForEach(labelDays, id: \.self) { i in
-                    Text("\(i + 1)")
+                ForEach(weeks) { pt in
+                    Text(verbatim: pt.label)
                         .font(.system(size: 9, design: .rounded))
                         .foregroundStyle(AppTheme.Colors.mediumGrayText)
-                        .position(x: CGFloat(i) * xStep, y: 6)
+                        .position(x: CGFloat(pt.id) * xStep, y: 6)
                 }
             }
             .frame(height: 14)
@@ -462,10 +542,10 @@ private struct DailyLineChart: View {
     }
 
     private var accessibilityLabel: String {
-        let logged = points.compactMap { $0[keyPath: value] }
-        guard !logged.isEmpty else { return "\(title): no data logged this month" }
-        let avg = logged.reduce(0, +) / Double(logged.count)
-        return "\(title) for the month. Average: \(String(format: "%.1f", avg)) out of \(Int(maxValue)). \(logged.count) days logged."
+        let values = weeks.compactMap { $0[keyPath: value] }
+        guard !values.isEmpty else { return "\(title): no data logged this month" }
+        let avg = values.reduce(0, +) / Double(values.count)
+        return "\(title) for the month. Weekly average: \(String(format: "%.1f", avg)). \(values.count) weeks with data."
     }
 }
 
