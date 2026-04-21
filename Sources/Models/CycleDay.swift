@@ -274,7 +274,7 @@ enum Mood: String, Codable, CaseIterable {
 
     var localizedName: LocalizedStringKey {
         switch self {
-        case .energized: return "Energized"
+        case .energized: return "Motivated"
         case .happy: return "Happy"
         case .confident: return "Confident"
         case .calm: return "Calm"
@@ -291,7 +291,7 @@ enum Mood: String, Codable, CaseIterable {
 
     var localizedNameString: String {
         switch self {
-        case .energized: return String(localized: "Energized")
+        case .energized: return String(localized: "Motivated")
         case .happy: return String(localized: "Happy")
         case .confident: return String(localized: "Confident")
         case .calm: return String(localized: "Calm")
@@ -308,7 +308,7 @@ enum Mood: String, Codable, CaseIterable {
 
     var sfSymbol: String {
         switch self {
-        case .energized: return "bolt.fill"
+        case .energized: return "figure.run.circle.fill"
         case .happy: return "sun.max.fill"
         case .confident: return "star.fill"
         case .calm: return "leaf.fill"

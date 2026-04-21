@@ -2604,24 +2604,24 @@
         }
       }
     },
-    "Energized": {
+    "Motivated": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Energiegeladen"
+            "value": "Motiviert"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Con energía"
+            "value": "Motivada"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Énergisé"
+            "value": "Motivée"
           }
         }
       }

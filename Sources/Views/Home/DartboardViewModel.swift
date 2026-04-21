@@ -100,7 +100,7 @@ enum DartboardCategory: Int, CaseIterable {
         case .mood:
             // Curated 6: most distinct emotional states
             return [
-                DartboardItem(mood: .energized, sfSymbol: "bolt.circle.fill"),
+                DartboardItem(mood: .energized, sfSymbol: "figure.run.circle.fill"),
                 DartboardItem(mood: .happy,     sfSymbol: "face.smiling.fill"),
                 DartboardItem(mood: .calm,      sfSymbol: "leaf.fill"),
                 DartboardItem(mood: .neutral,   sfSymbol: "circle.fill"),
