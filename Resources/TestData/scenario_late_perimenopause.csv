@@ -1,4 +1,81 @@
 date,flow,symptoms,mood,notes
+-270,,"hotFlashes,fatigue",tired,No period for over 3 months. Hot flashes daily
+-268,,"nightSweats,hotFlashes",anxious,Woke twice with soaking sweats
+-266,,"hotFlashes,brainFog",foggy,
+-264,,"hotFlashes,jointPain",irritable,Knee and hip aching
+-262,,"nightSweats,hotFlashes,fatigue",sad,
+-260,,"hotFlashes,muscleAches",tired,
+-258,,"nightSweats,hotFlashes,brainFog",anxious,
+-256,,"hotFlashes,headache",irritable,Headache through the afternoon
+-254,,"nightSweats,hotFlashes",sad,
+-252,,"hotFlashes,fatigue,muscleAches",tired,~10 hot flash days this month
+-250,,"nightSweats,hotFlashes,brainFog",foggy,
+-248,,"hotFlashes,jointPain",anxious,
+-246,,"nightSweats,hotFlashes,fatigue",sad,
+-244,,"hotFlashes,brainFog,muscleAches",irritable,
+-242,,"nightSweats,hotFlashes,headache",foggy,12 hot flash days — persistent
+-240,,"hotFlashes,jointPain",tired,
+-238,,"nightSweats,hotFlashes",anxious,
+-236,,"hotFlashes,brainFog,fatigue",sad,
+-234,,"hotFlashes,muscleAches",irritable,
+-232,,"nightSweats,hotFlashes,headache",foggy,
+-230,,"hotFlashes,jointPain,brainFog",tired,
+-228,,"nightSweats,hotFlashes",anxious,Ended month exhausted
+-226,,"hotFlashes,fatigue",sad,New month — no change
+-224,,"nightSweats,hotFlashes,brainFog",foggy,
+-222,,"hotFlashes,muscleAches",tired,
+-220,,"nightSweats,hotFlashes,jointPain",anxious,
+-218,,"hotFlashes,fatigue",sad,
+-216,,"nightSweats,hotFlashes,brainFog",irritable,~11 hot flash days
+-214,,"hotFlashes,headache",tired,
+-212,,"nightSweats,hotFlashes,muscleAches",foggy,
+-210,,"hotFlashes,jointPain",anxious,
+-208,,"nightSweats,hotFlashes,fatigue",sad,
+-206,,"hotFlashes,brainFog,muscleAches",irritable,
+-204,,"nightSweats,hotFlashes,headache",foggy,
+-202,,"hotFlashes,jointPain,fatigue",tired,12 hot flash days this month
+-200,,"nightSweats,hotFlashes",anxious,
+-198,,"hotFlashes,brainFog",sad,
+-196,,"nightSweats,hotFlashes,muscleAches",irritable,
+-194,,"hotFlashes,headache,fatigue",foggy,
+-192,,"nightSweats,hotFlashes,jointPain",tired,
+-190,,"hotFlashes,brainFog",anxious,
+-188,,"nightSweats,hotFlashes,fatigue",sad,13 hot flash days — count is climbing
+-186,,"hotFlashes,muscleAches",irritable,
+-184,,"nightSweats,hotFlashes,brainFog",foggy,
+-182,,"hotFlashes,jointPain",tired,
+-180,,"nightSweats,hotFlashes",anxious,
+-178,,"hotFlashes,fatigue,headache",sad,
+-176,,"nightSweats,hotFlashes,brainFog",irritable,
+-174,,"hotFlashes,muscleAches",foggy,
+-172,,"nightSweats,hotFlashes,jointPain",tired,~13 hot flash days this month
+-170,,"hotFlashes,brainFog,fatigue",anxious,
+-168,,"nightSweats,hotFlashes,headache",sad,
+-166,,"hotFlashes,muscleAches",irritable,
+-164,,"nightSweats,hotFlashes,brainFog",foggy,
+-162,,"hotFlashes,jointPain",tired,
+-160,,"nightSweats,hotFlashes,fatigue",anxious,
+-158,,"hotFlashes,brainFog,muscleAches",sad,14 hot flash days — high month
+-156,,"nightSweats,hotFlashes,headache",irritable,
+-154,,"hotFlashes,jointPain",foggy,
+-152,,"nightSweats,hotFlashes",tired,
+-150,,"hotFlashes,brainFog,fatigue",anxious,
+-148,,"nightSweats,hotFlashes,muscleAches",sad,
+-146,,"hotFlashes,headache,jointPain",irritable,
+-144,,"nightSweats,hotFlashes,brainFog",foggy,
+-142,,"hotFlashes,fatigue",tired,~13 hot flash days
+-140,,"nightSweats,hotFlashes,muscleAches",anxious,
+-138,,"hotFlashes,brainFog,headache",sad,
+-136,,"nightSweats,hotFlashes,jointPain",irritable,
+-134,,"hotFlashes,fatigue",foggy,
+-132,,"nightSweats,hotFlashes,brainFog",tired,
+-130,,"hotFlashes,muscleAches",anxious,
+-128,,"nightSweats,hotFlashes,headache",sad,~14 hot flash days — difficult month
+-126,,"hotFlashes,brainFog,jointPain",irritable,
+-124,,"nightSweats,hotFlashes,fatigue",foggy,
+-122,,"hotFlashes,muscleAches",tired,
+-120,,"nightSweats,hotFlashes,brainFog",anxious,
+-119,,"hotFlashes,jointPain,headache",sad,Heading into next month still symptomatic
 -118,,"hotFlashes,nightSweats",anxious,No period — last was ~75 days ago
 -117,,"nightSweats,hotFlashes",sad,Woke twice with soaking night sweats
 -116,,"hotFlashes,fatigue",irritable,
