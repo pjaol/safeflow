@@ -13,6 +13,7 @@ import SwiftUI
 struct PulseView: View {
     @ObservedObject var cycleStore: CycleStore
     @StateObject private var viewModel: DartboardViewModel
+    @AppStorage(LifeStage.defaultsKey) private var lifeStage: LifeStage = .regular
 
     init(cycleStore: CycleStore) {
         self.cycleStore = cycleStore
@@ -58,6 +59,9 @@ struct PulseView: View {
         .onAppear { viewModel.loadFromStore() }
         .onReceive(cycleStore.objectWillChange) { _ in
             DispatchQueue.main.async { viewModel.loadFromStore() }
+        }
+        .onChange(of: lifeStage) {
+            viewModel.resetToFirstVisibleCategoryIfNeeded()
         }
     }
 }
