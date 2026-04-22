@@ -250,7 +250,7 @@ private struct MetricBarChart: View {
                             path.move(to: CGPoint(x: 0, y: y))
                             path.addLine(to: CGPoint(x: geo.size.width, y: y))
                         }
-                        .stroke(AppTheme.Colors.mediumGrayText.opacity(0.25),
+                        .stroke(AppTheme.Colors.mediumGrayText.opacity(0.5),
                                 style: StrokeStyle(lineWidth: 1, dash: [4, 4]))
                     }
                 }
@@ -272,10 +272,12 @@ private struct MetricBarChart: View {
                                     .foregroundStyle(AppTheme.Colors.mediumGrayText.opacity(0.4))
                             }
 
+                            let hideBar = kind == .insomniaCount && filled && ratio == 0
                             RoundedRectangle(cornerRadius: 4)
                                 .fill(filled ? barColor : AppTheme.Colors.mediumGrayText.opacity(0.15))
                                 .frame(height: max(4, barHeight * ratio))
                                 .frame(maxHeight: barHeight, alignment: .bottom)
+                                .opacity(hideBar ? 0 : 1)
                                 .animation(.easeInOut(duration: 0.3), value: buckets.count)
 
                             Text(verbatim: bucket.shortLabel)
