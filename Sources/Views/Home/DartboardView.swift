@@ -170,7 +170,7 @@ struct NotesBullseye: View {
                 .scaleEffect(pressing ? 1.12 : 1.0)
                 .animation(reduceMotion ? .none : .spring(response: 0.25, dampingFraction: 0.6), value: pressing)
 
-            Image(systemName: hasNotes ? "note.text" : "pencil")
+            Image(systemName: "pencil")
                 .font(.system(.body, design: .default).weight(.black))
                 .foregroundStyle(hasNotes
                                  ? .white

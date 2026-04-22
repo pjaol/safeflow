@@ -43,6 +43,17 @@ struct SafeFlowApp: App {
         } else if args.contains("UI-Testing") || args.contains("RESET_ONBOARDING") {
             UserDefaults.standard.set(false, forKey: "hasCompletedOnboarding")
         }
+        // Life stage overrides for UI tests — set before first render
+        if args.contains("LIFE_STAGE_PERIMENOPAUSE") {
+            UserDefaults.standard.set(LifeStage.perimenopause.rawValue, forKey: LifeStage.defaultsKey)
+        } else if args.contains("LIFE_STAGE_MENOPAUSE") {
+            UserDefaults.standard.set(LifeStage.menopause.rawValue, forKey: LifeStage.defaultsKey)
+        } else if args.contains("LIFE_STAGE_PAUSED") {
+            UserDefaults.standard.set(LifeStage.paused.rawValue, forKey: LifeStage.defaultsKey)
+        } else if args.contains("RESET_DATA") {
+            // Reset life stage to default when resetting data
+            UserDefaults.standard.set(LifeStage.regular.rawValue, forKey: LifeStage.defaultsKey)
+        }
         #endif
     }
 
@@ -124,7 +135,13 @@ struct SafeFlowApp: App {
         }
 
         if args.contains("LOAD_SYMPTOM_RICH") {
-            loadTestScenario(filename: "symptom_rich_cycles", cycleLength: 28, periodLength: 6)
+            if args.contains("LIFE_STAGE_PERIMENOPAUSE") {
+                loadTestScenario(filename: "scenario_early_perimenopause", cycleLength: 32, periodLength: 5)
+            } else if args.contains("LIFE_STAGE_MENOPAUSE") {
+                loadTestScenario(filename: "scenario_menopause_stable", cycleLength: 0, periodLength: 0)
+            } else {
+                loadTestScenario(filename: "symptom_rich_cycles", cycleLength: 28, periodLength: 6)
+            }
         }
         #endif
     }
@@ -137,12 +154,17 @@ struct SafeFlowApp: App {
                   let entries = try? TestDataLoader.shared.parseEntriesPublic(from: csv),
                   let firstEntry = entries.first else { return }
 
-            let seed = CycleSeedData(
-                lastPeriodStartDate: firstEntry.date,
-                typicalPeriodLength: periodLength,
-                typicalCycleLength: cycleLength
-            )
-            cycleStore.saveSeedData(seed)
+            // Only save seed data when a meaningful cycle length is provided.
+            // Menopause scenarios have no cycle — skip the seed to avoid a
+            // divide-by-zero in CyclePredictionEngine when cycleLength == 0.
+            if cycleLength > 0 {
+                let seed = CycleSeedData(
+                    lastPeriodStartDate: firstEntry.date,
+                    typicalPeriodLength: periodLength,
+                    typicalCycleLength: cycleLength
+                )
+                cycleStore.saveSeedData(seed)
+            }
             for entry in entries {
                 cycleStore.addOrUpdateDay(CycleDay(
                     id: UUID(),

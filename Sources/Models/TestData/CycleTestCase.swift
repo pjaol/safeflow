@@ -24,8 +24,14 @@ struct CycleDayTestEntry {
     let symptoms: Set<Symptom>
     let mood: Mood?
     let notes: String?
-    
-    init(date: Date, flow: FlowIntensity? = nil, symptoms: Set<Symptom> = [], mood: Mood? = nil, notes: String? = nil) {
+
+    init(
+        date: Date,
+        flow: FlowIntensity? = nil,
+        symptoms: Set<Symptom> = [],
+        mood: Mood? = nil,
+        notes: String? = nil
+    ) {
         self.date = date
         self.flow = flow
         self.symptoms = symptoms

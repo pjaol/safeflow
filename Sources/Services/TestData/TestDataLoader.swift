@@ -109,9 +109,16 @@ class TestDataLoader {
             throw TestDataError.invalidFormat("Invalid line format: \(line)")
         }
         
-        // Parse date (required)
-        guard let date = dateFormatter.date(from: components[0].trimmingCharacters(in: .whitespaces)) else {
-            throw TestDataError.invalidDate("Invalid date format: \(components[0])")
+        // Parse date (required) — accepts either "yyyy-MM-dd" or an integer day offset from today (0 = today, -7 = 7 days ago)
+        let dateString = components[0].trimmingCharacters(in: .whitespaces)
+        let date: Date
+        if let offset = Int(dateString) {
+            let cal = Calendar.current
+            date = cal.startOfDay(for: cal.date(byAdding: .day, value: offset, to: Date()) ?? Date())
+        } else if let parsed = dateFormatter.date(from: dateString) {
+            date = parsed
+        } else {
+            throw TestDataError.invalidDate("Invalid date format: \(dateString)")
         }
         
         // Parse flow (optional)
@@ -154,9 +161,9 @@ class TestDataLoader {
             mood = nil
         }
         
-        // Parse notes (optional)
+        // Parse notes (optional, column 4)
         let notes = components.count > 4 ? components[4].trimmingCharacters(in: .whitespaces) : nil
-        
+
         return CycleDayTestEntry(
             date: date,
             flow: flow,

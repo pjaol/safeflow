@@ -9,6 +9,7 @@ private func makeDate(_ string: String) -> Date {
     return f.date(from: string)!
 }
 
+@MainActor
 private func makeStore(
     referenceDate: Date = makeDate("2025-03-15"),
     suiteName: String = #file
@@ -19,19 +20,32 @@ private func makeStore(
     return CycleStore(store: persistence, dateProvider: { referenceDate })
 }
 
-/// Waits long enough for the internal async save Task to complete.
+/// Create a store and wait for its initial async loadData() to complete.
+@MainActor
+private func makeStoreReady(
+    referenceDate: Date = makeDate("2025-03-15"),
+    suiteName: String = #function
+) async -> CycleStore {
+    let store = makeStore(referenceDate: referenceDate, suiteName: suiteName)
+    await drain()
+    return store
+}
+
+/// Drains pending async tasks on the main actor (save/load) without a time-based sleep.
+/// Yields repeatedly so unstructured Tasks spawned by CycleStore get a chance to run.
 private func drain() async {
-    try? await Task.sleep(nanoseconds: 50_000_000) // 50 ms
+    for _ in 0..<10 { await Task.yield() }
 }
 
 // MARK: - CycleStoreTests
 
+@MainActor
 final class CycleStoreTests: XCTestCase {
 
     // MARK: - CRUD
 
     func testAddDay() async {
-        let sut = makeStore()
+        let sut = await makeStoreReady()
         let day = CycleDay(date: makeDate("2025-03-15"), flow: .medium, symptoms: [.cramps], mood: .happy)
 
         sut.addOrUpdateDay(day)
@@ -43,7 +57,7 @@ final class CycleStoreTests: XCTestCase {
     }
 
     func testUpdateDay() async {
-        let sut = makeStore()
+        let sut = await makeStoreReady()
         let id = UUID()
         let date = makeDate("2025-03-15")
 
@@ -56,7 +70,7 @@ final class CycleStoreTests: XCTestCase {
     }
 
     func testDeleteDay() async {
-        let sut = makeStore()
+        let sut = await makeStoreReady()
         let day = CycleDay(date: makeDate("2025-03-15"), flow: .medium)
 
         sut.addOrUpdateDay(day)
@@ -68,7 +82,7 @@ final class CycleStoreTests: XCTestCase {
     }
 
     func testGetDaysInRange() async {
-        let sut = makeStore()
+        let sut = await makeStoreReady()
         let days = [
             CycleDay(date: makeDate("2025-03-15"), flow: .medium),
             CycleDay(date: makeDate("2025-03-14"), flow: .light),
@@ -85,7 +99,7 @@ final class CycleStoreTests: XCTestCase {
     // MARK: - Seed Data
 
     func testSaveSeedData() async {
-        let sut = makeStore()
+        let sut = await makeStoreReady()
         let seed = CycleSeedData(
             lastPeriodStartDate: makeDate("2025-03-01"),
             typicalPeriodLength: 5,
@@ -146,7 +160,9 @@ final class CycleStoreTests: XCTestCase {
         let engine = CyclePredictionEngine()
         let lengths = [26, 28, 30, 27, 29, 31]
         // weights [1,2,3,4,5,6], sum=21
-        let expected = (26.0*1 + 28.0*2 + 30.0*3 + 27.0*4 + 29.0*5 + 31.0*6) / 21.0
+        let n1: Double = 26.0 * 1 + 28.0 * 2 + 30.0 * 3
+        let n2: Double = 27.0 * 4 + 29.0 * 5 + 31.0 * 6
+        let expected: Double = (n1 + n2) / 21.0
         XCTAssertEqual(engine.weightedAverageCycleLength(from: lengths), expected, accuracy: 0.01)
     }
 
@@ -349,7 +365,7 @@ final class CycleStoreTests: XCTestCase {
 
     func testPredictNextPeriodWithThirtyDayCycle() async {
         let today = makeDate("2025-03-15")
-        let sut = makeStore(referenceDate: today)
+        let sut = await makeStoreReady(referenceDate: today)
 
         // Two complete 30-day periods ending before today
         let days = [
@@ -366,7 +382,7 @@ final class CycleStoreTests: XCTestCase {
     }
 
     func testPredictNextPeriodWithInsufficientData() async {
-        let sut = makeStore()
+        let sut = await makeStoreReady()
         sut.addOrUpdateDay(CycleDay(date: makeDate("2025-03-15"), flow: .medium))
         await drain()
 
@@ -375,7 +391,7 @@ final class CycleStoreTests: XCTestCase {
 
     func testCurrentPhaseFromStore() async {
         let today = makeDate("2025-03-15")
-        let sut = makeStore(referenceDate: today)
+        let sut = await makeStoreReady(referenceDate: today)
 
         let seed = CycleSeedData(
             lastPeriodStartDate: makeDate("2025-03-14"),
@@ -390,5 +406,147 @@ final class CycleStoreTests: XCTestCase {
         await drain()
 
         XCTAssertEqual(sut.currentPhase(), .menstrual)
+    }
+
+    // MARK: - Unexpected bleeding signal
+
+    func testUnexpectedBleedingSignalSetForMenopause() async {
+        let sut = await makeStoreReady()
+        UserDefaults.standard.set(LifeStage.menopause.rawValue, forKey: LifeStage.defaultsKey)
+        defer { UserDefaults.standard.removeObject(forKey: LifeStage.defaultsKey) }
+
+        XCTAssertFalse(sut.unexpectedBleedingDetected)
+        sut.addOrUpdateDay(CycleDay(date: makeDate("2025-03-15"), flow: .spotting))
+        await drain()
+
+        XCTAssertTrue(sut.unexpectedBleedingDetected)
+    }
+
+    func testUnexpectedBleedingSignalSetForPaused() async {
+        let sut = await makeStoreReady()
+        UserDefaults.standard.set(LifeStage.paused.rawValue, forKey: LifeStage.defaultsKey)
+        defer { UserDefaults.standard.removeObject(forKey: LifeStage.defaultsKey) }
+
+        sut.addOrUpdateDay(CycleDay(date: makeDate("2025-03-15"), flow: .light))
+        await drain()
+
+        XCTAssertTrue(sut.unexpectedBleedingDetected)
+    }
+
+    func testUnexpectedBleedingSignalNotSetForRegular() async {
+        let sut = await makeStoreReady()
+        UserDefaults.standard.set(LifeStage.regular.rawValue, forKey: LifeStage.defaultsKey)
+        defer { UserDefaults.standard.removeObject(forKey: LifeStage.defaultsKey) }
+
+        sut.addOrUpdateDay(CycleDay(date: makeDate("2025-03-15"), flow: .heavy))
+        await drain()
+
+        XCTAssertFalse(sut.unexpectedBleedingDetected)
+    }
+
+    func testUnexpectedBleedingSignalNotSetForPerimenopause() async {
+        let sut = await makeStoreReady()
+        UserDefaults.standard.set(LifeStage.perimenopause.rawValue, forKey: LifeStage.defaultsKey)
+        defer { UserDefaults.standard.removeObject(forKey: LifeStage.defaultsKey) }
+
+        sut.addOrUpdateDay(CycleDay(date: makeDate("2025-03-15"), flow: .medium))
+        await drain()
+
+        XCTAssertFalse(sut.unexpectedBleedingDetected)
+    }
+
+    func testUnexpectedBleedingSignalNotSetWhenNoFlow() async {
+        let sut = await makeStoreReady()
+        UserDefaults.standard.set(LifeStage.menopause.rawValue, forKey: LifeStage.defaultsKey)
+        defer { UserDefaults.standard.removeObject(forKey: LifeStage.defaultsKey) }
+
+        // Log a day with symptoms but no flow
+        sut.addOrUpdateDay(CycleDay(date: makeDate("2025-03-15"), symptoms: [.hotFlashes]))
+        await drain()
+
+        XCTAssertFalse(sut.unexpectedBleedingDetected)
+    }
+
+    func testClearUnexpectedBleedingSignal() async {
+        let sut = await makeStoreReady()
+        UserDefaults.standard.set(LifeStage.menopause.rawValue, forKey: LifeStage.defaultsKey)
+        defer { UserDefaults.standard.removeObject(forKey: LifeStage.defaultsKey) }
+
+        sut.addOrUpdateDay(CycleDay(date: makeDate("2025-03-15"), flow: .spotting))
+        await drain()
+        XCTAssertTrue(sut.unexpectedBleedingDetected)
+
+        sut.clearUnexpectedBleedingSignal()
+        XCTAssertFalse(sut.unexpectedBleedingDetected)
+    }
+
+    // MARK: - recentCycles
+
+    func testRecentCyclesReturnsNewestFirst() async {
+        let sut = await makeStoreReady()
+        let cal = Calendar.current
+        // Three distinct cycles separated by gaps > 3 days
+        for d in ["2025-01-01", "2025-01-02", "2025-01-03"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+        for d in ["2025-02-05", "2025-02-06", "2025-02-07"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+        for d in ["2025-03-10", "2025-03-11", "2025-03-12"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+
+        let cycles = sut.recentCycles(limit: 3)
+        XCTAssertEqual(cycles.count, 3)
+        XCTAssertEqual(cycles[0].start, cal.startOfDay(for: makeDate("2025-03-10"))) // newest first
+        XCTAssertEqual(cycles[1].start, cal.startOfDay(for: makeDate("2025-02-05")))
+        XCTAssertEqual(cycles[2].start, cal.startOfDay(for: makeDate("2025-01-01")))
+    }
+
+    func testRecentCyclesRespectsLimit() async {
+        let sut = await makeStoreReady()
+        let cal = Calendar.current
+        for d in ["2025-01-01", "2025-01-02"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+        for d in ["2025-02-05", "2025-02-06"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+        for d in ["2025-03-10", "2025-03-11"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+        for d in ["2025-04-15", "2025-04-16"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+
+        let cycles = sut.recentCycles(limit: 3)
+        XCTAssertEqual(cycles.count, 3)
+        XCTAssertEqual(cycles[0].start, cal.startOfDay(for: makeDate("2025-04-15")))
+    }
+
+    func testRecentCyclesExcludesSingleDayRuns() async {
+        let sut = await makeStoreReady()
+        let cal = Calendar.current
+        // A real 3-day cycle
+        for d in ["2025-01-01", "2025-01-02", "2025-01-03"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+        // A single-day entry — should NOT count (only 1 non-spotting day, threshold is 2)
+        sut.addOrUpdateDay(CycleDay(date: makeDate("2025-02-15"), flow: .medium))
+
+        let cycles = sut.recentCycles(limit: 3)
+        XCTAssertEqual(cycles.count, 1)
+        XCTAssertEqual(cycles[0].start, cal.startOfDay(for: makeDate("2025-01-01")))
+    }
+
+    func testRecentCyclesExcludesSpottingOnlyRuns() async {
+        let sut = await makeStoreReady()
+        let cal = Calendar.current
+        // A real cycle
+        for d in ["2025-01-01", "2025-01-02", "2025-01-03"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+        // Spotting-only run — should not count
+        for d in ["2025-02-10", "2025-02-11"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .spotting)) }
+
+        let cycles = sut.recentCycles(limit: 3)
+        XCTAssertEqual(cycles.count, 1)
+        XCTAssertEqual(cycles[0].start, cal.startOfDay(for: makeDate("2025-01-01")))
+    }
+
+    func testRecentCyclesDurationIsInclusiveSpan() async {
+        let sut = await makeStoreReady()
+        // Flow on Jan 1, 2, 3 = 3 days
+        for d in ["2025-01-01", "2025-01-02", "2025-01-03"] { sut.addOrUpdateDay(CycleDay(date: makeDate(d), flow: .medium)) }
+
+        let cycles = sut.recentCycles(limit: 1)
+        XCTAssertEqual(cycles.first?.days, 3)
+    }
+
+    func testRecentCyclesEmptyWhenNoData() async {
+        let sut = await makeStoreReady()
+        XCTAssertTrue(sut.recentCycles().isEmpty)
     }
 }

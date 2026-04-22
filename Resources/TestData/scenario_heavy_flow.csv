@@ -1,37 +1,37 @@
 date,flow,symptoms,mood,notes
-2025-10-01,heavy,"cramps,fatigue",sad,"Cycle 1 — consistently heavy"
-2025-10-02,heavy,"cramps,backPain",neutral,
-2025-10-03,heavy,"fatigue,bloating",neutral,
-2025-10-04,heavy,"cramps",neutral,
-2025-10-05,medium,"fatigue",neutral,
-2025-10-06,light,,happy,
-2025-10-29,heavy,"cramps,headache",sad,"Cycle 2"
-2025-10-30,heavy,"cramps,fatigue",neutral,
-2025-10-31,heavy,"backPain,bloating",neutral,
-2025-11-01,heavy,"cramps",neutral,
-2025-11-02,medium,,neutral,
-2025-11-03,light,,happy,
-2025-11-26,heavy,"cramps,fatigue",sad,"Cycle 3"
-2025-11-27,heavy,"cramps,backPain",neutral,
-2025-11-28,heavy,"bloating,headache",neutral,
-2025-11-29,heavy,"cramps,fatigue",neutral,
-2025-11-30,medium,,neutral,
-2025-12-01,light,,neutral,
-2025-12-25,heavy,"cramps,fatigue",sad,"Cycle 4"
-2025-12-26,heavy,"cramps,backPain",neutral,
-2025-12-27,heavy,"bloating",neutral,
-2025-12-28,heavy,"fatigue",neutral,
-2025-12-29,medium,,neutral,
-2025-12-30,light,,happy,
-2026-01-22,heavy,"cramps,headache",sad,"Cycle 5"
-2026-01-23,heavy,"cramps,fatigue",neutral,
-2026-01-24,heavy,"backPain,bloating",neutral,
-2026-01-25,heavy,"cramps",neutral,
-2026-01-26,medium,,neutral,
-2026-01-27,light,,neutral,
-2026-02-19,heavy,"cramps,fatigue",sad,"Cycle 6 — still heavy"
-2026-02-20,heavy,"cramps,backPain",neutral,
-2026-02-21,heavy,"bloating,headache",neutral,
-2026-02-22,heavy,"fatigue",neutral,
-2026-02-23,medium,,neutral,
-2026-02-24,light,,happy,
+-146,heavy,"cramps,fatigue",sad,Cycle 1 — consistently heavy
+-145,heavy,"cramps,backPain",neutral,
+-144,heavy,"fatigue,bloating",neutral,
+-143,heavy,cramps,neutral,
+-142,medium,fatigue,neutral,
+-141,light,,happy,
+-118,heavy,"cramps,headache",sad,Cycle 2
+-117,heavy,"cramps,fatigue",neutral,
+-116,heavy,"backPain,bloating",neutral,
+-115,heavy,cramps,neutral,
+-114,medium,,neutral,
+-113,light,,happy,
+-90,heavy,"cramps,fatigue",sad,Cycle 3
+-89,heavy,"cramps,backPain",neutral,
+-88,heavy,"bloating,headache",neutral,
+-87,heavy,"cramps,fatigue",neutral,
+-86,medium,,neutral,
+-85,light,,neutral,
+-61,heavy,"cramps,fatigue",sad,Cycle 4
+-60,heavy,"cramps,backPain",neutral,
+-59,heavy,bloating,neutral,
+-58,heavy,fatigue,neutral,
+-57,medium,,neutral,
+-56,light,,happy,
+-33,heavy,"cramps,headache",sad,Cycle 5
+-32,heavy,"cramps,fatigue",neutral,
+-31,heavy,"backPain,bloating",neutral,
+-30,heavy,cramps,neutral,
+-29,medium,,neutral,
+-28,light,,neutral,
+-5,heavy,"cramps,fatigue",sad,Cycle 6 — still heavy
+-4,heavy,"cramps,backPain",neutral,
+-3,heavy,"bloating,headache",neutral,
+-2,heavy,fatigue,neutral,
+-1,medium,,neutral,
+0,light,,happy,

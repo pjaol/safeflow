@@ -4,6 +4,7 @@ import os
 struct LogDayView: View {
     @Environment(\.dismiss) private var dismiss
     @ObservedObject var cycleStore: CycleStore
+    @AppStorage(LifeStage.defaultsKey) private var lifeStage: LifeStage = .regular
     let existingDay: CycleDay?
     /// The date to save to when creating a new log. Defaults to today.
     let targetDate: Date
@@ -110,10 +111,10 @@ struct LogDayView: View {
         VStack(alignment: .leading, spacing: 12) {
             sectionHeader("Symptoms", systemImage: "heart.text.square", color: AppTheme.Colors.accentBlue)
 
-            // Category tabs
+            // Category tabs — gated by life stage
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
-                    ForEach(SymptomCategory.allCases, id: \.self) { category in
+                    ForEach(SymptomCategory.allCases.filter { $0.visibleForStages.contains(lifeStage) }, id: \.self) { category in
                         CategoryTab(
                             label: category.localizedName,
                             isSelected: selectedSymptomCategory == category

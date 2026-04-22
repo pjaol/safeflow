@@ -5,6 +5,7 @@ struct HomeView: View {
     @ObservedObject var cycleStore: CycleStore
     @EnvironmentObject private var securityService: SecurityService
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @AppStorage(LifeStage.defaultsKey) private var lifeStage: LifeStage = .regular
 
     @State private var showingSettingsSheet = false
     @State private var showingSupportSheet = false
@@ -21,6 +22,25 @@ struct HomeView: View {
         cycleStore.severitySignals().filter { !dismissedSignalIDs.contains($0.id) }
     }
 
+    // MARK: - Signal computation
+
+    /// Resolved window — sentinel (cycle-boundary) or rolling (30/60-day), depending
+    /// on whether a period start exists within the last 90 days.
+    private var signalWindow: SignalWindow {
+        SignalWindowResolver.resolve(allDays: cycleStore.getAllDays())
+    }
+
+    private var signalReadiness: SignalReadiness {
+        let w = signalWindow
+        return SignalEngine.compute(
+            current:      w.current,
+            previous:     [],          // engine uses previous for trend direction; baseline covers this in sentinel mode
+            baseline:     w.baseline,
+            stage:        lifeStage,
+            cycleLengths: cycleStore.detectedCycleLengths()
+        )
+    }
+
     var body: some View {
         NavigationStack {
             ScrollViewReader { proxy in
@@ -31,34 +51,85 @@ struct HomeView: View {
                         PulseView(cycleStore: cycleStore)
                             .frame(minHeight: 360)
 
-                        // ── Zone 2: Cycle ring summary (phase + alerts + insights + tips) ──
-                        CycleRingSummaryCard(
-                            cycleStore: cycleStore,
-                            phase: cycleStore.currentPhase(),
-                            cycleDay: cycleStore.currentCycleDayNumber(),
-                            predictionRange: cycleStore.predictNextPeriodRange(),
-                            averageCycleLength: cycleStore.calculateAverageCycleLength(),
-                            activeSignals: activeSignals,
-                            activeNudge: { () -> CycleNudge? in
-                                guard let nudge = cycleStore.currentNudge(),
-                                      !dismissedNudgeIDs.contains(nudge.id) else { return nil }
-                                return nudge
-                            }(),
-                            onDismissSignal: { id in
-                                DismissedNudges.dismiss(id)
-                                dismissedSignalIDs = DismissedNudges.load()
-                            },
-                            onDismissNudge: {
-                                if let nudge = cycleStore.currentNudge() {
-                                    DismissedNudges.dismiss(nudge.id)
-                                    dismissedNudgeIDs = DismissedNudges.load()
-                                }
+                        // ── Zone 1b: Life-stage adaptive cards ───────────────
+
+                        // Unexpected bleeding nudge (menopause / paused)
+                        if cycleStore.unexpectedBleedingDetected {
+                            UnexpectedBleedingCard(lifeStage: lifeStage) {
+                                cycleStore.clearUnexpectedBleedingSignal()
                             }
-                        )
+                        }
+
+                        // Paused stage: simplified summary replaces cycle ring
+                        if lifeStage == .paused {
+                            PausedSummaryCard(cycleStore: cycleStore)
+                        }
+
+                        // Perimenopause: bleed history card (visible when no regular predictions)
+                        if lifeStage.showsBleedHistory {
+                            BleedHistoryCard(cycleStore: cycleStore)
+                        }
+
+                        // Menopause: intimate health consent card (first-time only)
+                        if lifeStage == .menopause && IntimateHealthConsentCard.shouldShow() {
+                            IntimateHealthConsentCard()
+                        }
+
+                        // Peri/meno: 30-day symptom snapshot counts
+                        if lifeStage == .perimenopause || lifeStage == .menopause {
+                            SymptomSnapshotCard(cycleStore: cycleStore, lifeStage: lifeStage)
+                        }
+
+                        // Peri/meno: monthly summary with embedded signal narrative
+
+                        // ── Zone 2: Cycle ring summary (phase + alerts + insights + tips) ──
+                        // Hidden for paused (no cycle ring) and menopause (no predictions shown)
+                        if lifeStage == .regular || lifeStage == .irregular {
+                            CycleRingSummaryCard(
+                                cycleStore: cycleStore,
+                                phase: cycleStore.currentPhase(),
+                                cycleDay: cycleStore.currentCycleDayNumber(),
+                                predictionRange: cycleStore.predictNextPeriodRange(),
+                                averageCycleLength: cycleStore.calculateAverageCycleLength(),
+                                activeSignals: activeSignals,
+                                activeNudge: { () -> CycleNudge? in
+                                    guard let nudge = cycleStore.currentNudge(),
+                                          !dismissedNudgeIDs.contains(nudge.id) else { return nil }
+                                    return nudge
+                                }(),
+                                onDismissSignal: { id in
+                                    DismissedNudges.dismiss(id)
+                                    dismissedSignalIDs = DismissedNudges.load()
+                                },
+                                onDismissNudge: {
+                                    if let nudge = cycleStore.currentNudge() {
+                                        DismissedNudges.dismiss(nudge.id)
+                                        dismissedNudgeIDs = DismissedNudges.load()
+                                    }
+                                }
+                            )
+                        }
 
                         // ── Zone 6: Data views ───────────────────────────────
-                        ForecastView(cycleStore: cycleStore)
-                            .id("forecast")
+                        // Forecast only shown for stages that predict future periods
+                        if lifeStage.showsCyclePrediction {
+                            ForecastView(cycleStore: cycleStore)
+                                .id("forecast")
+                        }
+
+                        // Monthly summary for non-cycle-prediction stages
+                        // Peri/meno: passes signal + window label for narrative + correct header
+                        // Paused: no signal — plain averages and top symptoms
+                        if !lifeStage.showsCyclePrediction {
+                            let isPeriMeno = lifeStage == .perimenopause || lifeStage == .menopause
+                            MonthlySummaryView(
+                                cycleStore:  cycleStore,
+                                signal:      isPeriMeno ? signalReadiness : nil,
+                                windowLabel: isPeriMeno ? signalWindow.label : nil,
+                                lifeStage:   lifeStage
+                            )
+                            .withTrendSheet()
+                        }
 
                         CycleCalendarView(cycleStore: cycleStore)
                             .id("history")

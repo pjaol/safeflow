@@ -8,45 +8,85 @@ enum DartboardCategory: Int, CaseIterable {
     case energy
     case mood
     case gut
+    case vasomotor
+    case musculoskeletal
+    case intimateHealth
 
     var label: LocalizedStringKey {
         switch self {
-        case .pain:   return "Pain"
-        case .energy: return "Energy"
-        case .mood:   return "Mood"
-        case .gut:    return "Body"
+        case .pain:           return "Pain"
+        case .energy:         return "Energy"
+        case .mood:           return "Mood"
+        case .gut:            return "Body"
+        case .vasomotor:      return "Hot Flashes"
+        case .musculoskeletal: return "Joints"
+        case .intimateHealth: return "Intimate"
         }
     }
 
     var labelString: String {
         switch self {
-        case .pain:   return String(localized: "Pain")
-        case .energy: return String(localized: "Energy")
-        case .mood:   return String(localized: "Mood")
-        case .gut:    return String(localized: "Body")
+        case .pain:           return String(localized: "Pain")
+        case .energy:         return String(localized: "Energy")
+        case .mood:           return String(localized: "Mood")
+        case .gut:            return String(localized: "Body")
+        case .vasomotor:      return String(localized: "Hot Flashes")
+        case .musculoskeletal: return String(localized: "Joints")
+        case .intimateHealth: return String(localized: "Intimate")
         }
     }
 
     var sfSymbol: String {
         switch self {
-        case .pain:   return "exclamationmark.triangle.fill"
-        case .energy: return "bolt.fill"
-        case .mood:   return "face.smiling"
-        case .gut:    return "figure.arms.open"
+        case .pain:           return "exclamationmark.triangle.fill"
+        case .energy:         return "bolt.fill"
+        case .mood:           return "face.smiling"
+        case .gut:            return "figure.arms.open"
+        case .vasomotor:      return "thermometer.sun.fill"
+        case .musculoskeletal: return "figure.strengthtraining.traditional"
+        case .intimateHealth: return "heart.text.square.fill"
         }
     }
 
     var color: Color {
         switch self {
-        case .pain:   return AppTheme.Colors.dartPain
-        case .energy: return AppTheme.Colors.dartEnergy
-        case .mood:   return AppTheme.Colors.dartMood
-        case .gut:    return AppTheme.Colors.dartGut
+        case .pain:           return AppTheme.Colors.dartPain
+        case .energy:         return AppTheme.Colors.dartEnergy
+        case .mood:           return AppTheme.Colors.dartMood
+        case .gut:            return AppTheme.Colors.dartGut
+        case .vasomotor:      return AppTheme.Colors.dartPain
+        case .musculoskeletal: return AppTheme.Colors.dartEnergy
+        case .intimateHealth: return AppTheme.Colors.dartMood
         }
     }
 
-
     var isSingleSelect: Bool { self == .mood }
+
+    /// Returns the SymptomCategory that backs this dartboard category, for merge logic.
+    var symptomCategory: SymptomCategory? {
+        switch self {
+        case .pain:           return .pain
+        case .energy:         return .energy
+        case .gut:            return .digestive
+        case .vasomotor:      return .vasomotor
+        case .musculoskeletal: return .musculoskeletal
+        case .intimateHealth: return .intimateHealth
+        case .mood:           return nil
+        }
+    }
+
+    /// Whether this category is visible for the given life stage.
+    func isVisible(for lifeStage: LifeStage) -> Bool {
+        switch self {
+        case .pain, .energy, .mood, .gut:
+            return true
+        case .vasomotor, .musculoskeletal:
+            return lifeStage == .perimenopause || lifeStage == .menopause
+        case .intimateHealth:
+            guard lifeStage == .menopause else { return false }
+            return !UserDefaults.standard.bool(forKey: LifeStage.intimateHealthHiddenKey)
+        }
+    }
 
     var items: [DartboardItem] {
         switch self {
@@ -69,7 +109,7 @@ enum DartboardCategory: Int, CaseIterable {
         case .mood:
             // Curated 6: most distinct emotional states
             return [
-                DartboardItem(mood: .energized, sfSymbol: "bolt.circle.fill"),
+                DartboardItem(mood: .energized, sfSymbol: "figure.run.circle.fill"),
                 DartboardItem(mood: .happy,     sfSymbol: "face.smiling.fill"),
                 DartboardItem(mood: .calm,      sfSymbol: "leaf.fill"),
                 DartboardItem(mood: .neutral,   sfSymbol: "circle.fill"),
@@ -83,6 +123,24 @@ enum DartboardCategory: Int, CaseIterable {
                 DartboardItem(symptom: .appetiteChanges,  sfSymbol: "minus.circle.fill"),
                 DartboardItem(symptom: .dischargeChanges, sfSymbol: "drop.fill"),
                 DartboardItem(symptom: .acne,             sfSymbol: "allergens"),
+            ]
+        case .vasomotor:
+            return [
+                DartboardItem(symptom: .hotFlashes,  sfSymbol: "thermometer.sun.fill"),
+                DartboardItem(symptom: .nightSweats, sfSymbol: "moon.fill"),
+                DartboardItem(symptom: .chills,      sfSymbol: "snowflake"),
+            ]
+        case .musculoskeletal:
+            return [
+                DartboardItem(symptom: .jointPain,        sfSymbol: "figure.strengthtraining.traditional"),
+                DartboardItem(symptom: .muscleAches,      sfSymbol: "figure.flexibility"),
+                DartboardItem(symptom: .exerciseRecovery, sfSymbol: "arrow.clockwise.heart"),
+            ]
+        case .intimateHealth:
+            return [
+                DartboardItem(symptom: .vaginalDryness,  sfSymbol: "drop.halffull"),
+                DartboardItem(symptom: .urinaryUrgency,  sfSymbol: "exclamationmark.circle.fill"),
+                DartboardItem(symptom: .painWithSex,     sfSymbol: "waveform.path.ecg"),
             ]
         }
     }
@@ -132,6 +190,14 @@ final class DartboardViewModel: ObservableObject {
     // MARK: UI state
     @Published var selectedCategory: DartboardCategory = .pain
     @Published var stripDragOffset: CGFloat = 0
+
+    // MARK: Life stage (read from UserDefaults; kept in sync via onAppear/onChange callers)
+    @AppStorage(LifeStage.defaultsKey) private var lifeStage: LifeStage = .regular
+
+    /// Ordered list of categories visible for the current life stage.
+    var visibleCategories: [DartboardCategory] {
+        DartboardCategory.allCases.filter { $0.isVisible(for: lifeStage) }
+    }
 
     // MARK: Geometry (set once from GeometryReader)
     var boardSize: CGSize = .zero
@@ -243,19 +309,11 @@ final class DartboardViewModel: ObservableObject {
         // Preserve data from all other categories; only replace current category's data
         var mergedSymptoms = existing?.symptoms ?? []
         if !selectedCategory.isSingleSelect {
-            let categorySymptoms: Set<Symptom>
-            switch selectedCategory {
-            case .pain:
-                categorySymptoms = Set(Symptom.allCases.filter { $0.category == .pain })
-            case .energy:
-                categorySymptoms = Set(Symptom.allCases.filter { $0.category == .energy })
-            case .gut:
-                categorySymptoms = Set(Symptom.allCases.filter { $0.category == .digestive })
-            case .mood:
-                categorySymptoms = []
+            if let symCat = selectedCategory.symptomCategory {
+                let categorySymptoms = Set(Symptom.allCases.filter { $0.category == symCat })
+                mergedSymptoms.subtract(categorySymptoms)
+                mergedSymptoms.formUnion(committedSymptoms.filter { categorySymptoms.contains($0) })
             }
-            mergedSymptoms.subtract(categorySymptoms)
-            mergedSymptoms.formUnion(committedSymptoms.filter { categorySymptoms.contains($0) })
         }
 
         let day = CycleDay(
@@ -296,5 +354,12 @@ final class DartboardViewModel: ObservableObject {
         loadFromStore()
         // Nothing to reset — tap model has no transient marker state
         rigidImpact.impactOccurred()
+    }
+
+    /// Call when life stage changes to ensure selectedCategory is still visible.
+    func resetToFirstVisibleCategoryIfNeeded() {
+        if !selectedCategory.isVisible(for: lifeStage) {
+            selectedCategory = visibleCategories.first ?? .pain
+        }
     }
 }

@@ -8,7 +8,14 @@ struct CycleDay: Identifiable, Codable {
     var mood: Mood?
     var notes: String?
 
-    init(id: UUID = UUID(), date: Date, flow: FlowIntensity? = nil, symptoms: Set<Symptom> = [], mood: Mood? = nil, notes: String? = nil) {
+    init(
+        id: UUID = UUID(),
+        date: Date,
+        flow: FlowIntensity? = nil,
+        symptoms: Set<Symptom> = [],
+        mood: Mood? = nil,
+        notes: String? = nil
+    ) {
         self.id = id
         self.date = date
         self.flow = flow
@@ -58,20 +65,42 @@ enum SymptomCategory: String, CaseIterable {
     case pain
     case energy
     case digestive
+    case vasomotor      // perimenopause + menopause
+    case musculoskeletal // perimenopause + menopause
+    case intimateHealth // menopause only, opt-in
 
     var localizedName: LocalizedStringKey {
         switch self {
-        case .pain: return "Pain"
-        case .energy: return "Energy"
-        case .digestive: return "Body"
+        case .pain:           return "Pain"
+        case .energy:         return "Energy"
+        case .digestive:      return "Body"
+        case .vasomotor:      return "Hot Flashes"
+        case .musculoskeletal: return "Joints"
+        case .intimateHealth: return "Intimate Health"
         }
     }
 
     var localizedNameString: String {
         switch self {
-        case .pain: return String(localized: "Pain")
-        case .energy: return String(localized: "Energy")
-        case .digestive: return String(localized: "Body")
+        case .pain:           return String(localized: "Pain")
+        case .energy:         return String(localized: "Energy")
+        case .digestive:      return String(localized: "Body")
+        case .vasomotor:      return String(localized: "Hot Flashes")
+        case .musculoskeletal: return String(localized: "Joints")
+        case .intimateHealth: return String(localized: "Intimate Health")
+        }
+    }
+
+    /// Life stages for which this category is visible.
+    /// `.regular` and `.irregular` always see pain/energy/digestive only.
+    var visibleForStages: Set<LifeStage> {
+        switch self {
+        case .pain, .energy, .digestive:
+            return Set(LifeStage.allCases)
+        case .vasomotor, .musculoskeletal:
+            return [.perimenopause, .menopause]
+        case .intimateHealth:
+            return [.menopause]
         }
     }
 }
@@ -104,6 +133,21 @@ enum Symptom: String, Codable, CaseIterable {
     case dischargeChanges
     case mittelschmerz
 
+    // Vasomotor (perimenopause + menopause)
+    case hotFlashes
+    case nightSweats
+    case chills
+
+    // Musculoskeletal (perimenopause + menopause)
+    case jointPain
+    case muscleAches
+    case exerciseRecovery
+
+    // Intimate health (menopause, opt-in)
+    case vaginalDryness
+    case urinaryUrgency
+    case painWithSex
+
     var localizedName: LocalizedStringKey {
         switch self {
         case .cramps: return "Cramps"
@@ -121,6 +165,15 @@ enum Symptom: String, Codable, CaseIterable {
         case .appetiteChanges: return "Appetite"
         case .dischargeChanges: return "Discharge"
         case .mittelschmerz: return "Ovulation"
+        case .hotFlashes: return "Hot Flashes"
+        case .nightSweats: return "Night Sweats"
+        case .chills: return "Chills"
+        case .jointPain: return "Joint Pain"
+        case .muscleAches: return "Muscle Aches"
+        case .exerciseRecovery: return "Exercise Recovery"
+        case .vaginalDryness: return "Vaginal Dryness"
+        case .urinaryUrgency: return "Urinary Urgency"
+        case .painWithSex: return "Pain With Sex"
         }
     }
 
@@ -141,6 +194,15 @@ enum Symptom: String, Codable, CaseIterable {
         case .appetiteChanges: return String(localized: "Appetite")
         case .dischargeChanges: return String(localized: "Discharge")
         case .mittelschmerz: return String(localized: "Ovulation")
+        case .hotFlashes: return String(localized: "Hot Flashes")
+        case .nightSweats: return String(localized: "Night Sweats")
+        case .chills: return String(localized: "Chills")
+        case .jointPain: return String(localized: "Joint Pain")
+        case .muscleAches: return String(localized: "Muscle Aches")
+        case .exerciseRecovery: return String(localized: "Exercise Recovery")
+        case .vaginalDryness: return String(localized: "Vaginal Dryness")
+        case .urinaryUrgency: return String(localized: "Urinary Urgency")
+        case .painWithSex: return String(localized: "Pain With Sex")
         }
     }
 
@@ -161,6 +223,15 @@ enum Symptom: String, Codable, CaseIterable {
         case .appetiteChanges: return "minus.circle.fill"
         case .dischargeChanges: return "drop.fill"
         case .mittelschmerz: return "mappin.circle.fill"
+        case .hotFlashes: return "thermometer.sun.fill"
+        case .nightSweats: return "moon.fill"
+        case .chills: return "snowflake"
+        case .jointPain: return "figure.strengthtraining.traditional"
+        case .muscleAches: return "figure.flexibility"
+        case .exerciseRecovery: return "arrow.clockwise.heart"
+        case .vaginalDryness: return "drop.halffull"
+        case .urinaryUrgency: return "exclamationmark.circle.fill"
+        case .painWithSex: return "heart.slash.fill"
         }
     }
 
@@ -172,6 +243,12 @@ enum Symptom: String, Codable, CaseIterable {
             return .energy
         case .foodCravings, .nausea, .appetiteChanges, .acne, .dischargeChanges:
             return .digestive
+        case .hotFlashes, .nightSweats, .chills:
+            return .vasomotor
+        case .jointPain, .muscleAches, .exerciseRecovery:
+            return .musculoskeletal
+        case .vaginalDryness, .urinaryUrgency, .painWithSex:
+            return .intimateHealth
         }
     }
 }
@@ -197,7 +274,7 @@ enum Mood: String, Codable, CaseIterable {
 
     var localizedName: LocalizedStringKey {
         switch self {
-        case .energized: return "Energized"
+        case .energized: return "Motivated"
         case .happy: return "Happy"
         case .confident: return "Confident"
         case .calm: return "Calm"
@@ -214,7 +291,7 @@ enum Mood: String, Codable, CaseIterable {
 
     var localizedNameString: String {
         switch self {
-        case .energized: return String(localized: "Energized")
+        case .energized: return String(localized: "Motivated")
         case .happy: return String(localized: "Happy")
         case .confident: return String(localized: "Confident")
         case .calm: return String(localized: "Calm")
@@ -231,7 +308,7 @@ enum Mood: String, Codable, CaseIterable {
 
     var sfSymbol: String {
         switch self {
-        case .energized: return "bolt.fill"
+        case .energized: return "figure.run.circle.fill"
         case .happy: return "sun.max.fill"
         case .confident: return "star.fill"
         case .calm: return "leaf.fill"

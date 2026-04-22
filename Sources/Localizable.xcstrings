@@ -2604,24 +2604,24 @@
         }
       }
     },
-    "Energized": {
+    "Motivated": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Energiegeladen"
+            "value": "Motiviert"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Con energía"
+            "value": "Motivada"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Énergisé"
+            "value": "Motivée"
           }
         }
       }
@@ -2671,7 +2671,14 @@
       }
     },
     "Calm": {
+      "comment": "WellbeingLevel stress label — very low",
       "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calm"
+          }
+        },
         "de": {
           "stringUnit": {
             "state": "translated",
@@ -2681,7 +2688,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tranquilo"
+            "value": "Tranquila"
           }
         },
         "fr": {
@@ -4735,6 +4742,586 @@
           "stringUnit": {
             "state": "translated",
             "value": "Enregistrer"
+          }
+        }
+      }
+    },
+    "Daily Wellbeing": {
+      "comment": "LogDayView: wellbeing section header",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daily Wellbeing"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tägliches Wohlbefinden"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bienestar diario"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bien-être quotidien"
+          }
+        }
+      }
+    },
+    "Sleep": {
+      "comment": "LogDayView: wellbeing row label",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlaf"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sueño"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sommeil"
+          }
+        }
+      }
+    },
+    "Stress": {
+      "comment": "LogDayView: wellbeing row label",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stress"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stress"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estrés"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stress"
+          }
+        }
+      }
+    },
+    "Log unexpected bleeding": {
+      "comment": "FlowStepSlider: secondary context label for menopause/paused",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log unexpected bleeding"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unerwartete Blutung erfassen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrar sangrado inesperado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consigner un saignement inattendu"
+          }
+        }
+      }
+    },
+    "Unexpected bleeding": {
+      "comment": "FlowStepSlider: accessibility label in secondary context",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unexpected bleeding"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unerwartete Blutung"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sangrado inesperado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saignement inattendu"
+          }
+        }
+      }
+    },
+    "What brings you here?": {
+      "comment": "Onboarding page 1: life stage picker heading",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What brings you here?"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Was führt dich hierher?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Qué te trae aquí?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qu'est-ce qui t'amène ici ?"
+          }
+        }
+      }
+    },
+    "Choose what best describes you — Clio Daye adapts to what matters most.": {
+      "comment": "Onboarding page 1: life stage picker body",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose what best describes you — Clio Daye adapts to what matters most."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle, was dich am besten beschreibt — Clio Daye passt sich an, was am wichtigsten ist."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige lo que mejor te describe — Clio Daye se adapta a lo que más importa."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisis ce qui te décrit le mieux — Clio Daye s'adapte à ce qui compte le plus."
+          }
+        }
+      }
+    },
+    "You can change this any time in Settings.": {
+      "comment": "Onboarding page 1: life stage picker footer",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You can change this any time in Settings."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du kannst dies jederzeit in den Einstellungen ändern."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puedes cambiar esto en cualquier momento en Ajustes."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu peux modifier cela à tout moment dans les Réglages."
+          }
+        }
+      }
+    },
+    "You're all set": {
+      "comment": "Onboarding final page heading for menopause/paused (no cycle setup)",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You're all set"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist startklar"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todo listo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu es prête"
+          }
+        }
+      }
+    },
+    "Clio Daye is ready. Log how you feel each day and track what matters to you.": {
+      "comment": "Onboarding all set page body",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clio Daye is ready. Log how you feel each day and track what matters to you."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clio Daye ist bereit. Trage täglich ein, wie du dich fühlst, und verfolge, was dir wichtig ist."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clio Daye está lista. Registra cómo te sientes cada día y sigue lo que te importa."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clio Daye est prête. Note comment tu te sens chaque jour et suis ce qui compte pour toi."
+          }
+        }
+      }
+    },
+    "Let's Go": {
+      "comment": "Onboarding all set page CTA button",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Let's Go"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los geht's"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empecemos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "C'est parti"
+          }
+        }
+      }
+    },
+    "Why are you pausing?": {
+      "comment": "Onboarding paused context sheet title",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Why are you pausing?"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warum machst du eine Pause?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Por qué pausas?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pourquoi fais-tu une pause ?"
+          }
+        }
+      }
+    },
+    "A little more detail helps us set the right tone.": {
+      "comment": "Onboarding paused context sheet body",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A little more detail helps us set the right tone."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein bisschen mehr Detail hilft uns, den richtigen Ton zu finden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un poco más de detalle nos ayuda a establecer el tono adecuado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un peu plus de détail nous aide à trouver le bon ton."
+          }
+        }
+      }
+    },
+    "Recovering or post-partum": {
+      "comment": "PausedContext: recovering option",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recovering or post-partum"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In der Erholung oder post-partal"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En recuperación o postparto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En convalescence ou post-partum"
+          }
+        }
+      }
+    },
+    "Just taking a break": {
+      "comment": "PausedContext: not tracking option",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Just taking a break"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mache einfach eine Pause"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo tomando un descanso"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je fais juste une pause"
+          }
+        }
+      }
+    },
+    "Periods come roughly on schedule": {
+      "comment": "LifeStage.regular settings description",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Periods come roughly on schedule"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perioden kommen ungefähr pünktlich"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los períodos llegan aproximadamente a tiempo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les règles arrivent à peu près ponctuellement"
+          }
+        }
+      }
+    },
+    "Periods vary — predictions show a wider range": {
+      "comment": "LifeStage.irregular settings description",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Periods vary — predictions show a wider range"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perioden variieren — Vorhersagen zeigen einen größeren Bereich"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los períodos varían — las predicciones muestran un rango más amplio"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les règles varient — les prédictions montrent une plage plus large"
+          }
+        }
+      }
+    },
+    "Cycles are changing — history and symptoms take priority": {
+      "comment": "LifeStage.perimenopause settings description",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycles are changing — history and symptoms take priority"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Zyklus verändert sich — Verlauf und Symptome haben Vorrang"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los ciclos están cambiando — el historial y los síntomas son la prioridad"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les cycles changent — l'historique et les symptômes sont prioritaires"
+          }
+        }
+      }
+    },
+    "Periods have stopped — symptoms and summaries are the main view": {
+      "comment": "LifeStage.menopause settings description",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Periods have stopped — symptoms and summaries are the main view"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perioden haben aufgehört — Symptome und Zusammenfassungen stehen im Vordergrund"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los períodos han cesado — los síntomas y resúmenes son la vista principal"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les règles ont cessé — les symptômes et les résumés sont la vue principale"
+          }
+        }
+      }
+    },
+    "Post-partum, breastfeeding, or taking a break": {
+      "comment": "LifeStage.paused settings description",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Post-partum, breastfeeding, or taking a break"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Postpartal, stillend oder macht eine Pause"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Postparto, lactancia o tomando un descanso"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Post-partum, allaitement ou pause"
           }
         }
       }
@@ -7309,23 +7896,59 @@
       }
     },
     "Mild": {
-      "extractionState": "manual",
+      "comment": "WellbeingLevel stress label — low",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Mild"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leicht"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leve"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Léger"
+          }
         }
       }
     },
     "Moderate": {
-      "extractionState": "manual",
+      "comment": "WellbeingLevel stress label — medium",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Moderate"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mäßig"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moderado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modéré"
           }
         }
       }
@@ -7580,6 +8203,959 @@
           "stringUnit": {
             "state": "translated",
             "value": "Energy may dip toward the end of this phase."
+          }
+        }
+      }
+    },
+    "Choose what fits where you are right now. You can change this anytime.": {
+      "comment": "LifeStageGuideView header",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose what fits where you are right now. You can change this anytime."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle, was gerade zu dir passt. Du kannst dies jederzeit ändern."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige lo que se ajusta a donde estás ahora. Puedes cambiar esto en cualquier momento."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisis ce qui correspond à où tu en es maintenant. Tu peux changer cela à tout moment."
+          }
+        }
+      }
+    },
+    "This changes what Clio Daye shows you. Your stored data is never affected.": {
+      "comment": "LifeStageGuideView context note",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This changes what Clio Daye shows you. Your stored data is never affected."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das ändert, was Clio Daye dir anzeigt. Deine gespeicherten Daten bleiben immer unberührt."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esto cambia lo que Clio Daye te muestra. Tus datos almacenados nunca se ven afectados."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cela modifie ce que Clio Daye t'affiche. Tes données enregistrées ne sont jamais affectées."
+          }
+        }
+      }
+    },
+    "Here's what changes:": {
+      "comment": "LifeStageConfirmationSheet section heading",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Here's what changes:"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Folgendes ändert sich:"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esto es lo que cambia:"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voici ce qui change :"
+          }
+        }
+      }
+    },
+    "You can switch back anytime.": {
+      "comment": "LifeStageConfirmationSheet closing note",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You can switch back anytime."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du kannst jederzeit zurückwechseln."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puedes volver en cualquier momento."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu peux revenir à tout moment."
+          }
+        }
+      }
+    },
+    "Resume cycle tracking anytime from here or from Settings.": {
+      "comment": "LifeStageConfirmationSheet closing note for paused stage",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resume cycle tracking anytime from here or from Settings."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zyklusverfolgung jederzeit hier oder in den Einstellungen fortsetzen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retoma el seguimiento del ciclo en cualquier momento desde aquí o desde Ajustes."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reprends le suivi du cycle à tout moment depuis ici ou depuis les Réglages."
+          }
+        }
+      }
+    },
+    "Life Stage": {
+      "comment": "Settings row label for life stage picker",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Life Stage"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lebensphase"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etapa de vida"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Étape de vie"
+          }
+        }
+      }
+    },
+    "Your Experience": {
+      "comment": "Settings section header for life stage",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your Experience"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Erfahrung"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu experiencia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ton expérience"
+          }
+        }
+      }
+    },
+    "Poor": {
+      "comment": "WellbeingLevel sleep label — very low",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poor"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlecht"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Malo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mauvais"
+          }
+        }
+      }
+    },
+    "Fair": {
+      "comment": "WellbeingLevel sleep label — low",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fair"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mäßig"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regular"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passable"
+          }
+        }
+      }
+    },
+    "Okay": {
+      "comment": "WellbeingLevel label — medium",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Okay"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Okay"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regular"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correct"
+          }
+        }
+      }
+    },
+    "Depleted": {
+      "comment": "WellbeingLevel energy label — very low",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Depleted"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erschöpft"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agotada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Épuisée"
+          }
+        }
+      }
+    },
+    "Very High": {
+      "comment": "WellbeingLevel stress label — very high",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Very High"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sehr hoch"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muy alto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Très élevé"
+          }
+        }
+      }
+    },
+    "Hot Flashes": {
+      "comment": "Symptom name — vasomotor category",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hot Flashes"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hitzewallungen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sofocos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bouffées de chaleur"
+          }
+        }
+      }
+    },
+    "Night Sweats": {
+      "comment": "Symptom name — vasomotor category",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Night Sweats"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nachtschweiß"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sudores nocturnos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sueurs nocturnes"
+          }
+        }
+      }
+    },
+    "Chills": {
+      "comment": "Symptom name — vasomotor category",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chills"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schüttelfrost"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escalofríos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frissons"
+          }
+        }
+      }
+    },
+    "Joint Pain": {
+      "comment": "Symptom name — musculoskeletal category",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Joint Pain"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelenkschmerzen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dolor articular"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Douleurs articulaires"
+          }
+        }
+      }
+    },
+    "Muscle Aches": {
+      "comment": "Symptom name — musculoskeletal category",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muscle Aches"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muskelschmerzen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dolores musculares"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Courbatures"
+          }
+        }
+      }
+    },
+    "Exercise Recovery": {
+      "comment": "Symptom name — musculoskeletal category",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exercise Recovery"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sportliche Erholung"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recuperación por ejercicio"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Récupération sportive"
+          }
+        }
+      }
+    },
+    "Vaginal Dryness": {
+      "comment": "Symptom name — intimate health category (menopause, opt-in)",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vaginal Dryness"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vaginale Trockenheit"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sequedad vaginal"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sécheresse vaginale"
+          }
+        }
+      }
+    },
+    "Urinary Urgency": {
+      "comment": "Symptom name — intimate health category (menopause, opt-in)",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Urinary Urgency"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harndrang"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Urgencia urinaria"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Urgences urinaires"
+          }
+        }
+      }
+    },
+    "Pain With Sex": {
+      "comment": "Symptom name — intimate health category (menopause, opt-in)",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pain With Sex"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schmerzen beim Sex"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dolor durante el sexo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Douleur pendant les rapports"
+          }
+        }
+      }
+    },
+    "Joints": {
+      "comment": "SymptomCategory display name — musculoskeletal",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Joints"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelenke"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Articulaciones"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Articulations"
+          }
+        }
+      }
+    },
+    "Intimate": {
+      "comment": "DartboardCategory short label — intimate health category strip",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intimate"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intim"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Íntimo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intime"
+          }
+        }
+      }
+    },
+    "Intimate Health": {
+      "comment": "SymptomCategory display name — intimate health (opt-in)",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intimate Health"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intime Gesundheit"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salud íntima"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Santé intime"
+          }
+        }
+      }
+    },
+    "Regular cycles": {
+      "comment": "LifeStage display name",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regular cycles"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regelmäßige Zyklen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ciclos regulares"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycles réguliers"
+          }
+        }
+      }
+    },
+    "Irregular cycles": {
+      "comment": "LifeStage display name",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Irregular cycles"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unregelmäßige Zyklen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ciclos irregulares"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycles irréguliers"
+          }
+        }
+      }
+    },
+    "Perimenopause": {
+      "comment": "LifeStage display name",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perimenopause"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perimenopause"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perimenopausia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Périménopause"
+          }
+        }
+      }
+    },
+    "Menopause": {
+      "comment": "LifeStage display name",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menopause"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menopause"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menopausia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ménopause"
+          }
+        }
+      }
+    },
+    "Cycle paused": {
+      "comment": "LifeStage display name — post-partum, breastfeeding, or taking a break",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycle paused"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zyklus pausiert"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ciclo en pausa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycle en pause"
+          }
+        }
+      }
+    },
+    "We've noted this. You can log more detail in your diary.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "We've noted this. You can log more detail in your diary."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das haben wir vermerkt. Du kannst weitere Details in deinem Tagebuch erfassen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo hemos anotado. Puedes registrar más detalles en tu diario."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nous l'avons noté. Tu peux ajouter des détails dans ton journal."
+          }
+        }
+      }
+    },
+    "Worth noting for your next appointment.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Worth noting for your next appointment."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gut zu merken für deinen nächsten Termin."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vale la pena mencionarlo en tu próxima cita."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À noter pour ton prochain rendez-vous."
+          }
+        }
+      }
+    },
+    "Start by logging how you feel today.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start by logging how you feel today."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beginne damit, dein heutiges Befinden zu erfassen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empieza registrando cómo te sientes hoy."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commence par noter comment tu te sens aujourd'hui."
+          }
+        }
+      }
+    },
+    "Log 5+ days to see top symptoms.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log 5+ days to see top symptoms."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erfasse 5+ Tage, um die häufigsten Symptome zu sehen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registra 5+ días para ver los síntomas más frecuentes."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Note 5+ jours pour voir les symptômes les plus fréquents."
           }
         }
       }

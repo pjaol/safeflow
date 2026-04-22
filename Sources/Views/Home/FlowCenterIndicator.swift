@@ -10,21 +10,34 @@ import SwiftUI
 struct FlowStepSlider: View {
     @ObservedObject var viewModel: DartboardViewModel
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @AppStorage(LifeStage.defaultsKey) private var lifeStage: LifeStage = .regular
 
     private let levels     = FlowIntensity.allCases
     private let softImpact = UIImpactFeedbackGenerator(style: .soft)
     private let stopSize: CGFloat = 42
 
+    /// True for menopause and paused stages — flow is unexpected rather than routine.
+    private var isSecondaryContext: Bool {
+        lifeStage == .menopause || lifeStage == .paused
+    }
+
     var body: some View {
         VStack(spacing: 6) {
+            if isSecondaryContext {
+                Text("Log unexpected bleeding")
+                    .font(.system(.caption, design: .rounded, weight: .medium))
+                    .foregroundStyle(AppTheme.Colors.mediumGrayText)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 4)
+            }
             GeometryReader { geo in
                 let totalWidth = geo.size.width
                 let spacing    = totalWidth / CGFloat(levels.count - 1)
 
                 ZStack(alignment: .leading) {
-                    // Track background
+                    // Track background (reduced opacity in secondary context)
                     Capsule()
-                        .fill(AppTheme.Colors.secondaryPink.opacity(0.25))
+                        .fill(AppTheme.Colors.secondaryPink.opacity(isSecondaryContext ? 0.15 : 0.25))
                         .frame(height: 5)
                         .padding(.horizontal, stopSize / 2)
                         .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 1)
@@ -103,8 +116,8 @@ struct FlowStepSlider: View {
         }
         .padding(.horizontal, 4)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("Flow intensity")
-        .accessibilityValue(viewModel.committedFlow?.localizedNameString ?? "Not logged")
+        .accessibilityLabel(isSecondaryContext ? "Unexpected bleeding" : "Flow intensity")
+        .accessibilityValue(viewModel.committedFlow?.localizedNameString ?? String(localized: "Not logged"))
         .accessibilityAdjustableAction { direction in
             adjustFlow(direction)
         }

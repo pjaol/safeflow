@@ -3,16 +3,57 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject private var securityService: SecurityService
     @Environment(\.dismiss) private var dismiss
+    @AppStorage(LifeStage.defaultsKey) private var lifeStage: LifeStage = .regular
+    @AppStorage(LifeStage.intimateHealthHiddenKey) private var intimateHealthHidden: Bool = false
+    @State private var showingLifeStageGuide = false
     @State private var showingBiometricSetup = false
     @State private var showingPinSetup = false
     @State private var hasPin = false
     @State private var showingDeleteConfirmation = false
 
     var cycleStore: CycleStore? = nil
-    
+
     var body: some View {
         NavigationStack {
             Form {
+                Section("Your Experience") {
+                    Button {
+                        showingLifeStageGuide = true
+                    } label: {
+                        HStack {
+                            Text("Life Stage")
+                                .foregroundColor(AppTheme.Colors.deepGrayText)
+                            Spacer()
+                            Text(lifeStage.localizedName)
+                                .foregroundColor(AppTheme.Colors.mediumGrayText)
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 13, weight: .semibold))
+                                .foregroundColor(AppTheme.Colors.mediumGrayText.opacity(0.5))
+                                .accessibilityHidden(true)
+                        }
+                    }
+                    .accessibilityLabel("Life Stage, \(lifeStage.localizedNameString)")
+                    .accessibilityHint("Opens life stage selector")
+                    .accessibilityIdentifier("settings.lifeStageButton")
+                }
+
+                if lifeStage == .menopause {
+                    Section {
+                        Toggle("Intimate Health", isOn: Binding(
+                            get: { !intimateHealthHidden },
+                            set: { intimateHealthHidden = !$0 }
+                        ))
+                        .tint(AppTheme.Colors.dartMood)
+                        .accessibilityLabel("Intimate Health category")
+                        .accessibilityHint("Show or hide vaginal dryness, urinary urgency, and pain during sex in your daily log")
+                        .accessibilityIdentifier("settings.intimateHealthToggle")
+                    } header: {
+                        Text("Logging")
+                    } footer: {
+                        Text("Vaginal dryness, urinary urgency, and pain during sex. You can hide this category if you prefer not to track it.")
+                    }
+                }
+
                 Section("Security") {
                     Toggle("Require Authentication", isOn: Binding(
                         get: { securityService.isAuthenticationRequired },
@@ -136,6 +177,9 @@ struct SettingsView: View {
             // Show sheet for PIN setup
             .sheet(isPresented: $showingPinSetup) {
                 PinSetupView()
+            }
+            .sheet(isPresented: $showingLifeStageGuide) {
+                LifeStageGuideView(currentStage: $lifeStage)
             }
             .alert("Delete All Data?", isPresented: $showingDeleteConfirmation) {
                 Button("Delete Everything", role: .destructive) {

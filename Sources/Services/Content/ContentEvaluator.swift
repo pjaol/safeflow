@@ -133,10 +133,16 @@ struct ContentEvaluator {
     // MARK: - Tip eligibility
 
     private func isEligible(_ tip: ContentTip) -> Bool {
-        // Phase filter
-        if tip.phase != "any" {
-            guard let phase = currentPhase,
-                  phase.rawValue == tip.phase else { return false }
+        // Life-stage tips: match by life stage, skip phase check
+        if let ls = tip.lifeStage {
+            let current = LifeStage(rawValue: UserDefaults.standard.string(forKey: LifeStage.defaultsKey) ?? "") ?? .regular
+            guard current.rawValue == ls else { return false }
+        } else {
+            // Phase-based tips
+            if tip.phase != "any" {
+                guard let phase = currentPhase,
+                      phase.rawValue == tip.phase else { return false }
+            }
         }
 
         // Minimum cycle count

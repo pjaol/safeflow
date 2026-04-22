@@ -5,7 +5,8 @@ import Foundation
 /// A phase tip shown on PhaseTipCard. Loaded from Resources/Content/tips.json.
 struct ContentTip: Codable, Identifiable {
     let id: String
-    let phase: String           // menstrual | follicular | ovulatory | luteal | any
+    let phase: String?          // menstrual | follicular | ovulatory | luteal | any; nil for life-stage tips
+    let lifeStage: String?      // regular | irregular | perimenopause | menopause | paused; nil for phase tips
     let title: String
     let body: String
     let sfSymbol: String
@@ -18,6 +19,7 @@ struct ContentTip: Codable, Identifiable {
 
     enum CodingKeys: String, CodingKey {
         case id, phase, title, body
+        case lifeStage      = "life_stage"
         case sfSymbol       = "sf_symbol"
         case priority
         case cycleCountMin  = "cycle_count_min"
