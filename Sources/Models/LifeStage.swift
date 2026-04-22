@@ -91,6 +91,10 @@ enum LifeStage: String, Codable, CaseIterable {
         self == .perimenopause
     }
 
+    /// UserDefaults key for hiding the Intimate Health dartboard category.
+    /// `true` = user has chosen to hide it. Default: false (visible for menopause users).
+    static let intimateHealthHiddenKey = "intimateHealthCategoryHidden"
+
     /// Whether the flow slider is shown in secondary/unexpected mode.
     var flowSliderIsSecondary: Bool {
         switch self {

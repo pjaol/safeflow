@@ -8845,6 +8845,35 @@
         }
       }
     },
+    "Intimate": {
+      "comment": "DartboardCategory short label — intimate health category strip",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intimate"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intim"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Íntimo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intime"
+          }
+        }
+      }
+    },
     "Intimate Health": {
       "comment": "SymptomCategory display name — intimate health (opt-in)",
       "localizations": {

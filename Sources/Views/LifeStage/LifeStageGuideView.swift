@@ -425,7 +425,7 @@ struct LifeStageFirstRunCard: View {
         case .perimenopause:
             return "Predictions are gone — because they'd be wrong. Your bleed history is your reference now. Hot flashes and joint pain are in your log."
         case .menopause:
-            return "Cycle tracking is off. Your home screen shows how you've been feeling. Log symptoms as normal — your data is still here."
+            return "Cycle tracking is off. Your home screen shows how you've been feeling. An Intimate Health category is now in your log — vaginal dryness, urinary urgency, and pain during sex. You'll see a prompt to keep or hide it."
         case .paused:
             return "Cycle tracking paused. Just log how you feel. Switch back anytime in Settings."
         case .regular:

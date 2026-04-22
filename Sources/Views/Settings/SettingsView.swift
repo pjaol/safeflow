@@ -4,6 +4,7 @@ struct SettingsView: View {
     @EnvironmentObject private var securityService: SecurityService
     @Environment(\.dismiss) private var dismiss
     @AppStorage(LifeStage.defaultsKey) private var lifeStage: LifeStage = .regular
+    @AppStorage(LifeStage.intimateHealthHiddenKey) private var intimateHealthHidden: Bool = false
     @State private var showingLifeStageGuide = false
     @State private var showingBiometricSetup = false
     @State private var showingPinSetup = false
@@ -34,6 +35,23 @@ struct SettingsView: View {
                     .accessibilityLabel("Life Stage, \(lifeStage.localizedNameString)")
                     .accessibilityHint("Opens life stage selector")
                     .accessibilityIdentifier("settings.lifeStageButton")
+                }
+
+                if lifeStage == .menopause {
+                    Section {
+                        Toggle("Intimate Health", isOn: Binding(
+                            get: { !intimateHealthHidden },
+                            set: { intimateHealthHidden = !$0 }
+                        ))
+                        .tint(AppTheme.Colors.dartMood)
+                        .accessibilityLabel("Intimate Health category")
+                        .accessibilityHint("Show or hide vaginal dryness, urinary urgency, and pain during sex in your daily log")
+                        .accessibilityIdentifier("settings.intimateHealthToggle")
+                    } header: {
+                        Text("Logging")
+                    } footer: {
+                        Text("Vaginal dryness, urinary urgency, and pain during sex. You can hide this category if you prefer not to track it.")
+                    }
                 }
 
                 Section("Security") {

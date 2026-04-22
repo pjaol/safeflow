@@ -83,7 +83,8 @@ enum DartboardCategory: Int, CaseIterable {
         case .vasomotor, .musculoskeletal:
             return lifeStage == .perimenopause || lifeStage == .menopause
         case .intimateHealth:
-            return lifeStage == .menopause
+            guard lifeStage == .menopause else { return false }
+            return !UserDefaults.standard.bool(forKey: LifeStage.intimateHealthHiddenKey)
         }
     }
 
@@ -139,7 +140,7 @@ enum DartboardCategory: Int, CaseIterable {
             return [
                 DartboardItem(symptom: .vaginalDryness,  sfSymbol: "drop.halffull"),
                 DartboardItem(symptom: .urinaryUrgency,  sfSymbol: "exclamationmark.circle.fill"),
-                DartboardItem(symptom: .painWithSex,     sfSymbol: "heart.slash.fill"),
+                DartboardItem(symptom: .painWithSex,     sfSymbol: "waveform.path.ecg"),
             ]
         }
     }

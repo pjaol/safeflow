@@ -70,6 +70,11 @@ struct HomeView: View {
                             BleedHistoryCard(cycleStore: cycleStore)
                         }
 
+                        // Menopause: intimate health consent card (first-time only)
+                        if lifeStage == .menopause && IntimateHealthConsentCard.shouldShow() {
+                            IntimateHealthConsentCard()
+                        }
+
                         // Peri/meno: 30-day symptom snapshot counts
                         if lifeStage == .perimenopause || lifeStage == .menopause {
                             SymptomSnapshotCard(cycleStore: cycleStore, lifeStage: lifeStage)

@@ -76,79 +76,63 @@ date,flow,symptoms,mood,notes
 -122,,,calm,
 -120,,,happy,Energy consistently high
 -119,,fatigue,neutral,Slightly tired — late night
--118,,,calm,Life feeling genuinely normal again
--117,,"hotFlashes,nightSweats",anxious,Confirmed menopause 14 months ago. Still struggling
--116,,"nightSweats,hotFlashes,fatigue",tired,Woke twice — drenched
--115,,"hotFlashes,headache",irritable,
--114,,"hotFlashes,brainFog",foggy,
--113,,"nightSweats,hotFlashes,jointPain",sad,
--111,,"hotFlashes,muscleAches",tired,
--110,,"nightSweats,hotFlashes,headache",anxious,
--108,,"hotFlashes,brainFog",foggy,~5 flashes today
--107,,"nightSweats,hotFlashes,fatigue",tired,
--106,,"hotFlashes,jointPain",sad,
--105,,"nightSweats,hotFlashes",anxious,
--103,,"nightSweats,hotFlashes,brainFog",anxious,
--101,,"hotFlashes,muscleAches,headache",tired,
--99,,"nightSweats,hotFlashes",irritable,16 hot flash days — starting lifestyle changes
--97,,"hotFlashes,brainFog",foggy,
--95,,"nightSweats,hotFlashes,fatigue",tired,
--93,,"hotFlashes,jointPain",sad,
--91,,"nightSweats,hotFlashes",anxious,
--89,,"hotFlashes,brainFog",foggy,Started HRT / lifestyle protocol this week
--87,,"nightSweats,hotFlashes,fatigue",tired,First week on new routine
--86,,"hotFlashes,headache",tired,
--85,,"hotFlashes,jointPain",neutral,Slightly fewer today — hopeful
--83,,"nightSweats,hotFlashes,headache",tired,
--81,,"hotFlashes,brainFog",foggy,Energy a little better
--80,,"nightSweats,hotFlashes",tired,
--79,,"hotFlashes,muscleAches",neutral,
--77,,"nightSweats,hotFlashes,fatigue",tired,Muscle pain easing slightly
--76,,"hotFlashes,jointPain",neutral,
--75,,"nightSweats,hotFlashes",tired,13 flash days so far — down from Jan pace
--73,,"hotFlashes,brainFog",neutral,Brain fog improving
--71,,"nightSweats,hotFlashes",tired,
--70,,"hotFlashes,jointPain",neutral,
--69,,hotFlashes,neutral,Energy a little better
--67,,"nightSweats,hotFlashes",tired,
--66,,hotFlashes,neutral,Only 1-2 flashes today
--64,,"nightSweats,hotFlashes",tired,
--62,,"hotFlashes,jointPain",neutral,12 flash days this month — modest improvement
--59,,hotFlashes,neutral,Mar — noticeably fewer flashes
--57,,"nightSweats,hotFlashes",tired,Nights still rough but better
--55,,"hotFlashes,brainFog",neutral,
--53,,hotFlashes,calm,Some calm days appearing
--52,,,calm,Good day — no flashes
--50,,"nightSweats,hotFlashes,jointPain",tired,
--48,,hotFlashes,neutral,Only 2 flashes today
--47,,,calm,Clear day
--45,,"hotFlashes,muscleAches",neutral,Sleep improving — only woke once
--43,,"nightSweats,hotFlashes",tired,
--42,,hotFlashes,neutral,
--41,,,calm,Good day — minimal symptoms
--39,,"hotFlashes,jointPain",neutral,
--37,,,calm,
--36,,hotFlashes,calm,~9 flash days this month — steady improvement
--34,,"nightSweats,hotFlashes",neutral,Nights still have occasional sweats
--32,,hotFlashes,calm,
--30,,hotFlashes,neutral,Energy coming back — exercised today
--28,,hotFlashes,calm,Apr — feeling meaningfully better
--27,,,calm,No flashes — clear day
+-118,,,calm,Life feeling genuinely normal again — 18 months on HRT
+-116,,vaginalDryness,calm,Still some dryness — using topical treatment
+-114,,,happy,
+-112,,hotFlashes,neutral,One brief flash — mild
+-110,,,calm,
+-108,,vaginalDryness,calm,4 flash days this month — very manageable
+-106,,,happy,
+-104,,,calm,
+-102,,hotFlashes,neutral,
+-100,,,calm,
+-98,,vaginalDryness,calm,Good month — 3 flash days
+-96,,,happy,
+-94,,,calm,
+-92,,hotFlashes,neutral,
+-90,,,calm,
+-88,,urinaryUrgency,calm,Urgency manageable — staying hydrated
+-86,,,happy,4 flash days this month
+-84,,,calm,
+-82,,hotFlashes,neutral,One flash — very brief
+-80,,,calm,
+-78,,vaginalDryness,calm,
+-76,,,happy,
+-74,,,calm,Sleep consistently solid
+-72,,hotFlashes,neutral,
+-70,,,calm,3 flash days — steady
+-68,,,happy,
+-66,,vaginalDryness,calm,
+-64,,hotFlashes,neutral,
+-62,,,calm,
+-60,,,happy,4 flash days this month
+-58,,urinaryUrgency,calm,
+-56,,,happy,
+-54,,hotFlashes,neutral,
+-52,,,calm,
+-50,,vaginalDryness,calm,3 flash days — best month yet
+-48,,,happy,
+-46,,,calm,
+-44,,hotFlashes,neutral,
+-42,,,calm,
+-40,,vaginalDryness,calm,Dryness manageable with treatment
+-38,,,happy,4 flash days this month
+-36,,,calm,
+-34,,hotFlashes,neutral,
+-32,,,calm,
+-30,,urinaryUrgency,calm,
+-28,,,happy,3 flash days — feeling well-managed
 -26,,,calm,
--24,,hotFlashes,neutral,Just one flash — brief
--23,,,calm,
--22,,,calm,Two clear days in a row
--20,,hotFlashes,neutral,
--19,,,calm,
--18,,nightSweats,tired,Night sweat but no daytime flashes
--16,,,calm,Really good day
--14,,hotFlashes,neutral,One flash mid-afternoon
--13,,,calm,
--12,,,calm,
--10,,hotFlashes,neutral,
--9,,,calm,
--8,,,calm,Two consecutive clear days
--6,,hotFlashes,neutral,
--4,,,calm,Noticeably more good days than bad now
--2,,,calm,8 hot flash days this month — best yet
-0,,hotFlashes,neutral,Trajectory is positive — continuing treatment
+-24,,hotFlashes,neutral,
+-22,,vaginalDryness,calm,
+-20,,,happy,
+-18,,,calm,4 flash days — plateau achieved
+-16,,hotFlashes,neutral,
+-14,,,calm,
+-12,,vaginalDryness,calm,
+-10,,,happy,
+-8,,hotFlashes,neutral,3 flash days this month
+-6,,,calm,
+-4,,urinaryUrgency,calm,
+-2,,,happy,Feeling well-managed — HRT working well
+0,,hotFlashes,neutral,Stable and consistent — good quality of life

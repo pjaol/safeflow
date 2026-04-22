@@ -60,10 +60,13 @@ struct UnexpectedBleedingCard: View {
 // MARK: - SymptomSnapshotCard
 
 /// Shows a 30-day count of key symptoms for perimenopause/menopause users.
-/// Menopause stage adds an intimate health count alongside vasomotor and musculoskeletal.
+/// Menopause stage adds an intimate health count alongside vasomotor and musculoskeletal,
+/// unless the user has opted to hide the Intimate Health category.
 struct SymptomSnapshotCard: View {
     let cycleStore: CycleStore
     let lifeStage: LifeStage
+
+    @AppStorage(LifeStage.intimateHealthHiddenKey) private var intimateHealthHidden: Bool = false
 
     private var windowDays: [CycleDay] {
         let end = Date()
@@ -77,9 +80,13 @@ struct SymptomSnapshotCard: View {
         }.count
     }
 
+    private var showsIntimateHealth: Bool {
+        lifeStage == .menopause && !intimateHealthHidden
+    }
+
     private var hasData: Bool {
         count(for: .vasomotor) > 0 || count(for: .musculoskeletal) > 0 ||
-        (lifeStage == .menopause && count(for: .intimateHealth) > 0)
+        (showsIntimateHealth && count(for: .intimateHealth) > 0)
     }
 
     var body: some View {
@@ -109,7 +116,7 @@ struct SymptomSnapshotCard: View {
                         count: count(for: .musculoskeletal),
                         color: AppTheme.Colors.dartEnergy
                     )
-                    if lifeStage == .menopause {
+                    if showsIntimateHealth {
                         Divider().frame(height: 36)
                         SymptomCountRow(
                             label: "Intimate",
@@ -135,7 +142,7 @@ struct SymptomSnapshotCard: View {
             "Hot flashes: \(count(for: .vasomotor)) days",
             "Joint pain: \(count(for: .musculoskeletal)) days"
         ]
-        if lifeStage == .menopause {
+        if showsIntimateHealth {
             parts.append("Intimate health: \(count(for: .intimateHealth)) days")
         }
         return parts.joined(separator: ". ")
@@ -226,6 +233,97 @@ struct BleedHistoryCard: View {
             "\(cycle.start.formatted(.dateTime.month(.wide).year())), \(cycle.days) \(cycle.days == 1 ? "day" : "days")"
         }.joined(separator: ". ")
         return "Cycle history. \(rows)"
+    }
+}
+
+// MARK: - IntimateHealthConsentCard
+
+/// Shown once on the home screen when a user first switches to menopause.
+/// Names the three symptoms in the Intimate Health category so the user
+/// understands what it tracks before they encounter it in the dartboard.
+/// Provides a "Got it" path (show the category) and a "Hide this category"
+/// path (suppresses the category until re-enabled in Settings).
+///
+/// Dismissed state is stored in UserDefaults. The card never reappears once dismissed.
+struct IntimateHealthConsentCard: View {
+    @State private var isDismissed: Bool = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    private static let shownKey = "intimateHealthConsentShown"
+
+    /// Returns true if the card should be shown: menopause stage, not yet dismissed.
+    static func shouldShow() -> Bool {
+        !UserDefaults.standard.bool(forKey: shownKey)
+    }
+
+    var body: some View {
+        if !isDismissed {
+            VStack(alignment: .leading, spacing: 12) {
+                HStack(spacing: 10) {
+                    Image(systemName: "heart.text.square.fill")
+                        .font(.system(.title3))
+                        .foregroundStyle(AppTheme.Colors.dartMood)
+                        .accessibilityHidden(true)
+                    Text("Intimate Health category")
+                        .font(.system(.callout, design: .rounded, weight: .semibold))
+                        .foregroundStyle(AppTheme.Colors.deepGrayText)
+                    Spacer(minLength: 0)
+                }
+
+                Text("Your log now includes an Intimate Health section — vaginal dryness, urinary urgency, and pain during sex. These are common in menopause and worth tracking if they affect you.")
+                    .font(.system(.subheadline, design: .rounded))
+                    .foregroundStyle(AppTheme.Colors.deepGrayText)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                HStack(spacing: 10) {
+                    Button {
+                        dismiss(hide: false)
+                    } label: {
+                        Text("Got it")
+                            .font(.system(.subheadline, design: .rounded, weight: .semibold))
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 10)
+                            .background(AppTheme.Colors.dartMood)
+                            .cornerRadius(10)
+                    }
+                    .accessibilityLabel("Got it — show Intimate Health category")
+
+                    Button {
+                        dismiss(hide: true)
+                    } label: {
+                        Text("Hide this category")
+                            .font(.system(.subheadline, design: .rounded))
+                            .foregroundStyle(AppTheme.Colors.mediumGrayText)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 10)
+                            .background(AppTheme.Colors.secondaryBackground)
+                            .cornerRadius(10)
+                    }
+                    .accessibilityLabel("Hide Intimate Health category — you can re-enable it in Settings")
+                }
+            }
+            .padding(AppTheme.Metrics.cardPadding)
+            .background(AppTheme.Colors.dartMood.opacity(0.07))
+            .cornerRadius(AppTheme.Metrics.cornerRadius)
+            .overlay(
+                RoundedRectangle(cornerRadius: AppTheme.Metrics.cornerRadius)
+                    .strokeBorder(AppTheme.Colors.dartMood.opacity(0.2), lineWidth: 1)
+            )
+            .transition(reduceMotion ? .opacity : .opacity.combined(with: .move(edge: .top)))
+            .accessibilityElement(children: .contain)
+            .accessibilityIdentifier("home.intimateHealthConsentCard")
+        }
+    }
+
+    private func dismiss(hide: Bool) {
+        UserDefaults.standard.set(true, forKey: Self.shownKey)
+        if hide {
+            UserDefaults.standard.set(true, forKey: LifeStage.intimateHealthHiddenKey)
+        }
+        withAnimation(reduceMotion ? nil : .easeOut(duration: 0.25)) {
+            isDismissed = true
+        }
     }
 }
 
