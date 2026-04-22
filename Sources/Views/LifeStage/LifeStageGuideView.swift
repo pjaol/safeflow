@@ -23,7 +23,6 @@ struct LifeStageGuideView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @State private var pendingStage: LifeStage? = nil
-    @State private var showingConfirmation = false
 
     var body: some View {
         NavigationStack {
@@ -57,18 +56,17 @@ struct LifeStageGuideView: View {
                         .accessibilityIdentifier("lifeStageGuide.doneButton")
                 }
             }
-        }
-        .sheet(isPresented: $showingConfirmation) {
-            if let pending = pendingStage {
+            // Push confirmation into the same NavigationStack — avoids sheet-in-sheet
+            .navigationDestination(item: $pendingStage) { pending in
                 LifeStageConfirmationSheet(
                     from: currentStage,
                     to: pending
                 ) {
                     applyStage(pending)
-                    showingConfirmation = false
+                    pendingStage = nil
+                    dismiss()
                 } onCancel: {
                     pendingStage = nil
-                    showingConfirmation = false
                 }
             }
         }
@@ -100,7 +98,6 @@ struct LifeStageGuideView: View {
             applyStage(stage)
         } else {
             pendingStage = stage
-            showingConfirmation = true
         }
     }
 
@@ -200,68 +197,61 @@ struct LifeStageConfirmationSheet: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: AppTheme.Metrics.standardSpacing) {
-                    // Header
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text(to.localizedName)
-                            .font(.system(.title2, design: .rounded, weight: .bold))
-                            .foregroundColor(AppTheme.Colors.deepGrayText)
-                        Text("Here's what changes:")
-                            .font(.system(.subheadline, design: .rounded, weight: .semibold))
-                            .foregroundColor(AppTheme.Colors.mediumGrayText)
-                    }
-
-                    // Change list
-                    VStack(alignment: .leading, spacing: 10) {
-                        ForEach(changeItems(from: from, to: to), id: \.self) { item in
-                            ChangeItem(text: item)
-                        }
-                    }
-                    .accessibilityElement(children: .combine)
-                    .accessibilityLabel(changeListAccessibilityLabel(from: from, to: to))
-                    .accessibilityIdentifier("lifeStageConfirmation.changeList")
-
-                    // Closing note
-                    Text(closingNote(to: to))
-                        .font(.system(.footnote, design: .rounded))
+        ScrollView {
+            VStack(alignment: .leading, spacing: AppTheme.Metrics.standardSpacing) {
+                // Header
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Here's what changes:")
+                        .font(.system(.subheadline, design: .rounded, weight: .semibold))
                         .foregroundColor(AppTheme.Colors.mediumGrayText)
-                        .padding(.top, 4)
-
-                    // Buttons
-                    VStack(spacing: 10) {
-                        Button(action: onConfirm) {
-                            Text("Switch to \(to.localizedNameString)")
-                                .font(.system(.body, design: .rounded, weight: .semibold))
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 14)
-                                .background(AppTheme.Colors.accentBlue)
-                                .cornerRadius(AppTheme.Metrics.buttonCornerRadius)
-                        }
-                        .accessibilityLabel("Confirm switch to \(to.localizedNameString)")
-                        .accessibilityIdentifier("lifeStageConfirmation.confirmButton")
-
-
-                        Button(action: onCancel) {
-                            Text("Cancel")
-                                .font(.system(.body, design: .rounded, weight: .medium))
-                                .foregroundColor(AppTheme.Colors.mediumGrayText)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 14)
-                        }
-                        .accessibilityIdentifier("lifeStageConfirmation.cancelButton")
-                    }
-                    .padding(.top, 8)
                 }
-                .padding(AppTheme.Metrics.cardPadding)
+
+                // Change list
+                VStack(alignment: .leading, spacing: 10) {
+                    ForEach(changeItems(from: from, to: to), id: \.self) { item in
+                        ChangeItem(text: item)
+                    }
+                }
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel(changeListAccessibilityLabel(from: from, to: to))
+                .accessibilityIdentifier("lifeStageConfirmation.changeList")
+
+                // Closing note
+                Text(closingNote(to: to))
+                    .font(.system(.footnote, design: .rounded))
+                    .foregroundColor(AppTheme.Colors.mediumGrayText)
+                    .padding(.top, 4)
+
+                // Buttons
+                VStack(spacing: 10) {
+                    Button(action: onConfirm) {
+                        Text("Switch to \(to.localizedNameString)")
+                            .font(.system(.body, design: .rounded, weight: .semibold))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 14)
+                            .background(AppTheme.Colors.accentBlue)
+                            .cornerRadius(AppTheme.Metrics.buttonCornerRadius)
+                    }
+                    .accessibilityLabel("Confirm switch to \(to.localizedNameString)")
+                    .accessibilityIdentifier("lifeStageConfirmation.confirmButton")
+
+                    Button(action: onCancel) {
+                        Text("Cancel")
+                            .font(.system(.body, design: .rounded, weight: .medium))
+                            .foregroundColor(AppTheme.Colors.mediumGrayText)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 14)
+                    }
+                    .accessibilityIdentifier("lifeStageConfirmation.cancelButton")
+                }
+                .padding(.top, 8)
             }
-            .background(AppTheme.Colors.background)
-            .navigationBarTitleDisplayMode(.inline)
+            .padding(AppTheme.Metrics.cardPadding)
         }
-        .presentationDetents([.medium, .large])
-        .presentationDragIndicator(.visible)
+        .background(AppTheme.Colors.background)
+        .navigationTitle(to.localizedName)
+        .navigationBarTitleDisplayMode(.inline)
     }
 
     // MARK: - Change copy
