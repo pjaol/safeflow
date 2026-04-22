@@ -70,8 +70,12 @@ struct HomeView: View {
                             BleedHistoryCard(cycleStore: cycleStore)
                         }
 
+                        // Peri/meno: 30-day symptom snapshot counts
+                        if lifeStage == .perimenopause || lifeStage == .menopause {
+                            SymptomSnapshotCard(cycleStore: cycleStore, lifeStage: lifeStage)
+                        }
+
                         // Peri/meno: monthly summary with embedded signal narrative
-                        // (replaces SymptomSnapshotCard + SignalCard — both folded in here)
 
                         // ── Zone 2: Cycle ring summary (phase + alerts + insights + tips) ──
                         // Hidden for paused (no cycle ring) and menopause (no predictions shown)
@@ -116,7 +120,8 @@ struct HomeView: View {
                             MonthlySummaryView(
                                 cycleStore:  cycleStore,
                                 signal:      isPeriMeno ? signalReadiness : nil,
-                                windowLabel: isPeriMeno ? signalWindow.label : nil
+                                windowLabel: isPeriMeno ? signalWindow.label : nil,
+                                lifeStage:   lifeStage
                             )
                             .withTrendSheet()
                         }

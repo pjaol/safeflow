@@ -59,9 +59,11 @@ struct UnexpectedBleedingCard: View {
 
 // MARK: - SymptomSnapshotCard
 
-/// Shows a 30-day count of vasomotor and musculoskeletal symptoms for perimenopause/menopause users.
+/// Shows a 30-day count of key symptoms for perimenopause/menopause users.
+/// Menopause stage adds an intimate health count alongside vasomotor and musculoskeletal.
 struct SymptomSnapshotCard: View {
     let cycleStore: CycleStore
+    let lifeStage: LifeStage
 
     private var windowDays: [CycleDay] {
         let end = Date()
@@ -76,7 +78,8 @@ struct SymptomSnapshotCard: View {
     }
 
     private var hasData: Bool {
-        count(for: .vasomotor) > 0 || count(for: .musculoskeletal) > 0
+        count(for: .vasomotor) > 0 || count(for: .musculoskeletal) > 0 ||
+        (lifeStage == .menopause && count(for: .intimateHealth) > 0)
     }
 
     var body: some View {
@@ -106,15 +109,36 @@ struct SymptomSnapshotCard: View {
                         count: count(for: .musculoskeletal),
                         color: AppTheme.Colors.dartEnergy
                     )
+                    if lifeStage == .menopause {
+                        Divider().frame(height: 36)
+                        SymptomCountRow(
+                            label: "Intimate",
+                            sfSymbol: "heart.text.square.fill",
+                            count: count(for: .intimateHealth),
+                            color: AppTheme.Colors.dartMood
+                        )
+                    }
                 }
             }
             .padding(AppTheme.Metrics.cardPadding)
             .background(AppTheme.Colors.secondaryBackground)
             .cornerRadius(AppTheme.Metrics.cornerRadius)
             .accessibilityElement(children: .combine)
-            .accessibilityLabel("Symptom snapshot, last 30 days. Hot flashes: \(count(for: .vasomotor)) days. Joint pain: \(count(for: .musculoskeletal)) days.")
+            .accessibilityLabel(accessibilityLabel)
             .accessibilityIdentifier("home.symptomSnapshotCard")
         }
+    }
+
+    private var accessibilityLabel: String {
+        var parts = [
+            "Symptom snapshot, last 30 days",
+            "Hot flashes: \(count(for: .vasomotor)) days",
+            "Joint pain: \(count(for: .musculoskeletal)) days"
+        ]
+        if lifeStage == .menopause {
+            parts.append("Intimate health: \(count(for: .intimateHealth)) days")
+        }
+        return parts.joined(separator: ". ")
     }
 }
 

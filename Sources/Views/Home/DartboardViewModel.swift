@@ -10,6 +10,7 @@ enum DartboardCategory: Int, CaseIterable {
     case gut
     case vasomotor
     case musculoskeletal
+    case intimateHealth
 
     var label: LocalizedStringKey {
         switch self {
@@ -19,6 +20,7 @@ enum DartboardCategory: Int, CaseIterable {
         case .gut:            return "Body"
         case .vasomotor:      return "Hot Flashes"
         case .musculoskeletal: return "Joints"
+        case .intimateHealth: return "Intimate"
         }
     }
 
@@ -30,6 +32,7 @@ enum DartboardCategory: Int, CaseIterable {
         case .gut:            return String(localized: "Body")
         case .vasomotor:      return String(localized: "Hot Flashes")
         case .musculoskeletal: return String(localized: "Joints")
+        case .intimateHealth: return String(localized: "Intimate")
         }
     }
 
@@ -41,6 +44,7 @@ enum DartboardCategory: Int, CaseIterable {
         case .gut:            return "figure.arms.open"
         case .vasomotor:      return "thermometer.sun.fill"
         case .musculoskeletal: return "figure.strengthtraining.traditional"
+        case .intimateHealth: return "heart.text.square.fill"
         }
     }
 
@@ -52,6 +56,7 @@ enum DartboardCategory: Int, CaseIterable {
         case .gut:            return AppTheme.Colors.dartGut
         case .vasomotor:      return AppTheme.Colors.dartPain
         case .musculoskeletal: return AppTheme.Colors.dartEnergy
+        case .intimateHealth: return AppTheme.Colors.dartMood
         }
     }
 
@@ -65,6 +70,7 @@ enum DartboardCategory: Int, CaseIterable {
         case .gut:            return .digestive
         case .vasomotor:      return .vasomotor
         case .musculoskeletal: return .musculoskeletal
+        case .intimateHealth: return .intimateHealth
         case .mood:           return nil
         }
     }
@@ -76,6 +82,8 @@ enum DartboardCategory: Int, CaseIterable {
             return true
         case .vasomotor, .musculoskeletal:
             return lifeStage == .perimenopause || lifeStage == .menopause
+        case .intimateHealth:
+            return lifeStage == .menopause
         }
     }
 
@@ -126,6 +134,12 @@ enum DartboardCategory: Int, CaseIterable {
                 DartboardItem(symptom: .jointPain,        sfSymbol: "figure.strengthtraining.traditional"),
                 DartboardItem(symptom: .muscleAches,      sfSymbol: "figure.flexibility"),
                 DartboardItem(symptom: .exerciseRecovery, sfSymbol: "arrow.clockwise.heart"),
+            ]
+        case .intimateHealth:
+            return [
+                DartboardItem(symptom: .vaginalDryness,  sfSymbol: "drop.halffull"),
+                DartboardItem(symptom: .urinaryUrgency,  sfSymbol: "exclamationmark.circle.fill"),
+                DartboardItem(symptom: .painWithSex,     sfSymbol: "heart.slash.fill"),
             ]
         }
     }

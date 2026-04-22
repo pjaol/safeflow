@@ -23,6 +23,7 @@ struct MonthlySummaryView: View {
     let cycleStore: CycleStore
     var signal:      SignalReadiness?  = nil
     var windowLabel: SignalWindowLabel? = nil
+    var lifeStage:   LifeStage = .regular
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -134,7 +135,9 @@ struct MonthlySummaryView: View {
                                 .foregroundStyle(AppTheme.Colors.deepGrayText)
                                 .fixedSize(horizontal: false, vertical: true)
                         } else {
-                            Text("Most frequent this month")
+                            Text(lifeStage == .menopause
+                                 ? "Most frequent symptoms"
+                                 : "Most frequent this month")
                                 .font(.system(.caption2, design: .rounded, weight: .semibold))
                                 .foregroundStyle(AppTheme.Colors.mediumGrayText)
                         }
