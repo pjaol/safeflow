@@ -116,7 +116,8 @@ final class SnapshotTests: XCTestCase {
         let periApp = makeApp(lifeStageArg: "LIFE_STAGE_PERIMENOPAUSE")
         periApp.launch()
         periApp.tap()
-        XCTAssertTrue(periApp.otherElements["home.symptomSnapshotCard"].waitForExistence(timeout: 30))
+        // Wait for the monthly summary card — always present in peri mode, doesn't require symptom data
+        XCTAssertTrue(periApp.otherElements["home.monthlySummaryCard"].waitForExistence(timeout: 30))
         sleep(2)
         snapshot("07_Perimenopause_Home")
         periApp.terminate()
@@ -126,7 +127,8 @@ final class SnapshotTests: XCTestCase {
         let menoApp = makeApp(lifeStageArg: "LIFE_STAGE_MENOPAUSE")
         menoApp.launch()
         menoApp.tap()
-        XCTAssertTrue(menoApp.otherElements["home.symptomSnapshotCard"].waitForExistence(timeout: 30))
+        // Wait for the monthly summary card — always present in meno mode, doesn't require symptom data
+        XCTAssertTrue(menoApp.otherElements["home.monthlySummaryCard"].waitForExistence(timeout: 30))
         sleep(2)
         snapshot("08_Menopause_Home")
         menoApp.terminate()
@@ -136,7 +138,7 @@ final class SnapshotTests: XCTestCase {
         let periApp = makeApp(lifeStageArg: "LIFE_STAGE_PERIMENOPAUSE")
         periApp.launch()
         periApp.tap()
-        XCTAssertTrue(periApp.otherElements["home.symptomSnapshotCard"].waitForExistence(timeout: 30))
+        XCTAssertTrue(periApp.otherElements["home.monthlySummaryCard"].waitForExistence(timeout: 30))
         let editButtons = periApp.buttons.matching(identifier: "home.editLogsButton")
         XCTAssertTrue(editButtons.firstMatch.waitForExistence(timeout: 5))
         var tapped = false

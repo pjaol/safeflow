@@ -135,7 +135,13 @@ struct SafeFlowApp: App {
         }
 
         if args.contains("LOAD_SYMPTOM_RICH") {
-            loadTestScenario(filename: "symptom_rich_cycles", cycleLength: 28, periodLength: 6)
+            if args.contains("LIFE_STAGE_PERIMENOPAUSE") {
+                loadTestScenario(filename: "scenario_early_perimenopause", cycleLength: 32, periodLength: 5)
+            } else if args.contains("LIFE_STAGE_MENOPAUSE") {
+                loadTestScenario(filename: "scenario_menopause_stable", cycleLength: 0, periodLength: 0)
+            } else {
+                loadTestScenario(filename: "symptom_rich_cycles", cycleLength: 28, periodLength: 6)
+            }
         }
         #endif
     }
@@ -148,12 +154,17 @@ struct SafeFlowApp: App {
                   let entries = try? TestDataLoader.shared.parseEntriesPublic(from: csv),
                   let firstEntry = entries.first else { return }
 
-            let seed = CycleSeedData(
-                lastPeriodStartDate: firstEntry.date,
-                typicalPeriodLength: periodLength,
-                typicalCycleLength: cycleLength
-            )
-            cycleStore.saveSeedData(seed)
+            // Only save seed data when a meaningful cycle length is provided.
+            // Menopause scenarios have no cycle — skip the seed to avoid a
+            // divide-by-zero in CyclePredictionEngine when cycleLength == 0.
+            if cycleLength > 0 {
+                let seed = CycleSeedData(
+                    lastPeriodStartDate: firstEntry.date,
+                    typicalPeriodLength: periodLength,
+                    typicalCycleLength: cycleLength
+                )
+                cycleStore.saveSeedData(seed)
+            }
             for entry in entries {
                 cycleStore.addOrUpdateDay(CycleDay(
                     id: UUID(),

@@ -127,6 +127,7 @@ struct CyclePredictionEngine {
             return nil
         }
 
+        guard avgLength > 0 else { return nil }
         let daysFromLastStart = calendar.dateComponents([.day], from: lastStart, to: todayStart).day ?? 0
         let cyclesElapsed = Double(daysFromLastStart) / avgLength
         let wholeCyclesElapsed = floor(cyclesElapsed)
