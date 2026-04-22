@@ -250,7 +250,7 @@ private struct MetricBarChart: View {
                             path.move(to: CGPoint(x: 0, y: y))
                             path.addLine(to: CGPoint(x: geo.size.width, y: y))
                         }
-                        .stroke(AppTheme.Colors.mediumGrayText.opacity(0.5),
+                        .stroke(AppTheme.Colors.deepGrayText.opacity(0.35),
                                 style: StrokeStyle(lineWidth: 1, dash: [4, 4]))
                     }
                 }
